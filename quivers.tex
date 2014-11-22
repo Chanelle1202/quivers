@@ -1,5 +1,51 @@
-\documentclass{report}
+\documentclass[11.5pt, twoside, a4paper, titlepage]{report}
+\usepackage{graphicx, amssymb, amsmath, mathtools, amsthm}
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows}
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{rem}[mydef]{Remark}
+\newtheorem{note}[mydef]{Notation}
+\newtheorem{eg}[mydef]{Example}
+\theoremstyle{plain}
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+
+
+
 \begin{document}
+\title{Representation of Quivers}
+\author{Chanelle Lee \\Student ID: 200646370\\Supervisor: William Crawley-Boevey}
+\date{\today}
+\maketitle
+
+
+\tableofcontents
+
+\chapter{Introduction}
+
+\chapter{Homological Algebra}
+\section{Chain Complexes}
+
+\mydef{A \emph{chain complex} $C$ consists of a sequence of $\mathbb{R}$-modules $C_i$ and homomorphisms of the form,
+\begin{equation*}
+... \xrightarrow C_2 \xrightarrow{\delta_{2}} C_1 \xrightarrow{\delta_{1 }} C_0 \xrightarrow{\delta_0} C_{-1} \xrightarrow{\delta_{-1}} C_{-2} \xrightarrow ...
+\end{equation*}
+such that $\delta_{n-1}\delta_{n}=0$ for all $n$, i.e. the composition of any two consecutive maps is zero. The maps $\delta_n$ are called the \emph{differentials} of $C$.}
+
+\rem{It is convention that the map $\delta_n$ starts at $C_n$. }
+
+\mydef{If $C$ is a chain complex then its \emph{homology} is defined to be,
+\begin{equation*}
+H_n(C)=\frac{Ker(\delta_n:C_n \rightarrow C_{n-1})}{Im(\delta_{n+1}:C_{n+1} \rightarrow C_n)} =\frac{Z_n(C)}{B_n(C)}.
+\end{equation*}
+
+
+
+
+
 
 
 \end{document}
