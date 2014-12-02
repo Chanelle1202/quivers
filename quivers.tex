@@ -3,6 +3,8 @@
 \usepackage{tikz}
 \usetikzlibrary{automata, arrows}
 \providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\equ}[1]{\begin{equation*}}
+\providecommand{\eequ}[1] {\end{equation*}}
 \theoremstyle{definition}
 \newtheorem{mydef}{Definition}[section]
 \newtheorem{rem}[mydef]{Remark}
@@ -29,9 +31,9 @@
 \chapter{Homological Algebra}
 \section{Chain Complexes}
 
-\mydef{A \emph{chain complex} $C$ consists of a sequence of $\mathbb{R}$-modules $C_i$ and homomorphisms of the form,
+\mydef{A \emph{chain complex} $C_{\bullet}$ consists of a sequence of $\mathbb{R}$-modules $C_i$ ($i \in \mathbb{Z}$) and morphisms of the form,
 \begin{equation*}
-... \xrightarrow C_2 \xrightarrow{\delta_{2}} C_1 \xrightarrow{\delta_{1 }} C_0 \xrightarrow{\delta_0} C_{-1} \xrightarrow{\delta_{-1}} C_{-2} \xrightarrow ...
+C: \qquad \dots \xrightarrow{} C_2 \xrightarrow{\delta_{2}} C_1 \xrightarrow{\delta_{1 }} C_0 \xrightarrow{\delta_0} C_{-1} \xrightarrow{\delta_{-1}} C_{-2} \xrightarrow{\delta_{-2}}\dots
 \end{equation*}
 such that $\delta_{n-1}\delta_{n}=0$ for all $n$, i.e. the composition of any two consecutive maps is zero. The maps $\delta_n$ are called the \emph{differentials} of $C$.}
 
@@ -41,6 +43,68 @@ such that $\delta_{n-1}\delta_{n}=0$ for all $n$, i.e. the composition of any tw
 \begin{equation*}
 H_n(C)=\frac{Ker(\delta_n:C_n \rightarrow C_{n-1})}{Im(\delta_{n+1}:C_{n+1} \rightarrow C_n)} =\frac{Z_n(C)}{B_n(C)}.
 \end{equation*}
+This becomes an $\mathbb{R}$-module and, since $\delta^2$, it follows that $B_n(C)\subseteq Z_n(C)$.}
+
+\eg{
+ If we take a module $M$ then we can make a chain complex;
+\begin{equation*}
+C: \qquad \dots \xrightarrow{} 0 \xrightarrow{} M \xrightarrow{} 0 \xrightarrow{} \dots
+\end{equation*}
+where $M$ is at degree $n$. Then the homology will be:
+\begin{equation*}
+H_i(C)=\begin{cases}
+\frac{Ker(M \rightarrow 0)}{Im(0 \rightarrow M)}=M & i=n\\
+0 & i \neq n
+\end{cases}
+\end{equation*}
+}
+
+\eg{
+If we have a field $K$ then we can create the following chain complex:
+\begin{equation*}
+C': \qquad \dots \xrightarrow{} 0 \xrightarrow{} K^2 \xrightarrow{\bigl(\begin{smallmatrix}1&3&0\\2&0&0\end{smallmatrix}\bigr)} K^3 \xrightarrow{(\begin{smallmatrix}0&0&1\end{smallmatrix})} K^1 \xrightarrow{} 0 \xrightarrow{}\dots
+\end{equation*}
+We can clearly see that the maps uphold the $\delta^2=0$ condition as,
+\begin{equation*}
+\begin{pmatrix}
+1 & 3 & 0\\
+2 & 0 & 0
+\end{pmatrix}
+\begin{pmatrix}0\\ 0\\ 1
+\end{pmatrix}
+=\begin{pmatrix}
+0 & 0
+\end{pmatrix}.
+\end{equation*}
+Then if we set $K^2$ at degree $0$ we can see that the homology becomes,
+\equ
+H_i(C')=
+\begin{cases}
+
+}
+
+\mydef{
+\begin{itemize}
+\item The elements of $B_n(C)$ are called \emph{$n-$boundaries}.
+\item The elements of $Z_n(C)$ are called \emph{$n-$cycles}.
+\end{itemize}}
+
+\rem{If $x\in Z_n(C)$ then its image in $H_n(C)$ is usually written as $[x]$. }
+
+\mydef{A chain complex C is said to be:
+\begin{itemize}
+\item \emph{acyclic} if $H_n(C)=0$ for all $n$.
+\item \emph{bounded above} if there exists some $n\in \mathbb{N}$, $C_k=0$ for all $k>n$.
+\item \emph{bounded below} if for some $n \in \mathbb{N}$, $C_k=0$ for all $k<n$.
+\item \emph{bounded} if it is bounded above and below.
+\item \emph{non-negative}  if $C_n=0$ for all $n$.
+\end{itemize}}
+
+\mydef{A \emph{cochain complex} $C^{\bullet}$ consists of a sequence of $\mathbb{R}$-modules $C^i$ ($i \in \mathbb{Z}$) and morphisms of the form,
+\begin{equation*}
+\dots \xrightarrow C^{-2} \xrightarrow{\delta^{-2}} C^{-1} \xrightarrow{\delta^{-1 }} C^0 \xrightarrow{\delta^0} C^{1} \xrightarrow{\delta^{1}} C^{2} \xrightarrow{\delta^{2}} \dots
+\end{equation*}
+such that $\delta^{n-1}\delta^{n}=0$ for all $n$, i.e. the composition of any two consecutive maps is zero.
 
 
 
