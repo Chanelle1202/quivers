@@ -3,8 +3,9 @@
 \usepackage{tikz}
 \usetikzlibrary{automata, arrows}
 \providecommand{\abs}[1]{\lvert#1\rvert}
-\providecommand{\equ}[1]{\begin{equation*}}
-\providecommand{\eequ}[1] {\end{equation*}}
+\providecommand{\equ}[0]{\begin{equation*}}
+\providecommand{\eequ}[0] {\end{equation*}}
+\providecommand{\bb}[1]{\mathbb{#1}}
 \theoremstyle{definition}
 \newtheorem{mydef}{Definition}[section]
 \newtheorem{rem}[mydef]{Remark}
@@ -14,6 +15,7 @@
 \newtheorem{lem}[mydef]{Lemma}
 \newtheorem{thm}[mydef]{Theorem}
 \newtheorem{cor}[mydef]{Corollary}
+\newtheorem{prop}[mydef]{Proposition}
 
 
 
@@ -39,30 +41,10 @@ such that $\delta_{n-1}\delta_{n}=0$ for all $n$, i.e. the composition of any tw
 
 \rem{It is convention that the map $\delta_n$ starts at $C_n$. }
 
-\mydef{If $C$ is a chain complex then its \emph{homology} is defined to be,
-\begin{equation*}
-H_n(C)=\frac{Ker(\delta_n:C_n \rightarrow C_{n-1})}{Im(\delta_{n+1}:C_{n+1} \rightarrow C_n)} =\frac{Z_n(C)}{B_n(C)}.
-\end{equation*}
-This becomes an $\mathbb{R}$-module and, since $\delta^2$, it follows that $B_n(C)\subseteq Z_n(C)$.}
-
-\eg{
- If we take a module $M$ then we can make a chain complex;
-\begin{equation*}
-C: \qquad \dots \xrightarrow{} 0 \xrightarrow{} M \xrightarrow{} 0 \xrightarrow{} \dots
-\end{equation*}
-where $M$ is at degree $n$. Then the homology will be:
-\begin{equation*}
-H_i(C)=\begin{cases}
-\frac{Ker(M \rightarrow 0)}{Im(0 \rightarrow M)}=M & i=n\\
-0 & i \neq n
-\end{cases}
-\end{equation*}
-}
-
 \eg{
 If we have a field $K$ then we can create the following chain complex:
 \begin{equation*}
-C': \qquad \dots \xrightarrow{} 0 \xrightarrow{} K^2 \xrightarrow{\bigl(\begin{smallmatrix}1&3&0\\2&0&0\end{smallmatrix}\bigr)} K^3 \xrightarrow{(\begin{smallmatrix}0&0&1\end{smallmatrix})} K^1 \xrightarrow{} 0 \xrightarrow{}\dots
+C: \qquad \dots \xrightarrow{} 0 \xrightarrow{} K^2 \xrightarrow{\bigl(\begin{smallmatrix}1&3&0\\2&0&0\end{smallmatrix}\bigr)} K^3 \xrightarrow{\Bigl(\begin{smallmatrix}0\\0\\1\end{smallmatrix}\Bigr)} K^1 \xrightarrow{} 0 \xrightarrow{}\dots
 \end{equation*}
 We can clearly see that the maps uphold the $\delta^2=0$ condition as,
 \begin{equation*}
@@ -76,12 +58,88 @@ We can clearly see that the maps uphold the $\delta^2=0$ condition as,
 0 & 0
 \end{pmatrix}.
 \end{equation*}
-Then if we set $K^2$ at degree $0$ we can see that the homology becomes,
-\equ
-H_i(C')=
-\begin{cases}
-
 }
+
+\mydef{If $C$ is a chain complex then its \emph{homology} is defined to be,
+\begin{equation*}
+H_n(C)=\frac{Ker(\delta_n:C_n \rightarrow C_{n-1})}{Im(\delta_{n+1}:C_{n+1} \rightarrow C_n)} =\frac{Z_n(C)}{B_n(C)}.
+\end{equation*}
+This becomes an $\mathbb{R}$-module and, since $\delta^2$, it follows that $B_n(C)\subseteq Z_n(C)$.}\\
+
+Examples \ref{chainMeg} and \ref{chainZeg} are taken from \cite{CB1} and are included here because they are felt to be the clearest at demonstrating a chain complex and homology, however, the more general statement of the second example is presented as Proposition %reference
+because it is an interesting result.
+
+\eg{ \label{chainMeg}
+ If we take a module $M$ then we can make a chain complex;
+\begin{equation*}
+C': \qquad \dots \xrightarrow{} 0 \xrightarrow{} M \xrightarrow{} 0 \xrightarrow{} \dots
+\end{equation*}
+where $M$ is at degree $n$. Then the homology will be:
+\begin{equation*}
+H_i(C')=\begin{cases}
+\frac{Ker(M \rightarrow 0)}{Im(0 \rightarrow M)}=M & i=n,\\
+0 & \text{otherwise}.
+\end{cases}
+\end{equation*}
+}
+
+\prop{ \label{chainhomprop}
+If we have a module homomorphism between $R$-modules, $f: M \xrightarrow{} N$, the we get the chain complex,
+\equ
+C: \qquad \underset{\text{deg}}{\dots} \xrightarrow{}\underset{n+2}{0} \xrightarrow{} \underset{n+1}{M} \xrightarrow{f}\underset{n}{N} \xrightarrow{} \underset{n-1}{0} \xrightarrow{}\dots ,
+\eequ
+and the homology becomes,
+\equ
+H_i(C)=
+\begin{cases}
+\frac{N}{Im(f)}=Coker(f) & i=n\\
+Ker(f) & i=n+1\\
+0 & \text{otherwise}.
+\end{cases}
+\eequ
+}
+\begin{proof}
+Firstly, at degree $n$ we have that,
+\equ
+H_n(C)=\frac{Ker(N\xrightarrow{}0)}{Im(M\xrightarrow{f}N)}=\frac{N}{Im(f)}=Coker(f).
+\eequ
+Then at degree $n+1$ we have that,
+\equ
+H_{n+1}(C)=\frac{Ker(M\xrightarrow{f}N)}{Im(0\xrightarrow{}M)}=Ker(f).
+\eequ
+Finally, it is clear that everywhere else there is no homology.
+\end{proof}
+
+\note{Here, 
+\equ
+Coker(f)= \frac{\text{Codomain of }f}{\text{Image of }f},
+\eequ
+is the \emph{cokernel} of the map $f$.}
+
+\eg{ \label{chainZeg}
+We can have a chain complex of $\mathbb{Z}$-modules,
+\equ
+C'': \qquad \underset{\text{deg}}{\dots} \xrightarrow{}\underset{2}{0} \xrightarrow{} \underset{1}{\mathbb{Z}} \xrightarrow{a}\underset{0}{\mathbb{Z}} \xrightarrow{} \underset{-1}{0} \xrightarrow{}\dots 
+\eequ
+where the map $a$ is right multiplication by some $a \in \mathbb{Z}$. The homology is,
+\equ
+H_i(C'') = 
+\begin{cases}
+\frac{Ker(\mathbb(Z)\xrightarrow{} 0)}{Im(\mathbb{Z}\xrightarrow{a}\mathbb{Z})}=\frac{\mathbb{Z}}{a\mathbb{Z}} & i=0,\\
+0 & \text{otherwise}.
+\end{cases}
+\eequ
+Note that,
+\equ
+H_0(C'')=\frac{\bb{Z}}{a\bb{Z}}= \frac{\text{Codomain of }f}{\text{Image of }f}=Coker(a).
+\eequ
+Also,
+\equ
+H_1(C'')=\frac{Ker(\bb{Z}\xrightarrow{a}\bb{Z})}{Im(0\xrightarrow{}\bb{Z})}=Ker(a)=0,
+\eequ
+because $Ker(a)$ is empty.
+}
+
 
 \mydef{
 \begin{itemize}
@@ -97,19 +155,31 @@ H_i(C')=
 \item \emph{bounded above} if there exists some $n\in \mathbb{N}$, $C_k=0$ for all $k>n$.
 \item \emph{bounded below} if for some $n \in \mathbb{N}$, $C_k=0$ for all $k<n$.
 \item \emph{bounded} if it is bounded above and below.
-\item \emph{non-negative}  if $C_n=0$ for all $n$.
+\item \emph{non-negative}  if $C_n=0$ for $n<0$.
 \end{itemize}}
 
 \mydef{A \emph{cochain complex} $C^{\bullet}$ consists of a sequence of $\mathbb{R}$-modules $C^i$ ($i \in \mathbb{Z}$) and morphisms of the form,
 \begin{equation*}
-\dots \xrightarrow C^{-2} \xrightarrow{\delta^{-2}} C^{-1} \xrightarrow{\delta^{-1 }} C^0 \xrightarrow{\delta^0} C^{1} \xrightarrow{\delta^{1}} C^{2} \xrightarrow{\delta^{2}} \dots
+C: \qquad \dots \xrightarrow{} C^{-2} \xrightarrow{\delta^{-2}} C^{-1} \xrightarrow{\delta^{-1 }} C^0 \xrightarrow{\delta^0} C^{1} \xrightarrow{\delta^{1}} C^{2} \xrightarrow{\delta^{2}} \dots
 \end{equation*}
 such that $\delta^{n-1}\delta^{n}=0$ for all $n$, i.e. the composition of any two consecutive maps is zero.
 
 
 
 
+\begin{thebibliography}{99}
 
+\bibitem{CB1}
+\emph{Cohomology and Central Simple Algebras}. [Online-PDF file]. [Accessed October 2014].
+Available from: http://www1.maths.leeds.ac.uk/~pmtwc/cohom.pdf
+
+\bibitem{CB2}
+\emph{Representation of Quivers}. [Online-PDF file]. [Accessed October 2014].
+Available from: http://www1.maths.leeds.ac.uk/~pmtwc/quivlecs.pdf
+
+
+
+\end{thebibliography}
 
 
 \end{document}
