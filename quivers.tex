@@ -35,7 +35,7 @@
 
 \mydef{A \emph{chain complex} $C_{\bullet}$ consists of a sequence of $\mathbb{R}$-modules $C_i$ ($i \in \mathbb{Z}$) and morphisms of the form,
 \begin{equation*}
-C: \qquad \dots \xrightarrow{} C_2 \xrightarrow{\delta_{2}} C_1 \xrightarrow{\delta_{1 }} C_0 \xrightarrow{\delta_0} C_{-1} \xrightarrow{\delta_{-1}} C_{-2} \xrightarrow{\delta_{-2}}\dots
+C: \qquad \dots \xrightarrow{\delta_{3}} C_2 \xrightarrow{\delta_{2}} C_1 \xrightarrow{\delta_{1 }} C_0 \xrightarrow{\delta_0} C_{-1} \xrightarrow{\delta_{-1}} C_{-2} \xrightarrow{\delta_{-2}}\dots
 \end{equation*}
 such that $\delta_{n-1}\delta_{n}=0$ for all $n$, i.e. the composition of any two consecutive maps is zero. The maps $\delta_n$ are called the \emph{differentials} of $C$.}
 
@@ -66,8 +66,7 @@ H_n(C)=\frac{Ker(\delta_n:C_n \rightarrow C_{n-1})}{Im(\delta_{n+1}:C_{n+1} \rig
 \end{equation*}
 This becomes an $\mathbb{R}$-module and, since $\delta^2$, it follows that $B_n(C)\subseteq Z_n(C)$.}\\
 
-Examples \ref{chainMeg} and \ref{chainZeg} are taken from \cite{CB1} and are included here because they are felt to be the clearest at demonstrating a chain complex and homology, however, the more general statement of the second example is presented as Proposition %reference
-because it is an interesting result.
+Examples \ref{chainMeg} and \ref{chainZeg} are taken from \cite{CB1} and are included here because they are felt to be the clearest at demonstrating a chain complex and homology, however, the more general statement of the second example is presented as Proposition \ref{chainhomprop} because it is an interesting result.
 
 \eg{ \label{chainMeg}
  If we take a module $M$ then we can make a chain complex;
@@ -158,11 +157,26 @@ because $Ker(a)$ is empty.
 \item \emph{non-negative}  if $C_n=0$ for $n<0$.
 \end{itemize}}
 
+\eg{All the chain complexes in the previous examples are bounded both above and below, however, neither is acyclic as they both have instances where the homology is non-zero. The chain complex in Example \ref{Zchaineg} is non-negative because $C_n\neq 0$ only when $n=0,1$.}
+
+\eg{The chain complex, 
+\equ
+C''': \qquad \dots \xrightarrow{}0\xrightarrow{}\bb{Z}\xrightarrow{}
+\eequ}
+
+
+\section{Cochain Complexes}
+
 \mydef{A \emph{cochain complex} $C^{\bullet}$ consists of a sequence of $\mathbb{R}$-modules $C^i$ ($i \in \mathbb{Z}$) and morphisms of the form,
 \begin{equation*}
-C: \qquad \dots \xrightarrow{} C^{-2} \xrightarrow{\delta^{-2}} C^{-1} \xrightarrow{\delta^{-1 }} C^0 \xrightarrow{\delta^0} C^{1} \xrightarrow{\delta^{1}} C^{2} \xrightarrow{\delta^{2}} \dots
+C: \qquad \dots \xrightarrow{\delta^{-3}} C^{-2} \xrightarrow{\delta^{-2}} C^{-1} \xrightarrow{\delta^{-1 }} C^0 \xrightarrow{\delta^0} C^{1} \xrightarrow{\delta^{1}} C^{2} \xrightarrow{\delta^{2}} \dots
 \end{equation*}
 such that $\delta^{n-1}\delta^{n}=0$ for all $n$, i.e. the composition of any two consecutive maps is zero.
+
+\rem{Chain and cochain complexes can be thought of as almost identical constructs with the only difference being thenumbering of the chain. The degree of a chain complex \emph{decreases} from left to right, whereas, the degree of a cochain complex \emph{increses} from left to right. So, we can compute one from the other by setting $C^{-n}=C_n$, or equivalently $C^n=C_{-n}$; this is called \emph{renumbering}.}
+
+
+
 
 
 
