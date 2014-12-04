@@ -33,9 +33,9 @@
 \chapter{Homological Algebra}
 \section{Chain Complexes}
 
-\mydef{A \emph{chain complex} $C_{\bullet}$ consists of a sequence of $\mathbb{R}$-modules $C_i$ ($i \in \mathbb{Z}$) and morphisms of the form,
+\mydef{A \emph{chain complex} $\mathbf{C}_{\bullet}$ consists of a sequence of $\mathbb{R}$-modules $C_i$ ($i \in \mathbb{Z}$) and morphisms of the form,
 \begin{equation*}
-C: \qquad \dots \xrightarrow{\delta_{3}} C_2 \xrightarrow{\delta_{2}} C_1 \xrightarrow{\delta_{1 }} C_0 \xrightarrow{\delta_0} C_{-1} \xrightarrow{\delta_{-1}} C_{-2} \xrightarrow{\delta_{-2}}\dots
+\mathbf{C}: \qquad \dots \xrightarrow{\delta_{3}} C_2 \xrightarrow{\delta_{2}} C_1 \xrightarrow{\delta_{1 }} C_0 \xrightarrow{\delta_0} C_{-1} \xrightarrow{\delta_{-1}} C_{-2} \xrightarrow{\delta_{-2}}\dots
 \end{equation*}
 such that $\delta_{n-1}\delta_{n}=0$ for all $n$, i.e. the composition of any two consecutive maps is zero. The maps $\delta_n$ are called the \emph{differentials} of $C$.}
 
@@ -44,15 +44,16 @@ such that $\delta_{n-1}\delta_{n}=0$ for all $n$, i.e. the composition of any tw
 \eg{
 If we have a field $K$ then we can create the following chain complex:
 \begin{equation*}
-C: \qquad \dots \xrightarrow{} 0 \xrightarrow{} K^2 \xrightarrow{\bigl(\begin{smallmatrix}1&3&0\\2&0&0\end{smallmatrix}\bigr)} K^3 \xrightarrow{\Bigl(\begin{smallmatrix}0\\0\\1\end{smallmatrix}\Bigr)} K^1 \xrightarrow{} 0 \xrightarrow{}\dots
+\mathbf{C}: \qquad \dots \xrightarrow{} 0 \xrightarrow{} K^2 \xrightarrow{\Bigl(\begin{smallmatrix}1&2\\ 3&0\\ 0&0 \end{smallmatrix}\Bigr)} K^3 \xrightarrow{(\begin{smallmatrix}0 & 0 &1\end{smallmatrix})} K \xrightarrow{} 0 \xrightarrow{}\dots
 \end{equation*}
 We can clearly see that the maps uphold the $\delta^2=0$ condition as,
 \begin{equation*}
-\begin{pmatrix}
-1 & 3 & 0\\
-2 & 0 & 0
+\begin{pmatrix}0 & 0 &1
 \end{pmatrix}
-\begin{pmatrix}0\\ 0\\ 1
+\begin{pmatrix}
+1 & 2 \\
+3 & 0\\
+0 & 0
 \end{pmatrix}
 =\begin{pmatrix}
 0 & 0
@@ -60,22 +61,54 @@ We can clearly see that the maps uphold the $\delta^2=0$ condition as,
 \end{equation*}
 }
 
-\mydef{If $C$ is a chain complex then its \emph{homology} is defined to be,
+\eg{\label{Kchaineg} If we consider the sequence, 
+\equ 
+\dots \xrightarrow{} 0 \xrightarrow{} K \xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)} K^2 \xrightarrow{(\begin{smallmatrix}1 & 0 \end{smallmatrix})} K \xrightarrow{} 0 \xrightarrow{} \dots
+\eequ
+however,
+\equ
+\begin{pmatrix}
+1 & 0
+\end{pmatrix}
+\begin{pmatrix*}
+1\\
+0
+\end{pmatrix*}
+= 1 \neq 0.
+\eequ
+Hence, $\delta^2 \neq0$ and so the sequence is not a chain complex. However, if we change the second map slightly we obtain the chain complex,
+\equ
+\mathbf{C}: \qquad \dots \xrightarrow{} 0 \xrightarrow{} K \xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)} K^2 \xrightarrow{(\begin{smallmatrix}0 & 1 \end{smallmatrix})} K \xrightarrow{} 0 \xrightarrow{} \dots
+\eequ
+since, 
+\equ
+\begin{pmatrix}
+1 & 0
+\end{pmatrix}
+\begin{pmatrix*}
+0\\
+1
+\end{pmatrix*}
+= 1 \neq 0.
+\eequ
+}
+
+\mydef{If $\mathbf{C}$ is a chain complex then its \emph{homology} is defined to be,
 \begin{equation*}
-H_n(C)=\frac{Ker(\delta_n:C_n \rightarrow C_{n-1})}{Im(\delta_{n+1}:C_{n+1} \rightarrow C_n)} =\frac{Z_n(C)}{B_n(C)}.
+H_n(\mathbf{C})=\frac{Ker(\delta_n:C_n \rightarrow C_{n-1})}{Im(\delta_{n+1}:C_{n+1} \rightarrow C_n)} =\frac{Z_n(\mathbf{C})}{B_n(\mathbf{C})}.
 \end{equation*}
-This becomes an $\mathbb{R}$-module and, since $\delta^2$, it follows that $B_n(C)\subseteq Z_n(C)$.}\\
+This becomes an $\mathbb{R}$-module and, since $\delta^2$, it follows that $B_n(\mathbf{C})\subseteq Z_n(\mathbf{C})$.}\\
 
 Examples \ref{chainMeg} and \ref{chainZeg} are taken from \cite{CB1} and are included here because they are felt to be the clearest at demonstrating a chain complex and homology, however, the more general statement of the second example is presented as Proposition \ref{chainhomprop} because it is an interesting result.
 
 \eg{ \label{chainMeg}
  If we take a module $M$ then we can make a chain complex;
 \begin{equation*}
-C': \qquad \dots \xrightarrow{} 0 \xrightarrow{} M \xrightarrow{} 0 \xrightarrow{} \dots
+\mathbf{C}: \qquad \dots \xrightarrow{} 0 \xrightarrow{} M \xrightarrow{} 0 \xrightarrow{} \dots
 \end{equation*}
 where $M$ is at degree $n$. Then the homology will be:
 \begin{equation*}
-H_i(C')=\begin{cases}
+H_i(\mathbf{C})=\begin{cases}
 \frac{Ker(M \rightarrow 0)}{Im(0 \rightarrow M)}=M & i=n,\\
 0 & \text{otherwise}.
 \end{cases}
@@ -85,11 +118,11 @@ H_i(C')=\begin{cases}
 \prop{ \label{chainhomprop}
 If we have a module homomorphism between $R$-modules, $f: M \xrightarrow{} N$, the we get the chain complex,
 \equ
-C: \qquad \underset{\text{deg}}{\dots} \xrightarrow{}\underset{n+2}{0} \xrightarrow{} \underset{n+1}{M} \xrightarrow{f}\underset{n}{N} \xrightarrow{} \underset{n-1}{0} \xrightarrow{}\dots ,
+\mathbf{C}: \qquad \underset{\text{deg}}{\dots} \xrightarrow{}\underset{n+2}{0} \xrightarrow{} \underset{n+1}{M} \xrightarrow{f}\underset{n}{N} \xrightarrow{} \underset{n-1}{0} \xrightarrow{}\dots ,
 \eequ
 and the homology becomes,
 \equ
-H_i(C)=
+H_i(\mathbf{C})=
 \begin{cases}
 \frac{N}{Im(f)}=Coker(f) & i=n\\
 Ker(f) & i=n+1\\
@@ -100,11 +133,11 @@ Ker(f) & i=n+1\\
 \begin{proof}
 Firstly, at degree $n$ we have that,
 \equ
-H_n(C)=\frac{Ker(N\xrightarrow{}0)}{Im(M\xrightarrow{f}N)}=\frac{N}{Im(f)}=Coker(f).
+H_n(\mathbf{C})=\frac{Ker(N\xrightarrow{}0)}{Im(M\xrightarrow{f}N)}=\frac{N}{Im(f)}=Coker(f).
 \eequ
 Then at degree $n+1$ we have that,
 \equ
-H_{n+1}(C)=\frac{Ker(M\xrightarrow{f}N)}{Im(0\xrightarrow{}M)}=Ker(f).
+H_{n+1}(\mathbf{C})=\frac{Ker(M\xrightarrow{f}N)}{Im(0\xrightarrow{}M)}=Ker(f).
 \eequ
 Finally, it is clear that everywhere else there is no homology.
 \end{proof}
@@ -118,23 +151,23 @@ is the \emph{cokernel} of the map $f$.}
 \eg{ \label{chainZeg}
 We can have a chain complex of $\mathbb{Z}$-modules,
 \equ
-C'': \qquad \underset{\text{deg}}{\dots} \xrightarrow{}\underset{2}{0} \xrightarrow{} \underset{1}{\mathbb{Z}} \xrightarrow{a}\underset{0}{\mathbb{Z}} \xrightarrow{} \underset{-1}{0} \xrightarrow{}\dots 
+\mathbf{C}: \qquad \underset{\text{deg}}{\dots} \xrightarrow{}\underset{2}{0} \xrightarrow{} \underset{1}{\mathbb{Z}} \xrightarrow{a}\underset{0}{\mathbb{Z}} \xrightarrow{} \underset{-1}{0} \xrightarrow{}\dots 
 \eequ
 where the map $a$ is right multiplication by some $a \in \mathbb{Z}$. The homology is,
 \equ
-H_i(C'') = 
+H_i(\mathbf{C}) = 
 \begin{cases}
-\frac{Ker(\mathbb(Z)\xrightarrow{} 0)}{Im(\mathbb{Z}\xrightarrow{a}\mathbb{Z})}=\frac{\mathbb{Z}}{a\mathbb{Z}} & i=0,\\
+\frac{Ker(\mathbb{Z}\xrightarrow{} 0)}{Im(\mathbb{Z}\xrightarrow{a}\mathbb{Z})}=\frac{\mathbb{Z}}{a\mathbb{Z}} & i=0,\\
 0 & \text{otherwise}.
 \end{cases}
 \eequ
 Note that,
 \equ
-H_0(C'')=\frac{\bb{Z}}{a\bb{Z}}= \frac{\text{Codomain of }f}{\text{Image of }f}=Coker(a).
+H_0(C)=\frac{\bb{Z}}{a\bb{Z}}= \frac{\text{Codomain of }f}{\text{Image of }f}=Coker(a).
 \eequ
 Also,
 \equ
-H_1(C'')=\frac{Ker(\bb{Z}\xrightarrow{a}\bb{Z})}{Im(0\xrightarrow{}\bb{Z})}=Ker(a)=0,
+H_1(C)=\frac{Ker(\bb{Z}\xrightarrow{a}\bb{Z})}{Im(0\xrightarrow{}\bb{Z})}=Ker(a)=0,
 \eequ
 because $Ker(a)$ is empty.
 }
@@ -142,38 +175,95 @@ because $Ker(a)$ is empty.
 
 \mydef{
 \begin{itemize}
-\item The elements of $B_n(C)$ are called \emph{$n-$boundaries}.
-\item The elements of $Z_n(C)$ are called \emph{$n-$cycles}.
+\item The elements of $B_n(\mathbf{C})$ are called \emph{$n-$boundaries}.
+\item The elements of $Z_n(\mathbf{C})$ are called \emph{$n-$cycles}.
 \end{itemize}}
 
-\rem{If $x\in Z_n(C)$ then its image in $H_n(C)$ is usually written as $[x]$. }
+\rem{If $x\in Z_n(\mathbf{C})$ then its image in $H_n(\mathbf{C})$ is usually written as $[x]$. }
 
-\mydef{A chain complex C is said to be:
+\mydef{A chain complex $\mathbf{C}$ is said to be:
 \begin{itemize}
-\item \emph{acyclic} if $H_n(C)=0$ for all $n$.
+\item \emph{acyclic} if $H_n(\mathbf{C})=0$ for all $n$.
 \item \emph{bounded above} if there exists some $n\in \mathbb{N}$, $C_k=0$ for all $k>n$.
 \item \emph{bounded below} if for some $n \in \mathbb{N}$, $C_k=0$ for all $k<n$.
 \item \emph{bounded} if it is bounded above and below.
 \item \emph{non-negative}  if $C_n=0$ for $n<0$.
 \end{itemize}}
 
-\eg{All the chain complexes in the previous examples are bounded both above and below, however, neither is acyclic as they both have instances where the homology is non-zero. The chain complex in Example \ref{Zchaineg} is non-negative because $C_n\neq 0$ only when $n=0,1$.}
+\eg{All the chain complexes in the previous examples are bounded both above and below, however, neither is acyclic as they both have instances where the homology is non-zero. The chain complex in Example \ref{chainZeg} is non-negative because $C_n\neq 0$ only when $n=0,1$.}
 
-\eg{The chain complex, 
+\eg{If we take another look at the chain complex in Example \ref{Kchaineg},
 \equ
-C''': \qquad \dots \xrightarrow{}0\xrightarrow{}\bb{Z}\xrightarrow{}
-\eequ}
+\mathbf{C}: \qquad \underset{\text{deg}}{\dots} \xrightarrow{} 0 \xrightarrow{} \underset{1}{K} \xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)} \underset{0}{K^2} \xrightarrow{(\begin{smallmatrix}0 & 1 \end{smallmatrix})}\underset{-1}{K} \xrightarrow{} 0 \xrightarrow{} \dots
+\eequ
+the homologies are, 
+\begin{align*}
+H_1(\mathbf{C}) &=\frac{Ker(K\xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)}K^2)}{Im(0 \xrightarrow{}K)}\cong \frac{K}{K} \cong 0,\\
+H_0(\mathbf{C}) &=\frac{Ker(K^2\xrightarrow{(\begin{smallmatrix} 1 & 0 \end{smallmatrix})}K)}{Im(K\xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)}K^2)}\cong \frac{K}{K} \cong 0,\\
+H_{-1}(\mathbf{C}) &=\frac{Ker(K\xrightarrow{}0)}{Im(K^2\xrightarrow{(\begin{smallmatrix} 1 & 0 \end{smallmatrix})}K))}\cong \frac{K}{K} \cong 0.\\
+\end{align*}
+Thus $H_n(\mathbf{C})=0$ for all $n$ and so $\mathbf{C}$ is an acyclic chain complex. Later in the report, we will see that $\mathbf{C}$ is in fact a short exact sequence.
+}
 
+\eg{The chain complex,
+\equ
+\mathbf{C}: \qquad \underset{\text{deg}}{\underset{}{\dots}} \xrightarrow{3}\underset{1}{\frac{\bb{Z}}{9\bb{Z}}} \xrightarrow{3}\underset{0}{\frac{\bb{Z}}{9\bb{Z}}} \xrightarrow{3}\underset{-1}{\frac{\bb{Z}}{9\bb{Z}}} \xrightarrow{} \dots
+\eequ
+where the differentials are the maps,
+\equ
+\delta_n:\frac{\bb{Z}}{9\bb{Z}}\xrightarrow{}\frac{\bb{Z}}{9\bb{Z}}\text{, } z+9\bb{Z}\mapsto 3z+9\bb{Z},
+\eequ
+is unbounded. It is also acyclic, since the homology is,
+\equ
+H_n(\mathbf{C})=\frac{Ker(\delta_n:\frac{\bb{Z}}{9\bb{Z}}\xrightarrow{}\frac{\bb{Z}}{9\bb{Z}})}{Im(\delta_n:\frac{\bb{Z}}{9\bb{Z}}\xrightarrow{}\frac{\bb{Z}}{9\bb{Z}})}\cong \frac{\bb{Z}/3\bb{Z}}{\bb{Z}/3\bb{Z}} \cong 0, 
+\eequ
+for all $n$.
+}
 
-\section{Cochain Complexes}
-
-\mydef{A \emph{cochain complex} $C^{\bullet}$ consists of a sequence of $\mathbb{R}$-modules $C^i$ ($i \in \mathbb{Z}$) and morphisms of the form,
+\mydef{A \emph{cochain complex} $\mathbf{C}^{\bullet}$ consists of a sequence of $\mathbb{R}$-modules $C^i$ ($i \in \mathbb{Z}$) and morphisms of the form,
 \begin{equation*}
-C: \qquad \dots \xrightarrow{\delta^{-3}} C^{-2} \xrightarrow{\delta^{-2}} C^{-1} \xrightarrow{\delta^{-1 }} C^0 \xrightarrow{\delta^0} C^{1} \xrightarrow{\delta^{1}} C^{2} \xrightarrow{\delta^{2}} \dots
+\mathbf{C}: \qquad \dots \xrightarrow{\delta^{-3}} C^{-2} \xrightarrow{\delta^{-2}} C^{-1} \xrightarrow{\delta^{-1 }} C^0 \xrightarrow{\delta^0} C^{1} \xrightarrow{\delta^{1}} C^{2} \xrightarrow{\delta^{2}} \dots
 \end{equation*}
 such that $\delta^{n-1}\delta^{n}=0$ for all $n$, i.e. the composition of any two consecutive maps is zero.
 
 \rem{Chain and cochain complexes can be thought of as almost identical constructs with the only difference being thenumbering of the chain. The degree of a chain complex \emph{decreases} from left to right, whereas, the degree of a cochain complex \emph{increses} from left to right. So, we can compute one from the other by setting $C^{-n}=C_n$, or equivalently $C^n=C_{-n}$; this is called \emph{renumbering}.}
+
+\mydef{If $\mathbf{C}$ is a cochain complex then its \emph{cohomology} is defined to be,
+\begin{equation*}
+H^n(\mathbf{C})=\frac{Ker(\delta^n:C^n \rightarrow C^{n+1})}{Im(\delta^{n-1}:C^{n-1} \rightarrow C^n)} =\frac{Z^n(\mathbf{C})}{B^n(\mathbf{C})}.
+\end{equation*}
+\begin{itemize}
+\item The elements of $B_n(\mathbf{C})$ are called \emph{$n-$coboundaries}.
+\item The elements of $Z_n(\mathbf{C})$ are called \emph{$n-$cocycles}.
+\end{itemize}}
+
+\eg{
+We can renumber the chain complex in Example \ref{chainZeg} to get the cochain complex, 
+\equ
+\mathbf{C}: \qquad \underset{\text{deg}}{\dots} \xrightarrow{}\underset{-2}{0} \xrightarrow{} \underset{-1}{\mathbb{Z}} \xrightarrow{a}\underset{0}{\mathbb{Z}} \xrightarrow{} \underset{1}{0} \xrightarrow{}\dots 
+\eequ
+Its cohomology is,
+\equ
+H^i(\mathbf{C}) = 
+\begin{cases}
+\frac{Ker(\mathbb{Z}\xrightarrow{} 0)}{Im(\mathbb{Z}\xrightarrow{a}\mathbb{Z})}=\frac{\mathbb{Z}}{a\mathbb{Z}} & i=0,\\
+0 & \text{otherwise}.
+\end{cases}
+\eequ
+}
+
+
+\chapter{Representation of Quivers}
+
+\section{Quivers and Path Algebras}
+
+\mydef{A \emph{quiver} is defined as the tuple of sets and functions, $\mathbf{Q}=(Q_0\text{, }Q_1\text{, }s\text{, }t: Q_1 \to Q_0)$ such that:
+\begin{itemize}
+\item $Q_0$ is the set of vertices, which we will set to be the finite set $\{1, 2, \dots, n\}$.
+\item $Q_1$ is the set of arrows, which we will also set to be finite.
+\item Functions $s, t$ such that an arrow $\rho \in Q_1$ \emph{starts} at the vertex $s(\rho)\in Q_0$ and \emph{terminates} at the vertex $t(\rho)\in Q_0$, i.e. $\rho: s(\rho) \to t(\rho)$.
+\end{itemize}
+}
 
 
 

@@ -1,3 +1,5 @@
 \contentsline {chapter}{\numberline {1}Introduction}{3}
 \contentsline {chapter}{\numberline {2}Homological Algebra}{4}
 \contentsline {section}{\numberline {2.1}Chain Complexes}{4}
+\contentsline {chapter}{\numberline {3}Representation of Quivers}{9}
+\contentsline {section}{\numberline {3.1}Quivers and Path Algebras}{9}
