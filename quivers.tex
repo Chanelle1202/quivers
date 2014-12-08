@@ -375,13 +375,127 @@ In this report the arrows in a path will be ordered the same way as the composit
 The \emph{trivial path} is the path which contains no arrows, i.e. it is a single vertex, and is denoted $e_i$ where the vertex is $i$.
 \end{mydef}
 
-\begin{mydef}
+\begin{eg} \label{ininpatheg}
 The paths of the quiver in Example \ref{ininquivereg} are:
 \equ
 p_1=e_1, \quad p_2=e_2, \quad p_3=e_3, \quad p_4=e_4, \quad p_5=\alpha, \quad p_6=\beta, \quad p_7=\gamma, \quad p_8=\beta\alpha.
 \eequ
 However, $\gamma\beta\alpha$ is not a path because $t(\gamma)=3\neq s(\beta)=2$.
+\end{eg}
+
+\begin{mydef}
+A \emph{path algebra} $kQ$ is the $k$-alegbra which has the basis all the paths in $Q$, and the product of two paths $p,q$ is defined as,
+\equ
+pq=\begin{cases}
+\text{obvious composition} & \text{if } t(q)=s(p),\\
+0 & \text{otherwise.}
+\end{cases}
+\eequ
+This multiplication is assosciative.
 \end{mydef}
+
+\begin{eg}
+If we once again use the quiver $Q$ from Example \ref{ininquivereg}, then, from Example \ref{ininpatheg}, we know the basis of the path algebra $kQ$ will be,
+\equ
+\{e_1, e_2, e_3, e_4,\alpha, \beta, \gamma, \beta\alpha\}.
+\eequ
+The product of $\beta$ and $\alpha$ is $\beta\alpha$, but the product of $\alpha$ and $\beta$ is zero, and the product of $e_2$ and $\alpha$ is just $\alpha$.
+\end{eg}
+
+\begin{eg}
+If $Q$ is the following quiver,
+\equ
+\mathbf{Q}: \qquad
+\begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node	[main node]		(1) at (0,0)		{1};
+
+\draw (1) edge[loop left] node [auto] {$\alpha$} (1);
+\draw (1) edge [loop right] node [auto] {$\beta$} (1);
+\end{tikzpicture}
+\eequ
+forms the path algebra $kQ\cong k[X, Y]$, the free, assosciative algebra on two letters. In fact, if we have a quiver with a single vertex and $n$ loops, then this can be associated with the free, assosciated algebra on $n$ letters.
+\end{eg}
+
+\begin{eg} \label{UTpathalgebraeg}
+If we have the quiver,
+\equ
+\mathbf{Q}: \qquad
+\begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node	[main node]		(1) at (0,0)		{1};
+\node [main node]		(2) at (2,0)		{2};
+\node [main node]		(3) at (4,0)		{3};
+\node [main node]		(4) at (6,0)		{4};
+
+\draw (1) edge node [auto] {$\alpha$} (2);
+\draw (2) edge node [auto] {$\beta$} (3);
+\draw (3) edge node [auto] {$\gamma$} (4);
+\end{tikzpicture}
+\eequ
+the the path algebra, $kQ \cong UT_4(k)$ by the isomorphism,
+\begin{multline*}
+\lambda_1e_1+\lambda_2e_2+\lambda_3e_3+\lambda_4e_4+\lambda_5\alpha+\\
+\lambda_6\beta+\lambda_7\gamma+\lambda_8\beta\alpha+\lambda_9\gamma\beta\alpha+\lambda_{10}\gamma\beta
+\mapsto
+\begin{pmatrix*}
+\lambda_4 & \lambda_7 & \lambda_{10} & \lambda_9 \\
+0 & \lambda_3 & \lambda_6 & \lambda_{8}\\
+0 & 0 & \lambda_2 & \lambda_5 \\
+0 & 0 & 0 & \lambda_1
+\end{pmatrix*}
+\end{multline*}
+Generally, a quiver of the form,
+\equ
+\mathbf{Q'}: \qquad
+\begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node	[main node]		(1) at (0,0)		{1};
+\node [main node]		(2) at (2,0)		{2};
+\node []			(3) at (4,0)		{$\dots$};
+\node [main node]		(n) at (6,0)		{n};
+
+\draw (1) edge node [auto] {$\alpha$} (2);
+\draw (2) edge node [auto] {$\beta$} (3);
+\draw (3) edge node [auto] {$\gamma$} (4);
+\end{tikzpicture}
+\eequ
+induces a path alegbra $kQ' \cong UT_n(k)$ for any $n$.
+\end{eg}
+
+\begin{eg}
+In fact, we find that if $Q$ is the same quiver as above in Example \ref{UTpathalgebraeg}, then $kQ \cong LT_4(k)$ as well, through the isomorphism,
+\begin{multline*}
+\lambda_1e_1+\lambda_2e_2+\lambda_3e_3+\lambda_4e_4+\lambda_5\alpha+\\
+\lambda_6\beta+\lambda_7\gamma+\lambda_8\beta\alpha+\lambda_9\gamma\beta\alpha+\lambda_{10}\gamma\beta
+\mapsto
+\begin{pmatrix*}
+\lambda_1 & 0 & 0 & 0\\
+\lambda_5 & \lambda_2 & 0 & 0\\
+\lambda_8 & \lambda_6 & \lambda_3 & 0\\
+\lambda_9 & \lambda_{10} & \lambda_7 & \lambda_4
+\end{pmatrix*}.
+\end{multline*}
+Once again, this extends to the general case that, $kQ' \cong LT_n(k)$.
+\end{eg}
+
+
+
+The following results about the idempotents of path alegebras are from \cite{CB2}, however, where possible we have provided or expanded on the given proof.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
