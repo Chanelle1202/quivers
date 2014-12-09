@@ -450,7 +450,7 @@ Generally, a quiver of the form,
 \node	[main node]		(1) at (0,0)		{1};
 \node [main node]		(2) at (2,0)		{2};
 \node []			(3) at (4,0)		{$\dots$};
-\node [main node]		(n) at (6,0)		{n};
+\node [main node]		(4) at (6,0)		{n};
 
 \draw (1) edge node [auto] {$\alpha$} (2);
 \draw (2) edge node [auto] {$\beta$} (3);
@@ -482,9 +482,49 @@ The following results about the idempotents of path alegebras are from \cite{CB2
 The $e_i$ are orthogonal, idempotents in $A$, i.e. $e_ie_i=e_i$ and $e_ie_j=0$ where $i\neq j$. Thus $\sum_{i=1}^{n}{e_i}=1_{A}$.
 \end{lem}
 \begin{proof}
-Well, obviously, $e_ie_j=0$ when$i\neq j$ because $t(e_j)\neq s(e_i)$ because they are the trivial paths at different vertices, $i$ and $j$. Similarly, if we have the product $e_ie_i$ then the composition makes sense here because $t(e_i)=s(e_i)$, but the composition is just $e_i$ becuase if we travel along the trivial path $e_i$ twice, then this is just the same as travelling the trivial path.
+Well, obviously, $e_ie_j=0$ when$i\neq j$ because $t(e_j)\neq s(e_i)$ because they are the trivial paths at different vertices, $i$ and $j$. Similarly, if we have the product $e_ie_i$ then the composition makes sense here because $t(e_i)=s(e_i)$, but the composition is just $e_i$ becuase if we travel along the trivial path $e_i$ twice, then this is just the same as travelling the trivial path. \\
+If we have some path $p$ of the quiver, then bear in mind that,
+\equ
+e_ip=
+\begin{cases}
+e_ip=p & \text{if } i=t(p),\\
+0 & \text{otherwise.}
+\end{cases}
+\eequ
+Hence, the sum of the trivial paths acting on our path $p$ becomes, 
+\equ
+\big(\sum^{n}_{i=1}{e_i}\big)p=(e_1+e_2+\dots +e_n)p=e_ip=p=1_Ap,
+\eequ
+because only one of the $e_i$ in the sum will satisfy $i=t(p)$ and all the rest will give zero. Similary, we can show that $p\big(\sum^{n}_{i=1}{e_i}\big)=p1_A$.
 \end{proof}
 
+\begin{lem}
+The bases of the spaces $Ae_i$ and $e_jA$ are all the paths starting at $i$ and all the paths terminating at $j$, respectively. It then follows that the space $e_jAe_i$ has as a basis the paths that start at $i$ and terminate at $j$.
+\end{lem}
+\begin{proof}
+\end{proof}
+
+\begin{eg}
+If we have the quiver, 
+\equ
+\mathbf{Q'}: \qquad
+\begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node	[main node]		(1) at (0,0)		{1};
+\node [main node]		(2) at (2,0)		{2};
+\node [main node]		(3) at (4,0)		{3};
+\node [main node]		(4) at (6,-1)		{4};
+\node [main node]		(5) at (6,1)		{5};
+\node [main node]		(6) at (8, 1)		{6};
+
+\draw (1) edge node [auto] {$\alpha$} (2);
+\draw (2) edge node [auto] {$\beta$} (3);
+\draw (3) edge node [auto] {$\gamma$} (4);
+\draw (5) edge node [auto, swap] {$\delta$} (3);
+\draw (5) edge node [auto] {$\epsilon$} (6);
+\end{tikzpicture}
+\eequ
+the we can see that 
+\end{eg}
 
 
 
