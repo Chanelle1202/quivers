@@ -476,6 +476,42 @@ In fact, we find that if $Q$ is the same quiver as above in Example \ref{UTpatha
 Once again, this extends to the general case that, $kQ' \cong LT_n(k)$.
 \end{eg}
 
+\begin{eg} \label{pathalgebramatrixeg}
+In a more general case, as long as there is only one path between any two vertices, we can identify $kQ$ with the following subalgebra of $M_n(k)$,
+\equ
+\{M \in M_n(k): M_ij=0 \text{ if there is no path from } j \text{ to }i\}.
+\eequ
+For instance, if we have the quiver,
+\equ
+\mathbf{Q}: \qquad
+\begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node	[main node]		(1) at (0,0)		{1};
+\node [main node]		(2) at (2,0)		{2};
+\node [main node]		(3) at (4,0)		{3};
+\node [main node]		(4) at (6,-1)		{4};
+\node [main node]		(5) at (6,1)		{5};
+\node [main node]		(6) at (8, 1)		{6};
+
+\draw (1) edge node [auto] {$\alpha$} (2);
+\draw (2) edge node [auto] {$\beta$} (3);
+\draw (3) edge node [auto] {$\gamma$} (4);
+\draw (5) edge node [auto, swap] {$\delta$} (3);
+\draw (5) edge node [auto] {$\epsilon$} (6);
+\end{tikzpicture}
+\eequ
+the we can see that the path algebra $kQ$ is isomorphic to the subalgebra with matrices of the form,
+\equ
+\begin{pmatrix*}
+1 & 0 & 0 & 0 & 0 & 0 \\
+1 & 1 & 0 & 0 & 0 & 0 \\
+1 & 1 & 1 & 0 & 1 & 0 \\
+1 & 1 & 1 & 1 & 1 & 0 \\
+0 & 0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 1 & 1
+\end{pmatrix*}
+\eequ
+\end{eg}
+
 The following results about the idempotents of path alegebras are from \cite{CB2}, however, we have either given a proof or expanded upon the one given. For the following results we set $A=kQ$ and the $e_i$ are the trivial paths of $Q$.
 
 \begin{lem} 
@@ -498,16 +534,91 @@ Hence, the sum of the trivial paths acting on our path $p$ becomes,
 because only one of the $e_i$ in the sum will satisfy $i=t(p)$ and all the rest will give zero. Similary, we can show that $p\big(\sum^{n}_{i=1}{e_i}\big)=p1_A$.
 \end{proof}
 
-\begin{lem}
+\begin{lem} \label{idempotentspaceslem}
 The bases of the spaces $Ae_i$ and $e_jA$ are all the paths starting at $i$ and all the paths terminating at $j$, respectively. It then follows that the space $e_jAe_i$ has as a basis the paths that start at $i$ and terminate at $j$.
 \end{lem}
 \begin{proof}
+For some $i\in Q_0$, and $A$ has the basis $\{p_1, p_2, \dots, p_n\}$, then as $Ae_i$ is a subspace of $A$ the basis of $Ae_i$ must be a subset of the basis of $A$, so, 
+\equ
+Ae_i=\{ae_i:a\in A\}=span\{p_1e_i+p_2e_i+\dots+p_ne_i\},
+\eequ
+and we know that,
+\equ
+p_re_i=
+\begin{cases}
+p_r & \text{if } s(p_r)=i,\\
+0 & \text{otherwise}.
+\end{cases}
+\eequ
+Hence, we can see that the basis of $Ae_i$ must be all the paths starting at $i$. Similarly, as $e_jA$ is a subspace of $A$ snd so following a similar argument we can see that its basis must be all the paths terminating at $j$. The result for $e_jAe_i$ follows from these as it simply the intersection of the two spaces.
+\end{proof}
+
+\begin{lem}
+$A=\oplus^n_{i=1}Ae_i$, so each $Ae_i$ is a projective left $A$-module.
+\end{lem}
+\begin{proof}
+From Lemma \ref{idempotentspaceslem} we know that for each $i$, the basis of $Ae_i$ are all the paths starting at $i$ and so $\oplus^n_{i=1}Ae_i$ must have as a basis all the paths starting at every vertex in $Q$, hence all the paths in $Q$. Thus $A=\oplus^n_{i=1}Ae_i$. Also, each $Ae_i$ is obviously a left $A$-module with the action defined as multiplication by $e_i$. Hence, each $Ae_i$ is a projective, left $A$-module.
+\end{proof}
+
+\begin{rem}
+Similarly, $A=\oplus_{i=1}^ne_jA$, so each $e_jA$ is a projective, right $A$-module.
+\end{rem}
+
+\begin{lem} \label{idempotenthomlem}
+If $X$ is a left $A$-module, then $Hom_A(Ae_i,X)\cong e_iX$.
+\end{lem}
+\begin{proof}
+Well, we want to show that there are some maps $f$ and $g$ such that they satisfy,
+\equ
+Hom_A(Ae_i, X) \xleftrightarrow[g]{f}e_iX
+% How to get two separate arrows here?
+\eequ
+Well, first consider the map $\theta: Ae_i \to X$ and so $\theta \in Hom_A(Ae_i, X)$, then we can have $f$ such that $f(\theta)=\theta(e_i)=\theta(e_i^2)=e_i\theta(e_i)\in e_iX$. Hence, $f$ maps a homomorphism from $Hom_A(Ae_i, X)$ to an element in $e_iX$.  Now consider the map $g(x): Ae_i \to X$, $g(x)(a)=ax$. We can check this is an $A$-module homomorphism as, 
+\begin{align*}
+g(x)(a+b) &=(a+b)x=ax+bx=g(x)(a)+g(x)(b)\text{ } & a, b\in Ae_i,\\
+g(x)(\lambda a) &=\lambda a x=\lambda g(x)(a) \text{ } & \lambda\in A, a \in Ae_i.
+\end{align*}
+Hence, $g \in Hom_A(Ae_i, X)$. However, we can also have that $g: eX \to Hom_A(Ae_i, X)$ through $x \mapsto g(x)(r)$. \\
+So now we need to show that $f$ and $g$ are inverse contructions of one another. We have for some $\theta \in Hom_A(Ae_i, X)$, 
+\begin{align*}
+\theta \xrightarrow{f} & \theta(e_i)\\
+g(\theta(e_i))(a)=a\theta(e_i)=\theta(ae_i) \xleftarrow[g]{} & \theta(e_i)
+\end{align*}
+but $a\in Ae_i$ and so $a=\lambda e_i$ for some $\lambda\in A$, hence $ae_i=\lambda e_i^2=\lambda e_i=a$. Thus, $g(\theta(e_i))(a)=\theta(ae_i)=\theta(a)$ so $g(\theta(e_i))=\theta$ and $f$ and $g$ are inverses.
+\end{proof}
+
+\begin{lem} \label{idempotent0lem}
+If $0\neq a \in Ae_i$ and $0\neq b\in e_iA$ then $ab\neq 0$.
+\end{lem}
+\begin{proof}
+We know that $a$ and $b$ must have the forms, $a=\lambda_1p_1+ \dots \lambda_np_n$ and $b=\mu_1q_1 + \dots \mu_mq_m$ where the $p$ are paths starting at vertex $i$, the $q$ are paths termination at vertex $i$ and $p_r, q_r$ are paths of length $r$. Then the longest path in the product $ab$ must be $\lambda_n\mu_mp_nq_m$ and so $\lambda_n\mu_m \neq 0$ and $p_nq_m \neq 0$, so the product $ab\neq 0$.
+\end{proof}
+
+\begin{lem}
+The $e_i$ are primitive idempotents, i.e. $Ae_i$ is an indecomposable module.
+\end{lem}
+\begin{proof}
+From Lemma \ref{idempotenthomlem} we know that $End_A(Ae_i) \cong e_iAe_i$ and if this contains an idempotent $\epsilon$, then $\epsilon^2=\epsilon=\epsilon e_i$, so $\epsilon(e_i- \epsilon)=0$, but from Lemma \ref{idempotent0lem} we know that this can not happen if $\epsilon, (e_i-\epsilon) \neq 0$, thus we must have that either $\epsilon=0$ or $\epsilon=e_i$ and the result follows.
+\end{proof}
+
+\begin{lem}
+If $e_i \in Ae_jA$ then $i=j$.
+\end{lem}
+\begin{proof}
+For similar reasoning as in Lemma \ref{idempotentspacelem}, we can see that $Ae_jA$ has as a basis all the paths in $A$ which pass through the vertex $j$ and, by the definition of the trivial path, $e_i$ cannot pass through the vertex $j$ unless $i=j$ and so if $e_i \in Ae_jA$ we must have that $i=j$.
+\end{proof}
+
+\begin{lem}
+The $e_i$ are inequivalent, i.e. $Ae_i \not\cong Ae_j$ for $i \neq j$.
+\end{lem}
+\begin{proof}
+% Need to ask about this one.
 \end{proof}
 
 \begin{eg}
-If we have the quiver, 
+Consider the quiver from Example \ref{pathalgebramatrixeg}, 
 \equ
-\mathbf{Q'}: \qquad
+\mathbf{Q}: \qquad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
 \node	[main node]		(1) at (0,0)		{1};
 \node [main node]		(2) at (2,0)		{2};
@@ -523,10 +634,29 @@ If we have the quiver,
 \draw (5) edge node [auto] {$\epsilon$} (6);
 \end{tikzpicture}
 \eequ
-the we can see that 
+then we have have the following examples displaying the previous results for the idempotents of $kQ$. Let $A=kQ$.
+\begin{enumerate}
+\item We can see that $e_1e_1=e_1$ and $e_1e_2=0$. Also, $1_{A}=e_1 + e_2 + e_3 +e_4+e_5+e_6$ and so
+\begin{align*}
+1_A\gamma\beta&=(e_1 + e_2 + e_3 +e_4+e_5+e_6)\gamma\beta, \\
+&=e_1\gamma\beta + e_2\gamma\beta + e_3\gamma\beta + e_4\gamma\beta + e_5\gamma\beta +e_6 \gamma\beta,\\
+&=e_4\gamma\beta,\\
+&=\gamma\beta.
+\end{align*}
+\item Now we can see that $Ae_1$ is spanned by all the paths starting at vertex 1, as,
+\begin{align*}
+Ae_1&=\{ae_1: a \in A\},\\
+&=span\{\sum pe_1: p \text{ is in the basis of }A\},\\
+&=span\{e_1e_1 + e_2e_1 + e_3e_1 +e_4e_1+e_5e_1+e_6e_1+\alpha e_1 + \\
+&\qquad \qquad  \beta e_1 + \gamma e_1 + \delta e_1 +\epsilon e_1 +\beta\alpha e_1 + \gamma\beta e_1 + \gamma\delta e_1 + \gamma\beta\alpha e_1\}, \\
+&=span\{e_1 + \alpha + \beta\alpha + \gamma\alpha\}, \\
+&=span\{\text{all paths starting at vertex 1}\}.
+\end{align*}
+
+
+\end{enumerate}
+
 \end{eg}
-
-
 
 
 
