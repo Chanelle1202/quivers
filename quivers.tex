@@ -1,7 +1,7 @@
 \documentclass[11.5pt, twoside, a4paper, titlepage]{report}
 \usepackage{graphicx, amssymb, amsmath, mathtools, amsthm}
 \usepackage{tikz}
-\usetikzlibrary{automata, arrows}
+\usetikzlibrary{automata, arrows, matrix}
 \providecommand{\abs}[1]{\lvert#1\rvert}
 \providecommand{\equ}[0]{\begin{equation*}}
 \providecommand{\eequ}[0] {\end{equation*}}
@@ -71,7 +71,7 @@ We can clearly see that the maps uphold the $\delta^2=0$ condition as,
 \begin{eg} \label{Kchaineg}
 If we consider the sequence, 
 \equ 
-\dots \xrightarrow{} 0 \xrightarrow{} K \xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)} K^2 \xrightarrow{(\begin{smallmatrix}1 & 0 \end{smallmatrix})} K \xrightarrow{} 0 \xrightarrow{} \dots
+\dots \xrightarrow{} 0 \xrightarrow{} K \xrightarrow{\delta_2=\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)} K^2 \xrightarrow{\delta_1=(\begin{smallmatrix}1 & 0 \end{smallmatrix})} K \xrightarrow{} 0 \xrightarrow{} \dots
 \eequ
 however,
 \equ
@@ -84,7 +84,7 @@ however,
 \end{pmatrix*}
 = 1 \neq 0.
 \eequ
-Hence, $\delta^2 \neq0$ and so the sequence is not a chain complex. However, if we change the second map slightly we obtain the chain complex,
+Hence, $\delta_1\delta_2 \neq0$, and so the sequence is not a chain complex. However, if we change $\delta_2$ slightly we obtain the chain complex,
 \equ
 \mathbf{C}: \qquad \dots \xrightarrow{} 0 \xrightarrow{} K \xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)} K^2 \xrightarrow{(\begin{smallmatrix}0 & 1 \end{smallmatrix})} K \xrightarrow{} 0 \xrightarrow{} \dots
 \eequ
@@ -435,6 +435,116 @@ Simmilarly, we can see that the other chain maps make the diagram commute.
 
 
 \section{Exact Sequences}
+
+\begin{mydef}
+A finite or infinite sequence of $R$-morphisms and left $R$-modules,
+\begin{equation*}
+\dots \xrightarrow{} L \xrightarrow{f}M \xrightarrow{g} N \xrightarrow{} \dots
+\end{equation*}
+is said to be \emph{exact} at $M$ if $imf=kerg$. A finite or infinite sequence of $R$-morphisms and left $R$-modules,
+\begin{equation*}
+\dots \xrightarrow{f_{n+2}} M_{n+1} \xrightarrow{f_{n+1}} M_n \xrightarrow{f_n} M_{n-1} \xrightarrow{f_{n-1}} \dots
+\end{equation*}
+is said to be an \emph{exact sequence} if it is exact at every $M_i$, i.e. $imf_i=kerf_{i+1}$.
+\end{mydef}
+
+\begin{eg}
+The finite sequence,
+\begin{equation*}
+0\xrightarrow{}K\xrightarrow{f}K^2\xrightarrow{g}K^2\xrightarrow{h}K^2\xrightarrow{}0,
+\end{equation*}
+where $f(x)=(x,0)$, $g(x, y)=(0,y)$, and $h(x,y)=(x,0)$ is an exact sequence since $im(f)=\{(x,0):x\in K\}=ker(g)$ and $im(g)=\{(0,y):u\in K\}=ker(h)$. 
+However, if we instead consider the finite sequence, 
+\begin{equation*}
+0\xrightarrow{}K\xrightarrow{f}K^2\xrightarrow{g}K^2\xrightarrow{h'}K^2\xrightarrow{}0,
+\end{equation*}
+where $f$ and $g$ are the same as above, but $h'(x,y)=(x,y)$. Obviously, once again we have that $im(f)=ker(g)$ and $im(g)=\{(0,y):y\in K\}$, however, $ker(h')=\{(0,0)\}$ and so $im(g)\neq ker(h')$. Hence this is not an exact sequence, because it is not exact everywhere.
+\end{eg}
+
+\begin{mydef}
+A \emph{short exact sequence} is an exact sequence of the form,
+\begin{equation*}
+0\xrightarrow{}L\xrightarrow{f}M\xrightarrow{g}N\xrightarrow{}0.
+\end{equation*}
+\end{mydef}
+
+\begin{eg}
+The sequence,
+\begin{equation*}
+0\xrightarrow{} K \xrightarrow{f} K^2 \xrightarrow{g} K \xrightarrow{} 0,
+\end{equation*}
+where $f(x)=(x,0)$ and $g(x,y)=y$ is a short exact sequence, since $im(f)=\{(x,0): x\in K\}=ker(g)$.
+\end{eg}
+
+\begin{mydef}
+If we have a map $fi :A \to B$ then we will denote the cokernel to be
+\begin{equation*}
+coker(f)=\frac{B}{im(f)}
+\end{equation*}
+\end{mydef}
+
+\begin{lem}
+The sequence,
+\begin{equation*}
+0 \xrightarrow{} ker(f) \xrightarrow{\iota} M \xrightarrow{f} N \xrightarrow{\eta} coker(f) \xrightarrow{} 0,
+\end{equation*} 
+where $\iota , \eta$ are the inclusion, and natural maps respectively, is exact. In addition the sequence, 
+\begin{equation*}
+0\xrightarrow{} ker(f) \xrightarrow(\iota) M \xrightarrow{\eta} \frac{M}{im(f)} \xrightarrow{} 0,
+\end{equation*}
+is a short exact sequence.
+\end{lem}
+\begin{proof}
+It is clear here that we have $im(\iota)=ker(f)$ as $\iota$ is the inclusion map and since $coker(f)=\frac{N}{im(f)}$ we also have that $im(f)=ker(\eta)$. Hence the sequence is exact. The second result follows a similar argument.
+\end{proof}
+
+\begin{mydef}
+Two short exact sequences,
+\begin{equation*}
+\mathbf{E}: \quad 0\xrightarrow{}L\xrightarrow{}M\xrightarrow{}N\xrightarrow{}0 \qquad \& \qquad \mathbf{E'}: \quad 0\xrightarrow{}L\xrightarrow{}M'\xrightarrow{}N\xrightarrow{}0 ,
+\end{equation*}
+are \emph{equivalent} if there is a map $f: M \to M'$ such that the diagram,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$\mathbf{E}$: \quad };
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$L$};
+\node [main node]		(4) at (6,0)		{$M$};
+\node [main node]		(5) at (8,0)		{$N$};
+\node	[main node]		(11) at (10,0)	{$0$};
+
+\node	[main node]		(6) at (0,-2)		{$\mathbf{E'}$: \quad};
+\node	[main node]		(7) at (2,-2)		{$0$};
+\node	[main node]		(8) at (4,-2)		{$L$};
+\node [main node]		(9) at (6,-2)		{$M'$};
+\node [main node]		(10) at (8,-2)	{$N$};
+\node [main node]		(13) at (10,-2)	{$0$};
+
+
+\draw (1) edge [main path] node [auto] {$$} (2);
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$$} (4);
+\draw (4) edge [main path] node [auto] {$$} (5);
+\draw (5) edge [main path] (11);
+
+\draw (6) edge [main path] node [auto] {$$} (7);
+\draw (7) edge [main path] node [auto] {$$} (8);
+\draw (8) edge [main path] node [auto] {$$} (9);
+\draw (9) edge [main path] node [auto] {$$} (10);
+\draw (10) edge [main path] (13);
+
+\draw (3) edge [-, semithick, double, double distance=1.5pt] (8);
+\draw (4) edge [main path] node [auto, swap] {$f$} (9);
+\draw (5) edge [-, semithick, double, double distance=1.5pt](10);
+\draw (11) edge [-, semithick, double, double distance=1.5pt] (13);
+\draw (2) edge [-, semithick, double, double distance=1.5pt] (7);
+\end{tikzpicture}
+\end{equation*}
+commutes.
+\end{mydef}
+
+
+
 
 \section{Extensions}
 
@@ -1129,3 +1239,35 @@ New York: Springer Science+Business Media.
 
 
 \end{document}
+
+
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node [main node]		(1) at (0,0)		{$0$};
+\node [main node]		(2) at (2,0)		{$K$};
+\node [main node]		(3) at (4,0)		{$K^2$};
+\node [main node]		(4) at (6,0)		{$K^2$};
+\node [main node]		(5) at (8,0)		{$K^2$};
+\node [main node]		(6) at (10,0)		{$0$};
+
+\node[main node]		(7) at (2,-1)		{$x$};
+\node[main node]		(8) at (4,-1)		{$(x,0)$};
+\node [main node]		(9) at (6,-1)		{$(0,0)$};
+
+\node [main node]		(10) at (4,-2)		{$(x,y)$};
+\node [main node]		(11) at (6, -2)		{$(x, 0)$};
+\node [main node]		(12) at (8, -2)		{$(x,0)$};
+
+\draw (1) edge [main path] node [auto] {$$} (2);
+\draw (2) edge [main path] node [auto] {$f$} (3);
+\draw (3) edge [main path] node [auto] {$g$} (4);
+\draw (4) edge [main path] node [auto] {$h$} (5);
+\draw (5) edge [main path] node [auto] {$$} (6);
+
+\draw [|->] (7) edge node [auto] {$f$} (8);
+\draw [|->] (8) edge node [auto] {$g$} (9);
+
+\draw [|->] (10) edge node [auto] {$g$} (11);
+\draw [|->] (11) edge node [auto] {$h$} (12);
+\end{tikzpicture}
+\end{equation*}
