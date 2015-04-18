@@ -16,6 +16,7 @@
 \newtheorem{thm}[mydef]{Theorem}
 \newtheorem{cor}[mydef]{Corollary}
 \newtheorem{prop}[mydef]{Proposition}
+\newtheorem*{claim}{Claim}
 
 
 
@@ -29,6 +30,8 @@
 \tableofcontents
 
 \chapter{Introduction}
+
+This project aims to cover interesting topics from the area of quiver representations. The first chapter will give a brief introduction to the topics in Homological Algebra needed for bulk of the report. It will cover chain complexes, exact sequences, short exact sequences, and extensions, most importantly $Ext^1$. The the second chapter will introduce quivers and look at some interesting results about path algebras before moving onto representations of quivers and their relationship with the modules of the corresponding path algebra. Next we will cover Dynkin and Euclidean diagrams before finishing with a proof of Gabriel's Theorem. The third chapter will cover Auslander-Reiten quivers.
 
 \chapter{Homological Algebra}
 \section{Chain Complexes}
@@ -327,6 +330,122 @@ H^i(\mathbf{C'}, \bb{Z})=
 Notice that despite the chain complex being acyclic, its cohomology induced by $Hom(-, \bb{Z})$  is not zero everywhere.
 \end{eg}
 
+\begin{mydef}
+A \emph{chain map}  $f: \mathbf{C} \to \mathbf{D}$, with $\mathbf{C}$ and $\mathbf{D}$ chain complexes, is given by a homomorphism $f_n: \mathbf{C}_n \to \mathbf{D}_n$ for each $n$, such that each square in the following diagram commutes, 
+\equ
+\begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{\dots};
+\node	[main node]		(2) at (2,0)		{$\mathbf{C}_{n+1}$};
+\node	[main node]		(3) at (4,0)		{$\mathbf{C}_{n}$};
+\node [main node]		(4) at (6,0)		{$\mathbf{C}_{n-1}$};
+\node [main node]		(5) at (8,0)		{$\dots$};
+\node	[main node]		(6) at (0,-2)		{\dots};
+\node	[main node]		(7) at (2,-2)		{$\mathbf{D}_{n+1}$};
+\node	[main node]		(8) at (4,-2)		{$\mathbf{D}_{n}$};
+\node [main node]		(9) at (6,-2)		{$\mathbf{D}_{n-1}$};
+\node [main node]		(10) at (8,-2)		{\dots};
+
+\draw (1) edge node [auto] {$\gamma_{n+2}$} (2);
+\draw (2) edge node [auto] {$\gamma_{n+1}$} (3);
+\draw (3) edge node [auto] {$\gamma_n$} (4);
+\draw (4) edge node [auto] {$\gamma_{n-1}$} (5);
+\draw (6) edge node [auto] {$\delta_{n+2}$} (7);
+\draw (7) edge node [auto] {$\delta_{n+1}$} (8);
+\draw (8) edge node [auto] {$\delta_n$} (9);
+\draw (9) edge node [auto] {$\delta_{n-1}$} (10);
+\draw (2) edge node [auto, swap] {$f_{n+1}$} (7);
+\draw (3) edge node [auto, swap] {$f_n$} (8);
+\draw (4) edge node [auto, swap] {$f_{n-1}$} (9);
+\end{tikzpicture}
+\eequ
+Note that there is an equivalent notion of a \emph{cochain map} of cochain complexes.
+\end{mydef}
+
+\begin{eg}
+If we have the following diagram,
+\equ
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$\mathbf{C}$: \quad \dots};
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$\bb{Z}$};
+\node [main node]		(4) at (6,0)		{$\bb{Z}$};
+\node [main node]		(5) at (8,0)		{$\frac{\bb{Z}}{n\bb{Z}}$};
+\node	[main node]		(11) at (10,0)	{$0$};
+\node [main node] 		(12) at (12,0)	{\dots};
+\node	[main node]		(6) at (0,-2)		{$\mathbf{D}$: \quad \dots};
+\node	[main node]		(7) at (2,-2)		{$0$};
+\node	[main node]		(8) at (4,-2)		{$\frac{\bb{Z}}{n\bb{Z}}$};
+\node [main node]		(9) at (6,-2)		{$\frac{\bb{Z}}{n^2\bb{Z}}$};
+\node [main node]		(10) at (8,-2)	{$\frac{\bb{Z}}{n\bb{Z}}$};
+\node [main node]		(13) at (10,-2)	{$0$};
+\node [main node]		(14) at (12,-2)	{\dots};
+
+\draw (1) edge [main path] node [auto] {$$} (2);
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {\small $n$} (4);
+\draw (4) edge [main path] node [auto] {\small $nat$} (5);
+\draw (5) edge [main path] (11);
+\draw (11) edge [main path] (12);
+\draw (6) edge [main path] node [auto] {$$} (7);
+\draw (7) edge [main path] node [auto] {$$} (8);
+\draw (8) edge [main path] node [auto] {\small $n$} (9);
+\draw (9) edge [main path] node [auto] {\small $nat$} (10);
+\draw (10) edge [main path] (13);
+\draw (13) edge [main path] (14);
+\draw (3) edge [main path] node [auto, swap] {$f_{1}$} node [auto] {\small $nat$} (8);
+\draw (4) edge [main path] node [auto, swap] {$f_{0}$} node [auto] {\small $nat$} (9);
+\draw (5) edge [-, semithick, double, double distance=1.5pt] node [auto, swap] {$f_{-1}$} (10);
+\draw (11) edge [-, semithick, double, double distance=1.5pt] (13);
+\draw (2) edge [-, semithick, double, double distance=1.5pt] (7);
+\end{tikzpicture}
+\eequ
+then we can see that our non trivial chain maps are, 
+\begin{align*}
+f_{1} &: \bb{Z} \to \frac{\bb{Z}}{n\bb{Z}}, \quad z \mapsto z+n\bb{Z},\\
+f_0 &: \bb{Z} \to \frac{\bb{Z}}{n^2\bb{Z}}, \quad z \mapsto z+n^2\bb{Z}, \\
+f_{1} &: \frac{\bb{Z}}{n\bb{Z}} \to \frac{\bb{Z}}{n\bb{Z}}, \quad z+n\bb{Z} \mapsto z+n\bb{Z}, 
+\end{align*}
+and they satisfy, 
+\equ
+f_0(\gamma_1(z))=f_0(nz)=nz+n\bb{Z}=0\quad \& \quad \delta_1(f_1(z))=\delta_1(z+n\bb{Z})=nz+n\bb{Z}=0.
+\eequ
+Simmilarly, we can see that the other chain maps make the diagram commute.
+\end{eg}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Exact Sequences}
+
+\section{Extensions}
+
+
+
+
+
+
+
+
+
 
 \chapter{Representation of Quivers}
 
@@ -605,7 +724,7 @@ The $e_i$ are primitive idempotents, i.e. $Ae_i$ is an indecomposable module.
 From Lemma \ref{idempotenthomlem} we know that $End_A(Ae_i) \cong e_iAe_i$ and if this contains an idempotent $\epsilon$, then $\epsilon^2=\epsilon=\epsilon e_i$, so $\epsilon(e_i- \epsilon)=0$, but from Lemma \ref{idempotent0lem} we know that this can not happen if $\epsilon, (e_i-\epsilon) \neq 0$, thus we must have that either $\epsilon=0$ or $\epsilon=e_i$ and the result follows.
 \end{proof}
 
-\begin{lem}
+\begin{lem} \label{idempotentsi=jlem}
 If $e_i \in Ae_jA$ then $i=j$.
 \end{lem}
 \begin{proof}
@@ -616,7 +735,7 @@ For similar reasoning as in Lemma \ref{idempotentspacelem}, we can see that $Ae_
 The $e_i$ are inequivalent, i.e. $Ae_i \not\cong Ae_j$ for $i \neq j$.
 \end{lem}
 \begin{proof}
-% Need to ask about this one.
+Two idempotent elements $e_i, e_j$ are said to be equivalent iff there exists some $u\in e_iAe_j$ and $v \in e_jAe_i$ such that $uv=e_i$ and $vu=e_j$. From Lemma \ref{idempotenthomlem} we can see that $Hom(Ae_i, Ae_j)\cong e_iAe_j$ and $Hom(Ae_j, Ae_i)\cong e_jAe_i$, and so inverse isomorphisms give elements $u$ and $v$ as described above with $uv=e_i$ and $vu=e_j$. However, this means that the path $e_i$ must pass through the vertex $j$ at some point, and vice versa, which contradicts Lemma \label{idempotenti=jlem}.
 \end{proof}
 
 \begin{eg}
@@ -722,14 +841,255 @@ However, if we have the quiver $Q'$,
 it has paths $e_1, e_2, e_3, e_4, \alpha, \beta, \gamma, \delta, \beta\alpha,\delta\beta, \gamma\delta, \delta\beta\alpha, \gamma\delta\beta\alpha, \beta\gamma\delta\beta\alpha, \delta\beta\gamma\delta\beta\alpha, \dots$, and so on, an infinte number of paths, meaning that the basis of $A$ is infinte and hence $A$ is not finite dimensional.
 \end{eg}
 
+\begin{lem}
+$A$ is prime, i.e. $IJ\neq 0$ for two sided ideals $I, J \neq 0$ if and only if for all $i, j \in Q_0$ there exists a path $i$ to $j$.
+\end{lem}
+\begin{proof}
+\emph{Need to include proof here}
+\end{proof}
+
+\begin{lem}
+$A$ is left noetherian if and only if, if there is an oriented cycle through the vertex $i$, then only one arrow starts at the vertex $i$.
+\end{lem}
+\begin{proof}
+Let $Ap$ represent the left-ideal whose basis are all the paths starting with $p$ for any path $p$. \\
+Suppose we have a quiver $Q$ of the form,
+\equ
+\mathbf{Q}: \qquad
+\begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node	[main node]		(1) at (0,0)		{$i$};
+\node [main node]		(2) at (2,0)		{$j$};
+
+\draw (1) edge [loop] node [auto, swap] {$\alpha$} (1);
+\draw (1) edge node [auto] {$\beta$} (2);
+\end{tikzpicture}
+\eequ
+assuming $i\neq j$ and where $\alpha$ represents an orientated cycle, then we can see that,
+\equ
+A\beta+A\beta\alpha+\dots +A\beta\alpha^n \subseteq A\beta+A\beta\alpha+\dots +A\beta\alpha^{n+1}.
+\eequ
+However, since $e_j\beta\alpha^{n+1}\not \in A\beta+A\beta\alpha+\dots +A\beta\alpha^n$ the inclusion is strict. Hence, if $Q$ is of the form above, there is an ascending chain of left ideals, 
+\equ
+A\beta \subset A\beta + A\beta\alpha \subset A\beta + A\beta\alpha+A\beta\alpha^2 \subset \dots
+\eequ
+which does not terminate and so $A$ is not noetherian.\\
+Suppose that for all $i\in Q_0$, if $\alpha$ an oriented cycle where $s(\alpha)=i$, then for all $\rho \in Q_1$, $\rho=\alpha_1$ or $s(\rho)\neq i$; where $\alpha=\alpha_1\alpha_2\dots\alpha_m$ for some $\alpha_1, \dots, \alpha_m \in Q_1$. This means there are some $\rho_1, \dots, \rho_n$ paths such that given any path $\beta\in A$ we have that $\beta=q\rho_j$ for some $j\in\{1, \dots, n\}$ and some $q$ a path in an oriented cycle.
+Now if we let $Q'$ be the quiver, and  $A'$ the corresponding path algebra, where, 
+\equ
+Q'_0=Q_0\text{ \& } Q_1=Q'_1\cup \{a\in Q_1: a \text{ is not in an oriented cycle of }Q\}.
+\eequ
+So, for any basis element $\beta$ of $A$, $\beta=qp_j$ where $q$ is a path in $A'$. Following the previous two results we can see that, 
+\begin{equation}
+A=A'\rho_1+A'\rho_2 + \dots +A'p_n
+\end{equation}
+\begin{claim}
+ If $S$ is a subring of a ring $R$ and $R$ is finitely generated as a left $S$-module, then, if $S$ is a noetherian ring, so is $R$.
+\end{claim}
+\begin{proof}
+From the result that a finitely generated module over a noetherian ring is noetherian, gives us that $R$ is noetherian as a left $S$-module. Let $I_1 \subseteq I_2 \subseteq \dots$ be an ascending chain of left ideals in $R$, and each $I_k$ is a left $S$-submodule of $R$; so by the above, this chain terminates.
+\end{proof}
+Using the above Claim and the earlier result that $A$ is finitely generated as a left $A'$-module, we can see that our problem of proving that $A$ is left noetherian reduces to proving that $A'$ is left noetherian.\\
+Now let $\alpha^{(l)}_j$ be the $j^{th}$ arrow of the $l^{th}$ oriented cycle in $Q'$ and then, 
+\equ
+Q'_1=\{\alpha^{(l)}_j : j \in \{1, \dots, q_l\}, l \in \{1, \dots, r\}\}.
+\eequ
+Consider the endomorphism, 
+\begin{align*}
+X_l: &A' \to A', \\
+&e_t(p) \mapsto \alpha^{(l)}_{k-1}\alpha^{(l)}_{k-2}\dots \alpha^{(l)}_{1}\alpha^{(l)}_{q_l}\dots \alpha^{(l)}_{k}p\text{, where } t(p)=t=s(\alpha^{(l)}_{k}), \\
+&\text{otherwise }\mapsto 0.
+\end{align*}
+We can adapt Hilbert's Basis Theorem to show that $k[X_1, \dots, X_r]$ is a noetherian ring and we can see that $A'$ is a finitely generated $k[X_1, \dots, X_r]$-module. Hence, $A'$ is left noetherian, and so $A$ is left noetherian.
+\end{proof}
+
+\begin{mydef}
+We can define the \emph{length} of any path $p$ by the following: Let, 
+\equ 
+length(p)=length(\sum_{\text{arrows }\rho}\lambda_{\rho}\rho):=max\{length(\rho):\lambda_\rho\neq0\},
+\eequ
+where $\lambda_\rho\neq 0$ for some $\rho$. 
+\end{mydef}
+
+\begin{lem}
+The basis of $J(A)$ is $\{\text{path } i \text{ to }j: \text{ there is no path from } j \text{ to }i\}$.
+\end{lem}
+\begin{proof}
+Firstly, lets prove that, 
+\equ
+J'(A):= span_k\{\text{paths }p:s(p)=i, t(p)=j\text{with no paths from $j$ to $i$}\}\subseteq J(A).
+\eequ
+Given any $w\in J'(A)$ we have that, 
+\begin{enumerate}
+\item $(wp)^2=0$ for any path $p$.
+\begin{proof}
+There are no paths $p$ such that $t(p)=s(w)$ and $s(p)=t(w)$, so $wpw=0$, so $wpwp=(wp)^2=0$.
+\end{proof}
+\item $(w(p+p'))^2=0$ for any path $p$ and $\lambda\in k$.
+\begin{proof}
+\equ
+(w(p+p'))^2=(wp+wp')^2=(wp)^2+wpwp'+wp'wp +(wp')^2
+\eequ
+As $wpw$ and $wp'w$ are both equal to zero by the above, we have that, $(w(p+p'))^2=0$.
+\end{proof}
+\item $(w(\lambda p))^2=\lambda^2(wp)^2=0$
+\begin{proof}
+By item 1.
+\end{proof}
+\end{enumerate}
+Now let $w\in J'(A)$ and $z\in A$, then,
+\equ
+wz=u\big(\sum_{\text{paths }p}\lambda_pp\big)=w\big(\sum_{\substack{\text{paths }p:\\t(p)=s(w)}}\lambda_pp\big):=\tau
+\eequ
+and from above we can see that $\tau^2=0$, meaning $(wz)^2=0$, so, $(1+wz)(1-wz)=1$, hence, $1+wz\in U(A)$ for all $z\in A$. Thus $w\in J(A)$.\\
+Now we want to prove that $J(A)\subseteq J'(A)$. Let $w$ be a basis element of $J(A)$ coming from the basis of $A$. Suppose also that $length(w)=0$, so $w=e_i$ for some $i\in Q_0$. Let, 
+\equ
+M_i:=\sum_{\substack{\text{paths }p:\\ p\neq e_i}}Ap,
+\eequ
+then $M_i\unlhd A$ and if $M_i\subsetneq N \unlhd A$, then, $e_i\in N$, so, $N=A$; hence, $M_i$ is a maximal left ideal, but $w\not \in M_i$ contradicting that $w \in J(A)$.Hence, $length(w)>0$.\\
+Now suppose $w\not \in J'(A)$, so there's a path $p$ such that $s(w)=t(p)$ and $s(p)=t(w)$. Since $w \in J(A)$ and $p\in A$,  $1+wp \in U(A)$, so there exists some $z\in A$ such that $(1+wp)z=1$, with, 
+\equ
+z=\sum^m_{l=0}\sum_{\substack{\text{paths }p: \\ length(p_l)=l}}\lambda_{p_l}p_l.
+\eequ
+Since, $length(1)=length(l_1+\dots+l_n)=0$, we have that, 
+\begin{align*}
+0&=length((1+wp)z),\\
+&=length(z+wpz),\\
+&=max(length(z), length(wpz)),
+\end{align*}
+so $wpz=0$ as otherwise $length(wpz)=0$, contradicting that $length(w)>0$. So as $(1+wp)z=z+wpz=1$, $z=1$, so $wp=0$, a contradiction.
+\end{proof}
+
+\begin{lem}
+The centre of $A$ is $k\times k\times \dots k[T] \times k[T] \times \dots$, with one factor for each connected component $C$ of $Q$, and that the factor is $k[T]$ if and only if $C$ is an oriented cycle.
+\end{lem}
+\begin{proof}
+Firstly, we know that if our quiver $Q$ is composed of $n$ connected components $C_1, \dots, C_n$ then we our path algebra looks like $kQ=kC_1 \times kC_2 \times \dots \times kC_n$.
+\begin{claim}
+Where $Z(A)$ represents the centre of $A$, we have that, 
+\equ
+Z(A\times B)=Z(A) \times Z(B).
+\eequ
+\end{claim}
+\begin{proof}
+Suppose we have $(a, b)\in Z(A \times B)$, then we have that,
+\begin{align*}
+& (a, b)(a', b')=(a', b')(a, b) \forall (a',b')\in A\times B,\\
+\Leftrightarrow &(aa',bb')=(a'a,b'b) \forall a'\in A, b' \in B, \\
+\Leftrightarrow & aa'=a'a \text{ \& } bb'=b'b \forall a'\in A, b'\in B,\\
+\Leftrightarrow & a\in Z(A) \text{ \& } b\in Z(B).
+\end{align*}
+Hence, $Z(A \times B)\cong Z(A) \times Z(B)$.
+\end{proof}
+Now, using the claim, we can see that,
+\equ
+Z(kQ) \cong Z(kC_1) \times Z(kC_2) \times \dots \times Z(kC_n),
+\eequ
+Now, assume the connected component $C_i$ is not an oriented cycle, and consider $a\in Z(kC_i)$, which is a linear combination of paths. Let us choose a path of maximal length $\rho_1\dots \rho_m$, and say there exists some $\sigma$ such that we can have $\sigma \rho_1 \dots \rho_m$ but with $t(\sigma)\neq s(\rho_m)$, but since $\rho_1 \dots \rho_m$ was maximal this path is involved $\sigma a=a\sigma$ as $a\in Z(A)$. So, $a \sigma$ is also a linear combination of paths, i.e. $\tau_1 \dots \tau_m\sigma$, wheere $\tau_1\dots\tau_m$ is a path in $a$.This causes, 
+\equ
+\sigma\rho_1\dots\rho_m=\tau_1\dots\tau_m\sigma,
+\eequ
+which implies that $\sigma=\rho_m$, which causes an oriented cycle, hence a contradiction. Thus, $Z(kC_i)\cong k$.\\
+\emph{Need to complete the case for oriented cycle connected component.}
+
+\end{proof}
+
+\begin{eg}
+Consider the quiver, 
+\equ
+\mathbf{Q}: \qquad
+\begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node	[main node]		(1) at (0,0)		{1};
+\node [main node]		(2) at (2,0)		{2};
+\node [main node]		(3) at (4,0)		{3};
+\node [main node]		(4) at (5,0)		{4};
+\node [main node]		(5) at (6,2)		{5};
+\node [main node]		(6) at (7, 0)		{6};
+
+\draw (1) edge node [auto] {$\alpha$} (2);
+\draw (2) edge node [auto] {$\beta$} (3);
+\draw (4) edge node [auto] {$\gamma$} (5);
+\draw (5) edge node [auto] {$\delta$} (6);
+\draw (6) edge node [auto] {$\epsilon$} (4);
+\end{tikzpicture}
+\eequ
+and so, $Z(kQ)=Z(kC_1) \times Z(kC_2)$, where $C_2$ is the oriented cycle component. Then, 
+\begin{align*}
+Z(kC_1)=&\{a \in kC_1: ac=ca \forall c\in kC_1\}, \\
+&=\{\lambda(e_1+e_2+e_3): \lambda\in k\}, \\
+&\cong k,
+\end{align*}
+since none of the elements of $kC_1$ are commutative, apart from the identity. Also, 
+\begin{align*}
+Z(kC_2) &=\{a \in kC_2: ac=ca \forall c\in kC_2\},\\
+&=\{\lambda(\gamma\delta\epsilon + \delta\epsilon\gamma +\epsilon\gamma\delta): \lambda \in k\}, \\
+&\cong k[T], \text{ where }T=\gamma\delta\epsilon + \delta\epsilon\gamma +\epsilon\gamma\delta, 
+\end{align*}
+because none of the elements of $kC_2$ are commutative other than the identity element. Thus, $Z(kQ)\cong k \times k[T]$.
+\end{eg}
+
+\section{Representations of Quivers}
+
+\begin{mydef}
+A \emph{representation} $X$ of a quiver $Q$ is given by considering each vertex $i\in Q_0$ as a vector space $X_i$, and each arrow $\rho \in Q_1$ as a linear map $X_\rho: X_{s(\rho)} \to X_{t(\rho)}$.
+\end{mydef}
+
+\begin{eg}
+Let $Q$ be the quiver, 
+\equ
+\mathbf{Q}: \qquad
+\begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node	[main node]		(1) at (0,0)		{1};
+\node [main node]		(2) at (2,0)		{2};
+\node [main node]		(3) at (4,0)		{3};
+
+\draw (2) edge (1);
+\draw (2) edge (3);
+\end{tikzpicture}
+\eequ
+then we can have representations $X$ and $Y$, 
+\equ
+\mathbf{X}: \quad
+\begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node	[]		(1) at (0,0)		{$k$};
+\node []		(2) at (2,0)		{$k$};
+\node []		(3) at (4,0)		{$k$};
+
+\draw (2) edge node [auto, swap] {$\alpha$} node [auto] {1} (1);
+\draw (2) edge node [auto] {$\beta$} node [auto, swap] {1} (3);
+\end{tikzpicture}
+\qquad \& \qquad
+\mathbf{Y}: \quad
+\begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node	[]		(1) at (0,0)		{$k$};
+\node []		(2) at (2,0)		{$k$};
+\node []		(3) at (4,0)		{$0$};
+
+\draw (2) edge node [auto, swap] {$\gamma$} node [auto] {1} (1);
+\draw (2) edge node [auto] {$\delta$} (3);
+\end{tikzpicture}
+\eequ
+\end{eg}
+
+\begin{mydef}
+A \emph{morphism} $\theta: X \to X'$ between representationsis given by linear maps $\theta_i:X_i \to X'_i$ for each $i\in Q_0$ satisfy $X'_{\rho}\theta _{s(\rho)} = \theta_{t(\rho)}X_{\rho}$ for each $\rho \in Q_1$. The \emph{composition} of morphisms, $\theta: X \to X'$ with $\phi: X' \to X''$ is given by $(\phi \theta)_i=\phi_i \theta_i$.
+\end{mydef}
+
+\begin{eg}
+\end{eg}
 
 
 
 
 
+\section{Standard Resolution}
 
+\section{Bricks}
 
+\section{Dynkin and Euclidean diagrams}
 
+\section{Gabriel's Theorem}
+
+\chapter{Auslander-Reiten Quivers}
 
 
 

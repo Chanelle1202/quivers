@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.18)  9 DEC 2014 13:44
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.18)  21 JAN 2015 17:27
 entering extended mode
 **C:/Users/Chanelle/Documents/GitHub/quivers/quivers.tex
 (C:/Users/Chanelle/Documents/GitHub/quivers/quivers.tex
@@ -501,18 +501,18 @@ LaTeX Warning: Unused global option(s):
     [11.5pt].
 
 (C:\Users\Chanelle\Documents\GitHub\quivers\quivers.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -528,12 +528,12 @@ LaTeX Font Info:    ... okay on input line 22.
 \makeMPintoPDFobject=\count130
 \everyMPtoPDFconversion=\toks37
 ) ABD: EveryShipout initializing macros
-LaTeX Font Info:    Try loading font information for U+msa on input line 26.
+LaTeX Font Info:    Try loading font information for U+msa on input line 27.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 26.
+LaTeX Font Info:    Try loading font information for U+msb on input line 27.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -553,23 +553,28 @@ Chapter 2.
 [4
 
 ] [5]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 204.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 207.
 
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 204.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 207.
 
-Overfull \hbox (1.34724pt too wide) in paragraph at lines 225--226
+Overfull \hbox (1.34724pt too wide) in paragraph at lines 228--229
 []\OT1/cmr/bx/n/10 Example 2.1.14. []\OT1/cmr/m/n/10 All the chain com-plexes i
 n the pre-vi-ous ex-am-ples are bounded
  []
 
 [6] [7] [8]
+Overfull \hbox (29.45302pt too wide) detected at line 401
+[]
+ []
+
+[9]
 Chapter 3.
 
-Overfull \hbox (9.23213pt too wide) detected at line 382
+Overfull \hbox (9.23213pt too wide) detected at line 501
 \OML/cmm/m/it/10 p[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 e[];  p[] \OT1/cmr/m/n/
 10 = \OML/cmm/m/it/10 e[];  p[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 e[];  p[] \O
 T1/cmr/m/n/10 = \OML/cmm/m/it/10 e[];  p[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 
@@ -577,64 +582,112 @@ T1/cmr/m/n/10 = \OML/cmm/m/it/10 e[];  p[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 
 it/10 ;  p[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 :
  []
 
-[9
+[10
 
-] [10] [11]
-Underfull \hbox (badness 10000) in paragraph at lines 555--558
+] [11] [12]
+Overfull \hbox (20.11568pt too wide) in paragraph at lines 703--706
+\OT1/cmr/m/n/10 Hence, $\OML/cmm/m/it/10 g \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 
+Hom[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 Ae[]; X\OT1/cmr/m/n/10 )$. How-ever, we 
+can also have that $\OML/cmm/m/it/10 g \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 eX \O
+MS/cmsy/m/n/10 ! \OML/cmm/m/it/10 Hom[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 Ae[]; 
+X\OT1/cmr/m/n/10 )$
+ []
+
+[13]
+
+LaTeX Warning: Reference `idempotentspacelem' on page 14 undefined on input lin
+e 731.
+
+[14]
+Overfull \hbox (230.03055pt too wide) in paragraph at lines 795--795
+[] 
+ []
+
+[15]
+Overfull \hbox (5.07704pt too wide) in paragraph at lines 840--842
+\OT1/cmr/m/n/10 it has paths $\OML/cmm/m/it/10 e[]; e[]; e[]; e[]; ; ; ; ; 
+; ; ; ; ; ; ; [] $\OT1/cmr/m/n/10 , and
+ []
+
+[16]
+Overfull \hbox (7.75946pt too wide) in paragraph at lines 914--915
+[]\OT1/cmr/bx/n/10 Lemma 3.1.29. []\OT1/cmr/m/it/10 The ba-sis of $\OML/cmm/m/i
+t/10 J\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A\OT1/cmr/m/n/10 )$ \OT1/cmr/m/it/10 is
+ $\OMS/cmsy/m/n/10 f[]\OML/cmm/m/it/10 i[]j \OT1/cmr/m/n/10 : []\OML/cmm/m/it/1
+0 j[]i\OMS/cmsy/m/n/10 g$\OT1/cmr/m/it/10 . 
+ []
+
+[17] [18]
+Overfull \hbox (8.85571pt too wide) detected at line 1070
+\OT1/cmr/bx/n/10 X \OT1/cmr/m/n/10 :  [] & \OT1/cmr/bx/n/10 Y \OT1/cmr/m/n/10 :
+  []
+ []
+
+[19] [20]
+Chapter 4.
+[21
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 1110--1113
 []\OT1/cmr/m/n/10 Crawley-Boevey, W. \OT1/cmr/m/it/10 Co-ho-mol-ogy and Cen-tra
 l Sim-ple Al-ge-bras\OT1/cmr/m/n/10 .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 555--558
+Underfull \hbox (badness 10000) in paragraph at lines 1110--1113
 \OT1/cmr/m/n/10 [Online-PDF file]. [Ac-cessed Oc-to-ber 2014]. Avail-able from:
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 560--563
+Underfull \hbox (badness 10000) in paragraph at lines 1115--1118
 []\OT1/cmr/m/n/10 Crawley-Boevey, W. \OT1/cmr/m/it/10 Rep-re-sen-ta-tion of Qui
 v-ers\OT1/cmr/m/n/10 . [Online-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 560--563
+Underfull \hbox (badness 10000) in paragraph at lines 1115--1118
 \OT1/cmr/m/n/10 PDF file]. [Ac-cessed Oc-to-ber 2014]. Avail-able from:
  []
 
-[12
+[22
 
-] (C:\Users\Chanelle\Documents\GitHub\quivers\quivers.aux) ) 
+] (C:\Users\Chanelle\Documents\GitHub\quivers\quivers.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 11835 strings out of 493921
- 229857 string characters out of 3144867
- 289001 words of memory out of 3000000
- 14899 multiletter control sequences out of 15000+200000
- 14071 words of font info for 53 fonts, out of 3000000 for 9000
+ 11930 strings out of 493921
+ 231202 string characters out of 3144867
+ 291418 words of memory out of 3000000
+ 14988 multiletter control sequences out of 15000+200000
+ 16236 words of font info for 61 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 56i,19n,61p,479b,881s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files (
-x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files (x8
-6)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files (x86)
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (x86)/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86)/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmsy5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsf
-onts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmti7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/
-symbols/msbm10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/symbols/msbm7.pfb>
-Output written on quivers.pdf (12 pages, 237358 bytes).
+ 56i,19n,61p,754b,881s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C
+:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/
+Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Pr
+ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Progr
+am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program 
+Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Fil
+es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files 
+(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x8
+6)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files (x86)/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmti7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
+1/public/amsfonts/symbols/msam10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
+s/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on quivers.pdf (22 pages, 307748 bytes).
 PDF statistics:
- 116 PDF objects out of 1000 (max. 8388607)
+ 156 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
