@@ -1,13 +1,13 @@
 \contentsline {chapter}{\numberline {1}Introduction}{3}
 \contentsline {chapter}{\numberline {2}Homological Algebra}{4}
 \contentsline {section}{\numberline {2.1}Chain Complexes}{4}
-\contentsline {section}{\numberline {2.2}Exact Sequences}{9}
-\contentsline {section}{\numberline {2.3}Extensions}{11}
-\contentsline {chapter}{\numberline {3}Representation of Quivers}{12}
-\contentsline {section}{\numberline {3.1}Quivers and Path Algebras}{12}
-\contentsline {section}{\numberline {3.2}Representations of Quivers}{21}
-\contentsline {section}{\numberline {3.3}Standard Resolution}{22}
-\contentsline {section}{\numberline {3.4}Bricks}{22}
-\contentsline {section}{\numberline {3.5}Dynkin and Euclidean diagrams}{22}
-\contentsline {section}{\numberline {3.6}Gabriel's Theorem}{22}
-\contentsline {chapter}{\numberline {4}Auslander-Reiten Quivers}{23}
+\contentsline {section}{\numberline {2.2}Exact Sequences}{10}
+\contentsline {section}{\numberline {2.3}Extensions}{13}
+\contentsline {chapter}{\numberline {3}Representation of Quivers}{14}
+\contentsline {section}{\numberline {3.1}Quivers and Path Algebras}{14}
+\contentsline {section}{\numberline {3.2}Representations of Quivers}{23}
+\contentsline {section}{\numberline {3.3}Standard Resolution}{24}
+\contentsline {section}{\numberline {3.4}Bricks}{24}
+\contentsline {section}{\numberline {3.5}Dynkin and Euclidean diagrams}{24}
+\contentsline {section}{\numberline {3.6}Gabriel's Theorem}{24}
+\contentsline {chapter}{\numberline {4}Auslander-Reiten Quivers}{25}

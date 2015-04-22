@@ -1,5 +1,5 @@
 \documentclass[11.5pt, twoside, a4paper, titlepage]{report}
-\usepackage{graphicx, amssymb, amsmath, mathtools, amsthm}
+\usepackage{graphicx, amssymb, amsmath, mathtools, amsthm, xfrac}
 \usepackage{tikz}
 \usetikzlibrary{automata, arrows, matrix}
 \providecommand{\abs}[1]{\lvert#1\rvert}
@@ -102,18 +102,44 @@ since,
 \end{eg}
 
 \begin{mydef}
-If $\mathbf{C}$ is a chain complex then its \emph{homology} is defined to be,
+For a chain complex,
 \begin{equation*}
-H_n(\mathbf{C})=\frac{Ker(\delta_n:C_n \rightarrow C_{n-1})}{Im(\delta_{n+1}:C_{n+1} \rightarrow C_n)} =\frac{Z_n(\mathbf{C})}{B_n(\mathbf{C})}.
+\mathbf{C}: \qquad \dots \xrightarrow{} C_{n+1} \xrightarrow{\delta_{n+1 }} C_{n} \xrightarrow{\delta_{n}} C_{n-1} \xrightarrow{} \dots
 \end{equation*}
-This becomes an $\mathbb{R}$-module and, since $\delta^2$, it follows that $B_n(\mathbf{C})\subseteq Z_n(\mathbf{C})$.
+we define:
+\begin{equation*}
+Z_n(\mathbf{C})=ker(\delta_n) \quad \& \quad B_n(\mathbf{C})=im(\delta_{n+1}).
+\end{equation*}
 \end{mydef}
 
-The following Lemma is the solution to Exercise 6.1 in \cite{Rotman}.
+To explore the relationship between $Z_n(\mathbf{C})$ and $B_n(\mathbf{C})$, the following is a solution to Exercise 2.14 in \cite{Rotman}.(Note the example will not be provided here as exactness has not yet been covered.)
 
-\begin{lem}
-If $\mathbf{C}$ is a chain complex with $C_n=0$ for some $n$ then $H_n(\mathbf{C})=0$.
+\begin{lem}\label{iminkerlem}
+Let,
+\begin{equation*}
+A \xrightarrow{f} B \xrightarrow{g} C,
+\end{equation*}
+be a sequence of module maps. Then $gf=0$ if and only if $im(f)\subseteq im(g)$.
 \end{lem}
+\begin{proof}
+Suppose $gf=0$, i.e., for all $a\in A$, $g(f(a))=0$ which implies that $f(a)\in ker(g)$ for all $a \in A$. Hence, $im(f) \subseteq ker(g)$.\\
+Conversely, suppose that $im(f) \subseteq ker(g)$. Every element $b\in im(f)$ is also an element of $ker(g)$, thus $gf=0$.
+\end{proof}
+
+\begin{mydef} \label{homologydefn}
+If $\mathbf{C}$ is a chain complex then its \emph{homology} is defined to be,
+\begin{equation*}
+H_n(\mathbf{C})=\frac{ker(\delta_n:C_n \rightarrow C_{n-1})}{im(\delta_{n+1}:C_{n+1} \rightarrow C_n)}=\frac{Z_n(\mathbf{C})}{B_n(\mathbf{C})},
+\end{equation*}
+which is an $\bb{R}$-module.
+\end{mydef}
+
+
+The subsequent proposition is the solution to Exercise 6.1 in \cite{Rotman}.
+
+\begin{prop}
+If $\mathbf{C}$ is a chain complex with $C_n=0$ for some $n$ then $H_n(\mathbf{C})=0$.
+\end{prop}
 \begin{proof}
 Well suppose we have such a chain complex, 
 \equ
@@ -121,7 +147,7 @@ Well suppose we have such a chain complex,
 \eequ
 the the homology is,
 \equ
-H_n(\mathbf{C})=\frac{Ker(\delta_n: 0 \to C_{n-1}}{Im(\delta_{n+1}: C_{n+1}\to 0)},
+H_n(\mathbf{C})=\frac{ker(\delta_n: 0 \to C_{n-1}}{im(\delta_{n+1}: C_{n+1}\to 0)},
 \eequ
 as the only element in $C_n$ is the zero element, and so, $H_n(\mathbf{C})=0$, as required.\\
 \end{proof}
@@ -137,7 +163,7 @@ Examples \ref{chainMeg} and \ref{chainZeg} are taken from \cite{CB1} and are inc
 where $M$ is at degree $n$. Then the homology will be:
 \begin{equation*}
 H_i(\mathbf{C})=\begin{cases}
-\frac{Ker(M \rightarrow 0)}{Im(0 \rightarrow M)}=M & i=n,\\
+\frac{ker(M \rightarrow 0)}{im(0 \rightarrow M)}=M & i=n,\\
 0 & \text{otherwise}.
 \end{cases}
 \end{equation*}
@@ -152,8 +178,8 @@ and the homology becomes,
 \equ
 H_i(\mathbf{C})=
 \begin{cases}
-\frac{N}{Im(f)}=Coker(f) & i=n\\
-Ker(f) & i=n+1\\
+\frac{N}{im(f)}=coker(f) & i=n\\
+ker(f) & i=n+1\\
 0 & \text{otherwise}.
 \end{cases}
 \eequ
@@ -161,11 +187,11 @@ Ker(f) & i=n+1\\
 \begin{proof}
 Firstly, at degree $n$ we have that,
 \equ
-H_n(\mathbf{C})=\frac{Ker(N\xrightarrow{}0)}{Im(M\xrightarrow{f}N)}=\frac{N}{Im(f)}=Coker(f).
+H_n(\mathbf{C})=\frac{ker(N\xrightarrow{}0)}{im(M\xrightarrow{f}N)}=\frac{N}{im(f)}=coker(f).
 \eequ
 Then at degree $n+1$ we have that,
 \equ
-H_{n+1}(\mathbf{C})=\frac{Ker(M\xrightarrow{f}N)}{Im(0\xrightarrow{}M)}=Ker(f).
+H_{n+1}(\mathbf{C})=\frac{ker(M\xrightarrow{f}N)}{im(0\xrightarrow{}M)}=ker(f).
 \eequ
 Finally, it is clear that everywhere else there is no homology.
 \end{proof}
@@ -187,19 +213,19 @@ where the map $a$ is right multiplication by some $a \in \mathbb{Z}$. The homolo
 \equ
 H_i(\mathbf{C}) = 
 \begin{cases}
-\frac{Ker(\mathbb{Z}\xrightarrow{} 0)}{Im(\mathbb{Z}\xrightarrow{a}\mathbb{Z})}=\frac{\mathbb{Z}}{a\mathbb{Z}} & i=0,\\
+\frac{ker(\mathbb{Z}\xrightarrow{} 0)}{im(\mathbb{Z}\xrightarrow{a}\mathbb{Z})}=\frac{\mathbb{Z}}{a\mathbb{Z}} & i=0,\\
 0 & \text{otherwise}.
 \end{cases}
 \eequ
 Note that,
 \equ
-H_0(C)=\frac{\bb{Z}}{a\bb{Z}}= \frac{\text{Codomain of }f}{\text{Image of }f}=Coker(a).
+H_0(C)=\frac{\bb{Z}}{a\bb{Z}}= \frac{\text{Codomain of }f}{\text{Image of }f}=coker(a).
 \eequ
 Also,
 \equ
-H_1(C)=\frac{Ker(\bb{Z}\xrightarrow{a}\bb{Z})}{Im(0\xrightarrow{}\bb{Z})}=Ker(a)=0,
+H_1(C)=\frac{ker(\bb{Z}\xrightarrow{a}\bb{Z})}{im(0\xrightarrow{}\bb{Z})}=ker(a)=0,
 \eequ
-because $Ker(a)$ is empty.
+because $ker(a)$ is empty.
 \end{eg}
 
 \begin{mydef}
@@ -235,9 +261,9 @@ If we take another look at the chain complex in Example \ref{Kchaineg},
 \eequ
 the homologies are, 
 \begin{align*}
-H_1(\mathbf{C}) &=\frac{Ker(K\xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)}K^2)}{Im(0 \xrightarrow{}K)}\cong \frac{K}{K} \cong 0,\\
-H_0(\mathbf{C}) &=\frac{Ker(K^2\xrightarrow{(\begin{smallmatrix} 1 & 0 \end{smallmatrix})}K)}{Im(K\xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)}K^2)}\cong \frac{K}{K} \cong 0,\\
-H_{-1}(\mathbf{C}) &=\frac{Ker(K\xrightarrow{}0)}{Im(K^2\xrightarrow{(\begin{smallmatrix} 1 & 0 \end{smallmatrix})}K))}\cong \frac{K}{K} \cong 0.\\
+H_1(\mathbf{C}) &=\frac{ker(K\xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)}K^2)}{im(0 \xrightarrow{}K)}\cong \frac{K}{K} \cong 0,\\
+H_0(\mathbf{C}) &=\frac{ker(K^2\xrightarrow{(\begin{smallmatrix} 1 & 0 \end{smallmatrix})}K)}{im(K\xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)}K^2)}\cong \frac{K}{K} \cong 0,\\
+H_{-1}(\mathbf{C}) &=\frac{ker(K\xrightarrow{}0)}{im(K^2\xrightarrow{(\begin{smallmatrix} 1 & 0 \end{smallmatrix})}K))}\cong \frac{K}{K} \cong 0.\\
 \end{align*}
 Thus $H_n(\mathbf{C})=0$ for all $n$ and so $\mathbf{C}$ is an acyclic chain complex. Later in the report, we will see that $\mathbf{C}$ is in fact a short exact sequence.
 \end{eg}
@@ -253,7 +279,7 @@ where the differentials are the maps,
 \eequ
 is unbounded. It is also acyclic, since the homology is,
 \equ
-H_n(\mathbf{C})=\frac{Ker(\delta_n:\frac{\bb{Z}}{9\bb{Z}}\xrightarrow{}\frac{\bb{Z}}{9\bb{Z}})}{Im(\delta_n:\frac{\bb{Z}}{9\bb{Z}}\xrightarrow{}\frac{\bb{Z}}{9\bb{Z}})}\cong \frac{\bb{Z}/3\bb{Z}}{\bb{Z}/3\bb{Z}} \cong 0, 
+H_n(\mathbf{C})=\frac{ker(\delta_n:\frac{\bb{Z}}{9\bb{Z}}\xrightarrow{}\frac{\bb{Z}}{9\bb{Z}})}{im(\delta_n:\frac{\bb{Z}}{9\bb{Z}}\xrightarrow{}\frac{\bb{Z}}{9\bb{Z}})}\cong \frac{\bb{Z}/3\bb{Z}}{\bb{Z}/3\bb{Z}} \cong 0, 
 \eequ
 for all $n$.
 \end{eg}
@@ -273,7 +299,7 @@ Chain and cochain complexes can be thought of as almost identical constructs wit
 \begin{mydef}
 If $\mathbf{C}$ is a cochain complex then its \emph{cohomology} is defined to be,
 \begin{equation*}
-H^n(\mathbf{C})=\frac{Ker(\delta^n:C^n \rightarrow C^{n+1})}{Im(\delta^{n-1}:C^{n-1} \rightarrow C^n)} =\frac{Z^n(\mathbf{C})}{B^n(\mathbf{C})}.
+H^n(\mathbf{C})=\frac{ker(\delta^n:C^n \rightarrow C^{n+1})}{im(\delta^{n-1}:C^{n-1} \rightarrow C^n)} =\frac{Z^n(\mathbf{C})}{B^n(\mathbf{C})}.
 \end{equation*}
 \begin{itemize}
 \item The elements of $B_n(\mathbf{C})$ are called \emph{$n-$coboundaries}.
@@ -290,7 +316,7 @@ Its cohomology is,
 \equ
 H^i(\mathbf{C}) = 
 \begin{cases}
-\frac{Ker(\mathbb{Z}\xrightarrow{} 0)}{Im(\mathbb{Z}\xrightarrow{a}\mathbb{Z})}=\frac{\mathbb{Z}}{a\mathbb{Z}} & i=0,\\
+\frac{ker(\mathbb{Z}\xrightarrow{} 0)}{im(\mathbb{Z}\xrightarrow{a}\mathbb{Z})}=\frac{\mathbb{Z}}{a\mathbb{Z}} & i=0,\\
 0 & \text{otherwise}.
 \end{cases}
 \eequ
@@ -323,7 +349,7 @@ which has cohomology,
 \equ
 H^i(\mathbf{C'}, \bb{Z})=
 \begin{cases}
-\frac{Ker(\bb{Z}\to0)}{Im(\bb{Z}\xrightarrow{n}\bb{Z})} \cong \frac{\bb{Z}}{n\bb{Z}} & i=0, \\
+\frac{ker(\bb{Z}\to0)}{im(\bb{Z}\xrightarrow{n}\bb{Z})} \cong \frac{\bb{Z}}{n\bb{Z}} & i=0, \\
 0 & \text{otherwise.}
 \end{cases}
 \eequ
@@ -461,6 +487,7 @@ However, if we instead consider the finite sequence,
 where $f$ and $g$ are the same as above, but $h'(x,y)=(x,y)$. Obviously, once again we have that $im(f)=ker(g)$ and $im(g)=\{(0,y):y\in K\}$, however, $ker(h')=\{(0,0)\}$ and so $im(g)\neq ker(h')$. Hence this is not an exact sequence, because it is not exact everywhere.
 \end{eg}
 
+
 \begin{mydef}
 A \emph{short exact sequence} is an exact sequence of the form,
 \begin{equation*}
@@ -476,26 +503,84 @@ The sequence,
 where $f(x)=(x,0)$ and $g(x,y)=y$ is a short exact sequence, since $im(f)=\{(x,0): x\in K\}=ker(g)$.
 \end{eg}
 
-\begin{mydef}
-If we have a map $fi :A \to B$ then we will denote the cokernel to be
+\begin{eg}
+Notice that the sequence, 
 \begin{equation*}
-coker(f)=\frac{B}{im(f)}
+0\xrightarrow{}\bb{Z}\xrightarrow[6]{f}\bb{Z}\xrightarrow{\eta}\frac{\bb{Z}}{3\bb{Z}}\xrightarrow{} 0,
 \end{equation*}
-\end{mydef}
+has $ker(\eta)=\{z:z+s\bb{Z}=0\cong 3\bb{Z}$ and $im(f)=\{6z:z\in \bb{Z}\}\cong 6\bb{Z}$. Hence, as $6\bb{Z}\subsetneq 3\bb{Z}$, $im(f)\neq ker(\eta)$ and the sequence is not exact.
+\end{eg}
 
-\begin{lem}
+Notice that you can obtain a chain complex from an exact sequence simply by deciding the degree of any term of the sequence. To consider the result when a chain complex is an exact sequence, the following is in response to Exercise 1.1.5 from \cite{Weibel}. (Note that the third condition has been omitted as we are not consider quasi-isomerism in this report.)
+
+\begin{thm}
+The following are equivalent for every chain complex $\mathbf{C}$:
+\begin{enumerate}
+\item $\mathbf{C}$ is an exact sequence, that is, exact at every $C_n$.
+\item $\mathbf{C}$ is acyclic, that is, $H_n(\mathbf{C})=0$ for all $n$.
+\end{enumerate}
+\end{thm}
+\begin{proof}
+Suppose the chain complex, 
+\begin{equation*}
+\mathbf{C}:\qquad \dots \xrightarrow{} C_{n+1} \xrightarrow{\delta_{n+1}} C_n \xrightarrow{\delta_n} C_{n-1} \xrightarrow{\delta_{n-1}} \dots
+\end{equation*}
+is an exact sequence, so we have that $im(\delta_{n+1})=ker(\delta_n)$ for all $n$, i.e. $B_n(\mathbf{C})=Z_n(\mathbf{C})$ for all $n$. Hence, when we compute the homology of $\mathbf{C}$, we find that,
+\begin{equation*}
+H_n(\mathbf{C})=\frac{Zn(\mathbf{C})}{B_n(\mathbf{C})}=0 \quad \forall n.
+\end{equation*}
+Thus, $\mathbf{C}$ is acyclic.\\
+Conversely, suppose $\mathbf{C}$ is acyclic, then we have that $H_n(\mathbf{C})=0$ for all n. Therefore, $\sfrac{Z_n(\mathbf{C})}{B_n(\mathbf{C})}=0$ for all n, by definition, but this is only possibly if either $Z_n(\mathbf{C})\subset B_n(\mathbf{C})$, which is impossible from Definition \ref{iminkerlem}, or $Z_n(\mathbf{C})=B_n(\mathbf{C})$. Thus, $ker(\delta_n)=im(\delta_{n+1})$ and so $\mathbf{C}$ is exact.
+\end{proof}
+
+\begin{rem}
+The above theorem makes it clear that exact sequences can be thought of as acyclic chain complexes. By the same token, homology can be thought of as a chain complex's deviation from exactness.
+\end{rem}
+
+The folllowing is provided as an example in \cite{Schiff}, however, it was felt too useful as a method of constructing exact sequences to be simply an example and so is presented on this report as a lemma.
+
+\begin{prop} \label{cokerseqprop}
 The sequence,
 \begin{equation*}
 0 \xrightarrow{} ker(f) \xrightarrow{\iota} M \xrightarrow{f} N \xrightarrow{\eta} coker(f) \xrightarrow{} 0,
 \end{equation*} 
 where $\iota , \eta$ are the inclusion, and natural maps respectively, is exact. In addition the sequence, 
 \begin{equation*}
-0\xrightarrow{} ker(f) \xrightarrow(\iota) M \xrightarrow{\eta} \frac{M}{im(f)} \xrightarrow{} 0,
+0\xrightarrow{} ker(f) \xrightarrow{\iota} M \xrightarrow{\eta} \frac{M}{im(f)} \xrightarrow{} 0,
 \end{equation*}
 is a short exact sequence.
-\end{lem}
+\end{prop}
 \begin{proof}
-It is clear here that we have $im(\iota)=ker(f)$ as $\iota$ is the inclusion map and since $coker(f)=\frac{N}{im(f)}$ we also have that $im(f)=ker(\eta)$. Hence the sequence is exact. The second result follows a similar argument.
+It is clear here that we have $im(\iota)=ker(f)$ as $\iota$ is the inclusion map and since $coker(f)=\sfrac{N}{im(f)}$ we also have that $im(f)=ker(\eta)$. Hence the sequence is exact. The second result follows a similar argument.
+\end{proof}
+
+\begin{eg}
+Consider the map $f:\bb{Z}^2 \to \bb{Z}$, $(x, y)\mapsto 2x$. Then $ker(f)=\{(0,y):y\in \bb{Z}\}\cong \bb{Z}$, and $im(f)=2\bb{Z}$ giving that $coker(f)=\frac{\bb{Z}}{2\bb{Z}}$. It follows from Lemma \ref{cokerseqprop} that the sequence, 
+\begin{equation*}
+0 \xrightarrow{} \bb{Z} \xrightarrow{\iota} \bb{Z}^2 \xrightarrow{f} \bb{Z} \xrightarrow{\eta} \frac{\bb{Z}}{2\bb{Z}} \xrightarrow{} 0,
+\end{equation*}
+is exact. In addition, the following is a short exact equation,
+\begin{equation*}
+0\xrightarrow{} \bb{Z} \xrightarrow{\iota} \bb{Z}^2 \xrightarrow{\eta} \frac{\bb{Z}}{2\bb{Z}} \xrightarrow{}0.
+\end{equation*}
+\end{eg}
+
+Here are some simple properties of exact sequences as detailed by Rotman in Proposition 2.18 of \cite{Rotman}. Also included is the solution to Exercise 2.16 (ii) from \cite{Rotman}; it caught our attention as an interesting property, with such a simple proof, which shows the rigidity of the exactness condition.
+\begin{prop}
+\begin{description}
+\item[(i)] A sequence $0\xrightarrow{}L\xrightarrow{f}M$ is exact if and only if $f$ is injective.
+\item[(ii)] A sequence $M\xrightarrow{g}N\xrightarrow{}0$ is exact if and only if $g$ is surjective.
+\item[(iii)] A sequence $0\xrightarrow{}L\xrightarrow{h}M\xrightarrow{}0$ is exact if and only if $h$ is an isomorphism.
+\item[(iv)] If $:L\xrightarrow{f} M \xrightarrow{g}N\xrightarrow{h}L'$ then $f$ is surjective if and only if $h$ is injective.
+\end{description}
+\end{prop}
+\begin{proof}
+\begin{description}
+\item[(i)] As the image of $0\xrightarrow{}L$ is $\{0\}$, exactness gives $ker(f)=\{0\}$, and so $f$ is injective. Conversely, given some map $f:L\to M$, there is an exact sequence $ker(f)\xrightarrow{\iota}L\rightarrow{f}M$, where $\iota$ is the inclusion map, (see Proposition \ref{cokerseqprop}). If $f$ is injective, then $ker(f)=\{0\}$.
+\item[(ii)] The kernel of $N\xrightarrow{}0$ is $N$, so the exactness gives $im(g)=N$, and so $g$ is surjective. Conversely, given $g:M\to N$, there is an exact sequence $M\xrightarrow{g}N\xrightarrow{\pi}coker(g)$, where $\pi$ is the natural map, (see Proposition \ref{cokerseqprop}). If $g$ is surjective, then $N=im(g)$ and $coker(g)=\{0\}$.
+\item[(iii)] Part (i) shows that the sequence is exact at $L$ if and only if $h$ is injective, and part (ii) shows that the sequence is exact at $M$ if and only if $h$ is surjective. Therefore, the sequence is exact everywhere if and only if $h$ is an isomorphism.
+\item[(iv)] Suppose $f$ is surjective, them $im(f)=M$, and exactness at $M$ gives $ker(g)=M$. Hence, $im(g)=\{0\}$, and exactness at $N$ gives $ker(h)=\{0\}$ and so $h$ is injective. The converse is similar.
+\end{description}
 \end{proof}
 
 \begin{mydef}
@@ -503,7 +588,7 @@ Two short exact sequences,
 \begin{equation*}
 \mathbf{E}: \quad 0\xrightarrow{}L\xrightarrow{}M\xrightarrow{}N\xrightarrow{}0 \qquad \& \qquad \mathbf{E'}: \quad 0\xrightarrow{}L\xrightarrow{}M'\xrightarrow{}N\xrightarrow{}0 ,
 \end{equation*}
-are \emph{equivalent} if there is a map $f: M \to M'$ such that the diagram,
+are \emph{equivalent} if there is a map $\xi: M \to M'$ such that the diagram,
 \begin{equation*}
 \begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
 \node	[main node]		(1) at (0,0)		{$\mathbf{E}$: \quad };
@@ -520,21 +605,18 @@ are \emph{equivalent} if there is a map $f: M \to M'$ such that the diagram,
 \node [main node]		(10) at (8,-2)	{$N$};
 \node [main node]		(13) at (10,-2)	{$0$};
 
-
-\draw (1) edge [main path] node [auto] {$$} (2);
 \draw (2) edge [main path] node [auto] {$$} (3);
 \draw (3) edge [main path] node [auto] {$$} (4);
 \draw (4) edge [main path] node [auto] {$$} (5);
 \draw (5) edge [main path] (11);
 
-\draw (6) edge [main path] node [auto] {$$} (7);
 \draw (7) edge [main path] node [auto] {$$} (8);
 \draw (8) edge [main path] node [auto] {$$} (9);
 \draw (9) edge [main path] node [auto] {$$} (10);
 \draw (10) edge [main path] (13);
 
 \draw (3) edge [-, semithick, double, double distance=1.5pt] (8);
-\draw (4) edge [main path] node [auto, swap] {$f$} (9);
+\draw (4) edge [main path] node [auto, swap] {$\xi$} (9);
 \draw (5) edge [-, semithick, double, double distance=1.5pt](10);
 \draw (11) edge [-, semithick, double, double distance=1.5pt] (13);
 \draw (2) edge [-, semithick, double, double distance=1.5pt] (7);
@@ -542,6 +624,98 @@ are \emph{equivalent} if there is a map $f: M \to M'$ such that the diagram,
 \end{equation*}
 commutes.
 \end{mydef}
+
+\begin{eg}
+Consider the two short exact sequences, 
+\begin{equation*}
+\mathbf{E}: \quad 0\xrightarrow{}K\xrightarrow{f}K^2\xrightarrow{g}K\xrightarrow{}0  \quad \& \quad \mathbf{E'}: \quad 0\xrightarrow{}K\xrightarrow{f'}K^2\xrightarrow{g'}K\xrightarrow{}0 ,
+\end{equation*}
+where $f: x \mapsto (x, 0)$, $g: (x,y)\mapsto y$, $f':x \mapsto (0,x)$ and $g':(x,y)\mapsto x$. Then we can construct the diagram: 
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$\mathbf{E}$: \quad };
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$K$};
+\node [main node]		(4) at (6,0)		{$K^2$};
+\node [main node]		(5) at (8,0)		{$K$};
+\node	[main node]		(11) at (10,0)	{$0$};
+
+\node	[main node]		(6) at (0,-2)		{$\mathbf{E'}$: \quad};
+\node	[main node]		(7) at (2,-2)		{$0$};
+\node	[main node]		(8) at (4,-2)		{$K$};
+\node [main node]		(9) at (6,-2)		{$K^2$};
+\node [main node]		(10) at (8,-2)	{$K$};
+\node [main node]		(13) at (10,-2)	{$0$};
+
+
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$$} (4);
+\draw (4) edge [main path] node [auto] {$$} (5);
+\draw (5) edge [main path] (11);
+
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\draw (8) edge [main path] node [auto] {$$} (9);
+\draw (9) edge [main path] node [auto] {$$} (10);
+\draw (10) edge [main path] (13);
+
+\draw (3) edge [-, semithick, double, double distance=1.5pt] (8);
+\draw (4) edge [main path] node [auto, swap] {$\xi$} (9);
+\draw (5) edge [-, semithick, double, double distance=1.5pt](10);
+\draw (11) edge [-, semithick, double, double distance=1.5pt] (13);
+\draw (2) edge [-, semithick, double, double distance=1.5pt] (7);
+\end{tikzpicture}
+\end{equation*}
+This diagram commutes when $\xi$ is the map $\xi: K^2 \to K^2$, $(x, y) \mapsto (y, x)$, hence these two short exact equations are equivalent.
+\end{eg}
+
+For a nonexample we turn to Exercise \uppercase\expandafter{\romannumeral 3} 1.1 in \cite{Stamm}.
+
+\begin{eg}
+Consider the two short exact sequences, 
+\begin{equation*}
+\mathbf{E}: \quad 0\xrightarrow{}\bb{Z}\xrightarrow{f}\bb{Z}\xrightarrow{g}\frac{\bb{Z}}{3\bb{Z}}\xrightarrow{}0  \quad \& \quad \mathbf{E'}: \quad 0\xrightarrow{}\bb{Z}\xrightarrow{f'}\bb{Z}\xrightarrow{g'}\frac{\bb{Z}}{3\bb{Z}}\xrightarrow{}0 ,
+\end{equation*}
+where $f, f': x\mapsto 3x$, $g: x \mapsto x(\text{mod }3)$ and $g':x\mapsto 2x(\text{mod }3)$. Then we can construct the diagram: 
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$\mathbf{E}$: \quad };
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$\bb{Z}$};
+\node [main node]		(4) at (6,0)		{$\bb{Z}$};
+\node [main node]		(5) at (8,0)		{$\frac{\bb{Z}}{3\bb{Z}}$};
+\node	[main node]		(11) at (10,0)	{$0$};
+
+\node	[main node]		(6) at (0,-2)		{$\mathbf{E'}$: \quad};
+\node	[main node]		(7) at (2,-2)		{$0$};
+\node	[main node]		(8) at (4,-2)		{$\bb{Z}$};
+\node [main node]		(9) at (6,-2)		{$\bb{Z}$};
+\node [main node]		(10) at (8,-2)	{$\frac{\bb{Z}}{3\bb{Z}}$};
+\node [main node]		(13) at (10,-2)	{$0$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$$} (4);
+\draw (4) edge [main path] node [auto] {$$} (5);
+\draw (5) edge [main path] (11);
+
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\draw (8) edge [main path] node [auto] {$$} (9);
+\draw (9) edge [main path] node [auto] {$$} (10);
+\draw (10) edge [main path] (13);
+
+\draw (3) edge [-, semithick, double, double distance=1.5pt] (8);
+\draw (4) edge [main path] node [auto, swap] {$\xi$} (9);
+\draw (5) edge [-, semithick, double, double distance=1.5pt](10);
+\draw (11) edge [-, semithick, double, double distance=1.5pt] (13);
+\draw (2) edge [-, semithick, double, double distance=1.5pt] (7);
+\end{tikzpicture}
+\end{equation*}
+Assume $\mathbf{E}$ and $\mathbf{E'}$ are equivalent, so we there must exist some $\xi$ such that the diagram commutes. The second square in the diagram will commute if and only if $\xi=id_{\bb{Z}}$, since $f=f'$, however, this then means the third square will never commute, as $g\neq g'$. Thus no such $\xi$ exists and the two short exact sequences are not equivalent.
+\end{eg}
+
+
 
 
 
@@ -1232,6 +1406,28 @@ Rotman, J. J.
 \emph{An Introduction to Homological Algebra}
 2nd ed.
 New York: Springer Science+Business Media.
+
+\bibitem{Weibel}
+Weibel, Charles A.
+1995.
+\emph{An Introduction to Homological Algebra}
+Cambridge University Press
+
+\bibitem{Stamm}
+Hilton, P.J. \& Stammbach, U.
+1972.
+\emph{A Course in Homological Algebra}
+1st ed.
+Springer.
+
+\bibitem{Schiff}
+Schiffler, Ralf.
+2014.
+\emph{Quiver Representations}
+Springer.
+
+
+
 
 
 
