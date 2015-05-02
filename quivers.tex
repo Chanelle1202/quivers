@@ -1,5 +1,5 @@
 \documentclass[11.5pt, twoside, a4paper, titlepage]{report}
-\usepackage{graphicx, amssymb, amsmath, mathtools, amsthm, xfrac}
+\usepackage{graphicx, amssymb, amsmath, mathtools, amsthm, xfrac, mathabx}
 \usepackage{tikz}
 \usetikzlibrary{automata, arrows, matrix}
 \providecommand{\abs}[1]{\lvert#1\rvert}
@@ -34,6 +34,10 @@
 This project aims to cover interesting topics from the area of quiver representations. The first chapter will give a brief introduction to the topics in Homological Algebra needed for bulk of the report. It will cover chain complexes, exact sequences, short exact sequences, and extensions, most importantly $Ext^1$. The the second chapter will introduce quivers and look at some interesting results about path algebras before moving onto representations of quivers and their relationship with the modules of the corresponding path algebra. Next we will cover Dynkin and Euclidean diagrams before finishing with a proof of Gabriel's Theorem. The third chapter will cover Auslander-Reiten quivers.
 
 \chapter{Homological Algebra}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%			CHAIN COMPLEXES 		%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chain Complexes}
 
 \begin{mydef}
@@ -458,7 +462,9 @@ Simmilarly, we can see that the other chain maps make the diagram commute.
 
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%		EXACT SEQUENCES			%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Exact Sequences}
 
@@ -471,7 +477,7 @@ is said to be \emph{exact} at $M$ if $imf=kerg$. A finite or infinite sequence o
 \begin{equation*}
 \dots \xrightarrow{f_{n+2}} M_{n+1} \xrightarrow{f_{n+1}} M_n \xrightarrow{f_n} M_{n-1} \xrightarrow{f_{n-1}} \dots
 \end{equation*}
-is said to be an \emph{exact sequence} if it is exact at every $M_i$, i.e. $imf_i=kerf_{i+1}$.
+is said to be an \emph{exact sequence} if it is exact at every $M_i$, i.e. $imf_i=kerf_{i+1}$. 
 \end{mydef}
 
 \begin{eg}
@@ -493,6 +499,7 @@ A \emph{short exact sequence} is an exact sequence of the form,
 \begin{equation*}
 0\xrightarrow{}L\xrightarrow{f}M\xrightarrow{g}N\xrightarrow{}0.
 \end{equation*}
+This is also referred to as and \emph{extension of} $N$ \emph{by} $L$.
 \end{mydef}
 
 \begin{eg}
@@ -566,7 +573,8 @@ is exact. In addition, the following is a short exact equation,
 \end{eg}
 
 Here are some simple properties of exact sequences as detailed by Rotman in Proposition 2.18 of \cite{Rotman}. Also included is the solution to Exercise 2.16 (ii) from \cite{Rotman}; it caught our attention as an interesting property, with such a simple proof, which shows the rigidity of the exactness condition.
-\begin{prop}
+
+\begin{prop} \label{exactpropertiesprop}
 \begin{description}
 \item[(i)] A sequence $0\xrightarrow{}L\xrightarrow{f}M$ is exact if and only if $f$ is injective.
 \item[(ii)] A sequence $M\xrightarrow{g}N\xrightarrow{}0$ is exact if and only if $g$ is surjective.
@@ -715,12 +723,721 @@ where $f, f': x\mapsto 3x$, $g: x \mapsto x(\text{mod }3)$ and $g':x\mapsto 2x(\
 Assume $\mathbf{E}$ and $\mathbf{E'}$ are equivalent, so we there must exist some $\xi$ such that the diagram commutes. The second square in the diagram will commute if and only if $\xi=id_{\bb{Z}}$, since $f=f'$, however, this then means the third square will never commute, as $g\neq g'$. Thus no such $\xi$ exists and the two short exact sequences are not equivalent.
 \end{eg}
 
+For the discussion of split exact sequences, this report will first follow \cite{Schiff} in defining a section and refraction and then use Schiffler's Proposition 1.8 to prove that the conditions in Definition 1.23 in \cite{CB1} are equivalent. This will obtain us the Splitting Lemma. However, the proof of Proposition 1.8 will be ommitted as it is 
+
+\begin{mydef} \label{secretdef}
+\begin{itemize}
+\item A map $f: L \to M$ is called a \emph{section} if there exists a map $h: M \to L$ such that $hf=id_L$.
+\item A map $g:M\to N$ is called a \emph{retraction} if there exists a map $h: N \to M$ such that $gh=id_N$.
+\end{itemize}
+\end{mydef}
+
+\begin{mydef}
+A short exact sequence,
+\begin{equation*}
+0\xrightarrow{}L\xrightarrow{f} M \xrightarrow{g} N \xrightarrow{} 0,
+\end{equation*}
+is said to be \emph{split} if $f$ is a section.
+\end{mydef}
+
+\begin{lem} \label{splittinglem} (Splitting Lemma)
+If the short exact sequence, 
+\begin{equation*}
+0\xrightarrow{}L\xrightarrow{f} M \xrightarrow{g} N \xrightarrow{} 0,
+\end{equation*}
+is split then the following equivalent conditions hold:
+\begin{description}
+\item [(i)] $f$ is a section.
+\item [(ii)] $g$ is a retraction.
+\item [(iii)] $im(f)$ is a direct summand of $M$.
+\end{description}
+\end{lem}
+\begin{proof}
+Proof omitted. See Proposition 1.8 in \cite{Schiff} and the proof given on \cite{Splittinglem}.
+\end{proof}
+
+\begin{eg}
+The short exact sequence, 
+\begin{equation*}
+0 \xrightarrow{}\bb{Z} \xrightarrow{f} \bb{Z}^2 \xrightarrow{g} \bb{Z} \xrightarrow{} 0,
+\end{equation*}
+where $f: x \mapsto (x, 0)$ and $g: (x, y) \mapsto y$, splits. Then
+\begin{description}
+\item [(i)] $f$ is a section as the map $h:\bb{Z}^2 \to \bb{Z}$, $(x, y) \mapsto x$ satifies $hf=id_{\bb{Z}}$.
+\item [(ii)] $g$ is a retraction as the map $h': \bb{Z} \to \bb{Z}^2$, $y \mapsto (x, y)$ satifies $gh=id_{\bb{Z}}$.
+\item [(iii)] $im(f) \cong \bb{Z}$ is a direct summand of $\bb{Z}^2 \cong \bb{Z}\oplus \bb{Z}$.
+\end{description}
+\end{eg}
+
+Rather than provide the following result as a proposition and prove it directly as Rotman does in \cite{Rotman}, it will be given as a corollary of the splitting lemma as in \cite{Schiff}.
+
+\begin{cor} \label{MLNcor}
+If the sequence,
+\begin{equation*}
+0\xrightarrow{}L\xrightarrow{f} M \xrightarrow{g} N \xrightarrow{} 0,
+\end{equation*}
+is split exact, then
+\begin{equation*}
+M \cong L \oplus N.
+\end{equation*}
+\end{cor}
+\begin{proof}
+Since $f$ is injective as the seqence is short exact, we have $L \cong im(f) \cong ker(g)$. The since $g$ is surjective as the sequence is short exact, the first isomorphism theorem implies $N \cong \sfrac{M}{ker(g)}$. Then Lemma \ref{splittinglem} gives $M$  is a direct summand of $im(f)$, hence, $M\cong L \oplus N$.
+\end{proof}
+
+\begin{eg}
+Notice that in the previous example $\bb{Z} \cong im(f)\cong ker(g) $ and $\bb{Z} \cong \sfrac{\bb{Z}^2}{ker(g)}\cong \bb{Z}$. Hence, $\bb{Z}^2 \cong \bb{Z} \oplus \bb{Z}$, as expected.
+\end{eg}
+
+
+\begin{mydef} \label{pushoutdef}
+Given a short exact seqence,
+\begin{equation*}
+\mathbf{E}: \qquad 0\xrightarrow{}L\xrightarrow{f} M \xrightarrow{g} N \xrightarrow{} 0,
+\end{equation*}
+and a map $\theta : L \to L'$ then the short exact sequence, 
+\begin{equation*}
+\mathbf{E'}: \qquad 0\xrightarrow{} L' \xrightarrow{f'} M' \xrightarrow{g'} N \xrightarrow{}0,
+\end{equation*}
+fitting into the commutative diagram
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$\mathbf{E}$: \quad };
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$L$};
+\node [main node]		(4) at (6,0)		{$M$};
+\node [main node]		(5) at (8,0)		{$N$};
+\node	[main node]		(11) at (10,0)	{$0$};
+
+\node	[main node]		(6) at (0,-2)		{$\mathbf{E'}$: \quad};
+\node	[main node]		(7) at (2,-2)		{$0$};
+\node	[main node]		(8) at (4,-2)		{$L'$};
+\node [main node]		(9) at (6,-2)		{$M'$};
+\node [main node]		(10) at (8,-2)	{$N$};
+\node [main node]		(13) at (10,-2)	{$0$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$f$} (4);
+\draw (4) edge [main path] node [auto] {$g$} (5);
+\draw (5) edge [main path] (11);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\draw (8) edge [main path] node [auto, swap] {$f'$} (9);
+\draw (9) edge [main path] node [auto, swap] {$g'$} (10);
+\draw (10) edge [main path] (13);
+
+\draw (3) edge [main path] node [auto] {$\theta$} (8);
+\draw (4) edge [main path] node [auto] {$\phi$} (9);
+\draw (5) edge [-, semithick, double, double distance=1.5pt](10);
+\draw (11) edge [-, semithick, double, double distance=1.5pt] (13);
+\draw (2) edge [-, semithick, double, double distance=1.5pt] (7);
+\end{tikzpicture}
+\end{equation*}
+is defined to be the \emph{pushout of $\mathbf{E}$ along $\theta$}.
+\end{mydef}
+
+\begin{prop} \label{pushoutprop}
+Let $\mathbf{E}$, $\mathbf{E'}$ and $\theta: L \to L'$ be defined as above in Definition \ref{pushoutdef}. Then the pushout of $\mathbf{E}$ along $\theta$ exists and is unique up to equivalence.
+\end{prop}
+\begin{proof}
+Existence: Firstly, set
+\begin{equation*}
+M'=\frac{(L'\oplus M)}{\{(\theta(l), -f(l)): l\in L\}},
+\end{equation*}
+and let the maps be $f': l'\mapsto \overline{(l',0)}$, $g': \overline{(l',m)}\mapsto g(m)$ and $\phi: m \mapsto \overline{(0,m)}$, where $\overline{(l',m)}$ denotes the class of $(l', m) \in L'\oplus M$ in $M'$. The diagram is then commutative as $\phi(f(l))=\overline{(0,f(l))}=\overline{(0,0)}=\overline{(\theta(l),0)}=f'(\theta(l))$ for an $l\in L$ and $id_N(g(m))=g(m)=g'(\theta(m))$ for any $m\in M$. The pushout is exact as $im(f')=\{\overline{(l',0)}:l'\in L'\}=ker(g')$.\\
+Uniqueness: The sequence
+\begin{equation*}
+\mathbf{\xi'} \qquad 0\xrightarrow{}L \xrightarrow{\begin{psmallmatrix}\theta \\ -f \end{psmallmatrix}} L'\oplus M \xrightarrow{\begin{psmallmatrix} f' & \phi \end{psmallmatrix}} M' \xrightarrow{} 0,
+\end{equation*}
+is exact as $im(\begin{psmallmatrix}\theta \\ -f \end{psmallmatrix})=\{\begin{psmallmatrix}\theta(l) \\ -f(l) \end{psmallmatrix}: l \in L\}=ker(\begin{psmallmatrix} f' & \phi \end{psmallmatrix})$. Exactness then implies that $\begin{psmallmatrix} f' & \phi \end{psmallmatrix}$ is surjective and so by the first isomorphism theorem (see proof of Corollary \ref{MLNcor}) we have,
+\begin{equation*}
+M' \cong \frac{L'\oplus M}{ker(\begin{psmallmatrix} f' & \phi \end{psmallmatrix})} \cong \frac{L'\oplus M}{\{(\theta(l), -f(l)): l\in L\}}.
+\end{equation*}
+This gives equivalence between $\mathbf{E'}$ and $\mathbf{E''}$.
+\end{proof}
+
+\begin{eg}
+Consider the short exact sequence,
+\begin{equation*}
+\mathbf{E}: \qquad 0\xrightarrow{} \bb{Z} \xrightarrow[f]{n} \bb{Z}\xrightarrow[g]{nat}\frac{\bb{Z}}{n\bb{Z}} \xrightarrow{} 0,
+\end{equation*}
+and the $\bb{Z}$-module map $\theta: \bb{Z} \to \sfrac{\bb{Z}}{n\bb{Z}}$ is the natural one. Now we can use Proposition \ref{pushoutprop} to construct the pushout of $\mathbf{E}$ along $\theta$.\\
+Firstly, construct the commutative diagram,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$\mathbf{E}$: \quad };
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$\bb{Z}$};
+\node [main node]		(4) at (6,0)		{$\bb{Z}$};
+\node [main node]		(5) at (8,0)		{$\frac{\bb{Z}}{n\bb{Z}}$};
+\node	[main node]		(11) at (10,0)	{$0$};
+
+\node	[main node]		(6) at (0,-2)		{$\mathbf{E'}$: \quad};
+\node	[main node]		(7) at (2,-2)		{$0$};
+\node	[main node]		(8) at (4,-2)		{$\frac{\bb{Z}}{n\bb{Z}}$};
+\node [main node]		(9) at (6,-2)		{$M'$};
+\node [main node]		(10) at (8,-2)	{$\frac{\bb{Z}}{n\bb{Z}}$};
+\node [main node]		(13) at (10,-2)	{$0$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$\scriptstyle{n}$} node [auto, swap] {$f$} (4);
+\draw (4) edge [main path] node [auto] {$\scriptstyle{nat}$} node [auto, swap] {$g$} (5);
+\draw (5) edge [main path] (11);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\draw (8) edge [main path] node [auto, swap] {$f'$} (9);
+\draw (9) edge [main path] node [auto, swap] {$g'$} (10);
+\draw (10) edge [main path] (13);
+
+\draw (3) edge [main path] node [auto] {$\theta$} node [auto, swap] {$\scriptstyle{nat}$} (8);
+\draw (4) edge [main path] node [auto] {$\phi$} (9);
+\draw (5) edge [-, semithick, double, double distance=1.5pt](10);
+\draw (11) edge [-, semithick, double, double distance=1.5pt] (13);
+\draw (2) edge [-, semithick, double, double distance=1.5pt] (7);
+\end{tikzpicture}
+\end{equation*}
+and now we want to find $M'$. As $\theta: x \mapsto x+n\bb{Z}$ and $f: x \mapsto nx$, we have,
+\begin{equation*}
+M'=\frac{\frac{\bb{Z}}{n\bb{Z}}\oplus\bb{Z}}{\{(x+n\bb{Z}, -nx):x \in \bb{Z}\}},
+\end{equation*}
+and we can set $f': \sfrac{\bb{Z}}{n\bb{Z}} \to M'$, $x+n\bb{Z} \mapsto \overline{(x+n\bb{Z},0)}$, $g': M' \to \sfrac{\bb{Z}}{n\bb{Z}}$, $\overline{(x+n\bb{Z}, y)} \mapsto y+n\bb{Z}$, and $\phi: \bb{Z} \to M'$, $x \mapsto \overline{(0,x)}$. It is clear that this makes the above diagram commutative and gives $\mathbf{E'}$ exact. Furthermore, the map $\phi$ is onto as,
+\begin{align*}
+M'\ni\overline{(x+n\bb{Z}, y)}&=\overline{(x+n\bb{Z}, -nx)} + \overline{(o, y+na)},\\
+&=\overline{(0, y+nx)} \in im(\phi).
+\end{align*}
+We can also see that, 
+\begin{align*}
+ker(\phi)&= \{y\in \bb{Z}: \overline{(0, y)}=0\},\\
+&=\{y\in \bb{Z}: \overline{(0, y)} \text{ is of the form } \overline{(x+n\bb{Z}, -nx)}\},\\
+&=\{y\in \bb{Z}: n|y\text{, }x=\frac{-b}{n}\text{ and } x+n\bb{Z}=0\},\\
+&=\{y\in \bb{Z}: n^2|y\}\cong n^2\bb{Z},
+\end{align*}
+and then the First Isomorphism Theorem gives, 
+\begin{equation*}
+M'\cong \frac{\bb{Z}}{ker(\phi)}\cong \frac{\bb{Z}}{n^2\bb{Z}}.
+\end{equation*}
+Hence, the pushout of $\mathbf{E}$ along $\theta$ is,
+\begin{equation*}
+\mathbf{E'}: \qquad 0\xrightarrow{} \frac{\bb{Z}}{n\bb{Z}} \xrightarrow{f'} \frac{\bb{Z}}{n^2\bb{Z}}\xrightarrow{g'} \frac{\bb{Z}}{n\bb{Z}} \xrightarrow{} 0,
+\end{equation*}
+with the maps $f', g'$ defined as above.
+\end{eg}
+
+\begin{mydef} \label{pullbackdef}
+Given a short exact seqence,
+\begin{equation*}
+\mathbf{E}: \qquad 0\xrightarrow{}L\xrightarrow{f} M \xrightarrow{g} N \xrightarrow{} 0,
+\end{equation*}
+and a map $\psi: N''\to N$ then the short exact sequence, 
+\begin{equation*}
+\mathbf{E''}: \qquad 0\xrightarrow{} L \xrightarrow{f''} M'' \xrightarrow{g''} N'' \xrightarrow{}0,
+\end{equation*}
+fitting into the commutative diagram
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$\mathbf{E''}$: \quad };
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$L$};
+\node [main node]		(4) at (6,0)		{$M''$};
+\node [main node]		(5) at (8,0)		{$N''$};
+\node	[main node]		(11) at (10,0)	{$0$};
+
+\node	[main node]		(6) at (0,-2)		{$\mathbf{E}$: \quad};
+\node	[main node]		(7) at (2,-2)		{$0$};
+\node	[main node]		(8) at (4,-2)		{$L$};
+\node [main node]		(9) at (6,-2)		{$M$};
+\node [main node]		(10) at (8,-2)	{$N$};
+\node [main node]		(13) at (10,-2)	{$0$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$f''$} (4);
+\draw (4) edge [main path] node [auto] {$g''$} (5);
+\draw (5) edge [main path] (11);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\draw (8) edge [main path] node [auto, swap] {$f$} (9);
+\draw (9) edge [main path] node [auto, swap] {$g$} (10);
+\draw (10) edge [main path] (13);
+
+\draw (3) edge [-, semithick, double, double distance=1.5pt] (8);
+\draw (4) edge [main path] node [auto] {$\phi'$} (9);
+\draw (5) edge[main path] node [auto] {$\psi$} (10);
+\draw (11) edge [-, semithick, double, double distance=1.5pt] (13);
+\draw (2) edge [-, semithick, double, double distance=1.5pt] (7);
+\end{tikzpicture}
+\end{equation*}
+is defined to be the \emph{pullback} of $\mathbf{E}$ along $\psi$.
+\end{mydef}
+
+\begin{prop} \label{pullbackprop}
+Let $\mathbf{E}$, $\mathbf{E''}$ and $\psi: N''\to N$ be defined as above in Definition \ref{pullbackdef}. Then the pullback of $\mathbf{E}$ along $\psi$ exists and is unique up to equivalence.
+\end{prop}
+\begin{proof}
+Existence: Firstly, set
+\begin{equation*}
+M''=\{(m,n'')\in M\oplus N'': g(m)=\psi(n'')\},
+\end{equation*}
+and let the maps be $f'': L \to M''$, $l\mapsto (f(l),0)$ (if $g(f(l))=\psi(0)$, $0$ otherwise), $g'': M'' \to N''$, $(m, n'') \mapsto n''$, and $\phi': M'' \to M$, $(m, n'') \mapsto m$. The diagram is then commutative by diagram chasing and the pullback is exact as $im(f)=\{(f(l),0):l\in L\text{ and } g(f(l))=\psi(0)\}=\{(m, 0): m \in M\text{ and }g(m)=\psi(0)\}=ker(g'')$. 
+Uniqueness: Consider the commutative diagram of short exact sequences,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$\mathbf{\xi''}$: \quad };
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$M''$};
+\node [main node]		(4) at (6,0)		{$M\oplus N''$};
+\node [main node]		(5) at (8,0)		{$N$};
+\node	[main node]		(11) at (10,0)	{$0$};
+
+\node	[main node]		(6) at (0,-2)		{$\mathbf{\widetilde{\xi''}}$: \quad};
+\node	[main node]		(7) at (2,-2)		{$0$};
+\node	[main node]		(8) at (4,-2)		{$\widetilde{M''}$};
+\node [main node]		(9) at (6,-2)		{$M\oplus N''$};
+\node [main node]		(10) at (8,-2)	{$N$};
+\node [main node]		(13) at (10,-2)	{$0$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$\begin{psmallmatrix}\phi' & g''\end{psmallmatrix}$} (4);
+\draw (4) edge [main path] node [auto] {$\begin{psmallmatrix}g \\ -\psi \end{psmallmatrix}$} (5);
+\draw (5) edge [main path] (11);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\draw (8) edge [main path] node [auto, swap] {$$} (9);
+\draw (9) edge [main path] node [auto, swap] {$\begin{psmallmatrix}g \\ -\psi \end{psmallmatrix}$} (10);
+\draw (10) edge [main path] (13);
+
+\draw (3) edge [main path] node [auto] {$$} (8);
+\draw (4) edge [-, semithick, double, double distance=1.5pt] (9);
+\draw (5) edge [-, semithick, double, double distance=1.5pt](10);
+\draw (11) edge [-, semithick, double, double distance=1.5pt] (13);
+\draw (2) edge [-, semithick, double, double distance=1.5pt] (7);
+\end{tikzpicture}
+\end{equation*}
+where $M''$ and $\widetilde{M''}$ are from two pullbacks, $\mathbf{E''}$ and $\mathbf{\widetilde{E''}}$, of $\mathbf{E}$ along $\psi$. By diagram chasing we can see that there is in fact an isomorphism between $M''$ and $\widetilde{M''}$ and so $\mathbf{E''}$ and $\mathbf{\widetilde{E''}}$ are equivalent as short exact sequences.
+\end{proof}
+
+\begin{eg}
+Consider the short exact sequence, 
+\begin{equation*}
+\mathbf{E}: \qquad 0\xrightarrow{} \bb{Z} \xrightarrow[f]{n} \bb{Z}\xrightarrow[g]{nat}\frac{\bb{Z}}{n\bb{Z}} \xrightarrow{} 0,
+\end{equation*}
+and the $\bb{Z}$-module map $\psi: \bb{Z} \to \sfrac{\bb{Z}}{n\bb{Z}}$ is the natural one. Now we can use Proposition \ref{pullbackprop} to construct the pullback of $\mathbf{E}$ along $\psi$.\\
+Firstly, construct the commutative diagram,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$\mathbf{E''}$: \quad };
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$\bb{Z}$};
+\node [main node]		(4) at (6,0)		{$\bb{M''}$};
+\node [main node]		(5) at (8,0)		{$\bb{Z}$};
+\node	[main node]		(11) at (10,0)	{$0$};
+
+\node	[main node]		(6) at (0,-2)		{$\mathbf{E}$: \quad};
+\node	[main node]		(7) at (2,-2)		{$0$};
+\node	[main node]		(8) at (4,-2)		{$\bb{Z}$};
+\node [main node]		(9) at (6,-2)		{$\bb{Z}$};
+\node [main node]		(10) at (8,-2)	{$\frac{\bb{Z}}{n\bb{Z}}$};
+\node [main node]		(13) at (10,-2)	{$0$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path]node [auto] {$f''$} (4);
+\draw (4) edge [main path] node [auto] {$g''$} (5);
+\draw (5) edge [main path] (11);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\draw (8) edge [main path]  node [auto] {$\scriptstyle{n}$} node [auto, swap] {$f$} (9);
+\draw (9) edge [main path] node [auto] {$\scriptstyle{nat}$}  node [auto, swap] {$g$} (10);
+\draw (10) edge [main path] (13);
+
+\draw (3) edge  [-, semithick, double, double distance=1.5pt](8);
+\draw (4) edge [main path] node [auto] {$\phi'$} (9);
+\draw (5) edge [main path] node [auto] {$\psi$} node [auto, swap] {$\scriptstyle{nat}$} (10);
+\draw (11) edge [-, semithick, double, double distance=1.5pt] (13);
+\draw (2) edge [-, semithick, double, double distance=1.5pt] (7);
+\end{tikzpicture}
+\end{equation*}
+and now to find $M''$. As both $\psi, g: x \mapsto x+n\bb{Z}$, we have,
+\begin{align*}
+M''&=\{(x,y) \in \bb{Z} \oplus \bb{Z} : x+n\bb{Z}=y+n\bb{Z}\}, \\
+&=\{(x, y) \in \bb{Z} \oplus \bb{Z}: n\divides x-y\}, \\
+&= \frac{\bb{Z}\oplus\bb{Z}}{\{(x, y): n\ndivides x-y\}},
+\end{align*}
+and we can set $f'': \bb{Z} \to M''$, $x \mapsto \overline{(nx, 0)}$, $g'': M'' \to \bb{Z}$, $\overline{(x, y)} \mapsto y$ and $\phi': M'' \to \bb{Z}$, $\overline(x, y) \mapsto m$. It is clear that this makes the diagram commutative and gives $\mathbf{E''}$ exact. 
+% Need to find a way of working out what M'' is isomorphic to
+\end{eg}
+
+Now this report will start to consider the results possible by considering exact sequences of ....\\
+%FILL THIS IN 
+% Put in Weibel Exercise 1.3.1
+% Add fives lemma??
+The following theorem is from \cite{CB1}, however, the notation has been changed to make the different maps more explicit and more detail is given in the proof. 
+
+\begin{thm} (Long Exact Sequence) \label{longexactseqthm} \\
+Let $0\xrightarrow{}\mathbf{C} \xrightarrow{f} \mathbf{D} \xrightarrow{g} \mathbf{E} \xrightarrow{}0$ be a short exact sequence of chain complexes, meaning that $f$ and $g$ are chain maps and for each $n$ the maps
+\begin{equation*}
+0 \xrightarrow{} C_n \xrightarrow{f_n} D_n \xrightarrow{g_n} E_n \xrightarrow{} 0,
+\end{equation*}
+form a short exact sequence. Then there are connecting maps $c_n:H_n(\mathbf{E}) \to H_{n-1}(\mathbf{C})$ giving a long exact sequence, 
+\begin{equation*}
+\dots \xrightarrow{}H_{n+1}(\mathbf{E}) \xrightarrow{c_{n+1}} H_n(\mathbf{C}) \xrightarrow{} H_n(\mathbf{D})\xrightarrow{}H_n(\mathbf{E}) \xrightarrow{c_n} H_{n-1}(\mathbf{C}) \xrightarrow{} H_{n-1}(\mathbf{D}) \xrightarrow{} \dots
+\end{equation*}
+\end{thm}
+\begin{proof}
+Have diagram,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$C_{n+1}$};
+\node [main node]		(4) at (6,0)		{$D_{n+1}$};
+\node [main node]		(5) at (8,0)		{$E_{n+1}$};
+\node	[main node]		(11) at (10,0)	{$0$};
+
+
+\node	[main node]		(7) at (2,-2)		{$0$};
+\node	[main node]		(8) at (4,-2)		{$C_n$};
+\node [main node]		(9) at (6,-2)		{$D_n$};
+\node [main node]		(10) at (8,-2)	{$E_n$};
+\node [main node]		(13) at (10,-2)	{$0$};
+
+
+\node	[main node]		(14) at (2,-4)	{$0$};
+\node	[main node]		(15) at (4,-4)	{$C_{n-1}$};
+\node [main node]		(16) at (6,-4)	{$D_{n-1}$};
+\node [main node]		(17) at (8,-4)	{$E_{n-1}$};
+\node [main node]		(18) at (10,-4)	{$0$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$f_{n+1}$} (4);
+\draw (4) edge [main path] node [auto] {$g_{n+1}$} (5);
+\draw (5) edge [main path] (11);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\draw (8) edge [main path] node [auto, swap] {$f_n$} (9);
+\draw (9) edge [main path] node [auto, swap] {$g_n$} (10);
+\draw (10) edge [main path] (13);
+
+\draw (14) edge [main path] node [auto] {$$} (15);
+\draw (15) edge [main path] node [auto, swap] {$f_{n-1}$} (16);
+\draw (16) edge [main path] node [auto, swap] {$g_{n_1}$} (17);
+\draw (17) edge [main path] (18);
+
+\draw (3) edge [main path] node [auto] {$\gamma_{n+1}$} (8);
+\draw (4) edge [main path] node [auto] {$\delta_{n+1}$} (9);
+\draw (5) edge [main path] node [auto] {$\epsilon_{n+1}$} (10);
+
+\draw (8) edge [main path] node [auto] {$\gamma_{n}$} (15);
+\draw (9) edge [main path] node [auto] {$\delta_{n}$} (16);
+\draw (10) edge [main path] node [auto] {$\epsilon_{n}$} (17);
+\end{tikzpicture}
+\end{equation*}
+Define the connecting map $c_n:H_n(\mathbf{E})\to H_{n-1}(\mathbf{C})$ as follows:\\
+Let $\overline{x}$ be a typical element of $H_n(\mathbf{E})$, with $x \in ker(\epsilon_n)=Z_n(\mathbf{E})$. Then as $g_n$ is surjective we can lift $x\in E_n$ to some element $y \in D_n$ such that $g_n(y)=x$. From the commutativity of the diagram, 
+\begin{equation*}
+g_{n-1}(\delta_n(y))=\epsilon_n(g_n(y))=\epsilon_n(x)=0,
+\end{equation*}
+since $x\in ker(\epsilon_n)$. Hence, $\delta_n(y)\in ker(g_{n-1})\cong im(f_{n-1})$. Then as $f_{n-1}$ is injective there exists some $z\in C_{n-1}$ such that $f_{n-1}(z)=\delta_n(y)$. Thus define $c_n(\overline{x})=\overline{z}$.(Note $z \in ker(\gamma_{n-1})$ as $\delta_{n-1}(\delta_n(y))=0$, then by commutivity $f_{n-2}(\gamma_{n-1}(z))=0$ and as $f_{n-2}$ is injective.)\\
+Now to show not dependent on choice of $x$ or $y$:
+Say $y, y'\in D_n$ have images $g_n(y)=x$, $g_n(y')=x'$ where $x, x'\in ker(\epsilon_n)=Z_n(\mathbf{E})$ with $\overline{x}=\overline{x'}$. Thus $g_n(y)-g_n(y')\in im(\epsilon_{n+1})=B_n(\mathbf{E})$. Therefore, 
+\begin{align*}
+g_n(y-y')&=\epsilon_{n+1}(g_{n+1}(u))\text{, for some }u\in D_{n+1},\\
+&=g_n(\delta_{n+1}(u)).
+\end{align*}
+Hence, $y-y'-\delta_{n+1}(u)=f_n(v)$ for some $v\in C_n$ by the injectivity of $f_n$. \\
+If $f_{n-1}(z)=\delta_n(y)$ and $f_{n-1}(z')=\delta_n(y')$ then,
+\begin{align*}
+f_{n-1}(z-z')&=\delta_n(y-y'),\\
+&=\delta_n(y-y'-\delta_(u))\text{, as $\delta_n(\delta_{n+1}(u))=0$ as chain complex,}\\
+&=\delta_n(f_n(v)),\\
+&=f_{n-1}(\gamma_n(v)),
+\end{align*}
+implying $z-z'=\gamma_n(v)\in im(\gamma_n)=B_{n-1}(\mathbf{C})$. Hence, $\overline{z}=\overline{z'}$ in $H_{n-1}(\mathbf{C})$.
+%Find out why need to include the bit about it being exact at H_n(D)???
+\end{proof}
+% Maybe include an example, going to take some time to work one out...
+
+Note that this report is following Crawley-Boevey's example in \cite{CB1} by proving the Long Exact Sequence theorem directly and taking the Snake Lemma as a corollary, unlike in other reading material, like \cite{Weibel} where the Long Exact Sequence is given as a corollary of the Snake Lemma. If the reader would like a direct proof of the Snake Lemma, we direct them, as Weibel does in \cite{Weibel}, to \emph{It's My Turn} (Rastar-Martin Elfand Studios, 1980), where a proof is given in the beginning of the movie.
+% This might need a rewrite
+
+\begin{cor} (Snake Lemma)\\
+If you have a commutative diagram with exact rows, 
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$L$};
+\node [main node]		(4) at (6,0)		{$M$};
+\node [main node]		(5) at (8,0)		{$N$};
+\node	[main node]		(11) at (10,0)	{$0$};
+
+
+\node	[main node]		(7) at (2,-2)		{$0$};
+\node	[main node]		(8) at (4,-2)		{$L'$};
+\node [main node]		(9) at (6,-2)		{$M'$};
+\node [main node]		(10) at (8,-2)	{$N'$};
+\node [main node]		(13) at (10,-2)	{$0$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path]node [auto] {$$} (4);
+\draw (4) edge [main path] node [auto] {$$} (5);
+\draw (5) edge [main path] (11);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\draw (8) edge [main path] (9);
+\draw (9) edge [main path] (10);
+\draw (10) edge [main path] (13);
+
+
+\draw (3) edge [main path] node [auto, swap] {$\theta$} (8);
+\draw (4) edge [main path] node [auto, swap] {$\phi$} (9);
+\draw (5) edge [main path] node [auto, swap] {$\psi$} (10);
+
+\end{tikzpicture}
+\end{equation*}
+you get an exact sequence, 
+\begin{equation*}
+0\xrightarrow{}ker(\theta)\xrightarrow{}ker(\phi)\xrightarrow{}ker(\psi)\xrightarrow{}coker(\theta)\xrightarrow{}coker(\phi)\xrightarrow{}coker(\psi)\xrightarrow{}0
+\end{equation*}
+\end{cor}
+\begin{proof}
+Consider $L\to L'$, $M\to M'$ and $N\to N'$ as chain complexes and use Theorem \ref{longexactseqthm}.
+\end{proof}
+
+\begin{rem}
+A short exact sequence of cochain complexes $0\xrightarrow{}\mathbf{C}\xrightarrow{}\mathbf{D} \xrightarrow{} \mathbf{E}\xrightarrow{}0$ gives a long exact sequence,
+\begin{equation*}
+\dots \xrightarrow{} H^{n-1}(\mathbf{E})\xrightarrow{}H^n(\mathbf{C})\xrightarrow{}H^n(\mathbf{D})\xrightarrow{}H^n(\mathbf{E})\xrightarrow{} H^{n+1}(\mathbf{C})\xrightarrow{} H^{n+1}(\mathbf{D})\xrightarrow{} \dots
+\end{equation*}
+by renumbering in Theorem \ref{longexactseqthm}.
+\end{rem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%		 Homotopy and Quasi-Isomorphism 		%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Homotopy and Quasi-Isomorphism}
+
+\begin{mydef}
+If $f,g:\mathbf{C} \to \mathbf{D}$  are chain maps, then $f$ and $g$ are \emph{homotopic}, denoted $f\simeq g$, if for each $n$ there are maps $h_n: C_n \to D_{n+1}$ such that,
+\begin{equation*}
+f_n-g_n=h_{n+1}\gamma_n + \delta_{n+1}h_n,
+\end{equation*}
+where,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(2) at (2,0)		{\dots};
+\node	[main node]		(3) at (4,0)		{$C_{n+1}$};
+\node [main node]		(4) at (6,0)		{$C_n$};
+\node [main node]		(5) at (8,0)		{$C_{n-1}$};
+\node	[main node]		(11) at (10,0)	{\dots};
+
+\node	[main node]		(7) at (2,-2)		{\dots};
+\node	[main node]		(8) at (4,-2)		{$D_{n+1}$};
+\node [main node]		(9) at (6,-2)		{$C_n$};
+\node [main node]		(10) at (8,-2)	{$D_{n-1}$};
+\node [main node]		(13) at (10,-2)	{\dots};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$\gamma_{n+1}$} (4);
+\draw (4) edge [main path] node [auto] {$\gamma_n$} (5);
+\draw (5) edge [main path] node [auto] {$\gamma_{n-1}$} (11);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\path (8) edge [main path] node [auto, swap] {$\delta_{n+1}$} (9);
+\draw (9) edge [main path] node [auto, swap] {$\delta_n$} (10);
+\draw (10) edge [main path] node [auto, swap] {$\delta_{n-1}$} (13);
+
+\draw (3) edge [main path] node [auto] {$\scriptstyle{f_{n+1}}$} node [auto, swap] {$\scriptstyle{g_{n+1}}$} (8);
+\draw (4) edge [main path] node [auto] {$\scriptstyle{f_n}$} node [auto, swap] {$\scriptstyle{g_n}$} (9);
+\draw (5) edge [main path] node [auto] {$\scriptstyle{f_{n-1}}$} node [auto, swap] {$\scriptstyle{g_{n-1}}$} (10);
+
+\draw (4) edge [main path] node [auto] {$h_n$} (8);
+\draw (5) edge [main path] node [auto] {$h_{n-1}$} (9);
+\end{tikzpicture}
+\end{equation*}
+\end{mydef}
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%		 Projective and Injective Resolutions 		%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{Projective and Injective Resolutions}
 
-\section{Extensions}
+In this section we look at projective and injective modules and resolutions, for this the reader will need some prior knowledge of free modules, which will not be covered in this report. The reader is advised to look at \cite{Stamm}, \cite{Weibel} and \cite{Rotman} for more information regarding free modules.\\
+The following properties for projective modules come from \cite{CB1} with added details from either my own work or \cite{Rotman}. In order to have a clear definition of a projective modules, rather than as a culmination of properties, we have promoted the first property from \cite{CB1} to a definition and to aid this we give a separate defintion for a lifting as in \cite{Rotman}.
+
+\begin{mydef}
+Suppose we have a map $g:M \to N$ then a \emph{lifting} of a map $p:A \to N$ is a map $q:A\to M$ with $gq=p$, i.e. the following diagram commutes.
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$M$};
+\node	[main node]		(2) at (2,0)		{$N$};
+\node [main node]		(3) at (2,2)		{$A$};
+
+\draw (1) edge [main path] node [auto] {$g$} (2);
+\draw (3) edge [main path] node [auto] {$p$} (2);
+\draw (3) edge [main path] node [auto, swap] {$q$} (1);
+\end{tikzpicture}
+\end{equation*}
+\end{mydef}
+
+\begin{mydef}
+A module $P$ is \emph{projective} if, whenever $g:M\to N$ is surjective and $p:P\to N$ is any map, there exists a lifting $q:P \to M$ making the following diagram commutes:
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$M$};
+\node	[main node]		(2) at (2,0)		{$N$};
+\node [main node]		(3) at (2,2)		{$P$};
+
+\draw (1) edge [->>, semithick] node [auto] {$g$} (2);
+\draw (3) edge [main path] node [auto] {$p$} (2);
+\draw (3) edge [dashed, ->, semithick] node [auto, swap] {$\exists q$} (1);
+\end{tikzpicture}
+\end{equation*}
+\end{mydef}
+
+\begin{prop} \label{projectiveprop}
+The following for a module $P$ are equivalent:
+\begin{description}
+\item [(i)] P is projective.
+\item [(ii)] The sequence $0\xrightarrow{}Hom(P, L)\xrightarrow{}Hom(P, M)\xrightarrow{}Hom(P, N)\xrightarrow{}0$ is exact for any short exact sequence $0\xrightarrow{}L\xrightarrow{}M\xrightarrow{}N\xrightarrow{}0$.
+\item [(iii)]Any short exact sequence $0\xrightarrow{}L\xrightarrow{}M\xrightarrow{}P\xrightarrow{}0$ splits.
+\item [(iv)]$P$ is isomorphic to a direct summand of free modules.
+\end{description}
+\end{prop}
+\begin{proof} (i) $\Rightarrow$ (ii): As $P$ is projective we have that,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$M$};
+\node	[main node]		(2) at (2,0)		{$N$};
+\node [main node]		(3) at (2,2)		{$P$};
+\node [main node]		(4) at (-2, 0)		{$L$};
+\node [main node]		(5) at (-4, 0)		{$0$};
+\node [main node]		(6) at (4, 0)		{$0$};
+
+\draw (1) edge [->>, semithick] node [auto] {$g$} (2);
+\draw (3) edge [main path] node [auto] {$p$} (2);
+\draw (3) edge [dashed, ->, semithick] node [auto, swap] {$\exists q$} (1);
+\draw (4) edge [main path] node [auto] {$f$} (1);
+\draw (5) edge [main path] (4);
+\draw (2) edge [main path] (6);
+\end{tikzpicture}
+\end{equation*}
+Hence, we have $q\in Hom(P,M)$ such that $gq=p\in Hom(P,N)$ which can also we written $p=gq=g_{\ast}(q)\in im(g_{\ast})$, defining a surjective map, $g_{\ast}: Hom(P,M) \to Hom(P,N)$. Thus,
+\begin{equation*}
+0\xrightarrow{}Hom(P,L) \xrightarrow{}Hom(P,M)\xrightarrow{g_{\ast}}Hom(P,N)\xrightarrow{}0
+\end{equation*}
+is exact by Proposition \ref{exactpropertiesprop}.\\
+(ii) $\Rightarrow$ (iii): By assumption, if we have the short exact sequence $0\xrightarrow{}L\xrightarrow{}M\xrightarrow{}P\xrightarrow{}0$ then we have an exact sequence,
+\begin{equation*}
+0\xrightarrow{}Hom(P,L) \xrightarrow{}Hom(P,M)\xrightarrow{}Hom(P,P)\xrightarrow{}0.
+\end{equation*}
+Then we can lift the identity map $id_P\in Hom(P,P)$ to some $q\in Hom(P,M)$, such that:
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$M$};
+\node	[main node]		(2) at (2,0)		{$P$};
+\node [main node]		(3) at (2,2)		{$P$};
+
+\draw (1) edge [->>, semithick] node [auto] {$g$} (2);
+\draw (3) edge [main path] node [auto] {$p$} (2);
+\draw (3) edge [dashed, ->, semithick] node [auto, swap] {$\exists q$} (1);
+\end{tikzpicture}
+\end{equation*}
+Thus $g:M\to P$ is a retraction as we have $q:P\to M$ such that $gq=id_P$. Hence, $0\xrightarrow{}L\xrightarrow{}M\xrightarrow{}P\xrightarrow{}0$ splits by Lemma \ref{splittinglem}.\\
+(iii)$\Rightarrow$ (iv): By choosing a generating set of $P$ we get a surjection from a free module $F$ onto $P$, $g:F\to P$, and this gives the short exact sequence, 
+\begin{equation*}
+0\xrightarrow{}ker(g)\xrightarrow{}F\xrightarrow{g}P\xrightarrow{}0,
+\end{equation*}
+and this splits by assumption. Hence, $F\cong ker(g)\oplus P$ and so $P$ is a direct summand of $F$ by Corollary \ref{MLNcor}.\\
+(iv) $\Rightarrow$ (i): By assumption, $P$ is a direct summand of $F$ and so there are maps $r: F \to P$ and $s: P \to F$ with $rs=id_P$. Now consider the diagram, 
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$M$};
+\node	[main node]		(2) at (2,0)		{$N$};
+\node [main node]		(3) at (2,2)		{$P$};
+\node [main node]		(4) at (0,2)		{$F$};
+
+\draw (1) edge [->>, semithick] node [auto] {$g$} (2);
+\draw (3) edge [main path] node [auto] {$p$} (2);
+\draw (4) edge [dashed, ->, semithick] node [auto, swap] {$\exists t$} (1);
+\path (4.10) edge [main path] node [auto] {$r$} (3.170);
+\path (3.190) edge [main path] node [auto] {$s$} (4.-10);
+\end{tikzpicture}
+\end{equation*}
+where $g$ is surjective. The composite map $pr: F \to N$; since $F$ is free, it is surjective, and so there is a map $t: F \to M$ with $gt=pr$. Define $q: P \to M$ by $q=ts$ and then we can see that $gq=p$ as,
+\begin{equation*}
+gq=gts=prs=pid_P=p.
+\end{equation*}
+Hence $P$ is projective.
+\end{proof}
+
+As with projective modules we will use the first property given in \cite{CB1} to define injective modules, and then provide the properties as in \cite{CB1} with some details from \cite{Rotman}.
+
+\begin{mydef}
+A module $I$ is \emph{injective} if, whenever $f: L \to M$ is an injection, there exists a map $j: M \to I$ which extends any map $i: M \to I$, making the following diagram commute.
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$L$};
+\node	[main node]		(2) at (2,0)		{$M$};
+\node [main node]		(3) at (0,2)		{$I$};
+
+\draw (1) edge [main path] node [auto] {$g$} (2);
+\draw (1) edge [main path] node [auto] {$i$} (3);
+\draw (2) edge [dashed, ->, semithick] node [auto, swap] {$j$} (3);
+\end{tikzpicture}
+\end{equation*}
+\end{mydef}
+
+\begin{prop}
+The following properties of a module $I$ are equivalent:
+\begin{description}
+\item [(i)] $I$ is injective.
+\item [(ii)] The sequence $0\xrightarrow{} Hom(N, I) \xrightarrow{} Hom(M, I) \xrightarrow{} Hom(L, I) \xrightarrow{} 0$ is exact for any short exact sequence $0\xrightarrow{} L \xrightarrow{} M\xrightarrow{} N \xrightarrow {} 0$.
+\item [(iii)] Any short exact sequence $0 \xrightarrow{} I \xrightarrow{} M \xrightarrow{} N \xrightarrow{}0$ splits.
+\end{description}
+\end{prop}
+\begin{proof}
+(i) $\Rightarrow$ (ii) $\Rightarrow$ (iii): Dual to Proposition \ref{projectiveprop}  for projectives.
+(iii) $\Rightarrow$ (i): Consider the $0\xrightarrow{}L\xrightarrow{}M\xrightarrow{}\sfrac{M}{L} \xrightarrow{} 0$ and construct it's pushout along $\theta: L \to I$:
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$L$};
+\node [main node]		(4) at (6,0)		{$M$};
+\node [main node]		(5) at (8,0)		{$\frac{M}{L}$};
+\node	[main node]		(11) at (10,0)	{$0$};
+
+\node	[main node]		(7) at (2,-2)		{$0$};
+\node	[main node]		(8) at (4,-2)		{$I$};
+\node [main node]		(9) at (6,-2)		{$M'$};
+\node [main node]		(10) at (8,-2)	{$\frac{M}{L}$};
+\node [main node]		(13) at (10,-2)	{$0$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$f$} (4);
+\draw (4) edge [main path] node [auto] {$g$} (5);
+\draw (5) edge [main path] (11);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\path (8.0) edge [main path] node [auto] {$h$} (9.180);
+\path (9.200) edge [dashed, ->, semithick] node [auto] {$\exists r$} (8.330);
+\draw (9) edge [main path] node [auto, swap] {$$} (10);
+\draw (10) edge [main path] (13);
+
+\draw (3) edge [main path] node [auto] {$\theta$} (8);
+\draw (4) edge [main path] node [auto] {$\phi$} (9);
+\draw (5) edge [-, semithick, double, double distance=1.5pt](10);
+\end{tikzpicture}
+\end{equation*}
+By assumption $0\xrightarrow{}I\xrightarrow{}M'\xrightarrow{}\sfrac{M}{L}\xrightarrow{}0$ splits and so $h:I \to M'$ has a retraction $r:M'\to I$. Then,
+\begin{equation*}
+r\phi f=rh\theta=\theta,
+\end{equation*}
+so $r\phi : M \to I$ extends $\theta: L \to I$. Hence $I$ is injective.
+\end{proof}
 
 
 
@@ -732,6 +1449,10 @@ Assume $\mathbf{E}$ and $\mathbf{E'}$ are equivalent, so we there must exist som
 
 
 \chapter{Representation of Quivers}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%		Quivers and Path Algebras	%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Quivers and Path Algebras}
 
@@ -1311,6 +2032,10 @@ Z(kC_2) &=\{a \in kC_2: ac=ca \forall c\in kC_2\},\\
 because none of the elements of $kC_2$ are commutative other than the identity element. Thus, $Z(kQ)\cong k \times k[T]$.
 \end{eg}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%		Representations of Quivers	%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Representations of Quivers}
 
 \begin{mydef}
@@ -1371,7 +2096,6 @@ A \emph{morphism} $\theta: X \to X'$ between representationsis given by linear m
 
 \section{Dynkin and Euclidean diagrams}
 
-\section{Gabriel's Theorem}
 
 \chapter{Auslander-Reiten Quivers}
 
@@ -1393,12 +2117,12 @@ A \emph{morphism} $\theta: X \to X'$ between representationsis given by linear m
 \bibitem{CB1}
 Crawley-Boevey, W.
 \emph{Cohomology and Central Simple Algebras}. [Online-PDF file]. [Accessed October 2014].
-Available from: http://www1.maths.leeds.ac.uk/~pmtwc/cohom.pdf
+Available from: http://www1.maths.leeds.ac.uk/~pmtwc/cohom.pdf.
 
 \bibitem{CB2}
 Crawley-Boevey, W.
 \emph{Representation of Quivers}. [Online-PDF file]. [Accessed October 2014].
-Available from: http://www1.maths.leeds.ac.uk/~pmtwc/quivlecs.pdf
+Available from: http://www1.maths.leeds.ac.uk/~pmtwc/quivlecs.pdf.
 
 \bibitem{Rotman}
 Rotman, J. J.
@@ -1426,8 +2150,13 @@ Schiffler, Ralf.
 \emph{Quiver Representations}
 Springer.
 
+\bibitem{Splittinglem}
+\emph{Splitting lemma - Wikipedia, the free encyclopedia.} [Online]  [Accessed 23 April 2015].
+Available at: http://en.wikipedia.org/wiki/Splitting\_lemma.
 
-
+\bibitem{Ext}
+\emph{Ext functor - Wikipedia, the free encyclopedia.} [ONLINE]  [Accessed 29 April 2015].
+Available at: http://en.wikipedia.org/wiki/Ext\_functor\#Ext\_and\_extensions.
 
 
 
