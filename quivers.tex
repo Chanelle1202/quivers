@@ -626,8 +626,6 @@ are \emph{equivalent} if there is a map $\xi: M \to M'$ such that the diagram,
 \draw (3) edge [-, semithick, double, double distance=1.5pt] (8);
 \draw (4) edge [main path] node [auto, swap] {$\xi$} (9);
 \draw (5) edge [-, semithick, double, double distance=1.5pt](10);
-\draw (11) edge [-, semithick, double, double distance=1.5pt] (13);
-\draw (2) edge [-, semithick, double, double distance=1.5pt] (7);
 \end{tikzpicture}
 \end{equation*}
 commutes.
@@ -671,8 +669,6 @@ where $f: x \mapsto (x, 0)$, $g: (x,y)\mapsto y$, $f':x \mapsto (0,x)$ and $g':(
 \draw (3) edge [-, semithick, double, double distance=1.5pt] (8);
 \draw (4) edge [main path] node [auto, swap] {$\xi$} (9);
 \draw (5) edge [-, semithick, double, double distance=1.5pt](10);
-\draw (11) edge [-, semithick, double, double distance=1.5pt] (13);
-\draw (2) edge [-, semithick, double, double distance=1.5pt] (7);
 \end{tikzpicture}
 \end{equation*}
 This diagram commutes when $\xi$ is the map $\xi: K^2 \to K^2$, $(x, y) \mapsto (y, x)$, hence these two short exact equations are equivalent.
@@ -716,8 +712,6 @@ where $f, f': x\mapsto 3x$, $g: x \mapsto x(\text{mod }3)$ and $g':x\mapsto 2x(\
 \draw (3) edge [-, semithick, double, double distance=1.5pt] (8);
 \draw (4) edge [main path] node [auto, swap] {$\xi$} (9);
 \draw (5) edge [-, semithick, double, double distance=1.5pt](10);
-\draw (11) edge [-, semithick, double, double distance=1.5pt] (13);
-\draw (2) edge [-, semithick, double, double distance=1.5pt] (7);
 \end{tikzpicture}
 \end{equation*}
 Assume $\mathbf{E}$ and $\mathbf{E'}$ are equivalent, so we there must exist some $\xi$ such that the diagram commutes. The second square in the diagram will commute if and only if $\xi=id_{\bb{Z}}$, since $f=f'$, however, this then means the third square will never commute, as $g\neq g'$. Thus no such $\xi$ exists and the two short exact sequences are not equivalent.
@@ -829,8 +823,6 @@ fitting into the commutative diagram
 \draw (3) edge [main path] node [auto] {$\theta$} (8);
 \draw (4) edge [main path] node [auto] {$\phi$} (9);
 \draw (5) edge [-, semithick, double, double distance=1.5pt](10);
-\draw (11) edge [-, semithick, double, double distance=1.5pt] (13);
-\draw (2) edge [-, semithick, double, double distance=1.5pt] (7);
 \end{tikzpicture}
 \end{equation*}
 is defined to be the \emph{pushout of $\mathbf{E}$ along $\theta$}.
@@ -892,8 +884,6 @@ Firstly, construct the commutative diagram,
 \draw (3) edge [main path] node [auto] {$\theta$} node [auto, swap] {$\scriptstyle{nat}$} (8);
 \draw (4) edge [main path] node [auto] {$\phi$} (9);
 \draw (5) edge [-, semithick, double, double distance=1.5pt](10);
-\draw (11) edge [-, semithick, double, double distance=1.5pt] (13);
-\draw (2) edge [-, semithick, double, double distance=1.5pt] (7);
 \end{tikzpicture}
 \end{equation*}
 and now we want to find $M'$. As $\theta: x \mapsto x+n\bb{Z}$ and $f: x \mapsto nx$, we have,
@@ -962,8 +952,6 @@ fitting into the commutative diagram
 \draw (3) edge [-, semithick, double, double distance=1.5pt] (8);
 \draw (4) edge [main path] node [auto] {$\phi'$} (9);
 \draw (5) edge[main path] node [auto] {$\psi$} (10);
-\draw (11) edge [-, semithick, double, double distance=1.5pt] (13);
-\draw (2) edge [-, semithick, double, double distance=1.5pt] (7);
 \end{tikzpicture}
 \end{equation*}
 is defined to be the \emph{pullback} of $\mathbf{E}$ along $\psi$.
@@ -988,7 +976,7 @@ Uniqueness: Consider the commutative diagram of short exact sequences,
 \node [main node]		(5) at (8,0)		{$N$};
 \node	[main node]		(11) at (10,0)	{$0$};
 
-\node	[main node]		(6) at (0,-2)		{$\mathbf{\widetilde{\xi''}}$: \quad};
+\node	[main node]		(6) at (0,-2)		{$\widetilde{\mathbf{\xi''}}$: \quad};
 \node	[main node]		(7) at (2,-2)		{$0$};
 \node	[main node]		(8) at (4,-2)		{$\widetilde{M''}$};
 \node [main node]		(9) at (6,-2)		{$M\oplus N''$};
@@ -1008,11 +996,9 @@ Uniqueness: Consider the commutative diagram of short exact sequences,
 \draw (3) edge [main path] node [auto] {$$} (8);
 \draw (4) edge [-, semithick, double, double distance=1.5pt] (9);
 \draw (5) edge [-, semithick, double, double distance=1.5pt](10);
-\draw (11) edge [-, semithick, double, double distance=1.5pt] (13);
-\draw (2) edge [-, semithick, double, double distance=1.5pt] (7);
 \end{tikzpicture}
 \end{equation*}
-where $M''$ and $\widetilde{M''}$ are from two pullbacks, $\mathbf{E''}$ and $\mathbf{\widetilde{E''}}$, of $\mathbf{E}$ along $\psi$. By diagram chasing we can see that there is in fact an isomorphism between $M''$ and $\widetilde{M''}$ and so $\mathbf{E''}$ and $\mathbf{\widetilde{E''}}$ are equivalent as short exact sequences.
+where $M''$ and $\widetilde{M''}$ are from two pullbacks, $\mathbf{E''}$ and $\widetilde{\mathbf{E''}}$, of $\mathbf{E}$ along $\psi$. By diagram chasing we can see that there is in fact an isomorphism between $M''$ and $\widetilde{M''}$ and so $\mathbf{E''}$ and $\widetilde{\mathbf{E''}}$ are equivalent as short exact sequences.
 \end{proof}
 
 \begin{eg}
@@ -1027,7 +1013,7 @@ Firstly, construct the commutative diagram,
 \node	[main node]		(1) at (0,0)		{$\mathbf{E''}$: \quad };
 \node	[main node]		(2) at (2,0)		{$0$};
 \node	[main node]		(3) at (4,0)		{$\bb{Z}$};
-\node [main node]		(4) at (6,0)		{$\bb{M''}$};
+\node [main node]		(4) at (6,0)		{$M''$};
 \node [main node]		(5) at (8,0)		{$\bb{Z}$};
 \node	[main node]		(11) at (10,0)	{$0$};
 
@@ -1051,18 +1037,20 @@ Firstly, construct the commutative diagram,
 \draw (3) edge  [-, semithick, double, double distance=1.5pt](8);
 \draw (4) edge [main path] node [auto] {$\phi'$} (9);
 \draw (5) edge [main path] node [auto] {$\psi$} node [auto, swap] {$\scriptstyle{nat}$} (10);
-\draw (11) edge [-, semithick, double, double distance=1.5pt] (13);
-\draw (2) edge [-, semithick, double, double distance=1.5pt] (7);
 \end{tikzpicture}
 \end{equation*}
 and now to find $M''$. As both $\psi, g: x \mapsto x+n\bb{Z}$, we have,
 \begin{align*}
 M''&=\{(x,y) \in \bb{Z} \oplus \bb{Z} : x+n\bb{Z}=y+n\bb{Z}\}, \\
 &=\{(x, y) \in \bb{Z} \oplus \bb{Z}: n\divides x-y\}, \\
-&= \frac{\bb{Z}\oplus\bb{Z}}{\{(x, y): n\ndivides x-y\}},
+&\cong \bb{Z}\oplus\bb{Z},\text{ by considering the map } (a,b)\mapsto (a, a+nb),\\
+&\cong \bb{Z}^2,
 \end{align*}
-and we can set $f'': \bb{Z} \to M''$, $x \mapsto \overline{(nx, 0)}$, $g'': M'' \to \bb{Z}$, $\overline{(x, y)} \mapsto y$ and $\phi': M'' \to \bb{Z}$, $\overline(x, y) \mapsto m$. It is clear that this makes the diagram commutative and gives $\mathbf{E''}$ exact. 
-% Need to find a way of working out what M'' is isomorphic to
+and we can set $f'': \bb{Z} \to M''$, $x \mapsto \overline{(nx, 0)}$, $g'': M'' \to \bb{Z}$, $\overline{(x, y)} \mapsto y$ and $\phi': M'' \to \bb{Z}$, $\overline(x, y) \mapsto m$. It is clear that this makes the diagram commutative and gives $\mathbf{E''}$ exact. Hence, the pullback of $\mathbf{E}$ along $\psi$ is,
+\begin{equation*}
+\mathbf{E''}:\quad 0\xrightarrow{}\bb{Z} \xrightarrow{f''} \bb{Z}^2 \xrightarrow{g''} \bb{Z} \xrightarrow{}0,
+\end{equation*}
+with the maps $f'',g''$ defined as above.
 \end{eg}
 
 Now this report will start to consider the results possible by considering exact sequences of ....\\
@@ -1216,12 +1204,15 @@ by renumbering in Theorem \ref{longexactseqthm}.
 
 \section{Homotopy and Quasi-Isomorphism}
 
+For this section the report relies heavily on \cite{CB1}, with some added details, such as the definition for null homotopic and the diagram, come from \cite{Weibel} and \cite{Rotman}. However, all examples are original work.
+
 \begin{mydef}
 If $f,g:\mathbf{C} \to \mathbf{D}$  are chain maps, then $f$ and $g$ are \emph{homotopic}, denoted $f\simeq g$, if for each $n$ there are maps $h_n: C_n \to D_{n+1}$ such that,
 \begin{equation*}
-f_n-g_n=h_{n+1}\gamma_n + \delta_{n+1}h_n,
+f_n-g_n=h_{n-1}\gamma_n + \delta_{n+1}h_n,
 \end{equation*}
-where,
+where the maps are defined
+,
 \begin{equation*}
 \begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
 \node	[main node]		(2) at (2,0)		{\dots};
@@ -1232,7 +1223,7 @@ where,
 
 \node	[main node]		(7) at (2,-2)		{\dots};
 \node	[main node]		(8) at (4,-2)		{$D_{n+1}$};
-\node [main node]		(9) at (6,-2)		{$C_n$};
+\node [main node]		(9) at (6,-2)		{$D_n$};
 \node [main node]		(10) at (8,-2)	{$D_{n-1}$};
 \node [main node]		(13) at (10,-2)	{\dots};
 
@@ -1246,15 +1237,172 @@ where,
 \draw (9) edge [main path] node [auto, swap] {$\delta_n$} (10);
 \draw (10) edge [main path] node [auto, swap] {$\delta_{n-1}$} (13);
 
-\draw (3) edge [main path] node [auto] {$\scriptstyle{f_{n+1}}$} node [auto, swap] {$\scriptstyle{g_{n+1}}$} (8);
-\draw (4) edge [main path] node [auto] {$\scriptstyle{f_n}$} node [auto, swap] {$\scriptstyle{g_n}$} (9);
-\draw (5) edge [main path] node [auto] {$\scriptstyle{f_{n-1}}$} node [auto, swap] {$\scriptstyle{g_{n-1}}$} (10);
+\draw (3) edge [main path] node [auto, swap] {$\scriptstyle{k_{n+1}}$} (8);
+\draw (4) edge [main path] node [auto] {$\scriptstyle{k_n}$} (9);
+\draw (5) edge [main path] node [auto] {$\scriptstyle{k_{n-1}}$} (10);
 
 \draw (4) edge [main path] node [auto] {$h_n$} (8);
 \draw (5) edge [main path] node [auto] {$h_{n-1}$} (9);
 \end{tikzpicture}
 \end{equation*}
+with $k_n$ representing either $f_n$ or $g_n$.\\
+A chain map $f:\mathbf{C} \to \mathbf{D}$ is considered \emph{null-homotopic} if $f \simeq 0$, where $0$ is the zero chain map.
 \end{mydef}
+
+\begin{eg}
+Consider the two chain complexes,
+\begin{equation*}
+\mathbf{C}: \quad \dots \xrightarrow{} 0 \xrightarrow{} \bb{Z} \xrightarrow{3} \bb{Z} \xrightarrow{} 0 \xrightarrow{} \dots \quad \& \quad \mathbf{D}: \quad \dots \xrightarrow{} \frac{\bb{Z}}{9\bb{Z}} \xrightarrow{3} \frac{\bb{Z}}{9\bb{Z}} \xrightarrow{3} \frac{\bb{Z}}{9\bb{Z}} \xrightarrow{} \dots,
+\end{equation*}
+such that $C_1,C_0=\bb{Z}$ and $D_n=\sfrac{\bb{Z}}{9\bb{Z}}$. Then the two chain maps $f, g:\mathbf{C} \to \mathbf{D}$, where $f_0, f_1: x \mapsto 4x+9\bb{Z}$ and $g_0, g_1: x \to x+9\bb{Z}$ are homotopic where $h_0: \bb{Z} \to \sfrac{\bb{Z}}{9\bb{Z}}, x \to x+9\bb{Z}$ and $h_1: \bb{Z} \to \sfrac{\bb{Z}}{9\bb{Z}}, x \mapsto 3x +9\bb{Z}$.
+\end{eg}
+
+%Reference
+\begin{prop} \label{homotopyhomologyprop}
+If $f,g:\mathbf{C}\to \mathbf{D}$ are homotopic then for each $n$ they induce exactly the same map $H_n(\mathbf{C})\to H_n(\mathbf{D})$.
+\end{prop}
+\begin{proof}
+Let $\overline{x} \in H_n(\mathbf{C})$ such that $x\in Z_n(\mathbf{C})$. Then,
+\begin{align*}
+H_n(f)(\overline{x})-H_n(g)(\overline{x})&= \overline{f_n(x)} - \overline{g_n(x)},\\
+&= \overline{h_{n-1}\gamma_n(x)-\delta_{n+1}h_n(x)},\\
+&=\overline{\delta_{n+1}h_n(x)}, \text{ as }x\in Z_n(\mathbf{C})=ker(\gamma_n),\\
+&=0, \text{ as } \delta_{n+1}h_n(x)\in B_n(\mathbf{D})=im(\delta_{n+1}).
+\end{align*}
+\end{proof}
+
+\begin{prop} %Not sure whether to keep this propn in. May get rid.
+If $f,g: \mathbf{C}\to \mathbf{D}$ are homotopic and $N$ is an $R$-module, then the induced cochain maps $Hom(\mathbf{D}, N) \to Hom(\mathbf{C},N)$ are homotopic.
+\end{prop}
+\begin{proof}
+A homotopy is given by maps $h_n:C_n\to D_{n+1}$ such that, 
+\begin{equation*}
+f_n-g_n=h_{n-1}\gamma_n + \delta_{n+1}h_n.
+\end{equation*}
+Let $h^n:Hom(\mathbf{D},N)^n \to Hom(\mathbf{C}, N)^{n-1}$ be $Hom(h_{n-1}, N)$, as $Hom(D, N)^n \cong Hom(D_n, N)$ and $Hom(C, N)^{n-1} \cong Hom(C_{n-1}, N)$.
+\end{proof}
+
+\begin{mydef}
+A chain map $f:\mathbf{C} \to \mathbf{D}$ is a \emph{homotopy equivalence} if there is a chain map $g:\mathbf{D} \to \mathbf{C}$ such that $gf$ and $fg$ are homotopic to the respective identity maps of $\mathbf{C}$ and $\mathbf{D}$.\\
+If there exists a homotopy equivalence, $f:\mathbf{C} \to \mathbf{D}$, $\mathbf{C}$ and $\mathbf{D}$ are said to be \emph{homotopy equivalent}.
+\end{mydef}
+
+% Would like an example here.
+
+\begin{rem}
+The reader is advised not to confuse these definitions: Note that the two chain maps $f,g:\mathbf{C} \to \mathbf{D}$ can be homotopic, whilst two chain complexes $\mathbf{C}, \mathbf{D}$ can be homotopy equivalent.
+\end{rem}
+
+\begin{prop}
+A homotopy equivalence $f:\mathbf{C} \to \mathbf{D}$ of chain complexes induces a homotopy equivalence of cochain complexes $Hom(\mathbf{D},N) \to Hom(\mathbf{C},N)$. In particular, $H^n(\mathbf{D}, N) \cong H^n(\mathbf{C}, N)$.
+\end{prop}
+\begin{proof}
+Omitted.
+%Given as clear in \cite{CB1}, may prove later.
+\end{proof}
+
+\begin{mydef}
+A chain map $f:\mathbf{C} \to \mathbf{D}$ is a \emph{quasi-isomorphism} if for each $n$ the map $H_n(\mathbf{C}) \to H_n(\mathbf{D})$ is an isomorphism.
+\end{mydef}
+
+\begin{prop} \label{homequivisomprop}
+If $f:\mathbf{C} \to \mathbf{D}$ is a homotopy equivalence then it is a quasi-isomorphism.
+\end{prop}
+\begin{proof}
+Assume that $f: \mathbf{C} \to \mathbf{D}$ is a homotopy equivalence, then there exists some chain map $g: \mathbf{D} \to \mathbf{C}$ such that $fg \simeq id_{\mathbf{D}}$ and $gf\simeq id_{\mathbf{C}}$. By Proposition \ref{homotopyhomologyprop}, since $fg \simeq id_{\mathbf{D}}$ then they both induce the same map $H_n(\mathbf{D}) \to H_n(\mathbf{D})$ and similarly $gf$ and $id_{\mathbf{C}}$ induce the same map $H_n(\mathbf{C}) \to H_n(\mathbf{C})$. Hence, $f$ induces an isomorphism $H_n(\mathbf{C}) \to H_n(\mathbf{D})$ as it has an inverse and so is a quasi-isomorphism.
+\end{proof}
+
+\begin{eg}
+This example shows that the converse to Proposition \ref{homequivisomprop} is not true. Consider the chain complexes, 
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node [main node]		(1) at (1,0)		{$\mathbf{C}$};
+\node	[main node]		(2) at (2,0)		{\dots};
+\node	[main node]		(3) at (4,0)		{$0$};
+\node [main node]		(4) at (6,0)		{$\bb{Z}$};
+\node [main node]		(5) at (8,0)		{$\bb{Z}$};
+\node	[main node]		(11) at (10,0)	{$0$};
+\node [main node]		(12) at (12,0)	{\dots};
+
+\node [main node]		(6) at (1,-2)		{$\mathbf{D}$};
+\node	[main node]		(7) at (2,-2)		{\dots};
+\node	[main node]		(8) at (4,-2)		{$0$};
+\node [main node]		(9) at (6,-2)		{$0$};
+\node [main node]		(10) at (8,-2)	{$\frac{\bb{Z}}{2\bb{Z}}$};
+\node [main node]		(13) at (10,-2)	{$0$};
+\node [main node] 		(14) at (12, -2)	{\dots};
+
+\node [main node] 		(15) at (8,0.5)	{$H_0=\frac{\bb{Z}}{2\bb{Z}}$};
+\node [main node]		(16) at (6,0.5)	{$H_1=0$};
+\node [main node]		(17) at (8,-2.5)	{$H_0=\frac{\bb{Z}}{2\bb{Z}}$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$$} (4);
+\draw (4) edge [main path] node [auto] {$\scriptstyle{2}$} (5);
+\draw (5) edge [main path] node [auto] {$$} (11);
+\draw (11) edge [main path] (12);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\path (8) edge [main path] node [auto, swap] {$$} (9);
+\draw (9) edge [main path] node [auto, swap] {$$} (10);
+\draw (10) edge [main path] node [auto, swap] {$$} (13);
+\draw (13) edge [main path] (14);
+
+\draw (3) edge [main path] node [auto, swap] {$$} (8);
+\draw (4) edge [main path] node [auto] {$$} (9);
+\draw (5) edge [main path] node [auto] {$\scriptstyle{nat}$} (10);
+\draw (11) edge [main path] (13);
+\end{tikzpicture}
+\end{equation*}
+and so $H_0(\mathbf{C})=\frac{\bb{Z}}{2\bb{Z}}=H_0(\mathbf{D})$ and so $f$ is a quasi-isomorphism. However, it is not a homotopy equivalence.
+\end{eg}
+
+\begin{mydef}
+A chain complex $\mathbf{C}$ is \emph{contractible} if it is homotopy equivalent to the zero complex. \\
+Equivalent condition: $id_{\mathbf{C}}$ is homotopic to $0_{\mathbf{C}}$.\\
+Equivalent condition: There are maps $h_n: C_n \to C_{n+1}$ with,
+\begin{equation*}
+id_{C_n} = h_{n-1}\gamma_n + \delta_{n+1}h_n,\text{ for all } n.
+\end{equation*}
+This is called a \emph{contracting homotopy}.
+\end{mydef}
+
+\begin{thm}
+A chain complex $\mathbf{C}$ is contractible if and only if it is acyclic and all of the short exact sequences,
+\begin{equation*}
+0 \xrightarrow{} Z_(\mathbf{C} \xrightarrow{\iota_n} C_n \xrightarrow{\gamma_n} B_{n-1}(\mathbf{C})\xrightarrow{} 0,
+\end{equation*}
+are split, where $\iota_n$ is the inclusion.
+\end{thm}
+\begin{proof}
+$\Rightarrow$: If $\mathbf{C}$ is contractible then it is quasi-isomorphic to the zero complex, so acyclic by Proposition \ref{homequivisomprop}. Let $h$ be the contracting homotopy. Let $s:B_{n-1}(\mathbf{C})\to C_n$ be the restriction of $h_{n-2}:C_{n-1} \to C_n$. If $x\in B_{n-1}(\mathbf{C})=im(\gamma_n)$,
+\begin{align*}
+B_{n-1}(\mathbf{C}\ni x&=id_{C_{n-1}}(x),\\
+&=(h_{n-1}\gamma_{n-1} + \gamma_nh_{n-1})(x),\\
+&=h_{n-2}(\gamma_{n-1}(x))+\gamma_n(h_{n-1}(x)),\\
+&=\gamma_n(h_{n-1}(x)),\\
+&=\gamma_n(s(x)).
+\end{align*}
+Thus $s$ makes $\gamma_n$ is a retraction in the short exact sequence.
+$\Leftarrow$: Now suppose that $\mathbf{C}$ is acyclic and all the exact sequences are split. Then for all $n$ there are sections,
+\begin{equation*}
+s_{n-1}: B_{n-1}(\mathbf{C}) \to C_n.
+\end{equation*}
+If $x\in C_n$ then $x-s_{n-1}\gamma_nx\in Z_n(\mathbf{C})=B_n(\mathbf{C})$ so we can define a function $h_n: C_n \to C_{n-1}$ by,
+\begin{equation*}
+h_n(x)=s_n(x-s_{n-1}\gamma_nx).
+\end{equation*}
+Then,
+\begin{align*}
+(h_{n-1}\gamma_n + \gamma_{n+1}h_n)(x)&=s_{n-1}(\gamma_nx-s_{n-2}\gamma_{n-1}\gamma_nx) + \gamma_{n+1}s_n(x - s_{n-1}\gamma_nx),\\
+&=s_{n-1}\gamma_nx +\gamma_{n+1}s_nx-\gamma_{n+1}s_ns_{n-1}\gamma_nx,\\
+% Need to understand this
+&=s_{n-1}\gamma_nx + \gamma_{n+1}s_nx +(x-s_{n-1}\gamma_nx),\\
+&=x.
+\end{align*}
+\end{proof}
+
+
 
 
 
