@@ -2,12 +2,12 @@
 \contentsline {chapter}{\numberline {2}Homological Algebra}{4}
 \contentsline {section}{\numberline {2.1}Chain Complexes}{4}
 \contentsline {section}{\numberline {2.2}Exact Sequences}{10}
-\contentsline {section}{\numberline {2.3}Homotopy and Quasi-Isomorphism}{20}
-\contentsline {section}{\numberline {2.4}Projective and Injective Resolutions}{22}
-\contentsline {chapter}{\numberline {3}Representation of Quivers}{26}
-\contentsline {section}{\numberline {3.1}Quivers and Path Algebras}{26}
-\contentsline {section}{\numberline {3.2}Representations of Quivers}{35}
-\contentsline {section}{\numberline {3.3}Standard Resolution}{36}
-\contentsline {section}{\numberline {3.4}Bricks}{36}
-\contentsline {section}{\numberline {3.5}Dynkin and Euclidean diagrams}{36}
-\contentsline {chapter}{\numberline {4}Auslander-Reiten Quivers}{37}
+\contentsline {section}{\numberline {2.3}Homotopy and Quasi-Isomorphism}{21}
+\contentsline {section}{\numberline {2.4}Projective and Injective Resolutions}{24}
+\contentsline {chapter}{\numberline {3}Representation of Quivers}{29}
+\contentsline {section}{\numberline {3.1}Quivers and Path Algebras}{29}
+\contentsline {section}{\numberline {3.2}Representations of Quivers}{38}
+\contentsline {section}{\numberline {3.3}Standard Resolution}{39}
+\contentsline {section}{\numberline {3.4}Bricks}{39}
+\contentsline {section}{\numberline {3.5}Dynkin and Euclidean diagrams}{39}
+\contentsline {chapter}{\numberline {4}Auslander-Reiten Quivers}{40}

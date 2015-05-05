@@ -1057,7 +1057,7 @@ Now this report will start to consider the results possible by considering exact
 %FILL THIS IN 
 % Put in Weibel Exercise 1.3.1
 % Add fives lemma??
-The following theorem is from \cite{CB1}, however, the notation has been changed to make the different maps more explicit and more detail is given in the proof. 
+The following theorem is from \cite{CB1} and the proof that the connecting map exists and is well defined taken from \cite{CB1} and the proof that the sequence induced by this map is exact from \cite{Weibel}. Both proofs were adapted to use the notation used in this report and some more explanation given when we felt it was necessary.
 
 \begin{thm} (Long Exact Sequence) \label{longexactseqthm} \\
 Let $0\xrightarrow{}\mathbf{C} \xrightarrow{f} \mathbf{D} \xrightarrow{g} \mathbf{E} \xrightarrow{}0$ be a short exact sequence of chain complexes, meaning that $f$ and $g$ are chain maps and for each $n$ the maps
@@ -1066,7 +1066,7 @@ Let $0\xrightarrow{}\mathbf{C} \xrightarrow{f} \mathbf{D} \xrightarrow{g} \mathb
 \end{equation*}
 form a short exact sequence. Then there are connecting maps $c_n:H_n(\mathbf{E}) \to H_{n-1}(\mathbf{C})$ giving a long exact sequence, 
 \begin{equation*}
-\dots \xrightarrow{}H_{n+1}(\mathbf{E}) \xrightarrow{c_{n+1}} H_n(\mathbf{C}) \xrightarrow{} H_n(\mathbf{D})\xrightarrow{}H_n(\mathbf{E}) \xrightarrow{c_n} H_{n-1}(\mathbf{C}) \xrightarrow{} H_{n-1}(\mathbf{D}) \xrightarrow{} \dots
+\dots \xrightarrow{}H_{n+1}(\mathbf{E}) \xrightarrow{c_{n+1}} H_n(\mathbf{C}) \xrightarrow{f_{\ast}} H_n(\mathbf{D})\xrightarrow{g_{\ast}}H_n(\mathbf{E}) \xrightarrow{c_n} H_{n-1}(\mathbf{C}) \xrightarrow{} \dots
 \end{equation*}
 \end{thm}
 \begin{proof}
@@ -1118,13 +1118,14 @@ Have diagram,
 \draw (10) edge [main path] node [auto] {$\epsilon_{n}$} (17);
 \end{tikzpicture}
 \end{equation*}
-Define the connecting map $c_n:H_n(\mathbf{E})\to H_{n-1}(\mathbf{C})$ as follows:\\
+\begin{itemize}
+\item Define the connecting map $c_n:H_n(\mathbf{E})\to H_{n-1}(\mathbf{C})$ as follows:\\
 Let $\overline{x}$ be a typical element of $H_n(\mathbf{E})$, with $x \in ker(\epsilon_n)=Z_n(\mathbf{E})$. Then as $g_n$ is surjective we can lift $x\in E_n$ to some element $y \in D_n$ such that $g_n(y)=x$. From the commutativity of the diagram, 
 \begin{equation*}
 g_{n-1}(\delta_n(y))=\epsilon_n(g_n(y))=\epsilon_n(x)=0,
 \end{equation*}
 since $x\in ker(\epsilon_n)$. Hence, $\delta_n(y)\in ker(g_{n-1})\cong im(f_{n-1})$. Then as $f_{n-1}$ is injective there exists some $z\in C_{n-1}$ such that $f_{n-1}(z)=\delta_n(y)$. Thus define $c_n(\overline{x})=\overline{z}$.(Note $z \in ker(\gamma_{n-1})$ as $\delta_{n-1}(\delta_n(y))=0$, then by commutivity $f_{n-2}(\gamma_{n-1}(z))=0$ and as $f_{n-2}$ is injective.)\\
-Now to show not dependent on choice of $x$ or $y$:
+\item Not dependent on choice of $x$ or $y$:
 Say $y, y'\in D_n$ have images $g_n(y)=x$, $g_n(y')=x'$ where $x, x'\in ker(\epsilon_n)=Z_n(\mathbf{E})$ with $\overline{x}=\overline{x'}$. Thus $g_n(y)-g_n(y')\in im(\epsilon_{n+1})=B_n(\mathbf{E})$. Therefore, 
 \begin{align*}
 g_n(y-y')&=\epsilon_{n+1}(g_{n+1}(u))\text{, for some }u\in D_{n+1},\\
@@ -1138,8 +1139,67 @@ f_{n-1}(z-z')&=\delta_n(y-y'),\\
 &=\delta_n(f_n(v)),\\
 &=f_{n-1}(\gamma_n(v)),
 \end{align*}
-implying $z-z'=\gamma_n(v)\in im(\gamma_n)=B_{n-1}(\mathbf{C})$. Hence, $\overline{z}=\overline{z'}$ in $H_{n-1}(\mathbf{C})$.
-%Find out why need to include the bit about it being exact at H_n(D)???
+implying $z-z'=\gamma_n(v)\in im(\gamma_n)=B_{n-1}(\mathbf{C})$. Hence, $\overline{z}=\overline{z'}$ in $H_{n-1}(\mathbf{C})$.\\
+\item Exactness at $H_n(\mathbf{C})$: $\quad H_{n+1}(\mathbf{E}) \xrightarrow{c_{n+1}} H_n(\mathbf{C})\xrightarrow{f_{\ast}}H_n(\mathbf{D})$\\
+$im(c_{n+1})\subseteq ker(f_{\ast})$: We have $f_{\ast}(c_{n+1}(\overline{x}))=\overline{f_n(z)}$ for some $z\in C_n$. But,
+\begin{equation*}
+f_n(z)=\delta_{n+1}g^{-1}_{n+1}(x)\in B_{n+1}(\mathbf{D});
+\end{equation*}
+that is, $f_{\ast}(c_{n+1}(\overline{x})=0$.\\
+$ker(f_{\ast})\subseteq im(c_{n+1})$: If $f_{\ast}(\overline{z})=\overline{f_n(z)}=\overline{0}$ then $f_n(z)=\delta_{n+1}(y')$ for some $y'\in D_{n+1}$. Since $g$ is a chain map,
+\begin{align*}
+\epsilon_{n+1}(g_{n+1}(y'))&=g_n(\delta_{n+1}(y')),\\
+&=g_n(f_n(z)),\\
+&=0, \text{ by exactness of the original sequence, }
+\end{align*}
+and so $g_{n+1}(y')\in Z_n(\mathbf{E})$. However,
+\begin{align*}
+c_{n+1}(\overline{g_{n+1}(y')})&=\overline{f^{-1}_n(\delta_{n+1}(g^{-1}_{n+1}(g_{n+1}(y'))))}, \\
+&=\overline{f_n^{-1}\delta_{n+1}(y')}, \\
+&=\overline{f_n^{-1}(f_n(z))}, \\
+&=\overline{z}.
+\end{align*}
+\item Exactness at $H_n(\mathbf{D})$: $\quad H_n(\mathbf{C}) \xrightarrow{f_{\ast}} H_n(\mathbf{D}) \xrightarrow{g_{\ast}} H_n(\mathbf{E})$\\
+$im(f_{\ast}) \subseteq ker(g_{\ast})$: True as,
+\begin{equation*}
+g_{\ast}f_{\ast}=(gf)_{\ast}=0_{\ast}=0.
+\end{equation*}
+$ker(g_{\ast})\subseteq im(f_{\ast})$: If $g_{\ast}(\overline{y})=\overline{g_n(y)}=\overline{0}$, then $g_n(y)=\epsilon_{n+1}$ for some $x'\in E_{n+1}$. However, $g$ is surjective meaning $x'=g_{n+1}$ for some $y'\in C_{n+1}$, hence, 
+\begin{align*}
+g_n(y)&=\epsilon_{n+1}(g_{n+1}(y')),\\
+&=g_n(\delta_{n+1}(y')),
+\end{align*} 
+since $g$ is a chain map and so $ g_n(y-\delta){n+1}(y')=0$. By exactness, there is $z\in C_n$ with $f_n(z)=y-\delta_{n+1}(y')$. Now $z\in Z_n(\mathbf{C})$ because,
+\begin{align*}
+f_{n-1}(\gamma_n(z))&=\delta_n(f_n(z)), \\
+&=\delta_n(y-\delta_{n+1}(y')), \\
+&=\delta_n(y)-\delta_n(\delta_{n+1}(y')), \\
+&=0, \text{ as } y\in Z_n(\mathbf{C})\text{ and } \delta_n\delta_{n+1}=0,
+\end{align*}
+then because $f_{n-1}$ is injective, $\gamma_n(z)=0$. Therefore, 
+\begin{align*}
+f_{\ast}(\overline{z})&=\overline{f_n(z)}, \\
+&=\overline{y-\delta_{n+1}(y')}, \\
+&=\overline{y}.
+\end{align*}
+\item Exactness at $H_n(\mathbf{E})$: $\quad H_n(\mathbf{D}) \xrightarrow{g_{\ast}} H_n(\mathbf{E}) \xrightarrow{c_n} H_{n-1}(\mathbf{C})$\\
+$im(g_{\ast})\subseteq ker(c_n)$: If $g_{\ast}(\overline{y})=\overline{g_n(y)} \in im(g_{\ast})$, then $c_n(\overline{g_n(y')})=\overline{z}$ where, 
+\begin{equation*}
+f_{n-1}(z)=\delta_n(g_n^{-1}(g_n(y'))).
+\end{equation*}
+Since this formula is independent of the choice of lifting of $g_n(y')$, let us choose $g_n^{-1}(g_n(y'))=y'$. Now $\delta_n(g^{-1}_n(g_n(y'))=\delta_n(y')=0$ because $y'\in Z_n(\mathbf{D})$. Thus, $f_{n-1}(z)=0$ and hence $z=0$ because $f_{n-1}$ is injective. \\
+$ker(c_n)\subseteq im(g_{\ast})$: If $c_n(x)=\overline{0}$, then $z'=f_{n-1}^{-1}=f_{n-1}^{-1}(\delta_n(g_n^{-1}(x)))\in B_n(\mathbf{C})$, that is $z'=\gamma_n(z)$ for some $z\in C_n$. However, 
+\begin{align*}
+f_{n-1}(z')&=f_{n-1}(\gamma_n(z)), \\
+&=\delta_n(f_n(z)), \\
+&=\delta_n(g^{-1}_n(x)), 
+\end{align*}
+so that $\delta_n(g_n^{-1}-f_n(z))=0$, that is $g_n^{-1}-f_n(z) \in ker(\delta_n)$. Exactness of the original sequence gives $g_nf_n=0$, so that,
+\begin{align*}
+g_{\ast}(\overline{g_n^{-1}(x)-f_n(z)})&=\overline{g_n(g_n^{-1}(x)-gn(f_n(z)}, \\
+&=\overline{x}.
+\end{align*}
+\end{itemize}
 \end{proof}
 % Maybe include an example, going to take some time to work one out...
 
@@ -1396,7 +1456,7 @@ Then,
 \begin{align*}
 (h_{n-1}\gamma_n + \gamma_{n+1}h_n)(x)&=s_{n-1}(\gamma_nx-s_{n-2}\gamma_{n-1}\gamma_nx) + \gamma_{n+1}s_n(x - s_{n-1}\gamma_nx),\\
 &=s_{n-1}\gamma_nx +\gamma_{n+1}s_nx-\gamma_{n+1}s_ns_{n-1}\gamma_nx,\\
-% Need to understand this
+% Need to understand these next two lines. Take out Brown's book cohomology of groups.
 &=s_{n-1}\gamma_nx + \gamma_{n+1}s_nx +(x-s_{n-1}\gamma_nx),\\
 &=x.
 \end{align*}
@@ -1586,6 +1646,132 @@ r\phi f=rh\theta=\theta,
 \end{equation*}
 so $r\phi : M \to I$ extends $\theta: L \to I$. Hence $I$ is injective.
 \end{proof}
+
+\begin{mydef}
+If $M$ is an $R$-module, then a \emph{projective resolution} of $M$ is an exact sequence, 
+\begin{equation*}
+\mathbf{P}: \quad \dots \xrightarrow{} P_2 \xrightarrow{d_2} P_1 \xrightarrow{d_1} P_0 \xrightarrow{\epsilon} M \xrightarrow{} 0
+\end{equation*}
+where each $P_i$ is a projective module.
+\end{mydef}
+
+\begin{prop}
+A projective resolution $\mathbf{P}$ of $M$ is equivalent to giving a non-negative chain complex $\mathbf{P}_{\bullet}$ of projective modules and a quasi-isomorphism $f: \mathbf{P}_{\bullet} \to \mathbf{M}$, where all the $f_n$ are trivial apart from $f_0: P_0 \twoheadrightarrow M$.
+\end{prop}
+\begin{proof}
+Consider the diagram,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(2) at (2,0)		{$\dots$};
+\node	[main node]		(3) at (4,0)		{$P_2$};
+\node [main node]		(4) at (6,0)		{$P_1$};
+\node [main node]		(5) at (8,0)		{$P_0$};
+\node	[main node]		(11) at (10,0)	{$0$};
+\node [main node] 		(12) at (12,0)	{$\dots$};
+
+\node	[main node]		(7) at (2,-2)		{$\dots$};
+\node	[main node]		(8) at (4,-2)		{$0$};
+\node [main node]		(9) at (6,-2)		{$0$};
+\node [main node]		(10) at (8,-2)	{$M$};
+\node [main node]		(13) at (10,-2)	{$0$};
+\node [main node]		(14) at (12, -2)	{$\dots$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$$} (4);
+\draw (4) edge [main path] node [auto] {$$} (5);
+\draw (5) edge [main path] (11);
+\draw (11) edge [main path] (12);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\path (8) edge [main path] node [auto] {$$} (9);
+\draw (9) edge [main path] node [auto, swap] {$$} (10);
+\draw (10) edge [main path] (13);
+\draw (13) edge [main path] (14);
+
+\draw (3) edge [main path] node [auto] {$$} (8);
+\draw (4) edge [main path] node [auto] {$$} (9);
+\draw (5) edge [->>, semithick] node [auto] {$f_0$} (10);
+\draw (11) edge [main path] (13);
+\end{tikzpicture}
+\end{equation*}
+letting $f_0: P_0 \twoheadrightarrow M$ be is any surjection and setting $\theta: P_1 \twoheadrightarrow ker(f_0)$, $\phi: P_2 \twoheadrightarrow ker(\phi)$, etc, as surjections . Then we have $H_n(\mathbf{P}_{\bullet})=0=H_n(\mathbf{M})$ for all $n\geq 1$. At $n=0$ we have $H_0(\mathbf{P}_{\bullet})=\sfrac{P_0}{ker(f_0)}$ and $H_0(\mathbf{M})=M$, but as $f_0$ is a surjection, the first isomorphism theorem gives $M\cong \sfrac{P_0}{ker(f_0)}$ and hence $H_n(\mathbf{P}_{\bullet} \cong H_n(\mathbf{M})$ for all $n$ and so $f: \mathbf{P}_{\bullet} \to \mathbf{M}$ is a quasi-isomorphism.
+\end{proof}
+
+\begin{eg}
+Let $M=\sfrac{\bb{Z}}{n\bb{Z}}$ be considered as a $\bb{Z}$-module. Then it has a projective resolution,
+\begin{equation*}
+\dots \xrightarrow{} 0 \xrightarrow{}\bb{Z} \xrightarrow{n} \bb{Z} \xrightarrow{} \frac{\bb{Z}}{n\bb{Z}} \xrightarrow{} 0.
+\end{equation*}
+Also, we can see that there is a quasi-isomorphism $f: \mathbf{P}_{\bullet} \to \mathbf{M}$, 
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(2) at (2,0)		{$\dots$};
+\node	[main node]		(3) at (4,0)		{$0$};
+\node [main node]		(4) at (6,0)		{$\bb{Z}$};
+\node [main node]		(5) at (8,0)		{$\bb{Z}$};
+\node	[main node]		(11) at (10,0)	{$0$};
+\node [main node] 		(12) at (12,0)	{$\dots$};
+
+\node	[main node]		(7) at (2,-2)		{$\dots$};
+\node	[main node]		(8) at (4,-2)		{$0$};
+\node [main node]		(9) at (6,-2)		{$0$};
+\node [main node]		(10) at (8,-2)	{$\frac{\bb{Z}}{n\bb{Z}}$};
+\node [main node]		(13) at (10,-2)	{$0$};
+\node [main node]		(14) at (12, -2)	{$\dots$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$$} (4);
+\draw (4) edge [main path] node [auto] {$n$} (5);
+\draw (5) edge [main path] (11);
+\draw (11) edge [main path] (12);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\path (8) edge [main path] node [auto] {$$} (9);
+\draw (9) edge [main path] node [auto, swap] {$$} (10);
+\draw (10) edge [main path] (13);
+\draw (13) edge [main path] (14);
+
+\draw (3) edge [main path] node [auto] {$$} (8);
+\draw (4) edge [main path] node [auto] {$$} (9);
+\draw (5) edge [->>, semithick] node [auto] {$\scriptstyle{nat}$} (10);
+\draw (11) edge [main path] (13);
+\end{tikzpicture}
+\end{equation*}
+since the homologies are isomorphic at every $n$.
+\end{eg}
+
+\begin{mydef} \label{syzygiesdef}
+Given a projective resolution $\mathbf{P}$ of $M$,
+\begin{equation*}
+\mathbf{P}:\quad \dots \xrightarrow{} P_n \xrightarrow{d_n} P_{n-1} \xrightarrow{} \dots \xrightarrow{} P_1 \xrightarrow{d_1} P_0 \xrightarrow{\epsilon} M \xrightarrow{} 0,
+\end{equation*}
+the \emph{syzygies} of $M$ are the modules $\Omega^nM=im(d_n:P_n \to P_{n-1}$ and $\Omega^0M=M$.\\
+\end{mydef}
+
+Note that here we used Crawley-Boevey's notation for the syzygies from \cite{CB1} rather than Rotman's in \cite{Rotman}. However, they are clearly the same definition as exactness of the projective resolution gives,
+\begin{equation*}
+K_n=ker(d_n:P_n \to P_{n-1}) = im(d_{n+1}:P_{n+1} \to P_n)=\Omega^{n+1}M,
+\end{equation*}
+and as the following remark demonstrates it is useful to recall this result:
+
+\begin{prop}
+Defintion \ref{syzygiesdef} implies that there are exact sequences,
+\begin{equation*}
+0 \xrightarrow{} \Omega^{n+1}M \xrightarrow{} P_n \xrightarrow{} \Omega^nM \xrightarrow{} 0.
+\end{equation*}
+\end{prop}
+\begin{proof}
+Note that $\Omega^{n+1}M=im(d_{n+1}:P_{n+1} \to P_n)=ker(d_n:P_n \to P_{n-1})$ and $\Omega^nM=im(d_n:P_n \to P_{n-1})$.
+\end{proof}
+
+\begin{mydef}
+If $M$ is an $R$-module, then an \emph{injective resolution} of $M$ is an exact sequence, 
+\begin{equation*}
+\mathbf{I}: \quad 0 \xrightarrow{}M \xrightarrow{\eta}I^0 \xrightarrow{d^0} I^1 \xrightarrow{d^1} I^2 \xrightarrow{} \dots,
+\end{equation*}
+where each $I^i$ is an injective module.
+\end{mydef}
+
 
 
 
