@@ -1250,7 +1250,7 @@ you get an exact sequence,
 Consider $L\to L'$, $M\to M'$ and $N\to N'$ as chain complexes and use Theorem \ref{longexactseqthm}.
 \end{proof}
 
-\begin{rem}
+\begin{rem} \label{longexactseqcochainrem}
 A short exact sequence of cochain complexes $0\xrightarrow{}\mathbf{C}\xrightarrow{}\mathbf{D} \xrightarrow{} \mathbf{E}\xrightarrow{}0$ gives a long exact sequence,
 \begin{equation*}
 \dots \xrightarrow{} H^{n-1}(\mathbf{E})\xrightarrow{}H^n(\mathbf{C})\xrightarrow{}H^n(\mathbf{D})\xrightarrow{}H^n(\mathbf{E})\xrightarrow{} H^{n+1}(\mathbf{C})\xrightarrow{} H^{n+1}(\mathbf{D})\xrightarrow{} \dots
@@ -1581,6 +1581,22 @@ gq=gts=prs=pid_P=p.
 Hence $P$ is projective.
 \end{proof}
 
+Now we have established some properties of projective modules we can prove a corollary of the Long Exact Sequence Theorem in \cite{CB1}.
+
+\begin{cor} (Corollary to Theorem \ref{longexactseqthm})\\
+If $\mathbf{P}$ is a chain complex of projective $R$-modules and $0\xrightarrow{}L\xrightarrow{}M\xrightarrow{}N\xrightarrow{}0$ is a short exact sequence of $R$-modules then you get a long exact sequence in cohomology.
+\begin{equation*}
+\dots \xrightarrow{} H^{n-1}(\mathbf{P}, N) \xrightarrow{} H^n(\mathbf{P}, L) \xrightarrow{} H^n(\mathbf{P}, M) \xrightarrow{} H^n(\mathbf{P}, N) \xrightarrow{} H^{n+1}(\mathbf{P}, L) \xrightarrow{} \dots
+\end{equation*}
+\end{cor}
+\begin{proof}
+Since $P_n$ is projective for every $n$, Proposition \ref{projectiveprop}, tells us we get an exact sequence,
+\begin{equation*}
+0\xrightarrow{} Hom(P_n, L) \xrightarrow{} Hom(P_n, M) \xrightarrow{} Hom(P_n, N) \xrightarrow{} 0.
+\end{equation*}
+Then use Remark \ref{longexactseqcochainrem}.
+\end{proof}
+
 As with projective modules we will use the first property given in \cite{CB1} to define injective modules, and then provide the properties as in \cite{CB1} with some details from \cite{Rotman}.
 
 \begin{mydef}
@@ -1754,12 +1770,12 @@ K_n=ker(d_n:P_n \to P_{n-1}) = im(d_{n+1}:P_{n+1} \to P_n)=\Omega^{n+1}M,
 \end{equation*}
 and as the following remark demonstrates it is useful to recall this result:
 
-\begin{prop}
+\begin{lem} \label{syzygylem}
 Defintion \ref{syzygiesdef} implies that there are exact sequences,
 \begin{equation*}
 0 \xrightarrow{} \Omega^{n+1}M \xrightarrow{} P_n \xrightarrow{} \Omega^nM \xrightarrow{} 0.
 \end{equation*}
-\end{prop}
+\end{lem}
 \begin{proof}
 Note that $\Omega^{n+1}M=im(d_{n+1}:P_{n+1} \to P_n)=ker(d_n:P_n \to P_{n-1})$ and $\Omega^nM=im(d_n:P_n \to P_{n-1})$.
 \end{proof}
@@ -1772,11 +1788,397 @@ If $M$ is an $R$-module, then an \emph{injective resolution} of $M$ is an exact 
 where each $I^i$ is an injective module.
 \end{mydef}
 
+Since the defintion for a cosyzygy is not given in \cite{CB1} we turn to \cite{Rotman} for the following definition.
+
+\begin{mydef}
+Given an injective resolution,
+\begin{equation*}
+\mathbf{I}: \quad  0 \xrightarrow{} M \xrightarrow{\eta} I^0 \xrightarrow{d^0} I^1 \xrightarrow{} \dots \xrightarrow{} I^n \xrightarrow{d^n} I^{n+1} \xrightarrow{} \dots
+\end{equation*}
+the \emph{cosyzygies} of $M$ are the modules $\mho^n=coker(d^{n-1})$, for $n\geq 1$ and with $\mho^0M=coker(\eta)$.
+\end{mydef}
+
+\begin{thm} \label{comparisonthm} (Comparison Theorem)\\
+Any map of modules $f:M \to M'$ can be lifted to a map of projective resolutions.
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(2) at (2,0)		{$\dots$};
+\node	[main node]		(3) at (4,0)		{$P_2$};
+\node [main node]		(4) at (6,0)		{$P_1$};
+\node [main node]		(5) at (8,0)		{$P_0$};
+\node	[main node]		(11) at (10,0)	{$M$};
+\node [main node] 		(12) at (12,0)	{$0$};
+
+\node	[main node]		(7) at (2,-2)		{$\dots$};
+\node	[main node]		(8) at (4,-2)		{$P'_2$};
+\node [main node]		(9) at (6,-2)		{$P'_1$};
+\node [main node]		(10) at (8,-2)	{$P'_0$};
+\node [main node]		(13) at (10,-2)	{$M'$};
+\node [main node]		(14) at (12, -2)	{$0$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$d_2$} (4);
+\draw (4) edge [main path] node [auto] {$d_1$} (5);
+\draw (5) edge [main path] node [auto] {$\epsilon$} (11);
+\draw (11) edge [main path] (12);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\path (8) edge [main path] node [auto, swap] {$d'_2$} (9);
+\draw (9) edge [main path] node [auto, swap] {$d'_1$} (10);
+\draw (10) edge [main path] node [auto, swap] {$\epsilon'$} (13);
+\draw (13) edge [main path] (14);
+
+\draw (3) edge [dashed, ->, semithick] node [auto] {$\hat{f_2}$} (8);
+\draw (4) edge [dashed, ->, semithick] node [auto] {$\hat{f_1}$} (9);
+\draw (5) edge [dashed, ->, semithick] node [auto] {$\hat{f_0}$} (10);
+\draw (11) edge [main path] node [auto] {$f$} (13);
+\end{tikzpicture}
+\end{equation*}
+Moreover, any two such lifts are homotopic as chain maps $\mathbf{P}\to \mathbf{P'}$.
+\end{thm}
+\begin{proof}
+Firstly, we show the existence of the lift. Consider the diagram:
+\begin{equation} \label{comparisondiag}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$\Omega^1M$};
+\node [main node]		(4) at (6,0)		{$P_0$};
+\node [main node]		(5) at (8,0)		{$M$};
+\node	[main node]		(11) at (10,0)	{$0$};
+
+\node	[main node]		(7) at (2,-2)		{$0$};
+\node	[main node]		(8) at (4,-2)		{$\Omega^1M'$};
+\node [main node]		(9) at (6,-2)		{$P'_0$};
+\node [main node]		(10) at (8,-2)	{$M'$};
+\node [main node]		(13) at (10,-2)	{$0$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$$} (4);
+\draw (4) edge [main path] node [auto] {$$} (5);
+\draw (5) edge [main path] (11);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\path (8) edge [main path] node [auto] {$$} (9);
+\draw (9) edge [main path] node [auto, swap] {$$} (10);
+\draw (10) edge [main path] (13);
+
+\draw (3) edge [dashed, ->, semithick] node [auto] {$\Omega^1f$} (8);
+\draw (4) edge [dashed, ->, semithick] node [auto] {$\hat{f_0}$} (9);
+\draw (5) edge [main path] node [auto] {$f$} (10);
+\end{tikzpicture}
+\end{equation}
+Now as these are exact sequences by Lemma \ref{syzygylem}, the map $\epsilon': P_0' \to M'$ is surjective. Then since $P_0$ is projective we can lift the composite map $f\epsilon: P_0 \to M'$,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node [main node]		(1) at (1.5,1.5)		{$P_0$};
+\node [main node]		(2) at (0,0)		{$P'_0$};
+\node [main node]		(3) at (1.5,0)		{$M'$};
+
+\draw (1) edge [main path] node [auto] {$f\epsilon$} (3);
+\draw (1) edge [dashed, ->, semithick] node [auto, swap] {$\hat{f_0}$} (2);
+\draw (2) edge [->>, semithick] node [auto, swap] {$\epsilon'$} (3);
+\end{tikzpicture}
+\end{equation*}
+and so have a map $\hat{f_0}$ making the right hand square of \ref{comparisondiag} commute. Then by diagram chasing there is a map $\Omega^1f$ making the left hand square of \ref{comparisondiag} commute.\\
+The same argument gets $\hat{f_1}$ and $\Omega^2f$.
+\begin{equation*} 
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$\Omega^2M$};
+\node [main node]		(4) at (6,0)		{$P_1$};
+\node [main node]		(5) at (8,0)		{$\Omega^1M$};
+\node	[main node]		(11) at (10,0)	{$0$};
+
+\node	[main node]		(7) at (2,-2)		{$0$};
+\node	[main node]		(8) at (4,-2)		{$\Omega^2M'$};
+\node [main node]		(9) at (6,-2)		{$P'_1$};
+\node [main node]		(10) at (8,-2)	{$\Omega^1M'$};
+\node [main node]		(13) at (10,-2)	{$0$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$$} (4);
+\draw (4) edge [main path] node [auto] {$$} (5);
+\draw (5) edge [main path] (11);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\path (8) edge [main path] node [auto] {$$} (9);
+\draw (9) edge [main path] node [auto, swap] {$$} (10);
+\draw (10) edge [main path] (13);
+
+\draw (3) edge [main path] node [auto] {$\Omega^2f$} (8);
+\draw (4) edge [main path] node [auto] {$\hat{f_1}$} (9);
+\draw (5) edge [main path] node [auto] {$\Omega^1f$} (10);
+\end{tikzpicture}
+\end{equation*}
+etc.\\
+Finally, to show that any two lifts are homotopic it is equivalent to show that any lift of the zero map $M\to M'$ is homotopic to zero. Now,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(2) at (2,0)		{$\dots$};
+\node	[main node]		(3) at (4,0)		{$P_2$};
+\node [main node]		(4) at (6,0)		{$P_1$};
+\node [main node]		(5) at (8,0)		{$P_0$};
+\node	[main node]		(11) at (10,0)	{$M$};
+\node [main node] 		(12) at (12,0)	{$0$};
+
+\node	[main node]		(7) at (2,-2)		{$\dots$};
+\node	[main node]		(8) at (4,-2)		{$P'_2$};
+\node [main node]		(9) at (6,-2)		{$P'_1$};
+\node [main node]		(10) at (8,-2)	{$P'_0$};
+\node [main node]		(13) at (10,-2)	{$M'$};
+\node [main node]		(14) at (12, -2)	{$0$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$d_2$} (4);
+\draw (4) edge [main path] node [auto] {$d_1$} (5);
+\draw (5) edge [main path] node [auto] {$\epsilon$} (11);
+\draw (11) edge [main path] (12);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\path (8) edge [main path] node [auto, swap] {$d'_2$} (9);
+\draw (9) edge [main path] node [auto, swap] {$d'_1$} (10);
+\draw (10) edge [main path] node [auto, swap] {$\epsilon'$} (13);
+\draw (13) edge [main path] (14);
+
+\draw (3) edge [main path] node [auto] {$\hat{f_2}$} (8);
+\draw (4) edge [main path] node [auto] {$\hat{f_1}$} (9);
+\draw (5) edge [main path] node [auto] {$\hat{f_0}$} (10);
+\draw (11) edge [main path] node [auto] {$0$} (13);
+\end{tikzpicture}
+\end{equation*}
+Then $\epsilon\hat{f_0}=0$ by commutativity, and so $\hat{f_0}$ has an image contained in $\Omega^1M'$. Now $d'_1: P'_1 \twoheadrightarrow \Omega^1M'$ is surjective and $P_0$ is projective so $\hat{f_0}$ lifts to a map $h_0:P_0 \to P'_1$.
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node [main node]		(1) at (1.5,1.5)		{$P_0$};
+\node [main node]		(2) at (0,0)			{$P_1$};
+\node [main node]		(3) at (1.5,0)		{$\Omega^1M'$};
+
+\draw (1) edge [main path] node [auto] {$\hat{f_0}$} (3);
+\draw (1) edge [dashed, ->, semithick] node [auto, swap] {$h_0$} (2);
+\draw (2) edge [->>, semithick] node [auto, swap] {$$} (3);
+\end{tikzpicture}
+\end{equation*}
+Thus $\hat{f_0}=d'_1h_0$.\\
+Now suppose we have constructed $h_0, h_1, \dots, h_{n-1}$ with,
+\begin{equation*}
+\hat{f_i}=d_{i+1}h_i+h_{i-1}d_i, \text{ for } 0<i<n.
+\end{equation*}
+Then, 
+\begin{align*}
+d'_n(\hat{f_n}-h_{n-1}d_n)&=d'_n\hat{f_n} -d'_nh_{n-1}d_n, \\
+&=\hat{f_{n-1}}d_n - d'_nh_{n-1}d_n, \text{ }(d'_n\hat{f_n}=\hat{f_{n-1}}d_n) \text{ by commutativity,}\\
+&=(\hat{f_{n-1}}-d'_nh_{n-1})d_n.
+\end{align*}
+If $n=1$ then $(\hat{f_0}-d'_1h_0)d_1=0$ and if $n>1$ $(f_{n-1}-d'_nh_{n-1})d_n=(f_{n-1}-h_{n-2}d_{n-1})d_n$, so also zero. Thus $f_n-h_{n-1}d_n$ has image contained in $\Omega^{n+1}M'$. Thus it lifts to a map $h_n: P_n \to P'_{n+1}$.
+\end{proof}
+
+\begin{cor} \label{comparisoncor}
+If $\mathbf{P}$ and $\mathbf{P'}$ are projective resolutions of $M$ then there is a homotopy equivalence $f: \mathbf{P} \to \mathbf{P'}$ such that the triangle, 
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node [main node]		(1) at (0,1.5)		{$\mathbf{P}$};
+\node [main node]		(2) at (0,0)			{$\mathbf{P'}$};
+\node [main node]		(3) at (1.5,0)		{$M$};
+\node [main node]		(4) at (2.3, 0)		{$\scriptstyle{(\text{in deg } 0)}$};
+
+\draw (1) edge [main path] node [auto] {$f$} (3);
+\draw (1) edge [main path] node [auto, swap] {$$} (2);
+\draw (2) edge [main path] node [auto, swap] {$$} (3);
+\end{tikzpicture}
+\end{equation*}
+commutes. Moreover, $f$ is unique up to homotopy.
+\end{cor}
+\begin{proof}
+The identity map $id_M: M \to M$ lifts to chain maps $f: \mathbf{P} \to \mathbf{P'}$ and $g:\mathbf{P'} \to \mathbf{P}$. Now $gf: \mathbf{P} \to \mathbf{P}$ is a lift of the identity map $id_M$, so it is homotopic to $id_{\mathbf{P}}$. Similarly, $fg: \mathbf{P'} \to \mathbf{P'}$ is homotopic to $id_{\mathbf{P'}}$.\\
+The uniqueness of $f$ up to homotopy is part of the Comparison Theorem (Thm \ref{comparisonthm}).
+\end{proof}
 
 
 
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%		EXT		%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Ext}
+
+\begin{mydef}
+If $M$ and $N$ are $R$-modules then $Ext^n(M, N)$, or more precisely $Ext^n_R(M, N)$, is defined as follows:
+\begin{itemize}
+\item Choose a projective resolution $\mathbf{P}$ of $M$.
+\item Set $Ext^n(M, N)=H^n(\mathbf{P}, N)$.
+\end{itemize}
+Thus if, 
+\begin{equation*}
+\dots \xrightarrow{}P_2 \xrightarrow{} P_1 \xrightarrow{} P_0 \xrightarrow{}M\xrightarrow{}0,
+\end{equation*}
+ is the projective resolution, then $Ext^n(M, N)$ is the cohomology in degree $n$ of the cochain complex,
+\begin{equation*}
+0\xrightarrow{} Hom(P_0, N) \xrightarrow{} Hom(P_1, N) \xrightarrow{} Hom(P_2, N)\xrightarrow{} \dots
+\end{equation*}
+\end{mydef}
+ 
+\begin{rem}
+Note that this definition does not depend on the choice of projective resolution. If $\mathbf{P'}$ is another projective resolution there there is a homotopy equivalence $f: \mathbf{P} \to \mathbf{P'}$ by Corollary \ref{comparisoncor}. This gives a homotopy equivalence of cochain complexes $f^{\ast}: Hom(\mathbf{P'}, N) \to Hom(P, N)$. Proposition \ref{homequivisomprop} says this is a quasi-isomorphism and so induces isomorphisms on the cohomology $H^n(\mathbf{P'}, N) \to H^n(\mathbf{P}, N)$.  Moreover, the homotopy equivalence $f$ is unique up to homotopy, so the cochain map is unique up to homotopy. Thus the map $H^n(\mathbf{P'}, N) \to H^n(\mathbf{P}, N)$ is uniquely determined.
+\end{rem}
+
+\begin{prop}
+\begin{description}
+\item [(i)] If $\theta: N \to N'$ is a map there is a natural map $ Ext^n(M, N) \to Ext^n(M, N')$.
+\item[(ii)] If $\phi: M'' \to M$ is a map there is a natural map $ Ext^n(M, N) \to Ext^n(M'', N)$.
+\end{description}
+\end{prop}
+\begin{proof}
+\begin{description}
+\item [(i)] As $\mathbf{P}$ is a projective resolution of $M$, $\theta: N \to N'$ induces a chain map $Hom(\mathbf{P}, N) \to Hom(\mathbf{P'}, N)$.
+\item [(ii)] $\phi: M'' \to M$ lifts to a chain map $\mathbf{P''} \to \mathbf{P}$ of projective resolutions unique up to homotopy (Thm \ref{comparisonthm}) and so induces a cochain map $Hom(\mathbf{P}, N) \to Hom(\mathbf{P''}, N)$ unique up to homotopy, giving unique maps on $Ext^n$.
+\end{description}
+\end{proof}
+
+\begin{prop}
+\begin{description}
+\item [(i)] $Ext^n(M, N\oplus N') \cong Ext^n(M, N) \oplus Ext^n(M, N')$.
+\item [(ii)] $Ext^n(M\oplus M', N) \cong Ext^n(M, N) \oplus Ext^n(M', N)$.
+\end{description}
+\end{prop}
+\begin{proof}
+\begin{description}
+\item [(i)] If $\mathbf{P}$ is a projective resolution of $M$ then $Hom(\mathbf{P}, N\oplus N')\cong Hom(\mathbf{P}, N) \oplus Hom(\mathbf{P}, N')$.
+\item [(ii)] If $\mathbf{P'}$ is a projective resolution of $M'$ then $\mathbf{P} \oplus \mathbf{P'}$ is a projective resolution of $M\oplus M'$ and $Hom(\mathbf{P} \oplus \mathbf{P'}, N) \cong Hom(\mathbf{P}, N) \oplus Hom(\mathbf{P'}, N)$.
+\end{description}
+\end{proof}
+
+\begin{lem}
+\begin{equation*}
+Ext^n(M, N) \cong 
+\begin{cases}
+0& n<0,\\
+Hom(M,N) & n=0,\\
+coker(Hom(P_{n-1}, N) \xrightarrow{\iota^{\ast}_{n-1}} Hom(\Omega^nM, N) & n>0,\\
+\end{cases}
+\end{equation*}
+where $0\xrightarrow{} \Omega^nM \xrightarrow{\iota_n} P_{n-1} \xrightarrow{}\Omega^{n-1}M\xrightarrow{}0$.
+\end{lem}
+\begin{proof}
+$n<0$: The claim is clear as $Hom(\mathbf{P}, N)$ is a non-negative cochain complex.\\
+$n\geq 0$: By definition,
+\begin{equation*}
+Ext^n(M,N)=H^n(\mathbf{P},N)=\frac{ker(d^{\ast}_{n+1}:Hom(P_{n}, N) \to Hom(P_{n+1}, N))}{im(d^{\ast}_n:Hom(P_{n-1}, N) \to Hom(P_{n}, N))}.
+\end{equation*}
+Thus, 
+\begin{align*}
+Ext^n(M,N) &=\frac{ker(d^{\ast}_{n+1}:Hom(P_{n}, N) \to Hom(P_{n+1}, N))}{im(d^{\ast}_n:Hom(P_{n-1}, N) \to Hom(P_{n}, N))}, \\
+& \cong \frac{codomain(\gamma: Hom(P_{n-1}, N) \to Ker(d^{\ast}_{n+1}))}{im(\gamma:Hom(P_{n-1}, N) \to Ker(d^{\ast}_{n+1}))},\\
+& \cong coker(\gamma: Hom(Hom(P_{n-1}, N) \to Ker(d^{\ast}_{n+1}))).
+\end{align*}
+Now there is an exact sequence, 
+\begin{equation*}
+P_{n+1} \xrightarrow{d_{n+1}} P_n \xrightarrow{d_n} \Omega^nM \xrightarrow{}0,
+\end{equation*}
+which then induces the exact sequence,
+\begin{equation*}
+0 \xrightarrow{} Hom(\Omega^nM, N) \twoheadrightarrow Hom(P_n, N) \xrightarrow{d^{\ast}_{n+1} } Hom(P_{n+1}, N),
+\end{equation*}
+and so, $ker(d^{\ast}_{n+1}) \cong im(Hom(\Omega^nM, N))\twoheadrightarrow Hom(P_n, N)) \cong Hom(\Omega^nM, N)$.\\ 
+Note that if we let $P_{-1}=0$ and $\iota_0:M \to 0$ then at $n=0$ we have,
+\begin{align*}
+coker(Hom(P_{-1}, N) \xrightarrow{\iota^{\ast}_0} Hom(\Omega^0M, N))&=coker(Hom(0, N) \xrightarrow{\iota^{\ast}_0} Hom(M, N), \\
+&\cong Hom(M,N).
+\end{align*}
+\end{proof}
+
+\begin{prop}
+If $X$ is a module then for any short exact sequence $0\xrightarrow{}L\xrightarrow{}M\xrightarrow{}N\xrightarrow{}0$ you get a long exact sequence, 
+\begin{align*}
+0 \xrightarrow{}& Hom(X,L) \xrightarrow{} Hom(X, M) \xrightarrow{} Hom(X, N) \xrightarrow{} \\
+\xrightarrow{} & Ext^1(X,L) \xrightarrow{} Ext^1(X,M) \xrightarrow{} Ext^1(X,N) \xrightarrow{}\\
+\xrightarrow{} & Ext^2(X,L) \xrightarrow{} \dots
+\end{align*}
+It is called the \emph{long exact sequence for $Hom(X,-)$}.
+\end{prop}
+\begin{proof}
+This is the long exact sequence in cohomology for the chain complex $\mathbf{P}$, a projective resolution of $X$. (Corollary \ref{longexactseqcor}).
+\end{proof}
+
+\begin{lem} $Ext^n(M,N)=0$ for $n>0$ if either:
+\begin{description}
+\item [(i)] $M$ is projective, or, 
+\item [(ii)] $N$ is injective.
+\end{description}
+\end{lem}
+\begin{proof}
+\begin{description}
+\item [(i)] If $M$ is projective you can use the projective resolution,
+\begin{equation*}
+\dots \xrightarrow{} 0 \xrightarrow{} 0 \xrightarrow{} M \xrightarrow{} M \xrightarrow{} 0.
+\end{equation*}
+\item [(ii)] If $N$ is injective then the exact sequence,
+\begin{equation*}
+0\xrightarrow{} \Omega^nM \xrightarrow{\iota_n} P_{n-1} \xrightarrow{} \Omega^{n-1}M \xrightarrow{} 0,
+\end{equation*}
+gives an exact sequence, 
+\begin{equation*}
+0 \xrightarrow{} Hom(\Omega^{n-1}M, N) \xrightarrow{} Hom(P_{n-1}, N) \xrightarrow{} Hom(\Omega^nM, N) \xrightarrow{}0,
+\end{equation*}
+so $coker(\iota^{\ast}_n)=0$.
+\end{description}
+\end{proof}
+
+\begin{prop}
+If $0\xrightarrow{}N \xrightarrow{} I^0 \xrightarrow{} I^1 \xrightarrow{} \dots $ is an injective resolution of $N$ then you can complute $Ext^n(M,N)$ as the cohomology of the cochain complex $Hom(M,\mathbf{I})$,
+\begin{equation*}
+0 \xrightarrow{} Hom(M,I^0) \xrightarrow{} Hom(M, I^1) \xrightarrow{} Hom(M,I^2) \xrightarrow{} \dots
+\end{equation*}
+\end{prop}
+\begin{proof}
+Firstly, we break the injective resolution into short exact sequences,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$\mho^0N$};
+\node [main node]		(4) at (6,0)		{$I^0$};
+\node [main node]		(5) at (8,0)		{$\mho^1N$};
+\node	[main node]		(11) at (10,0)	{$0$};
+\node [main node] 		(12) at (4, 0.7) 	{$N$};
+
+\node	[main node]		(7) at (2,-0.5)	{$0$};
+\node	[main node]		(8) at (4,-0.5)	{$\mho^1N$};
+\node [main node]		(9) at (6,-0.5)	{$I^1$};
+\node [main node]		(10) at (8,-0.5)	{$\mho^2N$};
+\node [main node]		(13) at (10,-0.5)	{$0$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$$} (4);
+\draw (4) edge [main path] node [auto] {$$} (5);
+\draw (5) edge [main path] node [auto] {$$} (11);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\path (8) edge [main path] node [auto, swap] {$$} (9);
+\draw (9) edge [main path] node [auto, swap] {$$} (10);
+\draw (10) edge [main path] node [auto, swap] {$$} (13);
+
+\draw (12) edge [-, double, double distance=1.5pt, semithick] (3);
+\end{tikzpicture}
+\end{equation*}
+and so on. You then get a long exact sequence,
+\begin{align*}
+0 &\xrightarrow{} Hom(M, \mho^iN) \xrightarrow{} Hom(M,I^i) \xrightarrow{} Hom(M, \mho^{i+1}N)\xrightarrow{}\\
+&\xrightarrow{} Ext^1(M,\mho^iN) \twoheadrightarrow 0 \hookrightarrow Ext^1(M, \mho^{i+1}N)\xrightarrow{}\\
+&\xrightarrow{} Ext^2(M, \mho^iN) \twoheadrightarrow 0 \hookrightarrow \dots
+\end{align*}
+Thus,
+\begin{align*}
+Ext^n(M,N) &\cong Ext^{n-1}(M, \mho^iN) \cong \dots \cong Ext^1(M, \mho^{n-1}N), \text{ by dimension shifting,}\\
+&\cong coker(Hom(M,I^{n-1}) \xrightarrow{} Hom(M,\mho^nN)).
+\end{align*}
+Now, $0\xrightarrow{} \mho^nN \xrightarrow{}I^n \xrightarrow{} I^{n+1}$ is exact, so,
+\begin{equation*}
+0 \xrightarrow{} Hom(M, \mho^nN) \xrightarrow{} Hom(M,I^n) \xrightarrow{} Hom(M,I^{n+1}),
+\end{equation*}
+is exact. The claim follows. %%%%% What claim and what does it do???
+\end{proof}
 
 
 

@@ -4,10 +4,11 @@
 \contentsline {section}{\numberline {2.2}Exact Sequences}{10}
 \contentsline {section}{\numberline {2.3}Homotopy and Quasi-Isomorphism}{21}
 \contentsline {section}{\numberline {2.4}Projective and Injective Resolutions}{24}
-\contentsline {chapter}{\numberline {3}Representation of Quivers}{29}
-\contentsline {section}{\numberline {3.1}Quivers and Path Algebras}{29}
-\contentsline {section}{\numberline {3.2}Representations of Quivers}{38}
-\contentsline {section}{\numberline {3.3}Standard Resolution}{39}
-\contentsline {section}{\numberline {3.4}Bricks}{39}
-\contentsline {section}{\numberline {3.5}Dynkin and Euclidean diagrams}{39}
-\contentsline {chapter}{\numberline {4}Auslander-Reiten Quivers}{40}
+\contentsline {section}{\numberline {2.5}Ext}{30}
+\contentsline {chapter}{\numberline {3}Representation of Quivers}{34}
+\contentsline {section}{\numberline {3.1}Quivers and Path Algebras}{34}
+\contentsline {section}{\numberline {3.2}Representations of Quivers}{43}
+\contentsline {section}{\numberline {3.3}Standard Resolution}{44}
+\contentsline {section}{\numberline {3.4}Bricks}{44}
+\contentsline {section}{\numberline {3.5}Dynkin and Euclidean diagrams}{44}
+\contentsline {chapter}{\numberline {4}Auslander-Reiten Quivers}{45}
