@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.18)  8 MAY 2015 21:46
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.18)  11 MAY 2015 20:39
 entering extended mode
 **quivers.tex
 (C:\Users\Chanelle\Documents\GitHub\quivers\quivers.tex
@@ -720,6 +720,13 @@ LaTeX Font Info:    Redeclaring math symbol \braceru on input line 909.
 LaTeX Font Info:    Redeclaring math accent \widehat on input line 944.
 LaTeX Font Info:    Redeclaring math accent \widetilde on input line 946.
 ))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\was\upgreek.sty"
+Package: upgreek 2003/02/12 v2.0 (WaS)
+Package upgreek Info: Using Euler Roman for upright Greek on input line 31.
+\symugrf@m=\mathgroup9
+LaTeX Font Info:    Overwriting symbol font `ugrf@m' in version `bold'
+(Font)                  U/eur/m/n --> U/eur/b/n on input line 38.
+)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pgf\frontendlayer\tikz.sty"
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgf.sty"
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pgf\utilities\pgfrcs.sty"
@@ -1067,25 +1074,25 @@ LaTeX Warning: Unused global option(s):
     [11.5pt].
 
 (C:\Users\Chanelle\Documents\GitHub\quivers\quivers.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for U/mathx/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 23.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 23.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for U/mathx/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 27.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 27.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    ... okay on input line 27.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1101,12 +1108,12 @@ LaTeX Font Info:    ... okay on input line 23.
 \makeMPintoPDFobject=\count164
 \everyMPtoPDFconversion=\toks40
 ) ABD: EveryShipout initializing macros
-LaTeX Font Info:    Try loading font information for U+msa on input line 27.
+LaTeX Font Info:    Try loading font information for U+msa on input line 31.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 27.
+LaTeX Font Info:    Try loading font information for U+msb on input line 31.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1126,60 +1133,60 @@ Chapter 2.
 [4
 
 ] [5] [6]
-Overfull \hbox (1.34724pt too wide) in paragraph at lines 258--259
+Overfull \hbox (1.34724pt too wide) in paragraph at lines 262--263
 []\OT1/cmr/bx/n/10 Example 2.1.16. []\OT1/cmr/m/n/10 All the chain com-plexes i
 n the pre-vi-ous ex-am-ples are bounded
  []
 
 [7] [8]
-Overfull \hbox (29.45302pt too wide) detected at line 431
+Overfull \hbox (29.45302pt too wide) detected at line 435
 []
  []
 
 [9] [10]
-LaTeX Font Info:    Calculating math sizes for size <6.99826> on input line 540
+LaTeX Font Info:    Calculating math sizes for size <6.99826> on input line 544
 .
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.49913> not available
-(Font)              size <5> substituted on input line 540.
+(Font)              size <5> substituted on input line 544.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.49913> not available
-(Font)              size <5> substituted on input line 540.
+(Font)              size <5> substituted on input line 544.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.49913> not available
-(Font)              size <5> substituted on input line 540.
+(Font)              size <5> substituted on input line 544.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <3.49913> not available
-(Font)              size <5> substituted on input line 540.
+(Font)              size <5> substituted on input line 544.
 
 
 LaTeX Font Warning: Font shape `U/matha/m/n' in size <3.49913> not available
-(Font)              size <5> substituted on input line 540.
+(Font)              size <5> substituted on input line 544.
 
 
 LaTeX Font Warning: Font shape `U/mathb/m/n' in size <3.49913> not available
-(Font)              size <5> substituted on input line 540.
+(Font)              size <5> substituted on input line 544.
 
 
 LaTeX Font Warning: Font shape `U/mathx/m/n' in size <3.49913> not available
-(Font)              size <5> substituted on input line 540.
+(Font)              size <5> substituted on input line 544.
 
-[11] [12] [13] [14] [15] [16] [17]
-Underfull \hbox (badness 10000) in paragraph at lines 1126--1128
+[11] [12] [13] [14] [15] [16] [17] [18]
+Underfull \hbox (badness 10000) in paragraph at lines 1207--1209
 
  []
 
-[18]
-Underfull \hbox (badness 10000) in paragraph at lines 1141--1143
+
+Underfull \hbox (badness 10000) in paragraph at lines 1222--1224
 
  []
 
 [19] [20]
-Overfull \hbox (0.98857pt too wide) detected at line 1257
+Overfull \hbox (0.98857pt too wide) detected at line 1338
 [] [] \OML/cmm/m/it/10 H[]\U/matha/m/n/10 p\OT1/cmr/bx/n/10 E\U/matha/m/n/10 q 
 [] \OML/cmm/m/it/10 H[]\U/matha/m/n/10 p\OT1/cmr/bx/n/10 C\U/matha/m/n/10 q [] 
 \OML/cmm/m/it/10 H[]\U/matha/m/n/10 p\OT1/cmr/bx/n/10 D\U/matha/m/n/10 q [] \OM
@@ -1189,7 +1196,7 @@ m/it/10 H[]\U/matha/m/n/10 p\OT1/cmr/bx/n/10 D\U/matha/m/n/10 q [] []
  []
 
 [21] [22] [23] [24] [25]
-Overfull \hbox (7.78891pt too wide) detected at line 1590
+Overfull \hbox (7.78891pt too wide) detected at line 1671
 [] [] \OML/cmm/m/it/10 H[]\U/matha/m/n/10 p\OT1/cmr/bx/n/10 P\OML/cmm/m/it/10 ;
  N\U/matha/m/n/10 q [] \OML/cmm/m/it/10 H[]\U/matha/m/n/10 p\OT1/cmr/bx/n/10 P\
 OML/cmm/m/it/10 ; L\U/matha/m/n/10 q [] \OML/cmm/m/it/10 H[]\U/matha/m/n/10 p\O
@@ -1199,22 +1206,13 @@ cmm/m/it/10 H[]\U/matha/m/n/10 p\OT1/cmr/bx/n/10 P\OML/cmm/m/it/10 ; L\U/matha/
 m/n/10 q [] []
  []
 
-
-LaTeX Warning: Reference `longexactseqcochainrem' on page 26 undefined on input
- line 1597.
-
-[26]
-Underfull \hbox (badness 10000) in paragraph at lines 1763--1765
+[26] [27]
+Underfull \hbox (badness 10000) in paragraph at lines 1844--1846
 
  []
 
-[27] [28] [29]
-
-LaTeX Warning: Reference `comparisoncor' on page 30 undefined on input line 202
-4.
-
-
-Overfull \hbox (9.68408pt too wide) in paragraph at lines 2030--2031
+[28] [29] [30]
+Overfull \hbox (9.68408pt too wide) in paragraph at lines 2116--2117
 []\OT1/cmr/m/it/10 If $\OML/cmm/m/it/10  \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 M[
 ] \U/matha/m/n/10 Ñ \OML/cmm/m/it/10 M$ \OT1/cmr/m/it/10 is a map there is a na
 t-u-ral map $\OML/cmm/m/it/10 Ext[]\U/matha/m/n/10 p\OML/cmm/m/it/10 M; N\U/mat
@@ -1222,8 +1220,8 @@ ha/m/n/10 q Ñ \OML/cmm/m/it/10 Ext[]\U/matha/m/n/10 p\OML/cmm/m/it/10 M[]; N\U/
 matha/m/n/10 q$\OT1/cmr/m/it/10 . 
  []
 
-[30]
-Overfull \hbox (18.59138pt too wide) in paragraph at lines 2048--2049
+[31]
+Overfull \hbox (18.59138pt too wide) in paragraph at lines 2134--2135
 []\OT1/cmr/m/n/10 If $\OT1/cmr/bx/n/10 P$ \OT1/cmr/m/n/10 is a pro-jec-tive res
 -o-lu-tion of $\OML/cmm/m/it/10 M$ \OT1/cmr/m/n/10 then $\OML/cmm/m/it/10 Hom\U
 /matha/m/n/10 p\OT1/cmr/bx/n/10 P\OML/cmm/m/it/10 ; N \U/matha/m/n/10 ` \OML/cm
@@ -1232,24 +1230,67 @@ bx/n/10 P\OML/cmm/m/it/10 ; N\U/matha/m/n/10 q `$
  []
 
 
-Overfull \hbox (2.16666pt too wide) in paragraph at lines 2089--2089
+Overfull \hbox (2.16666pt too wide) in paragraph at lines 2175--2175
 [] 
  []
 
-[31]
+[32]
 
-LaTeX Warning: Reference `longexactseqcor' on page 32 undefined on input line 2
-102.
+LaTeX Warning: Reference `longexactseqcor' on page 33 undefined on input line 2
+188.
 
 
-Overfull \hbox (16.37149pt too wide) in paragraph at lines 2175--2175
+Overfull \hbox (16.37149pt too wide) in paragraph at lines 2262--2262
 [] 
  []
 
-[32] [33]
+[33]
+
+LaTeX Warning: Reference `longexactHom(X,-)prop' on page 34 undefined on input 
+line 2288.
+
+[34]
+
+LaTeX Warning: Reference `longexactHom(X,-)prop' on page 35 undefined on input 
+line 2346.
+
+[35]
+
+LaTeX Warning: Reference `alphabetalem' on page 36 undefined on input line 2526
+.
+
+[36]
+Overfull \hbox (12.15437pt too wide) detected at line 2627
+[]
+ []
+
+
+LaTeX Warning: Reference `splitequivlem' on page 37 undefined on input line 267
+3.
+
+
+LaTeX Warning: Reference `alphabetalem' on page 37 undefined on input line 2673
+.
+
+[37]
+Overfull \hbox (28.45473pt too wide) detected at line 2744
+[] [] \OML/cmm/m/it/10 Ext[]\U/matha/m/n/10 p\OML/cmm/m/it/10 P[]; N\U/matha/m/
+n/10 q [] \OML/cmm/m/it/10 Ext[]\U/matha/m/n/10 p\OT1/cmr/m/n/10 
+[]\OML/cmm/m/it/10 M; N\U/matha/m/n/10 q [] \OML/cmm/m/it/10 Ext[]\U/matha/m/n/
+10 p\OT1/cmr/m/n/10 
+[]\OML/cmm/m/it/10 M; N\U/matha/m/n/10 q [] \OML/cmm/m/it/10 Ext[]\U/matha/m/n/
+10 p\OML/cmm/m/it/10 P[]; N\U/matha/m/n/10 q [] []
+ []
+
+
+Overfull \hbox (15.62424pt too wide) in paragraph at lines 2753--2753
+[] 
+ []
+
+[38] [39]
 Chapter 3.
 
-Overfull \hbox (9.21675pt too wide) detected at line 2242
+Overfull \hbox (9.21675pt too wide) detected at line 2824
 \OML/cmm/m/it/10 p[] \U/matha/m/n/10  \OML/cmm/m/it/10 e[];  p[] \U/matha/m/n/
 10  \OML/cmm/m/it/10 e[];  p[] \U/matha/m/n/10  \OML/cmm/m/it/10 e[];  p[] \U
 /matha/m/n/10  \OML/cmm/m/it/10 e[];  p[] \U/matha/m/n/10  \OML/cmm/m/it/10 
@@ -1257,10 +1298,10 @@ Overfull \hbox (9.21675pt too wide) detected at line 2242
 it/10 ;  p[] \U/matha/m/n/10  \OML/cmm/m/it/10 :
  []
 
-[34
+[40
 
-] [35] [36]
-Overfull \hbox (18.71918pt too wide) in paragraph at lines 2444--2447
+] [41] [42]
+Overfull \hbox (18.71918pt too wide) in paragraph at lines 3026--3029
 \OT1/cmr/m/n/10 Hence, $\OML/cmm/m/it/10 g \U/matha/m/n/10 P \OML/cmm/m/it/10 H
 om[]\U/matha/m/n/10 p\OML/cmm/m/it/10 Ae[]; X\U/matha/m/n/10 q$\OT1/cmr/m/n/10 
 . How-ever, we can also have that $\OML/cmm/m/it/10 g \OT1/cmr/m/n/10 : \OML/cm
@@ -1268,75 +1309,75 @@ m/m/it/10 eX \U/matha/m/n/10 Ñ \OML/cmm/m/it/10 Hom[]\U/matha/m/n/10 p\OML/cmm/
 m/it/10 Ae[]; X\U/matha/m/n/10 q$
  []
 
-[37]
+[43]
 
-LaTeX Warning: Reference `idempotentspacelem' on page 38 undefined on input lin
-e 2472.
+LaTeX Warning: Reference `idempotentspacelem' on page 44 undefined on input lin
+e 3054.
 
-[38]
-Overfull \hbox (223.31839pt too wide) in paragraph at lines 2536--2536
+[44]
+Overfull \hbox (223.31839pt too wide) in paragraph at lines 3118--3118
 [] 
  []
 
-[39]
-Overfull \hbox (5.07704pt too wide) in paragraph at lines 2581--2583
+[45]
+Overfull \hbox (5.07704pt too wide) in paragraph at lines 3163--3165
 \OT1/cmr/m/n/10 it has paths $\OML/cmm/m/it/10 e[]; e[]; e[]; e[]; ; ; ; ; 
 ; ; ; ; ; ; ; [] $\OT1/cmr/m/n/10 , and
  []
 
-[40]
-Overfull \hbox (6.64423pt too wide) in paragraph at lines 2655--2656
+[46]
+Overfull \hbox (6.64423pt too wide) in paragraph at lines 3237--3238
 []\OT1/cmr/bx/n/10 Lemma 3.1.29. []\OT1/cmr/m/it/10 The ba-sis of $\OML/cmm/m/i
 t/10 J\U/matha/m/n/10 p\OML/cmm/m/it/10 A\U/matha/m/n/10 q$ \OT1/cmr/m/it/10 is
  $\U/matha/m/n/10 t[]\OML/cmm/m/it/10 i[]j \OT1/cmr/m/n/10 : []\OML/cmm/m/it/10
  j[]i\U/matha/m/n/10 u$\OT1/cmr/m/it/10 . 
  []
 
-[41] [42]
-Overfull \hbox (8.85571pt too wide) detected at line 2815
+[47] [48]
+Overfull \hbox (8.85571pt too wide) detected at line 3397
 \OT1/cmr/bx/n/10 X \OT1/cmr/m/n/10 :  [] & \OT1/cmr/bx/n/10 Y \OT1/cmr/m/n/10 :
   []
  []
 
-[43] [44]
+[49] [50]
 Chapter 4.
-[45
+[51
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 2854--2857
+Underfull \hbox (badness 10000) in paragraph at lines 3436--3439
 []\OT1/cmr/m/n/10 Crawley-Boevey, W. \OT1/cmr/m/it/10 Co-ho-mol-ogy and Cen-tra
 l Sim-ple Al-ge-bras\OT1/cmr/m/n/10 .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2854--2857
+Underfull \hbox (badness 10000) in paragraph at lines 3436--3439
 \OT1/cmr/m/n/10 [Online-PDF file]. [Ac-cessed Oc-to-ber 2014]. Avail-able from:
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2859--2862
+Underfull \hbox (badness 10000) in paragraph at lines 3441--3444
 []\OT1/cmr/m/n/10 Crawley-Boevey, W. \OT1/cmr/m/it/10 Rep-re-sen-ta-tion of Qui
 v-ers\OT1/cmr/m/n/10 . [Online-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2859--2862
+Underfull \hbox (badness 10000) in paragraph at lines 3441--3444
 \OT1/cmr/m/n/10 PDF file]. [Ac-cessed Oc-to-ber 2014]. Avail-able from:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2894--2896
-[]\OT1/cmr/m/it/10 Ext func-tor - Wikipedia, the free en-cy-clo-pe-dia. \OT1/cm
-r/m/n/10 [ON-
+Underfull \hbox (badness 10000) in paragraph at lines 3476--3478
+[]\OT1/cmr/m/it/10 Ext func-tor - Wikipedia, the free en-cy-clo-pe-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2894--2896
-\OT1/cmr/m/n/10 LINE] [Ac-cessed 29 April 2015]. Avail-able at:
+Underfull \hbox (badness 10000) in paragraph at lines 3476--3478
+\OT1/cmr/m/it/10 dia. \OT1/cmr/m/n/10 [ON-LINE] [Ac-cessed April 2015]. Avail-a
+ble at:
  []
 
-[46
+[52
 
 ] (C:\Users\Chanelle\Documents\GitHub\quivers\quivers.aux)
 
@@ -1351,11 +1392,11 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 21249 strings out of 493921
- 434603 string characters out of 3144867
- 451968 words of memory out of 3000000
- 24227 multiletter control sequences out of 15000+200000
- 29703 words of font info for 110 fonts, out of 3000000 for 9000
+ 21428 strings out of 493921
+ 436809 string characters out of 3144867
+ 474810 words of memory out of 3000000
+ 24399 multiletter control sequences out of 15000+200000
+ 34231 words of font info for 126 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  55i,19n,66p,10435b,946s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Chanelle\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi6
@@ -1373,17 +1414,18 @@ Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program File
 s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x
 86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86
 )/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti7.pfb><C:/Program Files (x86)/M
-iKTeX 2.9/fonts/type1/public/mathabx-type1/matha10.pfb><C:/Program Files (x86)/
-MiKTeX 2.9/fonts/type1/public/mathabx-type1/matha5.pfb><C:/Program Files (x86)/
-MiKTeX 2.9/fonts/type1/public/mathabx-type1/matha7.pfb><C:/Program Files (x86)/
-MiKTeX 2.9/fonts/type1/public/mathabx-type1/mathb10.pfb><C:/Program Files (x86)
-/MiKTeX 2.9/fonts/type1/public/mathabx-type1/mathx10.pfb><C:/Program Files (x86
-)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program Files (
-x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program File
-s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on quivers.pdf (46 pages, 422978 bytes).
+iKTeX 2.9/fonts/type1/public/amsfonts/euler/eurm10.pfb><C:/Program Files (x86)/
+MiKTeX 2.9/fonts/type1/public/mathabx-type1/matha10.pfb><C:/Program Files (x86)
+/MiKTeX 2.9/fonts/type1/public/mathabx-type1/matha5.pfb><C:/Program Files (x86)
+/MiKTeX 2.9/fonts/type1/public/mathabx-type1/matha7.pfb><C:/Program Files (x86)
+/MiKTeX 2.9/fonts/type1/public/mathabx-type1/mathb10.pfb><C:/Program Files (x86
+)/MiKTeX 2.9/fonts/type1/public/mathabx-type1/mathx10.pfb><C:/Program Files (x8
+6)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program Files 
+(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Fil
+es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on quivers.pdf (52 pages, 456096 bytes).
 PDF statistics:
- 247 PDF objects out of 1000 (max. 8388607)
+ 270 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

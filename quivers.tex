@@ -1,5 +1,5 @@
 \documentclass[11.5pt, twoside, a4paper, titlepage]{report}
-\usepackage{graphicx, amssymb, amsmath, mathtools, amsthm, xfrac, mathabx}
+\usepackage{graphicx, amssymb, amsmath, mathtools, amsthm, xfrac, mathabx, upgreek}
 \usepackage{tikz}
 \usetikzlibrary{automata, arrows, matrix}
 \providecommand{\abs}[1]{\lvert#1\rvert}
@@ -17,7 +17,11 @@
 \newtheorem{cor}[mydef]{Corollary}
 \newtheorem{prop}[mydef]{Proposition}
 \newtheorem*{claim}{Claim}
-
+\newcommand{\mytab}[1]{%
+\begin{tabular}{@{}c@{}}
+#1
+\end{tabular}
+}
 
 
 \begin{document}
@@ -628,7 +632,8 @@ are \emph{equivalent} if there is a map $\xi: M \to M'$ such that the diagram,
 \draw (5) edge [-, semithick, double, double distance=1.5pt](10);
 \end{tikzpicture}
 \end{equation*}
-commutes.
+commutes.\\
+The equivalence classes of extensions of $N$ by $L$ will be represented as $e(N,L)$.
 \end{mydef}
 
 \begin{eg}
@@ -783,6 +788,82 @@ Since $f$ is injective as the seqence is short exact, we have $L \cong im(f) \co
 Notice that in the previous example $\bb{Z} \cong im(f)\cong ker(g) $ and $\bb{Z} \cong \sfrac{\bb{Z}^2}{ker(g)}\cong \bb{Z}$. Hence, $\bb{Z}^2 \cong \bb{Z} \oplus \bb{Z}$, as expected.
 \end{eg}
 
+\begin{lem} \label{splitequivlem}
+If any two extensions of $N$ by $L$ are split, then they are equivalent.
+\end{lem}
+\begin{proof}
+Let,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (1,0)		{$\mathbf{E}$: \quad };
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$L$};
+\node [main node]		(4) at (6,0)		{$M$};
+\node [main node]		(5) at (8,0)		{$N$};
+\node	[main node]		(11) at (10,0)	{$0$};
+
+\node [main node] 		(12) at (0,-0.5)	{\&};
+\node	[main node]		(6) at (1,-1)		{$\mathbf{E'}$: \quad};
+\node	[main node]		(7) at (2,-1)		{$0$};
+\node	[main node]		(8) at (4,-1)		{$L$};
+\node [main node]		(9) at (6,-1)		{$M'$};
+\node [main node]		(10) at (8,-1)	{$N$};
+\node [main node]		(13) at (10,-1)	{$0$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$f$} (4);
+\draw (4) edge [main path] node [auto] {$g$} (5);
+\draw (5) edge [main path] (11);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\draw (8) edge [main path] node [auto, swap] {$f'$} (9);
+\draw (9) edge [main path] node [auto, swap] {$g'$} (10);
+\draw (10) edge [main path] (13);
+\end{tikzpicture}
+\end{equation*}
+ be two split extensions of $N$ by $L$. Then Corollary \ref{MLNcor} gives $M \cong L\oplus N$ and $M'\cong L \oplus N$ and so there exists some isomorphism $M \cong M'$. 
+\end{proof}
+
+\begin{rem}
+Notice also that if $\mathbf{E}, \mathbf{E'}$ are equivalent extensions and one is split, then the other is also split.
+\end{rem}
+\begin{proof}
+As the extensions are equivalent we have the commutative diagram,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$\mathbf{E}$:};
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$L$};
+\node [main node]		(4) at (6,0)		{$M$};
+\node [main node]		(5) at (8,0)		{$N$};
+\node	[main node]		(11) at (10,0)	{$0$};
+
+\node	[main node]		(6) at (0,-2)		{$\mathbf{E'}$: \quad};
+\node	[main node]		(7) at (2,-2)		{$0$};
+\node	[main node]		(8) at (4,-2)		{$L$};
+\node [main node]		(9) at (6,-2)		{$M'$};
+\node [main node]		(10) at (8,-2)	{$N$};
+\node [main node]		(13) at (10,-2)	{$0$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\path (3.0) edge [main path] node [auto] {$f$} (4.180);
+\path (4.200) edge [dashed, ->, semithick] node [auto] {$\exists r$} (3.330);
+\draw (4) edge [main path] node [auto] {$g$} (5);
+\draw (5) edge [main path] (11);
+
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\draw (8) edge [main path] node [auto] {$f'$} (9);
+\draw (9) edge [main path] node [auto] {$g'$} (10);
+\draw (10) edge [main path] (13);
+
+\draw (3) edge [-, semithick, double, double distance=1.5pt] (8);
+\draw (4) edge [main path] node [above,sloped,inner sep=1pt] {$\cong$} node [auto, swap] {$\phi$} (9);
+\draw (5) edge [-, semithick, double, double distance=1.5pt](10);
+\end{tikzpicture}
+\end{equation*}
+As $\mathbf{E}$ splits, $f$ must be a secton and so there exists a map $r: M \to L$ such that $rf=id_L$. Then if $m'\in M'$ it can be mapped to some $\phi^{-1}(m')=m$ as $\phi$ is an isomorphism by equivalence, and so has an inverse. Hence $f'$ is a sections as there is the map, $r':M' \to L$, $m' \mapsto r(\phi^{-1}(m'))$. Thus $\mathbf{E'}$ is split.
+\end{proof}
 
 \begin{mydef} \label{pushoutdef}
 Given a short exact seqence,
@@ -1972,6 +2053,8 @@ d'_n(\hat{f_n}-h_{n-1}d_n)&=d'_n\hat{f_n} -d'_nh_{n-1}d_n, \\
 If $n=1$ then $(\hat{f_0}-d'_1h_0)d_1=0$ and if $n>1$ $(f_{n-1}-d'_nh_{n-1})d_n=(f_{n-1}-h_{n-2}d_{n-1})d_n$, so also zero. Thus $f_n-h_{n-1}d_n$ has image contained in $\Omega^{n+1}M'$. Thus it lifts to a map $h_n: P_n \to P'_{n+1}$.
 \end{proof}
 
+%%%%%%%%% NEED EXAMPLES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 \begin{cor} \label{comparisoncor}
 If $\mathbf{P}$ and $\mathbf{P'}$ are projective resolutions of $M$ then there is a homotopy equivalence $f: \mathbf{P} \to \mathbf{P'}$ such that the triangle, 
 \begin{equation*}
@@ -1998,11 +2081,14 @@ The uniqueness of $f$ up to homotopy is part of the Comparison Theorem (Thm \ref
 
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%		EXT		%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Ext}
+
+The following section contains theory on the right-derived functor $Ext$, however, in an effort to steer clear of category theory, this report will define $Ext$ as Crawley-Boevey does in \cite{CB1}. If the reader is interested in exploring category theory and $Ext$ as a functor they are directed to start with Appendix A of \cite{Weibel} which introduces category theory language and then look at the derived functors sections in both \cite{Weibel} and \cite{Rotman}. This section will follow \cite{CB1} closely as it explores $Ext$ theory without the need of category theory, with some  additional results from \cite{Weibel}. As such, the reader is advised that, unless otherwise stated, the results of this section come from \cite{CB1}, with only minor details added where it is felt they aid the reader's understanding.
 
 \begin{mydef}
 If $M$ and $N$ are $R$-modules then $Ext^n(M, N)$, or more precisely $Ext^n_R(M, N)$, is defined as follows:
@@ -2089,20 +2175,21 @@ coker(Hom(P_{-1}, N) \xrightarrow{\iota^{\ast}_0} Hom(\Omega^0M, N))&=coker(Hom(
 \end{align*}
 \end{proof}
 
-\begin{prop}
+\begin{prop} \label{longexactHom(X,-)prop}
 If $X$ is a module then for any short exact sequence $0\xrightarrow{}L\xrightarrow{}M\xrightarrow{}N\xrightarrow{}0$ you get a long exact sequence, 
 \begin{align*}
 0 \xrightarrow{}& Hom(X,L) \xrightarrow{} Hom(X, M) \xrightarrow{} Hom(X, N) \xrightarrow{} \\
 \xrightarrow{} & Ext^1(X,L) \xrightarrow{} Ext^1(X,M) \xrightarrow{} Ext^1(X,N) \xrightarrow{}\\
 \xrightarrow{} & Ext^2(X,L) \xrightarrow{} \dots
 \end{align*}
-It is called the \emph{long exact sequence for $Hom(X,-)$}.
+It is called the long exact sequence for $Hom(X,-)$.
 \end{prop}
 \begin{proof}
 This is the long exact sequence in cohomology for the chain complex $\mathbf{P}$, a projective resolution of $X$. (Corollary \ref{longexactseqcor}).
 \end{proof}
 
-\begin{lem} $Ext^n(M,N)=0$ for $n>0$ if either:
+\begin{lem} \label{Ext=0lem}
+$Ext^n(M,N)=0$ for $n>0$ if either:
 \begin{description}
 \item [(i)] $M$ is projective, or, 
 \item [(ii)] $N$ is injective.
@@ -2180,7 +2267,502 @@ Now, $0\xrightarrow{} \mho^nN \xrightarrow{}I^n \xrightarrow{} I^{n+1}$ is exact
 is exact. The claim follows. %%%%% What claim and what does it do???
 \end{proof}
 
+\begin{prop}
+If $Y$ is a module for any short exact sequence $0\xrightarrow{} L \xrightarrow{} M \xrightarrow{}N \xrightarrow{}0$ you have a long exact sequence,
+\begin{align*}
+0 &\xrightarrow{} Hom(N,Y) \xrightarrow{} Hom(M,Y) \xrightarrow{} Hom(L,Y) \xrightarrow{}\\
+&\xrightarrow{} Ext^1(N,Y) \xrightarrow{} Ext^1(M,Y) \xrightarrow{} Ext^1(L,Y) \xrightarrow{}\\
+&\xrightarrow{} Ext^2(N,Y) \xrightarrow{} \dots
+\end{align*}
+This is called the long exact sequence of $Hom(-,Y)$.
+\end{prop}
+\begin{proof}
+Let $\mathbf{I}$ be a injective resolution of $Y$ then the maps $f:L \to M$ and $g:M \to N$ induce maps of cochain complexes,
+\begin{equation*}
+Hom(N,\mathbf{I}) \xrightarrow{} Hom(M,\mathbf{I}) \xrightarrow{} Hom(L,\mathbf{I}).
+\end{equation*}
+This is an exact sequence of cochain complexes since $I^n$ is injective for all $n$. Now use the long exact sequence in cohomology from Remark \label{longexactseqcochainrem}.
+\end{proof}
 
+\begin{mydef}
+For any short exact sequence $\mathbf{E}: 0 \xrightarrow{} L \xrightarrow{} M \xrightarrow{} N \xrightarrow{} 0$ we define an element $\mathbf{\hat{E}}\in Ext^1(N,L)$ as follows. The long exact sequence for $Hom(N,-)$ (see Proposition \ref{longexactHom(X,-)prop}) gives a map $\delta: Hom(N,N) \to Ext^1(N,L)$, the connecting map, and $\mathbf{\hat{E}}$ is the image of $id_N$ under this map.
+\end{mydef}
+
+\begin{lem} \label{alphabetalem}
+Fix a projective resolution of $N$, giving exact sequences,
+\begin{equation*}
+0 \xrightarrow{} \Omega^1N \xrightarrow{\iota} P_0 \xrightarrow{\epsilon} N \xrightarrow{}0,
+\end{equation*}
+and,
+\begin{equation*}
+Hom(P_0,L) \xrightarrow{\iota^{\ast}} Hom(\Omega^1N,L) \xrightarrow{} Ext^1(N,L) \xrightarrow{}0.
+\end{equation*}
+If $\mathbf{E}: 0 \xrightarrow{}L \xrightarrow{} M \xrightarrow{}L\xrightarrow{}0$ is a short exact sequence then you can find maps $\alpha, \beta$ giving a commutative diagram,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$\Omega^1N$};
+\node [main node]		(4) at (6,0)		{$P_0$};
+\node [main node]		(5) at (8,0)		{$N$};
+\node	[main node]		(11) at (10,0)	{$0$};
+
+\node	[main node]		(7) at (2,-2)		{$0$};
+\node	[main node]		(8) at (4,-2)		{$L$};
+\node [main node]		(9) at (6,-2)		{$M$};
+\node [main node]		(10) at (8,-2)	{$N$};
+\node [main node]		(13) at (10,-2)	{$0$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$\iota$} (4);
+\draw (4) edge [main path] node [auto] {$\epsilon$} (5);
+\draw (5) edge [main path] node [auto] {$$} (11);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\path (8) edge [main path] node [auto, swap] {$f$} (9);
+\draw (9) edge [main path] node [auto, swap] {$g$} (10);
+\draw (10) edge [main path] node [auto, swap] {$$} (13);
+
+\draw (3) edge [main path] node [auto] {$\alpha$} (8);
+\draw (4) edge [main path] node [auto] {$\beta$} (9);
+\draw (5) edge [-, double, semithick, double distance=1.5pt] (10);
+\end{tikzpicture}
+\end{equation*}
+Moreover, for any such commutative diagram the image of $\alpha$ in $Ext^1(N,L)$ is equal to $\mathbf{\hat{E}}$.
+\end{lem}
+\begin{proof}
+Existence of $\alpha, \beta$: Since $P_0$ is projective and $g: M\to N$ is surjective (short exact sequence), by the definition of projective modules we can lift the map $P_0 \to N$ to a map $\beta$ such that,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node [main node]		(1) at (0,0)		{$M$};
+\node [main node]		(2) at (1.5,0)	{$N$};
+\node [main node]		(3) at (1.5, 1.5)	{$P_0$};
+
+\draw (1) edge [->>, semithick] node [auto, swap] {$g$} (2);
+\draw (3) edge [main path] node [auto] {$\epsilon$} (2);
+\draw (3) edge [->, dashed, semithick] node [auto, swap] {$\exists \beta$} (1);
+\end{tikzpicture}
+\end{equation*}
+Then $\alpha$ exists by diagram chasing.
+As we have a projective resolution of $N$, we can apply $Hom(N,-)$ to $\mathbf{E}$ to obtain (Propn. \ref{longexactHom(X,-)prop}),
+\begin{equation*}
+0\xrightarrow{} Hom(N,L) \xrightarrow{} Hom(N,M) \xrightarrow{} Hom(N,N) \xrightarrow{\delta} Ext^1(N,L) \xrightarrow{} \dots
+\end{equation*}
+and so find the connecting map $\delta: Hom(N,N) \to Ext^1(N,L)$. Note that this is the connecting map in cohomology for the exact sequence of cochain complexes,
+\begin{equation*}
+0 \xrightarrow{} Hom(\mathbf{P},L) \xrightarrow{} Hom(\mathbf{P},M) \xrightarrow{} Hom(\mathbf{P},N) \xrightarrow{} 0.
+\end{equation*}
+This begins,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(2) at (0,0)		{$0$};
+\node	[main node]		(3) at (2,0)		{$Hom(P_0, L)$};
+\node [main node]		(4) at (4.5,0)	{$Hom(P_0,M)$};
+\node [main node]		(5) at (7,0)		{$Hom(P_0, N)$};
+\node	[main node]		(11) at (9,0)		{$0$};
+
+\node	[main node]		(7) at (0,-1)		{$0$};
+\node	[main node]		(8) at (2,-1)		{$Hom(P_1, L)$};
+\node [main node]		(9) at (4.5,-1)	{$Hom(P_1, M)$};
+\node [main node]		(10) at (7,-1)		{$Hom(P_1, N)$};
+\node [main node]		(13) at (9,-1)	{$0$};
+
+\node [main node]		(-1) at (2,1)		{$0$};
+\node [main node]		(-2) at (4.5,1)	{$0$};
+\node [main node]		(-3) at (7,1)		{$0$};
+
+\node [main node]		(-4) at (2,-1.7)	{$$};
+\node [main node]		(-5) at (4.5,-1.7)	{$$};
+\node [main node]		(-6) at (7,-1.7)	{$$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$$} (4);
+\draw (4) edge [main path] node [auto] {$$} (5);
+\draw (5) edge [main path] node [auto] {$$} (11);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\path (8) edge [main path] node [auto, swap] {$$} (9);
+\draw (9) edge [main path] node [auto, swap] {$$} (10);
+\draw (10) edge [main path] node [auto, swap] {$$} (13);
+
+\draw (3) edge [main path] node [auto] {$$} (8);
+\draw (4) edge [main path] node [auto] {$$} (9);
+\draw (5) edge [main path] (10);
+
+\draw(-1) edge [main path] (3);
+\draw (-2) edge [main path] (4);
+\draw (-3) edge [main path] (5);
+
+\draw(8) edge [main path] (-4);
+\draw (9) edge [main path] (-5);
+\draw (10) edge [main path] (-6);
+\end{tikzpicture}
+\end{equation*}
+Then $Hom(N,N)\cong Ext^0(N,N)=H^0(\mathbf{P}, N)$ and, 
+\begin{align*}
+H^0(\mathbf{P}, N) &=\text{cohomology at } Hom(P_0,N),\\
+&=\frac{ker(Hom(P_0, N) \to Hom(P_1, N))}{im(0 \to Hom(P_0, N))},\\
+&=ker(Hom(P_0, N) \to Hom(P_1, N)),
+\end{align*}
+ and so we have $id_N$ corresponding to $\overline{\epsilon}$. From earlier $\beta$ is a lifting of $\epsilon$ in $Hom(P_1, M)$. Let $\gamma$ be the corresponding element in $Hom(P_1, L)$. Then the diagram,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(3) at (4,0)		{$P_1$};
+\node [main node]		(4) at (6,0)		{$P_0$};
+\node [main node]		(5) at (8,0)		{$N$};
+\node	[main node]		(11) at (10,0)	{$0$};
+
+\node	[main node]		(7) at (2,-2)		{$0$};
+\node	[main node]		(8) at (4,-2)		{$L$};
+\node [main node]		(9) at (6,-2)		{$M$};
+\node [main node]		(10) at (8,-2)	{$N$};
+\node [main node]		(13) at (10,-2)	{$0$};
+
+\draw (3) edge [main path] node [auto] {$d_1$} (4);
+\draw (4) edge [main path] node [auto] {$\epsilon$} (5);
+\draw (5) edge [main path] node [auto] {$$} (11);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\path (8) edge [main path] node [auto, swap] {$f$} (9);
+\draw (9) edge [main path] node [auto, swap] {$g$} (10);
+\draw (10) edge [main path] node [auto, swap] {$$} (13);
+
+\draw (3) edge [main path]  node [auto] {$\gamma$} (8);
+\draw (4) edge [main path] node [auto] {$\beta$} (9);
+\draw (5) edge [-, double, semithick, double distance=1.5pt] (10);
+\end{tikzpicture}
+\end{equation*}
+commutes. However, the composition,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node [main node]		(2) at (2,0)		{$P_2$};
+\node	[main node]		(3) at (4,0)		{$P_1$};
+
+\node	[main node]		(8) at (4,-2)		{$L$};
+\node [main node]		(9) at (6,-2)		{$M$};
+
+\draw (2) edge [main path] node [auto] {$d_2$} (3);
+\path (8) edge [main path] node [auto, swap] {$f$} (9);
+\draw (3) edge [main path]  node [auto] {$\gamma$} (8);
+\end{tikzpicture}
+\end{equation*}
+is equal to,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node [main node]		(2) at (2,0)		{$P_2$};
+\node	[main node]		(3) at (4,0)		{$P_1$};
+\node [main node]		(4) at (6,0)		{$P_0$};
+
+\node [main node]		(9) at (6,-2)		{$M$};
+
+\draw (3) edge [main path] node [auto] {$d_1$} (4);
+\draw (2) edge [main path] node [auto] {$d_2$} (3);
+\draw (4) edge [main path] node [auto] {$\beta$} (9);
+\end{tikzpicture}
+\end{equation*}
+and so is zero as $d_1d_2=0$.Hence, since $f:L \to M$ is injective, the composition $\gamma d_2: P_2 \to L$ is zero. Thus $\gamma$ induces a map $\sfrac{P_1}{Im(d_2)} \to L$, i.e. $\alpha: \Omega^1N \to L$.
+\end{proof}
+
+\begin{thm} 
+There exists a bijection $\Uptheta$,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node [main node] 	(1) at (0,0)		{$\left\{\mytab{equivalence classes of\\ short exact sequences\\ $0\to L \to M \to N \to 0$}\right\}$};
+\node [main node]			(2) at (4,0)		{$Ext^1(N,L)$};
+
+\draw (1) edge  [<->, semithick] (2);
+\end{tikzpicture}
+\end{equation*}
+\end{thm}
+\begin{proof}
+Firstly we want to show that $\Uptheta$ is well defined:\\
+Consider two equivalent exact sequences $\mathbf{E}, \mathbf{E'}$, they become the bottom two rows of the diagram, 
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node [main node]		(1) at (0,0)		{$\mathbf{E}:$};
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$L$};
+\node [main node]		(4) at (6,0)		{$M$};
+\node [main node]		(5) at (8,0)		{$N$};
+\node	[main node]		(11) at (10,0)	{$0$};
+
+\node [main node] 		(6) at (0,-2)		{$\mathbf{E'}:$};
+\node	[main node]		(7) at (2,-2)		{$0$};
+\node	[main node]		(8) at (4,-2)		{$L$};
+\node [main node]		(9) at (6,-2)		{$M'$};
+\node [main node]		(10) at (8,-2)	{$N$};
+\node [main node]		(13) at (10,-2)	{$0$};
+
+\node [main node] 		(14) at (0,2)		{$\mathbf{F}:$};
+\node	[main node]		(15) at (2,2)		{$0$};
+\node	[main node]		(16) at (4,2)		{$\Omega^1N$};
+\node [main node]		(17) at (6,2)		{$P_0$};
+\node [main node]		(18) at (8,2)		{$N$};
+\node [main node]		(19) at (10,2)	{$0$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$f$} (4);
+\draw (4) edge [main path] node [auto] {$g$} (5);
+\draw (5) edge [main path] node [auto] {$$} (11);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\path (8) edge [main path] node [auto, swap] {$f'$} (9);
+\draw (9) edge [main path] node [auto, swap] {$g'$} (10);
+\draw (10) edge [main path] node [auto, swap] {$$} (13);
+
+\draw (15) edge [main path] node [auto] {$$} (16);
+\path (16) edge [main path] node [auto] {$\iota$} (17);
+\draw (17) edge [main path] node [auto] {$\epsilon$} (18);
+\draw (18) edge [main path] node [auto, swap] {$$} (19);
+
+\draw (3) edge [-,double, semithick, double distance=1.5pt] (8);
+\draw (4) edge [main path] node [auto] {$\cong$} (9);
+\draw (5) edge [-, double, semithick, double distance=1.5pt] (10);
+
+\draw (16) edge [main path] node [auto] {$\alpha$} (3);
+\draw (17) edge [main path] node [auto] {$\beta$} (4);
+\draw (18) edge [-, double, semithick, double distance=1.5pt] (5);
+\end{tikzpicture}
+\end{equation*}
+where $\theta$ is an isomorphism. So $\mathbf{E}$ and $\mathbf{E'}$ give rise to the same map $\gamma: P_1 \to L$ (or $\alpha: \Omega^1 \to L$) by Lemma \ref{alphabetalem} and so $\hat{E}=\hat{E'}$.\\
+Secondly, we need to show that $\Uptheta$ is surjective:\\
+Set $g\in Ext^1(N,L)$. Then this corresponds to some $\alpha \in Hom(\Omega^1N, L)$ as in the long exact sequence, 
+\begin{equation*}
+0 \xrightarrow{} Hom(N,L) \xrightarrow{} Hom(P_0, L) \xrightarrow{} Hom(\Omega^1N, L) \xrightarrow{\delta} Ext^1(N,L) \xrightarrow{}0\xrightarrow{} \dots
+\end{equation*}
+$\delta$ is surjective. So we have, 
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node [main node]		(1) at (0,0)		{$\mathbf{E}:$};
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$L$};
+\node [main node]		(4) at (6,0)		{$M$};
+\node [main node]		(5) at (8,0)		{$N$};
+\node	[main node]		(11) at (10,0)	{$0$};
+
+\node [main node] 		(14) at (0,2)		{$\mathbf{F}:$};
+\node	[main node]		(15) at (2,2)		{$0$};
+\node	[main node]		(16) at (4,2)		{$\Omega^1N$};
+\node [main node]		(17) at (6,2)		{$P_0$};
+\node [main node]		(18) at (8,2)		{$N$};
+\node [main node]		(19) at (10,2)	{$0$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$$} (4);
+\draw (4) edge [main path] node [auto] {$$} (5);
+\draw (5) edge [main path] node [auto] {$$} (11);
+
+\draw (15) edge [main path] node [auto] {$$} (16);
+\path (16) edge [main path] node [auto] {$\iota$} (17);
+\draw (17) edge [main path] node [auto] {$\epsilon$} (18);
+\draw (18) edge [main path] node [auto, swap] {$$} (19);
+
+\draw (16) edge [main path] node [auto] {$\alpha$} (3);
+\draw (17) edge [main path] node [auto] {$$} (4);
+\draw (18) edge [-, double, semithick, double distance=1.5pt] (5);
+\end{tikzpicture}
+\end{equation*}
+where $\mathbf{E}$ is the pushout of $\mathbf{F}$ along $\alpha$. By construction, $\mathbf{E}$ is an exact sequence, unique up to equivalence, so any element of $Ext^1(N,L)$ is the image of an equivalence class of short exact sequences.\\
+Finally, we prove that $\Uptheta$ is injective:
+If two short exact sequences $\mathbf{E}, \mathbf{E'}$ give the same element $\hat{E}\in Ext^1(N,L)$ then we have diagrams, 
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node [main node]		(1) at (1,0)		{$\mathbf{E}:$};
+\node	[main node]		(2) at (1.5,0)	{$0$};
+\node	[main node]		(3) at (2.5,0)	{$L$};
+\node [main node]		(4) at (4,0)		{$M$};
+\node [main node]		(5) at (5.5,0)	{$N$};
+\node	[main node]		(11) at (6.5,0)	{$0$};
+
+\node [main node] 		(6) at (7.5,0)		{$\mathbf{E'}:$};
+\node	[main node]		(7) at (8,0)		{$0$};
+\node	[main node]		(8) at (9,0)		{$L$};
+\node [main node]		(9) at (10.5,0)	{$M'$};
+\node [main node]		(10) at (12,0)	{$N$};
+\node [main node]		(13) at (13,0)	{$0$};
+
+\node [main node] 		(14) at (1,2)		{$\mathbf{F}:$};
+\node	[main node]		(15) at (1.5,2)	{$0$};
+\node	[main node]		(16) at (2.5,2)	{$\Omega^1N$};
+\node [main node]		(17) at (4,2)		{$P_0$};
+\node [main node]		(18) at (5.5,2)	{$N$};
+\node [main node]		(19) at (6.5,2)	{$0$};
+
+\node [main node] 		(20) at (7.5,2)	{$\mathbf{F'}:$};
+\node	[main node]		(21) at (8,2)		{$0$};
+\node	[main node]		(22) at (9,2)		{$\Omega^1N$};
+\node [main node]		(23) at (10.5,2)	{$P_0$};
+\node [main node]		(24) at (12,2)	{$N$};
+\node [main node]		(25) at (13,2)	{$0$};
+
+\node [main node]		(26) at (7,1)		{\&};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$f$} (4);
+\draw (4) edge [main path] node [auto] {$g$} (5);
+\draw (5) edge [main path] node [auto] {$$} (11);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\path (8) edge [main path] node [auto, swap] {$f'$} (9);
+\draw (9) edge [main path] node [auto, swap] {$g'$} (10);
+\draw (10) edge [main path] node [auto, swap] {$$} (13);
+
+\draw (15) edge [main path] node [auto] {$$} (16);
+\path (16) edge [main path] node [auto] {$\iota$} (17);
+\draw (17) edge [main path] node [auto] {$\epsilon$} (18);
+\draw (18) edge [main path] node [auto, swap] {$$} (19);
+
+\draw (21) edge [main path] node [auto] {$$} (22);
+\path (22) edge [main path] node [auto] {$\iota$} (23);
+\draw (23) edge [main path] node [auto] {$\epsilon$} (24);
+\draw (24) edge [main path] node [auto, swap] {$$} (25);
+
+\draw (16) edge [main path] node [auto] {$\alpha$} (3);
+\draw (17) edge [main path] node [auto] {$\beta$} (4);
+\draw (18) edge [-, double, semithick, double distance=1.5pt] (5);
+
+\draw (22) edge [main path] node [auto] {$\alpha'$} (8);
+\draw (23) edge [main path] node [auto] {$\beta'$} (9);
+\draw (24) edge [-, double, semithick, double distance=1.5pt] (10);
+\end{tikzpicture}
+\end{equation*}
+with $\alpha'-\alpha\in im(Hom(P_0,L) \xrightarrow{\iota^{\ast}}Hom(\Omega^1N,L))$ from the long exact sequence, 
+\begin{equation*}
+0 \xrightarrow{} Hom(N,L) \xrightarrow{} Hom(P_0,L) \xrightarrow{\iota^{\ast}} Hom(\Omega^1N, L) \xrightarrow{\delta} Ext^1(N,L) \xrightarrow{} 0 \xrightarrow{} \dots
+\end{equation*}
+and so $im(\iota^{\ast})=ker(\delta)$ by exactness and so we can map $\alpha'-\alpha \mapsto \hat{E} - \hat{E}=0$. Now say $\alpha'-\alpha=\phi \circ \iota$ with $\phi: P_0 \to L$, then,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node [main node]		(1) at (0,0)		{$\mathbf{E}:$};
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$L$};
+\node [main node]		(4) at (6,0)		{$M$};
+\node [main node]		(5) at (8,0)		{$N$};
+\node	[main node]		(11) at (10,0)	{$0$};
+
+\node [main node] 		(14) at (0,2)		{$\mathbf{F}:$};
+\node	[main node]		(15) at (2,2)		{$0$};
+\node	[main node]		(16) at (4,2)		{$\Omega^1N$};
+\node [main node]		(17) at (6,2)		{$P_0$};
+\node [main node]		(18) at (8,2)		{$N$};
+\node [main node]		(19) at (10,2)	{$0$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$f$} (4);
+\draw (4) edge [main path] node [auto] {$g$} (5);
+\draw (5) edge [main path] node [auto] {$$} (11);
+
+\draw (15) edge [main path] node [auto] {$$} (16);
+\path (16) edge [main path] node [auto] {$\iota$} (17);
+\draw (17) edge [main path] node [auto] {$\epsilon$} (18);
+\draw (18) edge [main path] node [auto, swap] {$$} (19);
+
+\draw (16) edge [main path] node [auto] {$\alpha'$} (3);
+\draw (17) edge [main path] node [auto] {$\beta + f\phi$} (4);
+\draw (18) edge [-, double, semithick, double distance=1.5pt] (5);
+\end{tikzpicture}
+\end{equation*}
+Hence by the uniqueness of pushouts, $\mathbf{E}$ and $\mathbf{E'}$ are equivalent.
+\end{proof}
+
+%Need Examples!!
+
+\begin{prop}
+The split exact sequences for one equivalence class, corresponding to the zero element of $Ext^1(N,L)$.
+\end{prop}
+\begin{proof}
+Lemma \ref{splitequivlem} gives that any two split extensions of $N$ by $L$ are equivalent, and so in the same equivalence class. Note that if $\mathbf{E}: \quad0 \xrightarrow{} L \xrightarrow{}M \xrightarrow{}N \xrightarrow{} 0$ splits then as $M \cong L\oplus N$ (Cor. \ref{MLNcor}), $\mathbf{E}$ is equivalent to $0 \xrightarrow{}L \xrightarrow{} L \oplus N \xrightarrow{} N \xrightarrow{} 0$. Relabel this exact sequence $\mathbf{E}$. Let $\xrightarrow{} P_1 \xrightarrow{}P_0 \xrightarrow{} N \xrightarrow{}0$ be the projective resolution of $N$. Then, by Lemma \ref{alphabetalem} we have a commutative diagram,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(2) at (0,0)		{$0$};
+\node	[main node]		(3) at (2,0)		{$\Omega^1N$};
+\node [main node]		(4) at (4,0)		{$P_0$};
+\node [main node]		(5) at (6,0)		{$N$};
+\node	[main node]		(11) at (8,0)		{$0$};
+
+\node	[main node]		(7) at (0,-2)		{$0$};
+\node	[main node]		(8) at (2,-2)		{$L$};
+\node [main node]		(9) at (4,-2)		{$L\oplus N$};
+\node [main node]		(10) at (6,-2)	{$N$};
+\node [main node]		(13) at (8,-2)	{$0$};
+
+\draw (2) edge [main path]  (3);
+\draw (3) edge [main path]  node [auto] {$\iota$} (4);
+\draw (4) edge [main path]  node [auto] {$\epsilon$} (5);
+\draw (5) edge [main path] (11);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\path (8) edge [main path] node [auto, swap] {$$} (9);
+\draw (9) edge [main path] node [auto, swap] {$$} (10);
+\draw (10) edge [main path] node [auto, swap] {$$} (13);
+
+\draw (3) edge [main path] node [auto] {$\alpha$} (8);
+\draw (4) edge [main path] node [auto] {$\beta$} (9);
+\draw (5) edge [-, double, semithick, double distance=1.5pt] (10);
+\end{tikzpicture}
+\end{equation*}
+and applying $Hom(-,L)$ to the top row gives the long exact sequence, 
+\begin{equation*}
+0 \xrightarrow{} Hom(N,L) \xrightarrow{} Hom(P_0, L) \xrightarrow{} Hom(\Omega^1N, L) \xrightarrow{\delta} Ext^1(N,L) \xrightarrow{} 0 \xrightarrow{} \dots
+\end{equation*}
+with $\delta(\alpha)=\hat{E}$. However, $\alpha=0$ by diagram chasing, and so $\hat{E}=0$.
+\end{proof}
+
+This result is interesting as it means, as Rotman points out in \cite{Rotman}, the non-zero elements of $Ext^1(N,L)$ describe nonsplit extensions of $N$ by $L$.
+
+\begin{mydef}
+The \emph{projective dimension} of a module $M$ is the smallest $n\in \bb{Z}$ such that there is a finite projective resolution of $M$,
+\begin{equation*}
+0 \xrightarrow{} P_n \xrightarrow{} \dots \xrightarrow{} P_1 \xrightarrow{} P_0 \xrightarrow{} M \xrightarrow{} 0.
+\end{equation*}
+It is denoted $pd(M)=n$. If no such finite projective resolution exists, then $pd(M)=\infty$.
+\end{mydef}
+
+\begin{mydef}
+The \emph{global dimension} of the ring $R$ is the maximum of the projective dimensions of its modules.
+\end{mydef}
+
+\begin{prop}
+Let $M$ be a module and $n\geq0$. The following are equivalent:
+\begin{description}
+\item [(i)] $pd(M)=n$.
+\item [(ii)] $Ext^{n+1}(M,N)=0$ for all modules $N$.
+\end{description}
+\end{prop}
+\begin{proof}
+(i) $\Rightarrow$ (ii): This is trivial, as if $P_{n+1}=0$ then the cohomology of the long exact sequence will also be equal to zero.\\
+(ii) $\Rightarrow$ (i): If $\mathbf{P}$ is a projective resolution then there is an exact sequence,
+\begin{equation*}
+0 \xrightarrow{} \Omega^nM \xrightarrow{\iota} P_{n-1} \xrightarrow{} \dots \xrightarrow{} P_0 \xrightarrow{} M \xrightarrow{} 0,
+\end{equation*}
+and so it suffices to prove $\Omega^nM$ is projective as then this exact sequence is the required projective resolution. This condition is satisfied if $Ext(\Omega^nM,N)=0$ for all $N$. The exact sequence, 
+\begin{equation*}
+0 \xrightarrow{} \Omega^nM \xrightarrow{} P_{n-1} \xrightarrow{} \Omega^{n-1}M \xrightarrow{} 0,
+\end{equation*}
+gives a long exact sequence which includes,
+\begin{equation*}
+\dots \xrightarrow{} Ext^1(P_{n-1},N) \xrightarrow{} Ext^1(\Omega^nM,N) \xrightarrow{} Ext^2(\Omega^{n-1}M,N) \xrightarrow{} Ext^2(P_{n-1},N) \xrightarrow{} \dots
+\end{equation*}
+However, $P_{n-1}$ is projective so $Ext^i(P_{n-1},N)=0$ for all $i$ and so we have,
+\begin{equation*}
+\dots \xrightarrow{} 0 \xrightarrow{} Ext^1(\Omega^nM,N) \xrightarrow{} Ext^2(\Omega^{n-1}M,N) \xrightarrow{} 0 \xrightarrow{} \dots
+\end{equation*}
+Hence, $Ext^1(\Omega^nM, N) \cong Ext^2(\Omega^{n-1}M,N)$. Then by dimension shifting we get, 
+\begin{align*}
+Ext^2(\Omega^{n-1}M,N) \cong Ext^3(\Omega^{n-2}M,N) \cong \dots \cong Ext^{n+1}(\Omega^0M,N)&= Ext^{n+1}(M,N), \\
+&=0.
+\end{align*}
+\end{proof}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%		Representation of Quivers 	%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
@@ -2887,14 +3469,17 @@ Schiffler, Ralf.
 Springer.
 
 \bibitem{Splittinglem}
-\emph{Splitting lemma - Wikipedia, the free encyclopedia.} [Online]  [Accessed 23 April 2015].
+\emph{Splitting lemma - Wikipedia, the free encyclopedia.} [Online]  [Accessed April 2015].
 Available at: http://en.wikipedia.org/wiki/Splitting\_lemma.
 
 \bibitem{Ext}
-\emph{Ext functor - Wikipedia, the free encyclopedia.} [ONLINE]  [Accessed 29 April 2015].
+\emph{Ext functor - Wikipedia, the free encyclopedia.} [ONLINE]  [Accessed April 2015].
 Available at: http://en.wikipedia.org/wiki/Ext\_functor\#Ext\_and\_extensions.
 
-
+\bibitem{swanson}
+Swanson, I.
+\emph{Homological Algebra}. [Online-PDF file]. [Accessed May 2015].
+Available from: http://people.reed.edu/~iswanson/homologicalalgebra.pdf.
 
 \end{thebibliography}
 
