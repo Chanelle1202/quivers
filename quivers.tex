@@ -17,6 +17,7 @@
 \newtheorem{cor}[mydef]{Corollary}
 \newtheorem{prop}[mydef]{Proposition}
 \newtheorem*{claim}{Claim}
+\newtheorem*{wrong}{Wrong Definition}
 \newcommand{\mytab}[1]{%
 \begin{tabular}{@{}c@{}}
 #1
@@ -1536,9 +1537,7 @@ h_n(x)=s_n(x-s_{n-1}\gamma_nx).
 Then,
 \begin{align*}
 (h_{n-1}\gamma_n + \gamma_{n+1}h_n)(x)&=s_{n-1}(\gamma_nx-s_{n-2}\gamma_{n-1}\gamma_nx) + \gamma_{n+1}s_n(x - s_{n-1}\gamma_nx),\\
-&=s_{n-1}\gamma_nx +\gamma_{n+1}s_nx-\gamma_{n+1}s_ns_{n-1}\gamma_nx,\\
-% Need to understand these next two lines. Take out Brown's book cohomology of groups.
-&=s_{n-1}\gamma_nx + \gamma_{n+1}s_nx +(x-s_{n-1}\gamma_nx),\\
+&=s_{n-1}\gamma_nx +(x-s_{n-1}\gamma_nx), \text{ as } s_n \text{ is a section},\\
 &=x.
 \end{align*}
 \end{proof}
@@ -3362,7 +3361,7 @@ A \emph{representation} $X$ of a quiver $Q$ is given by considering each vertex 
 
 \begin{eg}
 Let $Q$ be the quiver, 
-\equ
+\begin{equation*}
 \mathbf{Q}: \qquad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
 \node	[main node]		(1) at (0,0)		{1};
@@ -3372,9 +3371,9 @@ Let $Q$ be the quiver,
 \draw (2) edge (1);
 \draw (2) edge (3);
 \end{tikzpicture}
-\eequ
+\end{equation*}
 then we can have representations $X$ and $Y$, 
-\equ
+\begin{equation*}
 \mathbf{X}: \quad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
 \node	[]		(1) at (0,0)		{$k$};
@@ -3394,7 +3393,7 @@ then we can have representations $X$ and $Y$,
 \draw (2) edge node [auto, swap] {$\gamma$} node [auto] {1} (1);
 \draw (2) edge node [auto] {$\delta$} (3);
 \end{tikzpicture}
-\eequ
+\end{equation*}
 \end{eg}
 
 \begin{mydef}
@@ -3415,7 +3414,297 @@ A \emph{morphism} $\theta: X \to X'$ between representationsis given by linear m
 \section{Dynkin and Euclidean diagrams}
 
 
-\chapter{Auslander-Reiten Quivers}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%		Auslander-Reiten Theory 		%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Auslander-Reiten Theory}
+This chapter will discuss some of the notions and results introduced by Maurice Auslander and Idun Reiten in 1975 and subsequent developments of their theories; including the Auslander-Reiten translate, almost split sequences and the Auslander-Reiten quiver. The main sources for this chapter will be \cite{CB3}, \cite{Vale} and \cite{Assem}, however, we will primarily be following \cite{CB3} as we prefer Crawley-Boevey's approach with source and sink maps. Throughout this chapter, $k$ is an algebraically closed field and $A$ is a finite dimensional $k$-algebra.\\
+For every finite-dimensional algebra there exists an Auslander-Reiten quiver, which can be viewed as an approximation to the module category of the algebra. Auslander-Reiten quivers are important as they can be easily computed and give a remarkable insight into the structure of the module category of an algebra. For example, the Auslander-Reiten quiver of an Artin algebra has a vertex for each indecomposable module and an arrow between vertices if there exists an irreducible morphism between the corresponding modules. \cite{AR}
+
+\section{Irreducible Maps}
+In order to obtain a picture of the module category, \cite{Vale} notes that it is best to remove those morphisms which are simply compositions of other morphisms, and so retain those morphisms which can not be decomposed any further. Thus we want to find a suitable definition for a map which can not be broken down as the composition of other maps. Vale acknowledges that a first guess at such a definition would be:
+
+\begin{wrong}
+A map $f: X \to Y$ is \emph{irreducible} if $f$ is not an isomorphism and if $f=gh$ then either $g$ or $h$ is an isomorphism.
+\end{wrong}
+
+\noindent
+However, every $f:X \to Y$ can be factorised as,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$X$};
+\node [main node]		(2) at (4,0)		{$Y$};
+\node [main node]		(3) at (2,-1.5)	{$X\oplus Z$};
+
+\draw (1) [main path] edge node [auto] {$f$} (2);
+\draw (1) [main path] edge node [auto, swap] {$\scriptstyle{nat}$} (3);
+\draw (3) [main path] edge node [auto, swap] {$\left(\begin{smallmatrix}f & 0 \end{smallmatrix}\right)$} (2);
+\end{tikzpicture}
+\end{equation*}
+where $Z$ is arbitrary. Also, every $f: X \to Y$ could be factorised, 
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$X$};
+\node [main node]		(2) at (4,0)		{$Y$};
+\node [main node]		(3) at (2,-1.5)	{$Y\oplus Z$};
+
+\draw (1) [main path] edge node [auto] {$f$} (2);
+\draw (1) [main path] edge node [auto, swap] {$\left(\begin{smallmatrix}f \\ 0 \end{smallmatrix}\right)$} (3);
+\draw (3) [main path] edge node [auto, swap] {$\pi$} (2);
+\end{tikzpicture}
+\end{equation*}
+where $Z$ is once again arbitrary.
+Thus, the set of morphisms described in Wrong Definition is empty and so we must find a definition which rules out the two above factorisations.
+
+\begin{mydef}
+If $f: X \to Y$ then,
+\begin{itemize}
+\item f is \emph{split mono} if there exists $h: Y \to X$ such that $hf=id_X$, i.e., the inclusion of a direct summand.
+\item f is \emph{split epi} if there exits $g: Y \to X$ such that $fg=id_Y$, i.e., the projection onto a direct summand.
+\end{itemize}
+\end{mydef}
+
+\begin{rem}
+Notice that these definitions are equivalent to $f$ being a section or a retraction respectively.
+\end{rem}
+
+\begin{mydef}
+\begin{itemize}
+\item If $X$ is indecomposable then $f:X \to Y$ is \emph{irreducible} if it is not split mono and if $f=hg$ then either $g$ is split mono or $h$ is split epi. A \emph{source map} for $X$ is said to be an irreducible map $f:X \to E$ such that any map $g: X \to Z$ which is not split mono factors through $f$.
+\item If $Y$ is indecomposable then $f: X \to Y$ is \emph{irreducible} if it is not split mono and if $f=hg$ then either $g$ is split mono or $h$ is split epi. A \emph{sink map} for $Y$ is said to be an irreducible map $f: F \to Y$ such that any map $g: Z \to Y$ which is not split epi factors through $f$.
+\end{itemize}
+\end{mydef}
+
+\begin{rem}
+If both $X$ and $Y$ are indecomposable the two notions of the irreducibility of $f:X \to Y$ agree. In this report we will follow \cite{CB3} in not defining irreducible maps where $X,Y$ decomposable.
+\end{rem}
+
+\begin{lem}
+\begin{description}
+\item [(i)] If $X$ is an indecomposable projective module then $X$ has a unique maximal proper submodule $M$ and $f:M \hookrightarrow X$ is a sink map for $X$.
+\item [(ii)] If $X$ is an indecomposable injective then $X$ has a unique simple submodule $S$ and $f:X \twoheadrightarrow \sfrac{X}{S}$ is a source map for $X$.
+\end{description}
+\end{lem}
+\begin{proof}
+\begin{description}
+\item [(i)] Suppose to the contrary $X$ has two distinct maximal proper submodules $M\neq M'$ then $M \oplus M'=X$ so $M \oplus M' \twoheadrightarrow X$, and so $X$ is a summand of $M\oplus M'$, a contradiction by Krull-Schmidt as $X$ is indecomposable. If $f: M \to X$ factors as $f=hg$ then $im(h)=M$ or $im(h)=X$ and so $g$ is split mono or $h$ is split epi respectively. If $\phi: Z \to X$ is not split epi, then it is not epi, and so the image is contained in $M$, hence $\phi$ factors through $f$. Thus $f: M\hookrightarrow X$ is a sink map for $X$.
+\item [(ii)]
+\end{description}
+\end{proof}
+
+\begin{prop}
+An irreducible map $f: X \to Y$ is mono or epi.
+\end{prop}
+\begin{proof}
+If not then we can have,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$X$};
+\node [main node]		(2) at (4,0)		{$Y$};
+\node [main node]		(3) at (2,-1.5)	{$im(f)$};
+
+\draw (1) [main path] edge node [auto] {$f$} (2);
+\draw (1) [main path] edge node [auto, swap] {$g$} (3);
+\draw (3) [main path] edge node [auto, swap] {$h$} (2);
+\end{tikzpicture}
+\end{equation*}
+and so $f$ factors through $im(f)$. However, as $f$ is not mono, g can not be split mono and similarly, if as $f$ is not split epi then $h$ can not be split epi.
+\end{proof}
+
+\begin{prop}
+The cokernel of an irreducible monomorphism is indecomposable.
+\end{prop}
+\begin{proof}
+Recall $coker(f)=\sfrac{Y}{im(f)}$. As $f: X \to Y$ is a monomorphism $ker(f)=0$ and so we have an exact sequence, 
+\begin{equation*}
+0 \xrightarrow{} X \xrightarrow{f} Y \xrightarrow{} \frac{Y}{im(f)} \xrightarrow{} 0.
+\end{equation*}
+%%%%%%%% Need to fill in rest of proof.
+\end{proof}
+
+\begin{prop}
+\begin{description}
+\item [(i)] Suppose $X$ is indecomposable and $ X \to E$ is a source map. Then the irreducible maps starting at $X$ are the compositions $X \to E \to Y$ with $E \to Y$ split epi.
+\item [(ii)] Suppose $Y$ is indecomposable and $F \to Y$ is a sink map. Then the irreducible maps ending at $Y$ are the compositions $X \to F \to Y$ with $X \to F$ split mono.
+\end{description}
+\end{prop}
+\begin{proof}
+\begin{description}
+\item [(i)] Firstly, we show $E \to Y$ is split epi: If $f: X \to Y$ is irreducible it factors through the source map $X \to E$ such that,
+\begin{equation*}
+X \xrightarrow{g} E \xrightarrow{h} Y,
+\end{equation*}
+with either $g: X \to E$ split mono or $h: E \to Y$ split epi. However, $g: X \to E$ is a source map for $X$ and so by definition $g$ is irreducible, hence is not split mono. Thus, $h: E \to Y$ is split epi. \\
+To show a composition is irreducible, show that if $(\begin{smallmatrix} f \\ f' \end{smallmatrix}): X \to Y \oplus U$ is irreducible then so is $f: X \to Y$. Namely, if $f$ factors through $V$ then $(\begin{smallmatrix} f\\f' \end{smallmatrix})$ factors through $V \oplus U$.
+\item [(ii)] Firstly, we show $X \to F$ is split mono: If $f: X \to Y$ is irreducible it factors through the sink map $F \to Y$ such that,
+\begin{equation*}
+X \xrightarrow{g} F \xrightarrow{h} Y,
+\end{equation*}
+with either $g: X \to F$ split mono or $h: F \to Y$ split epi. However, $h: F \to Y$ is a sink map for $Y$ and so by definition $h$ is irreducible and hence is not split epi. Thus $g: X \to F$ is split mono.\\
+%%%%%%% Need to sort out the composition part here.
+\end{description}
+\end{proof}
+
+\begin{mydef}
+Let $X,Y$ be $A$-modules. Then we define,
+\begin{equation*}
+Vrad(X,Y)=\{f: X \to Y: \forall g:Y \to X, id_X-gf is an isomorphism\}.
+\end{equation*}
+\end{mydef}
+
+\begin{rem}
+Note \cite{CB3} gives a different definition of $rad(X,Y)$ is given that the one above from \cite{Vale}. In \cite{CB3} Crawley-Boevey sets $X,Y$ indecomposable modules and defines $rad(X,Y)$;
+\begin{equation*}
+rad(X,Y)=\{f: X \to Y: f is not an isomorphism\}.
+\end{equation*}
+The following proposition from \cite{Vale} shows that these two sets are in fact equivalent when $X,Y$ indecomposable.
+\end{rem}
+
+\begin{lem} \label{isoradlem}
+If $X$ and $Y$ are indecomposable then $f$ is not an isomorphism if and only if $f \in rad(X,Y)$.
+\end{lem}
+\begin{proof}
+$\Leftarrow:$ If $f$ is an isomorphism and so has an inverse $f^{-1}: Y \to X$ then $id_X - ff^{-1}=0$. Hence, $f\notin rad(X,Y)$.
+$\Rightarrow:$ If $f $ is and isomorphism then let $g: Y \to X$. Now first show that $gf$ is not an isomorphism. Suppose to the contrary that $gf$ is an isomorphism and let $e=f(gf)^{-1}g \in End(Y)$. Then,
+\begin{align*}
+e^2&=(f(gf)^{-1}g)(f(gf)^{-1}g),\\
+&=f(gf)^{-1}gf(gf)^{-1}g,\\
+&=f(gf)^{-1}g,\\
+&=e,
+\end{align*}
+and so $e$ is idempotent and so not nilpotent. By Fitting's Lemma, $e$ is an isomorphism, but $e^2=e$ so $e=id_Y$. Therefore, $f(gf)^{-1}g=id_Y$ and so $(gf)^{-1}g$ is an inverse to $f$, and so a contradiction to $f$ not an isomorphism. Thus, $gf$ is not an isomorphism. By Fitting's Lemma, if $gf\in End(X)$ is not an isomorphism, then it must be nilpotent. So $id_X -gf$ has an inverse and so is an isomorphism. Thus, $f\in rad(X,Y)$.
+\end{proof}
+
+From now on we will use the notation $rad(X,Y)$ to refer either of these sets. In addition, it is proven in \cite{Vale} that $rad(X,Y)$ is a vector space.\\
+
+%% Check here why CB3 definition different and whether it is in fact equivalent.
+
+\begin{mydef}
+If $X$ and $Y$ are $A$-modules we define $rad^2(X,Y)$ is the span of all map $gh:X \to Y$ where $h: X \to Z$, $g: Z \to Y$ for some $Z$ and $h \in rad(X,Z)$, $g\in rad(Z, Y)$.
+\end{mydef}
+
+\begin{thm}
+Let $X,Y$ be indecomposable. Then $f: X \to Y$ is irreducible if and only if $f \in rad(X,Y)\ rad^2(X,Y)$, where $\ $ denotes the set difference.
+\end{thm}
+\begin{proof}
+$\Rightarrow:$ Suppose $f: X \to Y$ is irreducible. Then $f$ is an isomorphism and by Lemma \ref{isoradlem} $f\in rad(X,Y)$.
+\end{proof}
+
+
+\section{Almost Split Sequences}
+
+\begin{mydef}
+\begin{itemize}
+\item A map $f: L \to M$ is called \emph{left minimal} if for all $h\in End(M)$ with $hf=f$, we have $h$ is an automorphism.
+\item A map $g: M \to N$ is called \emph{right minimal} if for all $h\in End(M)$ with $gh=g$, we have $h$ is an automorphism.
+\end{itemize}
+\end{mydef}
+
+\begin{mydef}
+A map $f: L \to M$ is called \emph{left almost-split} if $f$ is not split mono and if,
+\begin{equation} \label{lalmostsplitdiag}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$L$};
+\node [main node]		(2) at (1.5,0)	{$M$};
+\node [main node]		(3) at (0,-1.5)	{$E$};
+
+\draw (1) [main path] edge node [auto] {$f$} (2);
+\draw (1) [main path] edge node [auto, swap] {$u$} (3);
+\draw (3) [->, dashed, semithick] edge node [auto, swap] {$\exists u'$} (2);
+\end{tikzpicture}
+\end{equation}
+with $u$ not split mono, then there exists a map $u': M \to E$ such that \ref{lalmostsplitdiag} commutes, i.e. any map $u: L \to E$ which is not split mono factors through $f$.
+\end{mydef}
+
+\begin{mydef}
+A map $g: M \to N$ is called \emph{right almost-split} if $g$ is not split epi and if,
+\begin{equation} \label{ralmostsplitdiag}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$M$};
+\node [main node]		(2) at (1.5,0)	{$N$};
+\node [main node]		(3) at (1.5,1.5)	{$F$};
+
+\draw (1) [main path] edge node [auto, swap] {$g$} (2);
+\draw (3) [main path] edge node [auto] {$v$} (2);
+\draw (3) [->, dashed, semithick] edge node [auto, swap] {$\exists v'$} (1);
+\end{tikzpicture}
+\end{equation}
+with $v$ not split epi, then there exists $v': F \to M$ such that \ref{ralmostsplitdiag} commutes, i.e. any map $v: F \to N$ which is not split epi factors through $g$.
+\end{mydef}
+
+\begin{mydef}
+\begin{itemize}
+\item A map $f: L \to M$ is \emph{left minimal almost-split} if it is both left minimal and left almost-split.
+\item A map $g: M \to N$ is \emph{right minimal almost-split} if it is both right minimal and right almost-split.
+\end{itemize}
+\end{mydef}
+
+Clearly, as noted in \cite{Assem}, each "right-hand" notion is the dual of the corresponding "left hand" notion. Next is a Proposition from \cite{Assem} showing that left or right minimal almost-split maps uniquely determine their targets, or sources, respectively. 
+
+\begin{prop}
+\begin{description}
+\item [(i)] If the maps $f: L \to M$ and $f': L \to M'$ are left minimal almost-splt, then there exists an isomorphism $h: M \to M'$ such that $f'=hf$.
+\item [(ii)] If the maps $g: M \to N$ and $g': M' \to N$ are right minimal almost-split, then there exists an isomorphism $h: M \to M'$ such that $g=g'h$.
+\end{description}
+\end{prop}
+\begin{proof}
+As (i) was proven in \cite{Assem}, and (ii) left, here we shall only prove (ii):\\
+As $g$ and $g'$ are right almost-split there exist $h: M' \to M$ and $h:M \to M'$ such that,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$M$};
+\node [main node]		(2) at (2, 0)		{$N$};
+\node [main node]		(3) at (2,2)		{$M'$};
+
+\draw (1) [main path] edge node [auto, swap] {$g$} (2);
+\draw (3) [main path] edge node [auto] {$g'$} (2);
+\draw (3.220) [->, dashed, semithick] edge node [auto] {$\exists h'$} (1.20);
+\draw (1.70) [->, dashed, semithick] edge node [auto] {$\exists h$} (3.180);
+\end{tikzpicture}
+\end{equation*}
+such that $g=g'h$ and $g'=gh'$. Hence, $g=gh'h$ and $g'=ghh'$. Since $g$ and $g'$ are right minimal, $h'h$ and $hh'$ are automorphisms and consequently $h$ is an isomorphism.
+\end{proof}
+
+The following result is from \cite{Vale} and \cite{Assem} and displays that almost-split maps are closely related to indecomposable modules.
+
+\begin{lem}
+\begin{description}
+\item [(i)] If $f: L \to M$ is left almost-split then $L$ is indecomposable.
+\item [(ii)] If $g: M \to N$ is right almost-split then $N$ is indecomposable.
+\end{description}
+\end{lem}
+\begin{proof}
+We will follow \cite{Vale} here and only prove the result for (ii) as the proof for (i) is the dual argument.\\
+Suppose $g: M \to N$ is right almost-split and $N=N_1\oplus N_2$ with with both $N_1, N_2$ nonzero. Then the insertion maps $\iota_i: N_i \hookrightarrow N_1 \oplus N_2$ are not split epi, and so there exists $v_1: N_1 \to N$ with $gv_1=\iota_1$ and $v_2: N_2 \to N$ with $gv_2=\iota_2$. Then $g(v_1 + v_2) = \iota_1 + \iota _2 =id_N$, contradicting $g$ not split epi. 
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3459,7 +3748,6 @@ Cambridge University Press
 Hilton, P.J. \& Stammbach, U.
 1972.
 \emph{A Course in Homological Algebra}
-1st ed.
 Springer.
 
 \bibitem{Schiff}
@@ -3481,39 +3769,31 @@ Swanson, I.
 \emph{Homological Algebra}. [Online-PDF file]. [Accessed May 2015].
 Available from: http://people.reed.edu/~iswanson/homologicalalgebra.pdf.
 
+\bibitem{CB3}
+Crawley-Boevey, W.
+\emph{More Lectures on Representations of Quivers.} [Online-PDF file]. [Accessed March 2015].
+Available from: http://www1.maths.leeds.ac.uk/~pmtwc/quivlecs.pdf.
+
+\bibitem{Vale}
+Vale, Richard.
+\emph{7350:Topics in Finite-Dimensional Algebras.} [Online-PDF file]. [Accessed March 2015].
+Available from: http://www.math.cornell.edu/~rvale/fdalgebras.pdf.
+
+\bibitem{Barot}
+Barot, Michael.
+\emph{Introduction to the Representation Theory of Algebras.} [Online-PDF file]. [Accessed May 2015].
+Available from: http://www.uni-graz.at/~baurk/lehre/representation\_theory.pdf
+
+\bibitem{AR}
+\emph{Auslander–Reiten theory - Wikipedia, the free encyclopedia.} [ONLINE] [Accessed May 2015].
+Available at: http://en.wikipedia.org/wiki/Auslander\%E2\%80\%93Reiten\_theory\#CITEREFAuslander1999a.
+
+\bibitem{Assem}
+Assem, I. et al.
+2006. 
+\emph{Elements of the Representation Theory of Associative Algebras: Volume 1: Techniques of Representation Theory}.
+Cambridge University Press.
 \end{thebibliography}
 
 
 \end{document}
-
-
-\begin{equation*}
-\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
-\node [main node]		(1) at (0,0)		{$0$};
-\node [main node]		(2) at (2,0)		{$K$};
-\node [main node]		(3) at (4,0)		{$K^2$};
-\node [main node]		(4) at (6,0)		{$K^2$};
-\node [main node]		(5) at (8,0)		{$K^2$};
-\node [main node]		(6) at (10,0)		{$0$};
-
-\node[main node]		(7) at (2,-1)		{$x$};
-\node[main node]		(8) at (4,-1)		{$(x,0)$};
-\node [main node]		(9) at (6,-1)		{$(0,0)$};
-
-\node [main node]		(10) at (4,-2)		{$(x,y)$};
-\node [main node]		(11) at (6, -2)		{$(x, 0)$};
-\node [main node]		(12) at (8, -2)		{$(x,0)$};
-
-\draw (1) edge [main path] node [auto] {$$} (2);
-\draw (2) edge [main path] node [auto] {$f$} (3);
-\draw (3) edge [main path] node [auto] {$g$} (4);
-\draw (4) edge [main path] node [auto] {$h$} (5);
-\draw (5) edge [main path] node [auto] {$$} (6);
-
-\draw [|->] (7) edge node [auto] {$f$} (8);
-\draw [|->] (8) edge node [auto] {$g$} (9);
-
-\draw [|->] (10) edge node [auto] {$g$} (11);
-\draw [|->] (11) edge node [auto] {$h$} (12);
-\end{tikzpicture}
-\end{equation*}

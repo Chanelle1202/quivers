@@ -11,4 +11,6 @@
 \contentsline {section}{\numberline {3.3}Standard Resolution}{50}
 \contentsline {section}{\numberline {3.4}Bricks}{50}
 \contentsline {section}{\numberline {3.5}Dynkin and Euclidean diagrams}{50}
-\contentsline {chapter}{\numberline {4}Auslander-Reiten Quivers}{51}
+\contentsline {chapter}{\numberline {4}Auslander-Reiten Theory}{51}
+\contentsline {section}{\numberline {4.1}Irreducible Maps}{51}
+\contentsline {section}{\numberline {4.2}Almost Split Sequences}{54}
