@@ -3,8 +3,6 @@
 \usepackage{tikz}
 \usetikzlibrary{automata, arrows, matrix}
 \providecommand{\abs}[1]{\lvert#1\rvert}
-\providecommand{\equ}[0]{\begin{equation*}}
-\providecommand{\eequ}[0] {\end{equation*}}
 \providecommand{\bb}[1]{\mathbb{#1}}
 \theoremstyle{definition}
 \newtheorem{mydef}{Definition}[section]
@@ -40,13 +38,15 @@ This project aims to cover interesting topics from the area of quiver representa
 
 \chapter{Homological Algebra}
 
+In this chapter we will be introducing results from Homological Algebra and will mainly be following the first two sections of \cite{CB1}, but with heavy influence from \cite{Rotman} and \cite{Weibel}. We will first explore chain complexes before moving onto exact sequences and extensions before finishing by looking at some results of $Ext^1$ will be useful later on in the report. For the chapter, we let $R$ be a ring and will be considering left $R$-modules.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%			CHAIN COMPLEXES 		%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chain Complexes}
 
 \begin{mydef}
-A \emph{chain complex} $\mathbf{C}_{\bullet}$ consists of a sequence of $\mathbb{R}$-modules $C_i$ ($i \in \mathbb{Z}$) and morphisms of the form,
+A \emph{chain complex} $\mathbf{C}_{\bullet}$ consists of a sequence of $R$-modules $C_i$ ($i \in \mathbb{Z}$) and morphisms of the form,
 \begin{equation*}
 \mathbf{C}: \qquad \dots \xrightarrow{\delta_{3}} C_2 \xrightarrow{\delta_{2}} C_1 \xrightarrow{\delta_{1 }} C_0 \xrightarrow{\delta_0} C_{-1} \xrightarrow{\delta_{-1}} C_{-2} \xrightarrow{\delta_{-2}}\dots
 \end{equation*}
@@ -58,9 +58,9 @@ It is convention that the map $\delta_n$ starts at $C_n$.
 \end{rem}
 
 \begin{eg}
-If we have a field $K$ then we can create the following chain complex:
+If we have a field $k$ then we can create the following chain complex:
 \begin{equation*}
-\mathbf{C}: \qquad \dots \xrightarrow{} 0 \xrightarrow{} K^2 \xrightarrow{\Bigl(\begin{smallmatrix}1&2\\ 3&0\\ 0&0 \end{smallmatrix}\Bigr)} K^3 \xrightarrow{(\begin{smallmatrix}0 & 0 &1\end{smallmatrix})} K \xrightarrow{} 0 \xrightarrow{}\dots
+\mathbf{C}: \qquad \dots \xrightarrow{} 0 \xrightarrow{} k^2 \xrightarrow{\Bigl(\begin{smallmatrix}1&2\\ 3&0\\ 0&0 \end{smallmatrix}\Bigr)} k^3 \xrightarrow{(\begin{smallmatrix}0 & 0 &1\end{smallmatrix})} k \xrightarrow{} 0 \xrightarrow{}\dots
 \end{equation*}
 We can clearly see that the maps uphold the $\delta^2=0$ condition as,
 \begin{equation*}
@@ -77,13 +77,13 @@ We can clearly see that the maps uphold the $\delta^2=0$ condition as,
 \end{equation*}
 \end{eg}
 
-\begin{eg} \label{Kchaineg}
+\begin{eg} \label{kchaineg}
 If we consider the sequence, 
-\equ 
-\dots \xrightarrow{} 0 \xrightarrow{} K \xrightarrow{\delta_2=\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)} K^2 \xrightarrow{\delta_1=(\begin{smallmatrix}1 & 0 \end{smallmatrix})} K \xrightarrow{} 0 \xrightarrow{} \dots
-\eequ
+\begin{equation*} 
+\dots \xrightarrow{} 0 \xrightarrow{} k \xrightarrow{\delta_2=\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)} k^2 \xrightarrow{\delta_1=(\begin{smallmatrix}1 & 0 \end{smallmatrix})} k \xrightarrow{} 0 \xrightarrow{} \dots
+\end{equation*}
 however,
-\equ
+\begin{equation*}
 \begin{pmatrix}
 1 & 0
 \end{pmatrix}
@@ -92,13 +92,13 @@ however,
 0
 \end{pmatrix*}
 = 1 \neq 0.
-\eequ
+\end{equation*}
 Hence, $\delta_1\delta_2 \neq0$, and so the sequence is not a chain complex. However, if we change $\delta_2$ slightly we obtain the chain complex,
-\equ
-\mathbf{C}: \qquad \dots \xrightarrow{} 0 \xrightarrow{} K \xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)} K^2 \xrightarrow{(\begin{smallmatrix}0 & 1 \end{smallmatrix})} K \xrightarrow{} 0 \xrightarrow{} \dots
-\eequ
+\begin{equation*}
+\mathbf{C}: \qquad \dots \xrightarrow{} 0 \xrightarrow{} k \xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)} k^2 \xrightarrow{(\begin{smallmatrix}0 & 1 \end{smallmatrix})} k \xrightarrow{} 0 \xrightarrow{} \dots
+\end{equation*}
 since, 
-\equ
+\begin{equation*}
 \begin{pmatrix}
 1 & 0
 \end{pmatrix}
@@ -107,7 +107,7 @@ since,
 1
 \end{pmatrix*}
 = 1 \neq 0.
-\eequ
+\end{equation*}
 \end{eg}
 
 \begin{mydef}
@@ -140,7 +140,7 @@ If $\mathbf{C}$ is a chain complex then its \emph{homology} is defined to be,
 \begin{equation*}
 H_n(\mathbf{C})=\frac{ker(\delta_n:C_n \rightarrow C_{n-1})}{im(\delta_{n+1}:C_{n+1} \rightarrow C_n)}=\frac{Z_n(\mathbf{C})}{B_n(\mathbf{C})},
 \end{equation*}
-which is an $\bb{R}$-module.
+which is an R-module.
 \end{mydef}
 
 
@@ -151,13 +151,13 @@ If $\mathbf{C}$ is a chain complex with $C_n=0$ for some $n$ then $H_n(\mathbf{C
 \end{prop}
 \begin{proof}
 Well suppose we have such a chain complex, 
-\equ
+\begin{equation*}
 \mathbf{C}: \qquad \dots \xrightarrow{} C_{n+1} \xrightarrow{\delta_{n+1}} 0 \xrightarrow{\delta_n} C_{n-1} \xrightarrow{} \dots
-\eequ
+\end{equation*}
 the the homology is,
-\equ
+\begin{equation*}
 H_n(\mathbf{C})=\frac{ker(\delta_n: 0 \to C_{n-1}}{im(\delta_{n+1}: C_{n+1}\to 0)},
-\eequ
+\end{equation*}
 as the only element in $C_n$ is the zero element, and so, $H_n(\mathbf{C})=0$, as required.\\
 \end{proof}
 
@@ -178,63 +178,81 @@ H_i(\mathbf{C})=\begin{cases}
 \end{equation*}
 \end{eg}
 
+\begin{rem}
+Recall, 
+\begin{equation*}
+Coker(f)= \frac{\text{Codomain of }f}{\text{Image of }f},
+\end{equation*}
+is the \emph{cokernel} of the map $f$.
+\end{rem}
+
 \begin{prop}  \label{chainhomprop}
 If we have a module homomorphism between $R$-modules, $f: M \xrightarrow{} N$, the we get the chain complex,
-\equ
+\begin{equation*}
 \mathbf{C}: \qquad \underset{\text{deg}}{\dots} \xrightarrow{}\underset{n+2}{0} \xrightarrow{} \underset{n+1}{M} \xrightarrow{f}\underset{n}{N} \xrightarrow{} \underset{n-1}{0} \xrightarrow{}\dots ,
-\eequ
+\end{equation*}
 and the homology becomes,
-\equ
+\begin{equation*}
 H_i(\mathbf{C})=
 \begin{cases}
 \frac{N}{im(f)}=coker(f) & i=n\\
 ker(f) & i=n+1\\
 0 & \text{otherwise}.
 \end{cases}
-\eequ
+\end{equation*}
 \end{prop}
 \begin{proof}
 Firstly, at degree $n$ we have that,
-\equ
+\begin{equation*}
 H_n(\mathbf{C})=\frac{ker(N\xrightarrow{}0)}{im(M\xrightarrow{f}N)}=\frac{N}{im(f)}=coker(f).
-\eequ
+\end{equation*}
 Then at degree $n+1$ we have that,
-\equ
+\begin{equation*}
 H_{n+1}(\mathbf{C})=\frac{ker(M\xrightarrow{f}N)}{im(0\xrightarrow{}M)}=ker(f).
-\eequ
+\end{equation*}
 Finally, it is clear that everywhere else there is no homology.
 \end{proof}
 
-\begin{note}
-Here, 
-\equ
+\begin{rem}
+Recall, 
+\begin{equation*}
 Coker(f)= \frac{\text{Codomain of }f}{\text{Image of }f},
-\eequ
+\end{equation*}
 is the \emph{cokernel} of the map $f$.
-\end{note}
+\end{rem}
 
 \begin{eg} \label{chainZeg}
 We can have a chain complex of $\mathbb{Z}$-modules,
-\equ
+\begin{equation*}
 \mathbf{C}: \qquad \underset{\text{deg}}{\dots} \xrightarrow{}\underset{2}{0} \xrightarrow{} \underset{1}{\mathbb{Z}} \xrightarrow{a}\underset{0}{\mathbb{Z}} \xrightarrow{} \underset{-1}{0} \xrightarrow{}\dots 
-\eequ
-where the map $a$ is right multiplication by some $a \in \mathbb{Z}$. The homology is,
-\equ
+\end{equation*}
+where the map $a$ is right multiplication by some $a \in \mathbb{Z}$. Firstly, we deal with the case where $a$ is not the zero map. \\
+The homology is,
+\begin{equation*}
 H_i(\mathbf{C}) = 
 \begin{cases}
 \frac{ker(\mathbb{Z}\xrightarrow{} 0)}{im(\mathbb{Z}\xrightarrow{a}\mathbb{Z})}=\frac{\mathbb{Z}}{a\mathbb{Z}} & i=0,\\
 0 & \text{otherwise}.
 \end{cases}
-\eequ
+\end{equation*}
 Note that,
-\equ
-H_0(C)=\frac{\bb{Z}}{a\bb{Z}}= \frac{\text{Codomain of }f}{\text{Image of }f}=coker(a).
-\eequ
+\begin{equation*}
+H_0(\mathbf{C})=\frac{\bb{Z}}{a\bb{Z}}= \frac{\text{Codomain of }f}{\text{Image of }f}=coker(a).
+\end{equation*}
 Also,
-\equ
-H_1(C)=\frac{ker(\bb{Z}\xrightarrow{a}\bb{Z})}{im(0\xrightarrow{}\bb{Z})}=ker(a)=0,
-\eequ
-because $ker(a)$ is empty.
+\begin{equation*}
+H_1(\mathbf{C})=\frac{ker(\bb{Z}\xrightarrow{a}\bb{Z})}{im(0\xrightarrow{}\bb{Z})}=ker(a)=0,
+\end{equation*}
+as $a$ is injective.\\
+However, in the instance that $a$ is the zero map, we have that,
+\begin{equation*}
+ker(\bb{Z} \xrightarrow{0} \bb{Z})=\bb{Z} \quad \& \quad im(\bb{Z} \xrightarrow{0} \bb{Z})=0.
+\end{equation*}
+So,
+\begin{equation*}
+H_0(\mathbf{C})=\bb{Z} \quad \& \quad H_1(\mathbf{C})=\bb{Z},
+\end{equation*}
+with $H_i(\mathbf{C})=0$ for all $i \neq 0,1$.
 \end{eg}
 
 \begin{mydef}
@@ -260,41 +278,48 @@ A chain complex $\mathbf{C}$ is said to be:
 \end{mydef}
 
 \begin{eg}
-All the chain complexes in the previous examples are bounded both above and below, however, neither is acyclic as they both have instances where the homology is non-zero. The chain complex in Example \ref{chainZeg} is non-negative because $C_n\neq 0$ only when $n=0,1$.
+Both the chain complexes in the previous examples are bounded both above and below, however, neither is acyclic as they both have instances where the homology is non-zero. The chain complex in Example \ref{chainZeg} is non-negative because $C_n\neq 0$ only when $n=0,1$.
 \end{eg}
 
 \begin{eg}
-If we take another look at the chain complex in Example \ref{Kchaineg},
-\equ
-\mathbf{C}: \qquad \underset{\text{deg}}{\dots} \xrightarrow{} 0 \xrightarrow{} \underset{1}{K} \xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)} \underset{0}{K^2} \xrightarrow{(\begin{smallmatrix}0 & 1 \end{smallmatrix})}\underset{-1}{K} \xrightarrow{} 0 \xrightarrow{} \dots
-\eequ
-the homologies are, 
+If we take another look at the chain complex in Example \ref{kchaineg},
+\begin{equation*}
+\mathbf{C}: \qquad \underset{\text{deg}}{\dots} \xrightarrow{} 0 \xrightarrow{} \underset{1}{k} \xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)} \underset{0}{k^2} \xrightarrow{(\begin{smallmatrix}0 & 1 \end{smallmatrix})}\underset{-1}{k} \xrightarrow{} 0 \xrightarrow{} \dots
+\end{equation*}
+and we have, 
 \begin{align*}
-H_1(\mathbf{C}) &=\frac{ker(K\xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)}K^2)}{im(0 \xrightarrow{}K)}\cong \frac{K}{K} \cong 0,\\
-H_0(\mathbf{C}) &=\frac{ker(K^2\xrightarrow{(\begin{smallmatrix} 1 & 0 \end{smallmatrix})}K)}{im(K\xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)}K^2)}\cong \frac{K}{K} \cong 0,\\
-H_{-1}(\mathbf{C}) &=\frac{ker(K\xrightarrow{}0)}{im(K^2\xrightarrow{(\begin{smallmatrix} 1 & 0 \end{smallmatrix})}K))}\cong \frac{K}{K} \cong 0.\\
+ker(k\xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)}k^2)=0 \quad &\& \quad im(0 \xrightarrow{}k)=0,\\
+ker(k^2\xrightarrow{(\begin{smallmatrix} 1 & 0 \end{smallmatrix})}k) \cong 0\oplus k \cong k \quad &\& \quad im(k\xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)}k^2)\cong k \oplus 0\cong k,\\
+ker(k\xrightarrow{}0)=k \quad &\& \quad im(k^2\xrightarrow{(\begin{smallmatrix} 1 & 0 \end{smallmatrix})}k)\cong k \oplus 0 \cong k.
+\end{align*}
+So the homologies are, 
+\begin{align*}
+H_1(\mathbf{C}) &=\frac{ker(k\xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)}k^2)}{im(0 \xrightarrow{}k)}= 0,\\
+H_0(\mathbf{C}) &=\frac{ker(k^2\xrightarrow{(\begin{smallmatrix} 1 & 0 \end{smallmatrix})}k)}{im(k\xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)}k^2)}\cong \frac{k}{k} \cong 0,\\
+H_{-1}(\mathbf{C}) &=\frac{ker(k\xrightarrow{}0)}{im(k^2\xrightarrow{(\begin{smallmatrix} 1 & 0 \end{smallmatrix})}k)}\cong \frac{k}{k} \cong 0.\\
 \end{align*}
 Thus $H_n(\mathbf{C})=0$ for all $n$ and so $\mathbf{C}$ is an acyclic chain complex. Later in the report, we will see that $\mathbf{C}$ is in fact a short exact sequence.
 \end{eg}
 
 \begin{eg}
 The chain complex,
-\equ
+\begin{equation*}
 \mathbf{C}: \qquad \underset{\text{deg}}{\underset{}{\dots}} \xrightarrow{3}\underset{1}{\frac{\bb{Z}}{9\bb{Z}}} \xrightarrow{3}\underset{0}{\frac{\bb{Z}}{9\bb{Z}}} \xrightarrow{3}\underset{-1}{\frac{\bb{Z}}{9\bb{Z}}} \xrightarrow{} \dots
-\eequ
+\end{equation*}
 where the differentials are the maps,
-\equ
+\begin{equation*}
 \delta_n:\frac{\bb{Z}}{9\bb{Z}}\xrightarrow{}\frac{\bb{Z}}{9\bb{Z}}\text{, } z+9\bb{Z}\mapsto 3z+9\bb{Z},
-\eequ
-is unbounded. It is also acyclic, since the homology is,
-\equ
-H_n(\mathbf{C})=\frac{ker(\delta_n:\frac{\bb{Z}}{9\bb{Z}}\xrightarrow{}\frac{\bb{Z}}{9\bb{Z}})}{im(\delta_n:\frac{\bb{Z}}{9\bb{Z}}\xrightarrow{}\frac{\bb{Z}}{9\bb{Z}})}\cong \frac{\bb{Z}/3\bb{Z}}{\bb{Z}/3\bb{Z}} \cong 0, 
-\eequ
+\end{equation*}
+is unbounded. It is also acyclic, since $ker(\delta_n:\sfrac{\bb{Z}}{9\bb{Z}}\xrightarrow{}\sfrac{\bb{Z}}{9\bb{Z}})=im(\delta_n:\sfrac{\bb{Z}}{9\bb{Z}}\xrightarrow{}\sfrac{\bb{Z}}{9\bb{Z}})$  as they are both equal to the subset $\{0,3,6\}$ of $\sfrac{\bb{Z}}{9\bb{Z}}$.
+So the homology is,
+\begin{equation*}
+H_n(\mathbf{C})=\frac{ker(\delta_n:\frac{\bb{Z}}{9\bb{Z}}\xrightarrow{}\frac{\bb{Z}}{9\bb{Z}})}{im(\delta_n:\frac{\bb{Z}}{9\bb{Z}}\xrightarrow{}\frac{\bb{Z}}{9\bb{Z}})} \cong 0, 
+\end{equation*}
 for all $n$.
 \end{eg}
 
 \begin{mydef}
-A \emph{cochain complex} $\mathbf{C}^{\bullet}$ consists of a sequence of $\mathbb{R}$-modules $C^i$ ($i \in \mathbb{Z}$) and morphisms of the form,
+A \emph{cochain complex} $\mathbf{C}^{\bullet}$ consists of a sequence of $R$-modules $C^i$ ($i \in \mathbb{Z}$) and morphisms of the form,
 \begin{equation*}
 \mathbf{C}: \qquad \dots \xrightarrow{\delta^{-3}} C^{-2} \xrightarrow{\delta^{-2}} C^{-1} \xrightarrow{\delta^{-1 }} C^0 \xrightarrow{\delta^0} C^{1} \xrightarrow{\delta^{1}} C^{2} \xrightarrow{\delta^{2}} \dots
 \end{equation*}
@@ -311,35 +336,35 @@ If $\mathbf{C}$ is a cochain complex then its \emph{cohomology} is defined to be
 H^n(\mathbf{C})=\frac{ker(\delta^n:C^n \rightarrow C^{n+1})}{im(\delta^{n-1}:C^{n-1} \rightarrow C^n)} =\frac{Z^n(\mathbf{C})}{B^n(\mathbf{C})}.
 \end{equation*}
 \begin{itemize}
-\item The elements of $B_n(\mathbf{C})$ are called \emph{$n-$coboundaries}.
-\item The elements of $Z_n(\mathbf{C})$ are called \emph{$n-$cocycles}.
+\item The elements of $B^n(\mathbf{C})$ are called \emph{$n-$coboundaries}.
+\item The elements of $Z^n(\mathbf{C})$ are called \emph{$n-$cocycles}.
 \end{itemize}
 \end{mydef}
 
 \begin{eg}
 We can renumber the chain complex in Example \ref{chainZeg} to get the cochain complex, 
-\equ
+\begin{equation*}
 \mathbf{C}: \qquad \underset{\text{deg}}{\dots} \xrightarrow{}\underset{-2}{0} \xrightarrow{} \underset{-1}{\mathbb{Z}} \xrightarrow{a}\underset{0}{\mathbb{Z}} \xrightarrow{} \underset{1}{0} \xrightarrow{}\dots 
-\eequ
+\end{equation*}
 Its cohomology is,
-\equ
+\begin{equation*}
 H^i(\mathbf{C}) = 
 \begin{cases}
 \frac{ker(\mathbb{Z}\xrightarrow{} 0)}{im(\mathbb{Z}\xrightarrow{a}\mathbb{Z})}=\frac{\mathbb{Z}}{a\mathbb{Z}} & i=0,\\
 0 & \text{otherwise}.
 \end{cases}
-\eequ
+\end{equation*}
 \end{eg}
 
 \begin{mydef}
 Let $\mathbf{C}$ be a chain complex of left $R$-modules. If M is a left $R$-module then \emph{$Hom(\mathbf{C}, M)$} is the cochain complex where,
-\equ
+\begin{equation*}
 Hom(\mathbf{C}, M)^n=Hom(C_n, M),
-\eequ
+\end{equation*}
 and the differentials, 
-\equ
+\begin{equation*}
 \delta^n: Hom(\mathbf{C}, M)^n \to Hom(C, M)^{n+1},
-\eequ
+\end{equation*}
 are induced by the differentials of $\mathbf{C}$, $\delta_n:C_{n+1}\to C_n$. The cohomology of this cochain complex is denoted $H^n(\mathbf{C}, M)$.
 \end{mydef}
 
@@ -347,27 +372,27 @@ The following example is a generalised version of one found in \cite{CB1}.
 
 \begin{eg}
 Consider the acyclic chain complex, 
-\equ
-\mathbf{C}: \qquad \underset{\text{deg}}{\underset{}{\dots}} \xrightarrow{}0 \xrightarrow{} \underset{1}{\underset{}{\bb{Z}}} \xrightarrow{n} \underset{0}{\underset{}{\bb{Z}}} \xrightarrow{nat} \underset{-1}{\frac{\bb{Z}}{n\bb{Z}}} \xrightarrow{} \dots
-\eequ
-So applying $Hom(-, \bb{Z})$ we gives the cochain complex, 
-\equ
-\mathbf{C'}: \qquad \underset{\text{deg}}{\underset{}{\dots}} \xrightarrow{}0 \xrightarrow{} \underset{1}{\underset{}{\bb{Z}}} \xrightarrow{n} \underset{0}{\underset{}{\bb{Z}}} \xrightarrow{nat} \underset{-1}{\frac{\bb{Z}}{n\bb{Z}}} \xrightarrow{} \dots
-\eequ
+\begin{equation*}
+\mathbf{C}: \qquad \underset{\text{deg}}{\underset{}{\dots}} \xrightarrow{}0 \xrightarrow{} \underset{1}{\underset{}{\bb{Z}}} \xrightarrow{n} \underset{0}{\underset{}{\bb{Z}}} \xrightarrow{nat} \underset{-1}{\frac{\bb{Z}}{n\bb{Z}}} \xrightarrow{}0 \xrightarrow{} \dots
+\end{equation*}
+So applying $Hom(-, \bb{Z})$ gives $Hom(\sfrac{\bb{Z}}{n\bb{Z}}, \bb{Z})=0$ and $Hom(\bb{Z}, \bb{Z})\cong\bb{Z}$ and so $Hom(\mathbf{C}, \bb{Z})$ is the cochain complex,
+\begin{equation*}
+\underset{\text{deg}}{\underset{}{\dots}} \xrightarrow{}0 \xrightarrow{} \underset{-1}{\underset{}{0}} \xrightarrow{} \underset{0}{\underset{}{\bb{Z}}} \xrightarrow{n} \underset{1}{\underset{}{\bb{Z}}} \xrightarrow{}0 \xrightarrow{} \dots
+\end{equation*}
 which has cohomology,
-\equ
-H^i(\mathbf{C'}, \bb{Z})=
+\begin{equation*}
+H^i(\mathbf{C}, \bb{Z})=
 \begin{cases}
 \frac{ker(\bb{Z}\to0)}{im(\bb{Z}\xrightarrow{n}\bb{Z})} \cong \frac{\bb{Z}}{n\bb{Z}} & i=0, \\
 0 & \text{otherwise.}
 \end{cases}
-\eequ
+\end{equation*}
 Notice that despite the chain complex being acyclic, its cohomology induced by $Hom(-, \bb{Z})$  is not zero everywhere.
 \end{eg}
 
 \begin{mydef}
 A \emph{chain map}  $f: \mathbf{C} \to \mathbf{D}$, with $\mathbf{C}$ and $\mathbf{D}$ chain complexes, is given by a homomorphism $f_n: \mathbf{C}_n \to \mathbf{D}_n$ for each $n$, such that each square in the following diagram commutes, 
-\equ
+\begin{equation*}
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={}]
 \node	[main node]		(1) at (0,0)		{\dots};
 \node	[main node]		(2) at (2,0)		{$\mathbf{C}_{n+1}$};
@@ -392,13 +417,13 @@ A \emph{chain map}  $f: \mathbf{C} \to \mathbf{D}$, with $\mathbf{C}$ and $\math
 \draw (3) edge node [auto, swap] {$f_n$} (8);
 \draw (4) edge node [auto, swap] {$f_{n-1}$} (9);
 \end{tikzpicture}
-\eequ
+\end{equation*}
 Note that there is an equivalent notion of a \emph{cochain map} of cochain complexes.
 \end{mydef}
 
 \begin{eg}
 If we have the following diagram,
-\equ
+\begin{equation*}
 \begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
 \node	[main node]		(1) at (0,0)		{$\mathbf{C}$: \quad \dots};
 \node	[main node]		(2) at (2,0)		{$0$};
@@ -433,7 +458,7 @@ If we have the following diagram,
 \draw (11) edge [-, semithick, double, double distance=1.5pt] (13);
 \draw (2) edge [-, semithick, double, double distance=1.5pt] (7);
 \end{tikzpicture}
-\eequ
+\end{equation*}
 then we can see that our non trivial chain maps are, 
 \begin{align*}
 f_{1} &: \bb{Z} \to \frac{\bb{Z}}{n\bb{Z}}, \quad z \mapsto z+n\bb{Z},\\
@@ -441,9 +466,9 @@ f_0 &: \bb{Z} \to \frac{\bb{Z}}{n^2\bb{Z}}, \quad z \mapsto z+n^2\bb{Z}, \\
 f_{1} &: \frac{\bb{Z}}{n\bb{Z}} \to \frac{\bb{Z}}{n\bb{Z}}, \quad z+n\bb{Z} \mapsto z+n\bb{Z}, 
 \end{align*}
 and they satisfy, 
-\equ
+\begin{equation*}
 f_0(\gamma_1(z))=f_0(nz)=nz+n\bb{Z}=0\quad \& \quad \delta_1(f_1(z))=\delta_1(z+n\bb{Z})=nz+n\bb{Z}=0.
-\eequ
+\end{equation*}
 Simmilarly, we can see that the other chain maps make the diagram commute.
 \end{eg}
 
@@ -488,14 +513,14 @@ is said to be an \emph{exact sequence} if it is exact at every $M_i$, i.e. $imf_
 \begin{eg}
 The finite sequence,
 \begin{equation*}
-0\xrightarrow{}K\xrightarrow{f}K^2\xrightarrow{g}K^2\xrightarrow{h}K^2\xrightarrow{}0,
+0\xrightarrow{}k\xrightarrow{f}k^2\xrightarrow{g}k^2\xrightarrow{h}k^2\xrightarrow{}0,
 \end{equation*}
-where $f(x)=(x,0)$, $g(x, y)=(0,y)$, and $h(x,y)=(x,0)$ is an exact sequence since $im(f)=\{(x,0):x\in K\}=ker(g)$ and $im(g)=\{(0,y):u\in K\}=ker(h)$. 
+where $f(x)=(x,0)$, $g(x, y)=(0,y)$, and $h(x,y)=(x,0)$ is an exact sequence since $im(f)=\{(x,0):x\in k\}=ker(g)$ and $im(g)=\{(0,y):u\in k\}=ker(h)$. 
 However, if we instead consider the finite sequence, 
 \begin{equation*}
-0\xrightarrow{}K\xrightarrow{f}K^2\xrightarrow{g}K^2\xrightarrow{h'}K^2\xrightarrow{}0,
+0\xrightarrow{}k\xrightarrow{f}k^2\xrightarrow{g}k^2\xrightarrow{h'}k^2\xrightarrow{}0,
 \end{equation*}
-where $f$ and $g$ are the same as above, but $h'(x,y)=(x,y)$. Obviously, once again we have that $im(f)=ker(g)$ and $im(g)=\{(0,y):y\in K\}$, however, $ker(h')=\{(0,0)\}$ and so $im(g)\neq ker(h')$. Hence this is not an exact sequence, because it is not exact everywhere.
+where $f$ and $g$ are the same as above, but $h'(x,y)=(x,y)$. Obviously, once again we have that $im(f)=ker(g)$ and $im(g)=\{(0,y):y\in k\}$, however, $ker(h')=\{(0,0)\}$ and so $im(g)\neq ker(h')$. Hence this is not an exact sequence, because it is not exact everywhere.
 \end{eg}
 
 
@@ -510,9 +535,9 @@ This is also referred to as and \emph{extension of} $N$ \emph{by} $L$.
 \begin{eg}
 The sequence,
 \begin{equation*}
-0\xrightarrow{} K \xrightarrow{f} K^2 \xrightarrow{g} K \xrightarrow{} 0,
+0\xrightarrow{} k \xrightarrow{f} k^2 \xrightarrow{g} k \xrightarrow{} 0,
 \end{equation*}
-where $f(x)=(x,0)$ and $g(x,y)=y$ is a short exact sequence, since $im(f)=\{(x,0): x\in K\}=ker(g)$.
+where $f(x)=(x,0)$ and $g(x,y)=y$ is a short exact sequence, since $im(f)=\{(x,0): x\in k\}=ker(g)$.
 \end{eg}
 
 \begin{eg}
@@ -640,23 +665,23 @@ The equivalence classes of extensions of $N$ by $L$ will be represented as $e(N,
 \begin{eg}
 Consider the two short exact sequences, 
 \begin{equation*}
-\mathbf{E}: \quad 0\xrightarrow{}K\xrightarrow{f}K^2\xrightarrow{g}K\xrightarrow{}0  \quad \& \quad \mathbf{E'}: \quad 0\xrightarrow{}K\xrightarrow{f'}K^2\xrightarrow{g'}K\xrightarrow{}0 ,
+\mathbf{E}: \quad 0\xrightarrow{}k\xrightarrow{f}k^2\xrightarrow{g}k\xrightarrow{}0  \quad \& \quad \mathbf{E'}: \quad 0\xrightarrow{}k\xrightarrow{f'}k^2\xrightarrow{g'}k\xrightarrow{}0 ,
 \end{equation*}
 where $f: x \mapsto (x, 0)$, $g: (x,y)\mapsto y$, $f':x \mapsto (0,x)$ and $g':(x,y)\mapsto x$. Then we can construct the diagram: 
 \begin{equation*}
 \begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
 \node	[main node]		(1) at (0,0)		{$\mathbf{E}$: \quad };
 \node	[main node]		(2) at (2,0)		{$0$};
-\node	[main node]		(3) at (4,0)		{$K$};
-\node [main node]		(4) at (6,0)		{$K^2$};
-\node [main node]		(5) at (8,0)		{$K$};
+\node	[main node]		(3) at (4,0)		{$k$};
+\node [main node]		(4) at (6,0)		{$k^2$};
+\node [main node]		(5) at (8,0)		{$k$};
 \node	[main node]		(11) at (10,0)	{$0$};
 
 \node	[main node]		(6) at (0,-2)		{$\mathbf{E'}$: \quad};
 \node	[main node]		(7) at (2,-2)		{$0$};
-\node	[main node]		(8) at (4,-2)		{$K$};
-\node [main node]		(9) at (6,-2)		{$K^2$};
-\node [main node]		(10) at (8,-2)	{$K$};
+\node	[main node]		(8) at (4,-2)		{$k$};
+\node [main node]		(9) at (6,-2)		{$k^2$};
+\node [main node]		(10) at (8,-2)	{$k$};
 \node [main node]		(13) at (10,-2)	{$0$};
 
 
@@ -677,7 +702,7 @@ where $f: x \mapsto (x, 0)$, $g: (x,y)\mapsto y$, $f':x \mapsto (0,x)$ and $g':(
 \draw (5) edge [-, semithick, double, double distance=1.5pt](10);
 \end{tikzpicture}
 \end{equation*}
-This diagram commutes when $\xi$ is the map $\xi: K^2 \to K^2$, $(x, y) \mapsto (y, x)$, hence these two short exact equations are equivalent.
+This diagram commutes when $\xi$ is the map $\xi: k^2 \to k^2$, $(x, y) \mapsto (y, x)$, hence these two short exact equations are equivalent.
 \end{eg}
 
 For a nonexample we turn to Exercise \uppercase\expandafter{\romannumeral 3} 1.1 in \cite{Stamm}.
@@ -2075,11 +2100,36 @@ The identity map $id_M: M \to M$ lifts to chain maps $f: \mathbf{P} \to \mathbf{
 The uniqueness of $f$ up to homotopy is part of the Comparison Theorem (Thm \ref{comparisonthm}).
 \end{proof}
 
+This last part of the section gives a small introduction to projective covers which will be used to define the Auslander-Reiten translate in Chapter 4.
+\begin{mydef}
+A submodule $N$ of a module $M$ is \emph{surperfluous} if, whenever $L\subseteq M$ is a submodule with $L+S=M$, then $L=M$.
+\end{mydef}
 
+\begin{mydef}
+A \emph{projective cover} of a module $M$ is an ordered pair $(P,\epsilon)$ where $P$ is projective and $\epsilon: P \to M$ is a surjective map with $ker\epsilon$ a superfluous submodule of $P$.
+\end{mydef}
 
+\begin{lem}
+Let $(P,\epsilon)$ be a projective cover of a module $M$. If $P'$ is projective and $\psi: P' \to M$ is surjective, then any lifting $\phi: P' \to P$ is surjective.
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->>, semithick}, main node/.style={}]
+\node	[main node]		(2) at (0,0)			{$P$};
+\node	[main node]		(3) at (1.5,0)		{$M$};
+\node [main node]		(4) at (1.5,1.5)		{$P'$};
 
+\draw (2) edge [main path] node [auto] {$\epsilon$} (3);
+\draw (4) edge [main path] node [auto] {$\psi$} (3);
+\draw (4) edge [main path] node [auto] {$\phi$} (2);
+\end{tikzpicture}
+\end{equation*}
+\end{lem}
+\begin{proof}
+See \cite{Rotman}
+\end{proof}
 
-
+\begin{rem}
+In \cite{Vale} we have the results that if $A$ is a finite dimensional $k$-algebra, then for each left module $M$ there exists projective cover. Furthermore, if $(P, \epsilon)$ and $(P', \epsilon')$ are projective covers of $M$ then $P\cong P'$.
+\end{rem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%		EXT		%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2155,8 +2205,8 @@ Ext^n(M,N)=H^n(\mathbf{P},N)=\frac{ker(d^{\ast}_{n+1}:Hom(P_{n}, N) \to Hom(P_{n
 Thus, 
 \begin{align*}
 Ext^n(M,N) &=\frac{ker(d^{\ast}_{n+1}:Hom(P_{n}, N) \to Hom(P_{n+1}, N))}{im(d^{\ast}_n:Hom(P_{n-1}, N) \to Hom(P_{n}, N))}, \\
-& \cong \frac{codomain(\gamma: Hom(P_{n-1}, N) \to Ker(d^{\ast}_{n+1}))}{im(\gamma:Hom(P_{n-1}, N) \to Ker(d^{\ast}_{n+1}))},\\
-& \cong coker(\gamma: Hom(Hom(P_{n-1}, N) \to Ker(d^{\ast}_{n+1}))).
+& \cong \frac{codomain(\gamma: Hom(P_{n-1}, N) \to ker(d^{\ast}_{n+1}))}{im(\gamma:Hom(P_{n-1}, N) \to ker(d^{\ast}_{n+1}))},\\
+& \cong coker(\gamma: Hom(Hom(P_{n-1}, N) \to ker(d^{\ast}_{n+1}))).
 \end{align*}
 Now there is an exact sequence, 
 \begin{equation*}
@@ -2280,7 +2330,7 @@ Let $\mathbf{I}$ be a injective resolution of $Y$ then the maps $f:L \to M$ and 
 \begin{equation*}
 Hom(N,\mathbf{I}) \xrightarrow{} Hom(M,\mathbf{I}) \xrightarrow{} Hom(L,\mathbf{I}).
 \end{equation*}
-This is an exact sequence of cochain complexes since $I^n$ is injective for all $n$. Now use the long exact sequence in cohomology from Remark \label{longexactseqcochainrem}.
+This is an exact sequence of cochain complexes since $I^n$ is injective for all $n$. Now use the long exact sequence in cohomology from Remark \ref{longexactseqcochainrem}.
 \end{proof}
 
 \begin{mydef}
@@ -2468,7 +2518,7 @@ There exists a bijection $\Uptheta$,
 \node [main node] 	(1) at (0,0)		{$\left\{\mytab{equivalence classes of\\ short exact sequences\\ $0\to L \to M \to N \to 0$}\right\}$};
 \node [main node]			(2) at (4,0)		{$Ext^1(N,L)$};
 
-\draw (1) edge  [<->, semithick] (2);
+\draw (1) edge  [->, semithick] (2);
 \end{tikzpicture}
 \end{equation*}
 \end{thm}
@@ -2666,7 +2716,7 @@ Hence by the uniqueness of pushouts, $\mathbf{E}$ and $\mathbf{E'}$ are equivale
 %Need Examples!!
 
 \begin{prop}
-The split exact sequences for one equivalence class, corresponding to the zero element of $Ext^1(N,L)$.
+The split exact sequences of an equivalence class of extensions of $N$ by $L$ correspond to the zero element of $Ext^1(N,L)$.
 \end{prop}
 \begin{proof}
 Lemma \ref{splitequivlem} gives that any two split extensions of $N$ by $L$ are equivalent, and so in the same equivalence class. Note that if $\mathbf{E}: \quad0 \xrightarrow{} L \xrightarrow{}M \xrightarrow{}N \xrightarrow{} 0$ splits then as $M \cong L\oplus N$ (Cor. \ref{MLNcor}), $\mathbf{E}$ is equivalent to $0 \xrightarrow{}L \xrightarrow{} L \oplus N \xrightarrow{} N \xrightarrow{} 0$. Relabel this exact sequence $\mathbf{E}$. Let $\xrightarrow{} P_1 \xrightarrow{}P_0 \xrightarrow{} N \xrightarrow{}0$ be the projective resolution of $N$. Then, by Lemma \ref{alphabetalem} we have a commutative diagram,
@@ -2789,7 +2839,7 @@ s:& Q_1 \to Q_0\text{,\quad} \alpha \mapsto 1\text{, } \beta \mapsto 2\text{, } 
 t:& Q_1 \to Q_0\text{,\quad} \alpha \mapsto 2\text{, } \beta \mapsto 3\text{, } \gamma \mapsto 3,
 \end{align*}
 looks like,
-\equ
+\begin{equation*}
 \mathbf{Q}: \qquad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
 \node	[main node]		(1) at (0,0)		{1};
@@ -2801,11 +2851,24 @@ looks like,
 \draw (2) edge node [auto, swap] {$\beta$} (3);
 \draw (4) edge node [auto] {$\gamma$} (3);
 \end{tikzpicture}
-\eequ
+\end{equation*}
 \end{eg}
 
 \begin{mydef}
-A \emph{non-trivial path}, $p$, in a quiver is a sequence of arrows $\rho_1, \dots, \rho_n$ which satisfies $t(\rho_{i+1})=s(\rho_i)$ for all $1\leq i <n$, i.e. the start of an arrow is where the previous arrow terminated. The starting and terminatinating vertex of a path $p$ are denoted $s(p)$ and $t(p)$, respectively.
+A \emph{non-trivial path}, $p$, in the quiver $Q$,  is a sequence of arrows $\rho_1, \dots, \rho_n$ which satisfies $t(\rho_{i+1})=s(\rho_i)$ for all $1\leq i <n$. Pictorially, 
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle, fill}]
+\node	[main node]		(1) at (0,0)		{};
+\node	[main node]		(2) at (2,0)		{};
+\node				(3) at (4,0)		{\dots};
+\node [main node]		(4) at (6,0)		{};
+
+\draw (2) edge node [auto, swap] {$\rho_1$} (1);
+\draw (3) edge node [auto, swap] {$\rho_2$} (2);
+\draw (4) edge node [auto, swap] {$\rho_m$} (3);
+\end{tikzpicture}
+\end{equation*}
+ The starting and terminatinating vertex of a path $p$, $s(\rho_1)$ and $t(\rho_1)$, are denoted $s(p)$ and $t(p)$, respectively.
 \end{mydef}
 
 \begin{note}
@@ -2818,34 +2881,34 @@ The \emph{trivial path} is the path which contains no arrows, i.e. it is a singl
 
 \begin{eg} \label{ininpatheg}
 The paths of the quiver in Example \ref{ininquivereg} are:
-\equ
+\begin{equation*}
 p_1=e_1, \quad p_2=e_2, \quad p_3=e_3, \quad p_4=e_4, \quad p_5=\alpha, \quad p_6=\beta, \quad p_7=\gamma, \quad p_8=\beta\alpha.
-\eequ
-However, $\gamma\beta\alpha$ is not a path because $t(\gamma)=3\neq s(\beta)=2$.
+\end{equation*}
+However, $\gamma\beta\alpha$ is not a path because $t(\beta)=3\neq s(\gamma)=2$.
 \end{eg}
 
 \begin{mydef}
-A \emph{path algebra} $kQ$ is the $k$-alegbra which has the basis all the paths in $Q$, and the product of two paths $p,q$ is defined as,
-\equ
+A \emph{path algebra} $kQ$ is the $k$-alegbra which has a basis all the paths in $Q$, and the product of two paths $p,q$ is defined as,
+\begin{equation*}
 pq=\begin{cases}
 \text{obvious composition} & \text{if } t(q)=s(p),\\
 0 & \text{otherwise.}
 \end{cases}
-\eequ
+\end{equation*}
 This multiplication is assosciative.
 \end{mydef}
 
 \begin{eg}
 If we once again use the quiver $Q$ from Example \ref{ininquivereg}, then, from Example \ref{ininpatheg}, we know the basis of the path algebra $kQ$ will be,
-\equ
+\begin{equation*}
 \{e_1, e_2, e_3, e_4,\alpha, \beta, \gamma, \beta\alpha\}.
-\eequ
+\end{equation*}
 The product of $\beta$ and $\alpha$ is $\beta\alpha$, but the product of $\alpha$ and $\beta$ is zero, and the product of $e_2$ and $\alpha$ is just $\alpha$.
 \end{eg}
 
 \begin{eg}
 If $Q$ is the following quiver,
-\equ
+\begin{equation*}
 \mathbf{Q}: \qquad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
 \node	[main node]		(1) at (0,0)		{1};
@@ -2853,13 +2916,17 @@ If $Q$ is the following quiver,
 \draw (1) edge[loop left] node [auto] {$\alpha$} (1);
 \draw (1) edge [loop right] node [auto] {$\beta$} (1);
 \end{tikzpicture}
-\eequ
-forms the path algebra $kQ\cong k[X, Y]$, the free, assosciative algebra on two letters. In fact, if we have a quiver with a single vertex and $n$ loops, then this can be associated with the free, assosciated algebra on $n$ letters.
+\end{equation*}
+forms the path algebra $kQ\cong k<X, Y$, the free, assosciative algebra on two letters. In fact, if we have a quiver with a single vertex and $n$ loops, then this can be associated with the free, assosciated algebra on $n$ letters.
 \end{eg}
+
+\begin{rem}
+Recall that $UT_n(k)$ is the algebra of $n\times n$ upper triangular matrices over a field $k$. Similarly, $LT_n(k)$ is the algebra of $n\times n$ lower triangular matrices over a field $k$.
+\end{rem}
 
 \begin{eg} \label{UTpathalgebraeg}
 If we have the quiver,
-\equ
+\begin{equation*}
 \mathbf{Q}: \qquad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
 \node	[main node]		(1) at (0,0)		{1};
@@ -2871,7 +2938,7 @@ If we have the quiver,
 \draw (2) edge node [auto] {$\beta$} (3);
 \draw (3) edge node [auto] {$\gamma$} (4);
 \end{tikzpicture}
-\eequ
+\end{equation*}
 the the path algebra, $kQ \cong UT_4(k)$ by the isomorphism,
 \begin{multline*}
 \lambda_1e_1+\lambda_2e_2+\lambda_3e_3+\lambda_4e_4+\lambda_5\alpha+\\
@@ -2885,7 +2952,7 @@ the the path algebra, $kQ \cong UT_4(k)$ by the isomorphism,
 \end{pmatrix*}
 \end{multline*}
 Generally, a quiver of the form,
-\equ
+\begin{equation*}
 \mathbf{Q'}: \qquad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
 \node	[main node]		(1) at (0,0)		{1};
@@ -2897,7 +2964,7 @@ Generally, a quiver of the form,
 \draw (2) edge node [auto] {$\beta$} (3);
 \draw (3) edge node [auto] {$\gamma$} (4);
 \end{tikzpicture}
-\eequ
+\end{equation*}
 induces a path alegbra $kQ' \cong UT_n(k)$ for any $n$.
 \end{eg}
 
@@ -2919,11 +2986,11 @@ Once again, this extends to the general case that, $kQ' \cong LT_n(k)$.
 
 \begin{eg} \label{pathalgebramatrixeg}
 In a more general case, as long as there is only one path between any two vertices, we can identify $kQ$ with the following subalgebra of $M_n(k)$,
-\equ
+\begin{equation*}
 \{M \in M_n(k): M_ij=0 \text{ if there is no path from } j \text{ to }i\}.
-\eequ
+\end{equation*}
 For instance, if we have the quiver,
-\equ
+\begin{equation*}
 \mathbf{Q}: \qquad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
 \node	[main node]		(1) at (0,0)		{1};
@@ -2939,9 +3006,9 @@ For instance, if we have the quiver,
 \draw (5) edge node [auto, swap] {$\delta$} (3);
 \draw (5) edge node [auto] {$\epsilon$} (6);
 \end{tikzpicture}
-\eequ
+\end{equation*}
 the we can see that the path algebra $kQ$ is isomorphic to the subalgebra with matrices of the form,
-\equ
+\begin{equation*}
 \begin{pmatrix*}
 1 & 0 & 0 & 0 & 0 & 0 \\
 1 & 1 & 0 & 0 & 0 & 0 \\
@@ -2950,7 +3017,7 @@ the we can see that the path algebra $kQ$ is isomorphic to the subalgebra with m
 0 & 0 & 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 0 & 1 & 1
 \end{pmatrix*}
-\eequ
+\end{equation*}
 \end{eg}
 
 \begin{rem}
@@ -2959,49 +3026,47 @@ Note that the idea here has some parallels to similar results for directed graph
 
 The following results about the idempotents of path alegebras are from \cite{CB2}, however, we have either given a proof or expanded upon the one given. For the following results we set $A=kQ$ and the $e_i$ are the trivial paths of $Q$.
 
-\begin{lem} 
-The $e_i$ are orthogonal, idempotents in $A$, i.e. $e_ie_i=e_i$ and $e_ie_j=0$ where $i\neq j$. Thus $\sum_{i=1}^{n}{e_i}=1_{A}$.
+\begin{mydef} 
+Let $\Lambda$ be an algebra.
+\begin{itemize}
+\item An element $e\in \Lambda$ is said to be \emph{idempotent} if $ee=e$.
+\item Idempotent elements $e,e'\in \Lambda$ are said to be \emph{orthogonal} if $ee'=e'e=0$.
+\item A nonzero idempotent element $e\in \Lambda$ is said to be \emph{primitive} if whenever $e=e'+e''$, with $e',e''\in \Lambda$ orthogonal indempotents then either $e'=0$ or $e''=0$.
+\end{itemize}
+\end{mydef}
+
+\begin{lem} \label{identitylem}
+The $e_i$ are orthogonal idempotents in $A$. Thus $\sum_{i=1}^{n}{e_i}=1_{A}$.
 \end{lem}
 \begin{proof}
-Well, obviously, $e_ie_j=0$ when$i\neq j$ because $t(e_j)\neq s(e_i)$ because they are the trivial paths at different vertices, $i$ and $j$. Similarly, if we have the product $e_ie_i$ then the composition makes sense here because $t(e_i)=s(e_i)$, but the composition is just $e_i$ becuase if we travel along the trivial path $e_i$ twice, then this is just the same as travelling the trivial path. \\
+Obviously, $e_ie_j=0$ when$i\neq j$ because $t(e_j)\neq s(e_i)$ because they are the trivial paths at different vertices, $i$ and $j$. Similarly, if we have the product $e_ie_i$ then the composition makes sense here because $t(e_i)=s(e_i)$, but the composition is just $e_i$ becuase if we travel along the trivial path $e_i$ twice, then this is just the same as travelling the trivial path. \\
 If we have some path $p$ of the quiver, then bear in mind that,
-\equ
+\begin{equation*}
 e_ip=
 \begin{cases}
 e_ip=p & \text{if } i=t(p),\\
 0 & \text{otherwise.}
 \end{cases}
-\eequ
+\end{equation*}
 Hence, the sum of the trivial paths acting on our path $p$ becomes, 
-\equ
+\begin{equation*}
 \big(\sum^{n}_{i=1}{e_i}\big)p=(e_1+e_2+\dots +e_n)p=e_ip=p=1_Ap,
-\eequ
+\end{equation*}
 because only one of the $e_i$ in the sum will satisfy $i=t(p)$ and all the rest will give zero. Similary, we can show that $p\big(\sum^{n}_{i=1}{e_i}\big)=p1_A$.
 \end{proof}
 
 \begin{lem} \label{idempotentspaceslem}
-The bases of the spaces $Ae_i$ and $e_jA$ are all the paths starting at $i$ and all the paths terminating at $j$, respectively. It then follows that the space $e_jAe_i$ has as a basis the paths that start at $i$ and terminate at $j$.
+The spaces $Ae_i$ and $e_jA$ have as bases all the paths starting at $i$ and all the paths terminating at $j$, respectively. Moreover, the space $e_jAe_i$ has as a basis the paths that start at $i$ and terminate at $j$.
 \end{lem}
 \begin{proof}
-For some $i\in Q_0$, and $A$ has the basis $\{p_1, p_2, \dots, p_n\}$, then as $Ae_i$ is a subspace of $A$ the basis of $Ae_i$ must be a subset of the basis of $A$, so, 
-\equ
-Ae_i=\{ae_i:a\in A\}=span\{p_1e_i+p_2e_i+\dots+p_ne_i\},
-\eequ
-and we know that,
-\equ
-p_re_i=
-\begin{cases}
-p_r & \text{if } s(p_r)=i,\\
-0 & \text{otherwise}.
-\end{cases}
-\eequ
-Hence, we can see that the basis of $Ae_i$ must be all the paths starting at $i$. Similarly, as $e_jA$ is a subspace of $A$ snd so following a similar argument we can see that its basis must be all the paths terminating at $j$. The result for $e_jAe_i$ follows from these as it simply the intersection of the two spaces.
+Set $i\in Q_0$. Let $P$ be the set of all paths in $Q$ which start at the vertex $i$. Note that as $Q$ may have oriented cycles, $P$ is not necessarily finite dimensional. We have $P \subset Ae_i$ since if $q \in P$ then $p=pe_i\in Ae_i$. Next want to show that $P$ is linearly independent and spans $Ae_i$. Firstly, recall from the definition of a path algebra that the set of all paths in $Q$ forms a basis for $A$. Hence, all the paths in $Q$ are linearly independent and moreover so are all the paths in $P$. Now suppose we have an element $ae_i\in Ae_i$ then $a\in A$ and so $a=\sum_{j} \lambda_ip_i$, however, we can rewrite this $a=\sum_r\mu_rq_r + \sum_s \mu'_sq_s$ where $q_r\in P$ and the $q'_s$ are paths in $Q$ not starting at vertex $i$. Then, $ae_i=\sum_r\mu_rq_r$ and so $P$ spans $Ae_i$. Thus, we can see that the basis of $Ae_i$ must be all the paths starting at $i$. Similarly, as $e_jA$ is a subspace of $A$ snd so following a similar argument we can see that its basis must be all the paths terminating at $j$. The result for $e_jAe_i$ follows from these as it simply the intersection of the two spaces.
 \end{proof}
 
 \begin{lem}
 $A=\oplus^n_{i=1}Ae_i$, so each $Ae_i$ is a projective left $A$-module.
 \end{lem}
 \begin{proof}
+Firstly, let us convince ourselves that $A$ is indeed equal to $\oplus^n_{i=1}Ae_i$. Recall from Lemma \ref{identitylem} that $1_A=\sum^n_{i=1}e_i$ and it is also clear that $Ae_i \bigcap Ae_j=\{0\}$ for all $i\neq j$. Hence, $A=Ae_1\oplus \dots \oplus Ae_n$.\\
 From Lemma \ref{idempotentspaceslem} we know that for each $i$, the basis of $Ae_i$ are all the paths starting at $i$ and so $\oplus^n_{i=1}Ae_i$ must have as a basis all the paths starting at every vertex in $Q$, hence all the paths in $Q$. Thus $A=\oplus^n_{i=1}Ae_i$. Also, each $Ae_i$ is obviously a left $A$-module with the action defined as multiplication by $e_i$. Hence, each $Ae_i$ is a projective, left $A$-module.
 \end{proof}
 
@@ -3013,56 +3078,131 @@ Similarly, $A=\oplus_{i=1}^ne_jA$, so each $e_jA$ is a projective, right $A$-mod
 If $X$ is a left $A$-module, then $Hom_A(Ae_i,X)\cong e_iX$.
 \end{lem}
 \begin{proof}
-Well, we want to show that there are some maps $f$ and $g$ such that they satisfy,
-\equ
-Hom_A(Ae_i, X) \xleftrightarrow[g]{f}e_iX
-% How to get two separate arrows here?
-\eequ
-Well, first consider the map $\theta: Ae_i \to X$ and so $\theta \in Hom_A(Ae_i, X)$, then we can have $f$ such that $f(\theta)=\theta(e_i)=\theta(e_i^2)=e_i\theta(e_i)\in e_iX$. Hence, $f$ maps a homomorphism from $Hom_A(Ae_i, X)$ to an element in $e_iX$.  Now consider the map $g(x): Ae_i \to X$, $g(x)(a)=ax$. We can check this is an $A$-module homomorphism as, 
+Want to show that there are some maps $f$ and $g$,
+\begin{equation*}
+f: Hom_A(Ae_i, X) \to e_iX \quad \& \quad g: e_iX\to Hom_A(Ae_i, X)
+\end{equation*}
+such that $gf=id_{Hom_A(Ae_i, X)}$ and $fg=id_{e_iX}$.
+We can define a map $f: Hom_A(Ae_i,X) \to e_iX$ as follows: Given a map $\theta \in Hom_A(Ae_i, X)$ set $f(\theta)=\theta(e_i)$.Then $\theta (e_i) \in Xe_i$ since $\theta(e_i)=\theta(e_i^2)=e_i\theta(e_i)\in e_iX$. Hence, $f$ maps a homomorphism from $Hom_A(Ae_i, X)$ to an element in $e_iX$.  We can can define a map $g:e_iX \to Hom(Ae_i, X)$ as follows: Consider the map $g(x): Ae_i \to X$, $a \mapsto ax$ for some $a\in A, x\in X$. This is an $A$-module homomorphism as, 
 \begin{align*}
 g(x)(a+b) &=(a+b)x=ax+bx=g(x)(a)+g(x)(b)\text{ } & a, b\in Ae_i,\\
 g(x)(\lambda a) &=\lambda a x=\lambda g(x)(a) \text{ } & \lambda\in A, a \in Ae_i.
 \end{align*}
-Hence, $g \in Hom_A(Ae_i, X)$. However, we can also have that $g: eX \to Hom_A(Ae_i, X)$ through $x \mapsto g(x)(r)$. \\
-So now we need to show that $f$ and $g$ are inverse contructions of one another. We have for some $\theta \in Hom_A(Ae_i, X)$, 
+Hence, $g(x) \in Hom_A(Ae_i, X)$. Now, set $g: eX \to Hom_A(Ae_i, X)$, $x \mapsto g(x)$. \\
+Now to show that $f$ and $g$ are inverse contructions of one another. Let $x\in e_iX$, then,
 \begin{align*}
-\theta \xrightarrow{f} & \theta(e_i)\\
-g(\theta(e_i))(a)=a\theta(e_i)=\theta(ae_i) \xleftarrow[g]{} & \theta(e_i)
+fg(x)&=f(g(x)),\\
+&=g(x)(e_i),\\
+&=e_ix,\\
+&=x.
 \end{align*}
-but $a\in Ae_i$ and so $a=\lambda e_i$ for some $\lambda\in A$, hence $ae_i=\lambda e_i^2=\lambda e_i=a$. Thus, $g(\theta(e_i))(a)=\theta(ae_i)=\theta(a)$ so $g(\theta(e_i))=\theta$ and $f$ and $g$ are inverses.
+Hence, $fg=id_{e_iX}$. Also, for some $\theta \in Hom_A(Ae_i,X)$, $a \mapsto \theta(a)$ for $a\in Ae_i$, we have, $gf(\theta)=g(\theta(e_i))$, but the action of $g$ is,
+\begin{align*}
+g(\theta(e_i))(a)&=a\theta(e_i), \\
+&=\theta(ae_i), \text{ as } \theta \text{ is a homomorphism and } a\in Ae_i\subset A,\\
+&=\theta(a), \text{as } a\in Ae_i,
+\end{align*}
+but this is just the action of $\theta$. Hence, $gf=id_{Hom_A(Ae_i,X)}$. Thus $f$ and$g$ are inverse contructions of one another.
 \end{proof}
 
 \begin{lem} \label{idempotent0lem}
-If $0\neq a \in Ae_i$ and $0\neq b\in e_iA$ then $ab\neq 0$.
+If $a \in Ae_i, b\in e_iA$ and $a,b$ both nonzero then $ab\neq 0$.
 \end{lem}
 \begin{proof}
-We know that $a$ and $b$ must have the forms, $a=\lambda_1p_1+ \dots \lambda_np_n$ and $b=\mu_1q_1 + \dots \mu_mq_m$ where the $p$ are paths starting at vertex $i$, the $q$ are paths termination at vertex $i$ and $p_r, q_r$ are paths of length $r$. Then the longest path in the product $ab$ must be $\lambda_n\mu_mp_nq_m$ and so $\lambda_n\mu_m \neq 0$ and $p_nq_m \neq 0$, so the product $ab\neq 0$.
+If $a\in Ae_i$ it is a linear combination of paths in $Q$ which start at vertex $i$ and so we can write $a= \sum^r_{i=0}p_i$ where the $p_i$ are the linear combinations of all the terms in $a$ which have paths of length $i$ and $r$ is the maximal length of a path appearing in the linear combination of $a$. Similarly, we can write $b=\sum^s_{j=0}q_j$. Then,
+\begin{align*}
+ab&=(p_0 +p_1+ \dots p_r)(q_0+q_1+\dots+q_s),\\
+&=p_0q_0+ \dots + p_rq_s.
+\end{align*}
+Suppose to the contrary that this sum is equal to zero, this then implies that $p_rq_s$ cancels with other terms in the sum, but this is not possible as the paths in $p_rq_s$ have the maximal length in the sum. Hence it must be zero, a contadiction. Thus $ab\neq0$.
 \end{proof}
 
+\begin{eg}
+Let $A=kQ$ where $k= Q$ and the quiver $Q$ is,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node	[main node]		(1) at (0,0)		{1};
+\node [main node]		(2) at (2,0)		{2};
+\node [main node]		(3) at (4,0)		{3};
+\node [main node]		(4) at (4,-2)		{4};
+\node [main node]		(5) at (2,-2)		{5};
+
+\draw (1) edge node [auto] {$\alpha$} (2);
+\draw (2) edge node [auto] {$\beta$} (3);
+\draw (3) edge node [auto] {$\gamma$} (4);
+\draw (5) edge node [auto, swap] {$\delta$} (4);
+\draw (2) edge node [auto, swap] {$\epsilon$} (5);
+\end{tikzpicture}
+\end{equation*}
+If we have $a=3\gamma\beta +\delta\epsilon-\beta \in Ae_2$ and $b=2\alpha \in e_2A$. Write $a=p_0+p_1+p_2$ where $p_0=0$, $p_1=-\beta$ and $p_2=3\gamma\beta+\delta\epsilon$. Similarly, write $b=q_1$ where $q_0=0$, $q_1=\alpha$. Then,
+\begin{align*}
+ab&=(p_1+p_2)(q_1),\\
+&=p_1q_1+p_2q_1,\\
+&=-\beta\alpha + (3\gamma\beta+\delta\epsilon)\alpha,\\
+&=-\beta\alpha+3\gamma\beta\alpha+\delta\epsilon.
+\end{align*}
+\end{eg}
+
+We present the following property of primitive idempotents from \cite{Assem} without proof.
+\begin{prop}
+An idempotent $\epsilon \in A$ is primitive if and only if the algebra $eAe \cong End(eA)$ has only two idempotents $0$ and $e$.
+\end{prop}
+
 \begin{lem}
-The $e_i$ are primitive idempotents, i.e. $Ae_i$ is an indecomposable module.
+The $e_i$ are primitive idempotents.
 \end{lem}
 \begin{proof}
 From Lemma \ref{idempotenthomlem} we know that $End_A(Ae_i) \cong e_iAe_i$ and if this contains an idempotent $\epsilon$, then $\epsilon^2=\epsilon=\epsilon e_i$, so $\epsilon(e_i- \epsilon)=0$, but from Lemma \ref{idempotent0lem} we know that this can not happen if $\epsilon, (e_i-\epsilon) \neq 0$, thus we must have that either $\epsilon=0$ or $\epsilon=e_i$ and the result follows.
 \end{proof}
 
+The following is from a claim in \cite{Vale}.
+\begin{lem}
+$Ae_i$ is an indecomposable module.
+\end{lem}
+\begin{proof}
+Suppose to the contrary that $Ae_i$ is decomposable, then we can write $Ae_i=N_1\oplus N_2$ with $N_1,N_2$ nonzero. As $e_i \in Ae_i$ there exist unique $n_1\in N_1$ and $n_2\in N_2$ such that $e_i=n_1+n_2$. Now,
+\begin{equation} \label{1}
+e_i=e_i^2=(n_1+n_2)^2=n_1^2+ n_1n_2 +n_2n_1+n_2^2.
+\end{equation}
+However, $n_1=n_1e_i$ and $n_2=n_2e_i$ as $n_1,n_2\in Ae_i$ and so we also have,
+\begin{equation*}
+e_i=e_i^2=(n_1+n_2)e_i=e_in_1+e_in_2,
+\end{equation*}
+and so $e_in_1+e_in_2=n_1+n_2$ (*). Since $N_1, N_2$ are submodules we must have $e_in_1\in N_1$ and $e_in_2\in N_2$, and so (*) and  the fact $N_1\oplus N_2$ is a direct sum, we have $e_in_1=n_1$. This implies $n_2n_1+n_1^2=n_1$ while $n_1=n_1e_1$ implies $n_1=n_1^2+n_1n_2$. Thus $n_2n_1=n_1n_2 \in N_1 \bigcap N_2$ and so are both equal to zero. Therefore, \ref{1} now gives us $n_1+n_2=e_i=n_1^2+n_2^2$. Thus both $n_1$ and $n_2$ are orthogonal idempotents, contradicting that $e_i$ is primitive. 
+\end{proof}
+
+\begin{mydef}
+Define $Ae_iA$ to be the path algebra induced by all paths in $Q$ which pass through $j$. 
+\end{mydef}
+
 \begin{lem} \label{idempotentsi=jlem}
 If $e_i \in Ae_jA$ then $i=j$.
 \end{lem}
 \begin{proof}
-For similar reasoning as in Lemma \ref{idempotentspacelem}, we can see that $Ae_jA$ has as a basis all the paths in $A$ which pass through the vertex $j$ and, by the definition of the trivial path, $e_i$ cannot pass through the vertex $j$ unless $i=j$ and so if $e_i \in Ae_jA$ we must have that $i=j$.
+It is clear that a basis of $Ae_jA$ is all the paths in $A$ which pass through the vertex $j$. By the definition of the trivial path, $e_i$ cannot pass through the vertex $j$ unless $i=j$ and so if $e_i \in Ae_jA$ we must have that $i=j$.
 \end{proof}
 
-\begin{lem}
-The $e_i$ are inequivalent, i.e. $Ae_i \not\cong Ae_j$ for $i \neq j$.
+\begin{mydef}
+Two idempotent elements $e_i, e_j$ are said to be \emph{equivalent} if and only if there exists some $u\in e_iAe_j$ and $v \in e_jAe_i$ such that $uv=e_i$ and $vu=e_j$. 
+\end{mydef}
+
+\begin{lem}\label{inequivalentlem}
+The $e_i$ are inequivalent.
 \end{lem}
 \begin{proof}
-Two idempotent elements $e_i, e_j$ are said to be equivalent iff there exists some $u\in e_iAe_j$ and $v \in e_jAe_i$ such that $uv=e_i$ and $vu=e_j$. From Lemma \ref{idempotenthomlem} we can see that $Hom(Ae_i, Ae_j)\cong e_iAe_j$ and $Hom(Ae_j, Ae_i)\cong e_jAe_i$, and so inverse isomorphisms give elements $u$ and $v$ as described above with $uv=e_i$ and $vu=e_j$. However, this means that the path $e_i$ must pass through the vertex $j$ at some point, and vice versa, which contradicts Lemma \label{idempotenti=jlem}.
+From Lemma \ref{idempotenthomlem} we can see that $Hom(Ae_i, Ae_j)\cong e_iAe_j$ and $Hom(Ae_j, Ae_i)\cong e_jAe_i$, and so there exist some inverse isomorphisms $f: Ae_i \to Ae_j$ and $g: Ae_j \to Ae_i$ corresponding to elements $u$ and $v$ repectively. Then we have $uv=e_i$ and $vu=e_j$. However, this means that the path $e_i$ must pass through the vertex $j$ at some point, a contradiction.
+\end{proof}
+
+\begin{cor}
+$Ae_i \not\cong Ae_j$ for $i \neq j$.
+\end{cor}
+\begin{proof}
+This follows from \ref{inequivalentlem}, as it implies that the maps $f,g$ could not have been inverse isomorphisms.
 \end{proof}
 
 \begin{eg}
 Consider the quiver from Example \ref{pathalgebramatrixeg}, 
-\equ
+\begin{equation*}
 \mathbf{Q}: \qquad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
 \node	[main node]		(1) at (0,0)		{1};
@@ -3078,7 +3218,7 @@ Consider the quiver from Example \ref{pathalgebramatrixeg},
 \draw (5) edge node [auto, swap] {$\delta$} (3);
 \draw (5) edge node [auto] {$\epsilon$} (6);
 \end{tikzpicture}
-\eequ
+\end{equation*}
 then we have have the following examples displaying the previous results for the idempotents of $kQ$. Let $A=kQ$.
 \begin{enumerate}
 \item We can see that $e_1e_1=e_1$ and $e_1e_2=0$. Also, $1_{A}=e_1 + e_2 + e_3 +e_4+e_5+e_6$ and so
@@ -3111,26 +3251,25 @@ e_3Ae_1&=\{e_3ae_1: a \in A\},\\
 \end{align*}
 \item We can see that, 
 \begin{align*}
-\oplus^6_{i=1}Ae_i&=Ae_1 \oplus Ae_2 \oplus Ae_3 \oplus Ae_4 \oplus e_5 \oplus e_6, \\
-&=span_k\{e_1 + \alpha + \beta\alpha + \gamma\beta\alpha\} \oplus span_k\{e_2 + \beta +\gamma\beta\} \oplus span_k\{e_3 + \gamma\} \oplus span_k\{e_4\} \oplus span_k\{e_5 + \delta + \epsilon + \gamma\delta\} + span_k\{e_6\}, \\
-&= A.
+\oplus^6_{i=1}Ae_i=&Ae_1 \oplus Ae_2 \oplus Ae_3 \oplus Ae_4 \oplus Ae_5 \oplus Ae_6, \\
+=&span_k\{e_1 + \alpha + \beta\alpha + \gamma\beta\alpha\} \oplus span_k\{e_2 + \beta +\gamma\beta\} \oplus span_k\{e_3 + \gamma\} \\
+&\oplus span_k\{e_4\} \oplus span_k\{e_5 + \delta + \epsilon + \gamma\delta\} \oplus span_k\{e_6\}, \\
+=& A.
 \end{align*}
 \end{enumerate}
 \end{eg}
-
-The following properties of path algebras are from \cite{CB2}, where they are given as exercises. In this report we will present them with proofs. Once again $A=kQ$.
 
 \begin{lem}
 $A$ is finite dimensional if and only if $Q$ has no oriented cycles.
 \end{lem}
 \begin{proof}
-$\Rightarrow:$ If $Q$ has an oriented cycle then it will have a infinite number of paths as you can keep going round the cycle. This means that the basis of $A$, which is all the paths in $Q$, will be infinite, and so $A$ will not be finite dimensional.\\
+$\Rightarrow:$ If $Q$ has an oriented cycle $c$ then it will have basis elements $c,c^2,c^3, \dots$ and so A will have an infinite basis.\\
 $\Leftarrow:$ If $Q$ has no oriented cycles then it must have a finite number of paths and so the basis of $A$ will be finite and hence $A$ will be finite dimensional.
 \end{proof}
 
 \begin{eg}
 If we consider the quiver $Q$, 
-\equ
+\begin{equation*}
 \mathbf{Q}: \qquad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
 \node	[main node]		(1) at (0,0)		{1};
@@ -3143,10 +3282,10 @@ If we consider the quiver $Q$,
 \draw (2) edge node [auto, swap] {$\gamma$} (4);
 \draw (3) edge node [auto] {$\delta$} (4);
 \end{tikzpicture}
-\eequ
+\end{equation*}
 and we can see that $Q$ has the paths $e_1, e_2, e_3, e_4, \alpha, \beta, \gamma, \delta, \beta\alpha, \gamma\alpha, \beta\delta, \delta\beta\alpha$, and so the basis of $A$ is $\{e_1, e_2, e_3, e_4, \alpha, \beta, \gamma, \delta, \beta\alpha, \gamma\alpha, \beta\delta, \delta\beta\alpha\}$, which is finite, and so $A$ is finite dimensional. \\
 However, if we have the quiver $Q'$, 
-\equ
+\begin{equation*}
 \mathbf{Q'}: \qquad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
 \node	[main node]		(1) at (0,0)		{1};
@@ -3159,195 +3298,35 @@ However, if we have the quiver $Q'$,
 \draw (4) edge node [auto, swap] {$\gamma$} (2);
 \draw (3) edge node [auto] {$\delta$} (4);
 \end{tikzpicture}
-\eequ
+\end{equation*}
 it has paths $e_1, e_2, e_3, e_4, \alpha, \beta, \gamma, \delta, \beta\alpha,\delta\beta, \gamma\delta, \delta\beta\alpha, \gamma\delta\beta\alpha, \beta\gamma\delta\beta\alpha, \delta\beta\gamma\delta\beta\alpha, \dots$, and so on, an infinte number of paths, meaning that the basis of $A$ is infinte and hence $A$ is not finite dimensional.
 \end{eg}
 
-\begin{lem}
-$A$ is prime, i.e. $IJ\neq 0$ for two sided ideals $I, J \neq 0$ if and only if for all $i, j \in Q_0$ there exists a path $i$ to $j$.
-\end{lem}
-\begin{proof}
-\emph{Need to include proof here}
-\end{proof}
-
-\begin{lem}
-$A$ is left noetherian if and only if, if there is an oriented cycle through the vertex $i$, then only one arrow starts at the vertex $i$.
-\end{lem}
-\begin{proof}
-Let $Ap$ represent the left-ideal whose basis are all the paths starting with $p$ for any path $p$. \\
-Suppose we have a quiver $Q$ of the form,
-\equ
-\mathbf{Q}: \qquad
-\begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
-\node	[main node]		(1) at (0,0)		{$i$};
-\node [main node]		(2) at (2,0)		{$j$};
-
-\draw (1) edge [loop] node [auto, swap] {$\alpha$} (1);
-\draw (1) edge node [auto] {$\beta$} (2);
-\end{tikzpicture}
-\eequ
-assuming $i\neq j$ and where $\alpha$ represents an orientated cycle, then we can see that,
-\equ
-A\beta+A\beta\alpha+\dots +A\beta\alpha^n \subseteq A\beta+A\beta\alpha+\dots +A\beta\alpha^{n+1}.
-\eequ
-However, since $e_j\beta\alpha^{n+1}\not \in A\beta+A\beta\alpha+\dots +A\beta\alpha^n$ the inclusion is strict. Hence, if $Q$ is of the form above, there is an ascending chain of left ideals, 
-\equ
-A\beta \subset A\beta + A\beta\alpha \subset A\beta + A\beta\alpha+A\beta\alpha^2 \subset \dots
-\eequ
-which does not terminate and so $A$ is not noetherian.\\
-Suppose that for all $i\in Q_0$, if $\alpha$ an oriented cycle where $s(\alpha)=i$, then for all $\rho \in Q_1$, $\rho=\alpha_1$ or $s(\rho)\neq i$; where $\alpha=\alpha_1\alpha_2\dots\alpha_m$ for some $\alpha_1, \dots, \alpha_m \in Q_1$. This means there are some $\rho_1, \dots, \rho_n$ paths such that given any path $\beta\in A$ we have that $\beta=q\rho_j$ for some $j\in\{1, \dots, n\}$ and some $q$ a path in an oriented cycle.
-Now if we let $Q'$ be the quiver, and  $A'$ the corresponding path algebra, where, 
-\equ
-Q'_0=Q_0\text{ \& } Q_1=Q'_1\cup \{a\in Q_1: a \text{ is not in an oriented cycle of }Q\}.
-\eequ
-So, for any basis element $\beta$ of $A$, $\beta=qp_j$ where $q$ is a path in $A'$. Following the previous two results we can see that, 
-\begin{equation}
-A=A'\rho_1+A'\rho_2 + \dots +A'p_n
-\end{equation}
-\begin{claim}
- If $S$ is a subring of a ring $R$ and $R$ is finitely generated as a left $S$-module, then, if $S$ is a noetherian ring, so is $R$.
-\end{claim}
-\begin{proof}
-From the result that a finitely generated module over a noetherian ring is noetherian, gives us that $R$ is noetherian as a left $S$-module. Let $I_1 \subseteq I_2 \subseteq \dots$ be an ascending chain of left ideals in $R$, and each $I_k$ is a left $S$-submodule of $R$; so by the above, this chain terminates.
-\end{proof}
-Using the above Claim and the earlier result that $A$ is finitely generated as a left $A'$-module, we can see that our problem of proving that $A$ is left noetherian reduces to proving that $A'$ is left noetherian.\\
-Now let $\alpha^{(l)}_j$ be the $j^{th}$ arrow of the $l^{th}$ oriented cycle in $Q'$ and then, 
-\equ
-Q'_1=\{\alpha^{(l)}_j : j \in \{1, \dots, q_l\}, l \in \{1, \dots, r\}\}.
-\eequ
-Consider the endomorphism, 
-\begin{align*}
-X_l: &A' \to A', \\
-&e_t(p) \mapsto \alpha^{(l)}_{k-1}\alpha^{(l)}_{k-2}\dots \alpha^{(l)}_{1}\alpha^{(l)}_{q_l}\dots \alpha^{(l)}_{k}p\text{, where } t(p)=t=s(\alpha^{(l)}_{k}), \\
-&\text{otherwise }\mapsto 0.
-\end{align*}
-We can adapt Hilbert's Basis Theorem to show that $k[X_1, \dots, X_r]$ is a noetherian ring and we can see that $A'$ is a finitely generated $k[X_1, \dots, X_r]$-module. Hence, $A'$ is left noetherian, and so $A$ is left noetherian.
-\end{proof}
-
 \begin{mydef}
-We can define the \emph{length} of any path $p$ by the following: Let, 
-\equ 
-length(p)=length(\sum_{\text{arrows }\rho}\lambda_{\rho}\rho):=max\{length(\rho):\lambda_\rho\neq0\},
-\eequ
-where $\lambda_\rho\neq 0$ for some $\rho$. 
+For a module $M$  the \emph{Jacobson Radical} is defined, 
+\begin{equation*}
+J(M)=rad(M)=\bigcap \text{maximal submodules of M}.
+\end{equation*}
 \end{mydef}
 
-\begin{lem}
-The basis of $J(A)$ is $\{\text{path } i \text{ to }j: \text{ there is no path from } j \text{ to }i\}$.
-\end{lem}
-\begin{proof}
-Firstly, lets prove that, 
-\equ
-J'(A):= span_k\{\text{paths }p:s(p)=i, t(p)=j\text{with no paths from $j$ to $i$}\}\subseteq J(A).
-\eequ
-Given any $w\in J'(A)$ we have that, 
-\begin{enumerate}
-\item $(wp)^2=0$ for any path $p$.
-\begin{proof}
-There are no paths $p$ such that $t(p)=s(w)$ and $s(p)=t(w)$, so $wpw=0$, so $wpwp=(wp)^2=0$.
-\end{proof}
-\item $(w(p+p'))^2=0$ for any path $p$ and $\lambda\in k$.
-\begin{proof}
-\equ
-(w(p+p'))^2=(wp+wp')^2=(wp)^2+wpwp'+wp'wp +(wp')^2
-\eequ
-As $wpw$ and $wp'w$ are both equal to zero by the above, we have that, $(w(p+p'))^2=0$.
-\end{proof}
-\item $(w(\lambda p))^2=\lambda^2(wp)^2=0$
-\begin{proof}
-By item 1.
-\end{proof}
-\end{enumerate}
-Now let $w\in J'(A)$ and $z\in A$, then,
-\equ
-wz=u\big(\sum_{\text{paths }p}\lambda_pp\big)=w\big(\sum_{\substack{\text{paths }p:\\t(p)=s(w)}}\lambda_pp\big):=\tau
-\eequ
-and from above we can see that $\tau^2=0$, meaning $(wz)^2=0$, so, $(1+wz)(1-wz)=1$, hence, $1+wz\in U(A)$ for all $z\in A$. Thus $w\in J(A)$.\\
-Now we want to prove that $J(A)\subseteq J'(A)$. Let $w$ be a basis element of $J(A)$ coming from the basis of $A$. Suppose also that $length(w)=0$, so $w=e_i$ for some $i\in Q_0$. Let, 
-\equ
-M_i:=\sum_{\substack{\text{paths }p:\\ p\neq e_i}}Ap,
-\eequ
-then $M_i\unlhd A$ and if $M_i\subsetneq N \unlhd A$, then, $e_i\in N$, so, $N=A$; hence, $M_i$ is a maximal left ideal, but $w\not \in M_i$ contradicting that $w \in J(A)$.Hence, $length(w)>0$.\\
-Now suppose $w\not \in J'(A)$, so there's a path $p$ such that $s(w)=t(p)$ and $s(p)=t(w)$. Since $w \in J(A)$ and $p\in A$,  $1+wp \in U(A)$, so there exists some $z\in A$ such that $(1+wp)z=1$, with, 
-\equ
-z=\sum^m_{l=0}\sum_{\substack{\text{paths }p: \\ length(p_l)=l}}\lambda_{p_l}p_l.
-\eequ
-Since, $length(1)=length(l_1+\dots+l_n)=0$, we have that, 
-\begin{align*}
-0&=length((1+wp)z),\\
-&=length(z+wpz),\\
-&=max(length(z), length(wpz)),
-\end{align*}
-so $wpz=0$ as otherwise $length(wpz)=0$, contradicting that $length(w)>0$. So as $(1+wp)z=z+wpz=1$, $z=1$, so $wp=0$, a contradiction.
-\end{proof}
+\begin{mydef}
+The \emph{centre} of an algebra $A$ is defined to be,
+\begin{equation*}
+Z(A)=\{x\in A: ax=xa \text{ for all } a\in A\}.
+\end{equation*}
+\end{mydef}
 
-\begin{lem}
-The centre of $A$ is $k\times k\times \dots k[T] \times k[T] \times \dots$, with one factor for each connected component $C$ of $Q$, and that the factor is $k[T]$ if and only if $C$ is an oriented cycle.
-\end{lem}
-\begin{proof}
-Firstly, we know that if our quiver $Q$ is composed of $n$ connected components $C_1, \dots, C_n$ then we our path algebra looks like $kQ=kC_1 \times kC_2 \times \dots \times kC_n$.
-\begin{claim}
-Where $Z(A)$ represents the centre of $A$, we have that, 
-\equ
-Z(A\times B)=Z(A) \times Z(B).
-\eequ
-\end{claim}
-\begin{proof}
-Suppose we have $(a, b)\in Z(A \times B)$, then we have that,
-\begin{align*}
-& (a, b)(a', b')=(a', b')(a, b) \forall (a',b')\in A\times B,\\
-\Leftrightarrow &(aa',bb')=(a'a,b'b) \forall a'\in A, b' \in B, \\
-\Leftrightarrow & aa'=a'a \text{ \& } bb'=b'b \forall a'\in A, b'\in B,\\
-\Leftrightarrow & a\in Z(A) \text{ \& } b\in Z(B).
-\end{align*}
-Hence, $Z(A \times B)\cong Z(A) \times Z(B)$.
-\end{proof}
-Now, using the claim, we can see that,
-\equ
-Z(kQ) \cong Z(kC_1) \times Z(kC_2) \times \dots \times Z(kC_n),
-\eequ
-Now, assume the connected component $C_i$ is not an oriented cycle, and consider $a\in Z(kC_i)$, which is a linear combination of paths. Let us choose a path of maximal length $\rho_1\dots \rho_m$, and say there exists some $\sigma$ such that we can have $\sigma \rho_1 \dots \rho_m$ but with $t(\sigma)\neq s(\rho_m)$, but since $\rho_1 \dots \rho_m$ was maximal this path is involved $\sigma a=a\sigma$ as $a\in Z(A)$. So, $a \sigma$ is also a linear combination of paths, i.e. $\tau_1 \dots \tau_m\sigma$, wheere $\tau_1\dots\tau_m$ is a path in $a$.This causes, 
-\equ
-\sigma\rho_1\dots\rho_m=\tau_1\dots\tau_m\sigma,
-\eequ
-which implies that $\sigma=\rho_m$, which causes an oriented cycle, hence a contradiction. Thus, $Z(kC_i)\cong k$.\\
-\emph{Need to complete the case for oriented cycle connected component.}
+The following will be provided as properties of path alegbras as in \cite{CB2} and will not be proven.
 
-\end{proof}
+\begin{rem}
+\begin{itemize}
+\item $A$ is prime, i.e. $IJ\neq 0$ for two sided ideals $I, J \neq 0$ if and only if for all $i, j \in Q_0$ there exists a path $i$ to $j$.
+\item $A$ is left noetherian if and only if, if there is an oriented cycle through the vertex $i$, then only one arrow starts at the vertex $i$.
+\item The basis of $J(A)$ is $\{\text{path } i \text{ to }j: \text{ there is no path from } j \text{ to }i\}$.
+\item The centre of $A$ is $k\times k\times \dots k[T] \times k[T] \times \dots$, with one factor for each connected component $C$ of $Q$, and that the factor is $k[T]$ if and only if $C$ is an oriented cycle.
+\end{itemize}
+\end{rem}
 
-\begin{eg}
-Consider the quiver, 
-\equ
-\mathbf{Q}: \qquad
-\begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
-\node	[main node]		(1) at (0,0)		{1};
-\node [main node]		(2) at (2,0)		{2};
-\node [main node]		(3) at (4,0)		{3};
-\node [main node]		(4) at (5,0)		{4};
-\node [main node]		(5) at (6,2)		{5};
-\node [main node]		(6) at (7, 0)		{6};
-
-\draw (1) edge node [auto] {$\alpha$} (2);
-\draw (2) edge node [auto] {$\beta$} (3);
-\draw (4) edge node [auto] {$\gamma$} (5);
-\draw (5) edge node [auto] {$\delta$} (6);
-\draw (6) edge node [auto] {$\epsilon$} (4);
-\end{tikzpicture}
-\eequ
-and so, $Z(kQ)=Z(kC_1) \times Z(kC_2)$, where $C_2$ is the oriented cycle component. Then, 
-\begin{align*}
-Z(kC_1)=&\{a \in kC_1: ac=ca \forall c\in kC_1\}, \\
-&=\{\lambda(e_1+e_2+e_3): \lambda\in k\}, \\
-&\cong k,
-\end{align*}
-since none of the elements of $kC_1$ are commutative, apart from the identity. Also, 
-\begin{align*}
-Z(kC_2) &=\{a \in kC_2: ac=ca \forall c\in kC_2\},\\
-&=\{\lambda(\gamma\delta\epsilon + \delta\epsilon\gamma +\epsilon\gamma\delta): \lambda \in k\}, \\
-&\cong k[T], \text{ where }T=\gamma\delta\epsilon + \delta\epsilon\gamma +\epsilon\gamma\delta, 
-\end{align*}
-because none of the elements of $kC_2$ are commutative other than the identity element. Thus, $Z(kQ)\cong k \times k[T]$.
-\end{eg}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%		Representations of Quivers	%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3355,8 +3334,14 @@ because none of the elements of $kC_2$ are commutative other than the identity e
 
 \section{Representations of Quivers}
 
+In this section we consider quivers without oriented cycles.
+
 \begin{mydef}
-A \emph{representation} $X$ of a quiver $Q$ is given by considering each vertex $i\in Q_0$ as a vector space $X_i$, and each arrow $\rho \in Q_1$ as a linear map $X_\rho: X_{s(\rho)} \to X_{t(\rho)}$.
+A \emph{representation} of a quiver $Q$ is $X=(\{X_i\}, \{X_{\rho}\})$ where,
+\begin{itemize}
+\item there is a vector spaces $X_i$ corresponding to each $i\in Q_0$, and,
+\item a linear map $X_{\rho}: X_{s(\rho)} \to X_{t(\rho)}$ for each $\rho \in Q_1$.
+\end{itemize}
 \end{mydef}
 
 \begin{eg}
@@ -3397,7 +3382,11 @@ then we can have representations $X$ and $Y$,
 \end{eg}
 
 \begin{mydef}
-A \emph{morphism} $\theta: X \to X'$ between representationsis given by linear maps $\theta_i:X_i \to X'_i$ for each $i\in Q_0$ satisfy $X'_{\rho}\theta _{s(\rho)} = \theta_{t(\rho)}X_{\rho}$ for each $\rho \in Q_1$. The \emph{composition} of morphisms, $\theta: X \to X'$ with $\phi: X' \to X''$ is given by $(\phi \theta)_i=\phi_i \theta_i$.
+Let $X=(\{X_i\}, \{X_{\rho}$ and $X'=(\{X'_i\}, \{X'_{\rho}$ be representations of $Q$. 
+\begin{description}
+\item A \emph{morphism} $\theta: X \to X'$ between representationsis given by linear maps $\theta_i:X_i \to X'_i$ for each $i\in Q_0$ satisfy $X'_{\rho}\theta _{s(\rho)} = \theta_{t(\rho)}X_{\rho}$ for each $\rho \in Q_1$. 
+\item The \emph{composition} of morphisms, $\theta: X \to X'$ with $\phi: X' \to X''$ is given by $(\phi \theta)_i=\phi_i \theta_i$.
+\end{description}
 \end{mydef}
 
 \begin{eg}
@@ -3473,27 +3462,14 @@ Notice that these definitions are equivalent to $f$ being a section or a retract
 
 \begin{mydef}
 \begin{itemize}
-\item If $X$ is indecomposable then $f:X \to Y$ is \emph{irreducible} if it is not split mono and if $f=hg$ then either $g$ is split mono or $h$ is split epi. A \emph{source map} for $X$ is said to be an irreducible map $f:X \to E$ such that any map $g: X \to Z$ which is not split mono factors through $f$.
-\item If $Y$ is indecomposable then $f: X \to Y$ is \emph{irreducible} if it is not split mono and if $f=hg$ then either $g$ is split mono or $h$ is split epi. A \emph{sink map} for $Y$ is said to be an irreducible map $f: F \to Y$ such that any map $g: Z \to Y$ which is not split epi factors through $f$.
+\item If $X$ is indecomposable then $f:X \to Y$ is \emph{irreducible} if it is not split mono and if $f=hg$ then either $g$ is split mono or $h$ is split epi.
+\item If $Y$ is indecomposable then $f: X \to Y$ is \emph{irreducible} if it is not split mono and if $f=hg$ then either $g$ is split mono or $h$ is split epi.
 \end{itemize}
 \end{mydef}
 
 \begin{rem}
 If both $X$ and $Y$ are indecomposable the two notions of the irreducibility of $f:X \to Y$ agree. In this report we will follow \cite{CB3} in not defining irreducible maps where $X,Y$ decomposable.
 \end{rem}
-
-\begin{lem}
-\begin{description}
-\item [(i)] If $X$ is an indecomposable projective module then $X$ has a unique maximal proper submodule $M$ and $f:M \hookrightarrow X$ is a sink map for $X$.
-\item [(ii)] If $X$ is an indecomposable injective then $X$ has a unique simple submodule $S$ and $f:X \twoheadrightarrow \sfrac{X}{S}$ is a source map for $X$.
-\end{description}
-\end{lem}
-\begin{proof}
-\begin{description}
-\item [(i)] Suppose to the contrary $X$ has two distinct maximal proper submodules $M\neq M'$ then $M \oplus M'=X$ so $M \oplus M' \twoheadrightarrow X$, and so $X$ is a summand of $M\oplus M'$, a contradiction by Krull-Schmidt as $X$ is indecomposable. If $f: M \to X$ factors as $f=hg$ then $im(h)=M$ or $im(h)=X$ and so $g$ is split mono or $h$ is split epi respectively. If $\phi: Z \to X$ is not split epi, then it is not epi, and so the image is contained in $M$, hence $\phi$ factors through $f$. Thus $f: M\hookrightarrow X$ is a sink map for $X$.
-\item [(ii)]
-\end{description}
-\end{proof}
 
 \begin{prop}
 An irreducible map $f: X \to Y$ is mono or epi.
@@ -3515,14 +3491,13 @@ and so $f$ factors through $im(f)$. However, as $f$ is not mono, g can not be sp
 \end{proof}
 
 \begin{prop}
-The cokernel of an irreducible monomorphism is indecomposable.
+\begin{description}
+\item [(i)] The cokernel of an irreducible monomorphism is indecomposable.
+\item [(ii)] The kernel of an irreducible epimorphism is indecomposable.
+\end{description}
 \end{prop}
 \begin{proof}
-Recall $coker(f)=\sfrac{Y}{im(f)}$. As $f: X \to Y$ is a monomorphism $ker(f)=0$ and so we have an exact sequence, 
-\begin{equation*}
-0 \xrightarrow{} X \xrightarrow{f} Y \xrightarrow{} \frac{Y}{im(f)} \xrightarrow{} 0.
-\end{equation*}
-%%%%%%%% Need to fill in rest of proof.
+We will not prove these in this report, but proofs can be found in \cite{Assem}.
 \end{proof}
 
 \begin{prop}
@@ -3539,26 +3514,21 @@ X \xrightarrow{g} E \xrightarrow{h} Y,
 \end{equation*}
 with either $g: X \to E$ split mono or $h: E \to Y$ split epi. However, $g: X \to E$ is a source map for $X$ and so by definition $g$ is irreducible, hence is not split mono. Thus, $h: E \to Y$ is split epi. \\
 To show a composition is irreducible, show that if $(\begin{smallmatrix} f \\ f' \end{smallmatrix}): X \to Y \oplus U$ is irreducible then so is $f: X \to Y$. Namely, if $f$ factors through $V$ then $(\begin{smallmatrix} f\\f' \end{smallmatrix})$ factors through $V \oplus U$.
-\item [(ii)] Firstly, we show $X \to F$ is split mono: If $f: X \to Y$ is irreducible it factors through the sink map $F \to Y$ such that,
-\begin{equation*}
-X \xrightarrow{g} F \xrightarrow{h} Y,
-\end{equation*}
-with either $g: X \to F$ split mono or $h: F \to Y$ split epi. However, $h: F \to Y$ is a sink map for $Y$ and so by definition $h$ is irreducible and hence is not split epi. Thus $g: X \to F$ is split mono.\\
-%%%%%%% Need to sort out the composition part here.
+\item [(ii)] The dual of (i).
 \end{description}
 \end{proof}
 
 \begin{mydef}
 Let $X,Y$ be $A$-modules. Then we define,
 \begin{equation*}
-Vrad(X,Y)=\{f: X \to Y: \forall g:Y \to X, id_X-gf is an isomorphism\}.
+rad(X,Y)=\{f: X \to Y: \forall g:Y \to X, id_X-gf\text{  is an isomorphism}\}.
 \end{equation*}
 \end{mydef}
 
 \begin{rem}
 Note \cite{CB3} gives a different definition of $rad(X,Y)$ is given that the one above from \cite{Vale}. In \cite{CB3} Crawley-Boevey sets $X,Y$ indecomposable modules and defines $rad(X,Y)$;
 \begin{equation*}
-rad(X,Y)=\{f: X \to Y: f is not an isomorphism\}.
+rad(X,Y)=\{f: X \to Y: \text{ f is not an isomorphism}\}.
 \end{equation*}
 The following proposition from \cite{Vale} shows that these two sets are in fact equivalent when $X,Y$ indecomposable.
 \end{rem}
@@ -3578,21 +3548,77 @@ e^2&=(f(gf)^{-1}g)(f(gf)^{-1}g),\\
 and so $e$ is idempotent and so not nilpotent. By Fitting's Lemma, $e$ is an isomorphism, but $e^2=e$ so $e=id_Y$. Therefore, $f(gf)^{-1}g=id_Y$ and so $(gf)^{-1}g$ is an inverse to $f$, and so a contradiction to $f$ not an isomorphism. Thus, $gf$ is not an isomorphism. By Fitting's Lemma, if $gf\in End(X)$ is not an isomorphism, then it must be nilpotent. So $id_X -gf$ has an inverse and so is an isomorphism. Thus, $f\in rad(X,Y)$.
 \end{proof}
 
-From now on we will use the notation $rad(X,Y)$ to refer either of these sets. In addition, it is proven in \cite{Vale} that $rad(X,Y)$ is a vector space.\\
+From now on we will use the notation $rad(X,Y)$ to refer either of these sets. In addition, it is proven in \cite{Vale} that $rad(X,Y)$ is a vector space.
 
-%% Check here why CB3 definition different and whether it is in fact equivalent.
-
-\begin{mydef}
-If $X$ and $Y$ are $A$-modules we define $rad^2(X,Y)$ is the span of all map $gh:X \to Y$ where $h: X \to Z$, $g: Z \to Y$ for some $Z$ and $h \in rad(X,Z)$, $g\in rad(Z, Y)$.
+\begin{mydef} \label{rad2def}
+If $X$ and $Y$ are $A$-modules we define $rad^2(X,Y)$ as the span of all map $hg:X \to Y$ where $g: X \to Z$, $h: Z \to Y$ for some $Z$ and $g \in rad(X,Z)$, $h\in rad(Z, Y)$.
 \end{mydef}
+
+\begin{lem} \label{rad2lem}
+Let $X,Y$ indecomposable modules and define a map $f: X \to Y$, then, $f \in rad^2(X,Y)$ if and only if $f=hg$ with $g$ not split mono and $h$ not split epi.
+\end{lem}
+\begin{proof}
+Let $f: X \to Y$ with $X,Y$ indecomposable.\\
+$\Rightarrow:$ Observe that there is no requirement that $Z$ is an indecomposable module and so set $Z=\oplus^n_i Z_i$ where the $Z_i$ are indecomposable. Then if $f=gh$ we have,
+\begin{equation*} 
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$X$};
+\node [main node]		(2) at (3,0)		{$Y$};
+\node [main node]		(3) at (1.5,-1.5)	{$Z_1 \oplus Z_2$};
+
+\draw (1) [main path] edge node [auto] {$f$} (2);
+\draw (1) [main path] edge node [auto, swap] {$\left(\begin{smallmatrix} h_1\\ \vdots \\ h_n \end{smallmatrix}\right)$} (3);
+\draw (3) [main path] edge node [auto, swap] {$\left(\begin{smallmatrix}g_1 & \dots & g_n \end{smallmatrix}\right)$} (2);
+\end{tikzpicture}
+\end{equation*}
+with $h_i: X \to Z_i$ and $g_i: Z_i \to Y$ with $f$ a finite linear combination of $g_ih_i$. We want to show:
+\begin{description}
+\item [(i)] $h_i \in rad(X,Z_i)$ for all $i$ if and only if $h$ is not a split mono.
+\item [(ii)] $g_i \in rad(Z_i,Y)$ for all $i$ if and only if $g$ is not split epi.
+\end{description}
+Proof of (i): As $X$ is indecomposable $h_i \in rad(X,Z)$ implies that $h_i$ is not an isomorphism. Hence, (i) becomes: all the $h_i$ are non-isomorphisms if and only if $h$ is not a split mono. But this is equivalent to proving (*) some $h_i$ is an isomorphism if and only if $h$ is split mono. \\
+(*)$\Leftarrow:$ Suppose for some $i$, $h_i$ is an isomorphism then $h_i$ has some inverse, $h_i^{-1}$ say, such that,
+\begin{equation*} 
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$X$};
+\node [main node]		(2) at (4,0)		{$Z_1\oplus \dots \oplus Z_n$};
+\node [main node]		(3) at (8,0)		{$X$};
+
+\draw (1) [main path] edge node [auto] {$h=\left(\begin{smallmatrix} h_1\\ \vdots \\ h_n \end{smallmatrix}\right)$} (2);
+\draw (2) [main path] edge node [auto] {$(\begin{smallmatrix}0 & \dots & 0 & h_{i}^{-1} & 0 & \dots &0 \end{smallmatrix})$} (3);
+\draw (1) [main path] edge [bend right=10] node [auto, swap] {$id_X$} (3);
+\end{tikzpicture}
+\end{equation*}
+Hence $h$ is split mono.\\
+(*)$\Rightarrow:$ If $h$ is split mono then there exists some $r$ such that,
+\begin{equation*} 
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$X$};
+\node [main node]		(2) at (4,0)		{$Z_1\oplus \dots \oplus Z_n$};
+\node [main node]		(3) at (8,0)		{$X$};
+
+\draw (1) [main path] edge node [auto] {$h=\left(\begin{smallmatrix} h_1\\ \vdots \\ h_n \end{smallmatrix}\right)$} (2);
+\draw (2) [main path] edge node [auto] {$(\begin{smallmatrix}r_1 & \dots &r_n\end{smallmatrix})$} (3);
+\draw (1) [main path] edge [bend right=10] node [auto, swap] {$id_X$} (3);
+\end{tikzpicture}
+\end{equation*}
+and so $\sum^n_i r_ih_i=id_X$. But $X$ is indecomposable so $End(X)$ is a local ring and so as $\sum_i^nr_ih_i=id_X$ we much thave some $r_ih_i$ invertible. Say the inverse of $r_ih_i$ is $s$, then, $(sr_i)h=id_X$ and so $h_i$ is split mono so it embeds in $X$ as a direct summand of $Z_i$. But the $Z_i$ are indecomposable, thus $h_i$ is an isomorphism.\\
+The proof of (ii) is dual.
+\end{proof}
+
+The above result makes the next theorem very clear.
 
 \begin{thm}
 Let $X,Y$ be indecomposable. Then $f: X \to Y$ is irreducible if and only if $f \in rad(X,Y)\ rad^2(X,Y)$, where $\ $ denotes the set difference.
 \end{thm}
 \begin{proof}
-$\Rightarrow:$ Suppose $f: X \to Y$ is irreducible. Then $f$ is an isomorphism and by Lemma \ref{isoradlem} $f\in rad(X,Y)$.
+$\Rightarrow:$ Suppose $f: X \to Y$ is irreducible. Then it is not an isomorphism and so $f\in rad(X,Y)$ by Lemma \ref{isoradlem}. Also as $f$ is irreducible, if $f=hg$ then either $g$ is split mono or $h$ is split epi and so by Lemma \ref{rad2lem} $f\notin rad^2(X,Y)$. Thus $f\in rad(X,Y)\ rad^2(X,Y)$.\\
+$\Leftarrow:$ Suppose $f\in rad(X,Y)\ rad^2(X,Y)$. Since $X,Y$ indecomposable and $f$ not an isomorphism $f$ cannot be split mono or split epi. If $f=hg$ then as $f\notin rad^2(X,Y)$ we much have either $g$ is split mono or $h$ split epi. Thus, $f$ is irreducible.
 \end{proof}
 
+\begin{mydef}
+If $X,Y$ indecomposable modules then we define $irr(X,Y)=\sfrac{rad(X,Y)}{rad^2(X,Y)}$.
+\end{mydef}
 
 \section{Almost Split Sequences}
 
@@ -3609,14 +3635,14 @@ A map $f: L \to M$ is called \emph{left almost-split} if $f$ is not split mono a
 \begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
 \node	[main node]		(1) at (0,0)		{$L$};
 \node [main node]		(2) at (1.5,0)	{$M$};
-\node [main node]		(3) at (0,-1.5)	{$E$};
+\node [main node]		(3) at (0,-1.5)	{$Z$};
 
 \draw (1) [main path] edge node [auto] {$f$} (2);
 \draw (1) [main path] edge node [auto, swap] {$u$} (3);
-\draw (3) [->, dashed, semithick] edge node [auto, swap] {$\exists u'$} (2);
+\draw (2) [->, dashed, semithick] edge node [auto, swap] {$\exists u'$} (3);
 \end{tikzpicture}
 \end{equation}
-with $u$ not split mono, then there exists a map $u': M \to E$ such that \ref{lalmostsplitdiag} commutes, i.e. any map $u: L \to E$ which is not split mono factors through $f$.
+with $u$ not split mono, then there exists a map $u': M \to Z$ such that \ref{lalmostsplitdiag} commutes, i.e. any map $u: L \to Z$ which is not split mono factors through $f$.
 \end{mydef}
 
 \begin{mydef}
@@ -3625,20 +3651,22 @@ A map $g: M \to N$ is called \emph{right almost-split} if $g$ is not split epi a
 \begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
 \node	[main node]		(1) at (0,0)		{$M$};
 \node [main node]		(2) at (1.5,0)	{$N$};
-\node [main node]		(3) at (1.5,1.5)	{$F$};
+\node [main node]		(3) at (1.5,1.5)	{$Z$};
 
 \draw (1) [main path] edge node [auto, swap] {$g$} (2);
 \draw (3) [main path] edge node [auto] {$v$} (2);
 \draw (3) [->, dashed, semithick] edge node [auto, swap] {$\exists v'$} (1);
 \end{tikzpicture}
 \end{equation}
-with $v$ not split epi, then there exists $v': F \to M$ such that \ref{ralmostsplitdiag} commutes, i.e. any map $v: F \to N$ which is not split epi factors through $g$.
+with $v$ not split epi, then there exists $v': F \to Z$ such that \ref{ralmostsplitdiag} commutes, i.e. any map $v: F \to N$ which is not split epi factors through $g$.
 \end{mydef}
+
+Below we define source and sink maps differently as to \cite{CB3}, however, we will later see that these definitions are equivalent.
 
 \begin{mydef}
 \begin{itemize}
-\item A map $f: L \to M$ is \emph{left minimal almost-split} if it is both left minimal and left almost-split.
-\item A map $g: M \to N$ is \emph{right minimal almost-split} if it is both right minimal and right almost-split.
+\item A map $f: L \to M$ is \emph{left minimal almost-split} if it is both left minimal and left almost-split. Then the map $f: L \to M$ is said to be a  \emph{source map} for $L$.
+\item A map $g: M \to N$ is \emph{right minimal almost-split} if it is both right minimal and right almost-split.  Then the map $g: M \to N$ is said to be a  \emph{sink map} for $N$.
 \end{itemize}
 \end{mydef}
 
@@ -3646,8 +3674,8 @@ Clearly, as noted in \cite{Assem}, each "right-hand" notion is the dual of the c
 
 \begin{prop}
 \begin{description}
-\item [(i)] If the maps $f: L \to M$ and $f': L \to M'$ are left minimal almost-splt, then there exists an isomorphism $h: M \to M'$ such that $f'=hf$.
-\item [(ii)] If the maps $g: M \to N$ and $g': M' \to N$ are right minimal almost-split, then there exists an isomorphism $h: M \to M'$ such that $g=g'h$.
+\item [(i)] If the maps $f: L \to M$ and $f': L \to M'$ are sink maps for $L$, then there exists an isomorphism $h: M \to M'$ such that $f'=hf$.
+\item [(ii)] If the maps $g: M \to N$ and $g': M' \to N$ are source maps for $N$, then there exists an isomorphism $h: M \to M'$ such that $g=g'h$.
 \end{description}
 \end{prop}
 \begin{proof}
@@ -3670,7 +3698,7 @@ such that $g=g'h$ and $g'=gh'$. Hence, $g=gh'h$ and $g'=ghh'$. Since $g$ and $g'
 
 The following result is from \cite{Vale} and \cite{Assem} and displays that almost-split maps are closely related to indecomposable modules.
 
-\begin{lem}
+\begin{lem} \label{indeclem}
 \begin{description}
 \item [(i)] If $f: L \to M$ is left almost-split then $L$ is indecomposable.
 \item [(ii)] If $g: M \to N$ is right almost-split then $N$ is indecomposable.
@@ -3681,7 +3709,419 @@ We will follow \cite{Vale} here and only prove the result for (ii) as the proof 
 Suppose $g: M \to N$ is right almost-split and $N=N_1\oplus N_2$ with with both $N_1, N_2$ nonzero. Then the insertion maps $\iota_i: N_i \hookrightarrow N_1 \oplus N_2$ are not split epi, and so there exists $v_1: N_1 \to N$ with $gv_1=\iota_1$ and $v_2: N_2 \to N$ with $gv_2=\iota_2$. Then $g(v_1 + v_2) = \iota_1 + \iota _2 =id_N$, contradicting $g$ not split epi. 
 \end{proof}
 
+\begin{lem} \label{lrirrlem}
+If $f: L\to M$ is a sink or source map then $f$ is irreducible.
+\end{lem}
+\begin{proof}
+Once again as the proof for $f$ sink map for $M$ is given in \cite{Vale} we will prove the result when $f$ is source map for $L$.\\
+As $f: L \to M$ is left almost-split Lemma \label{indeclem} gives $L$ indecomposable thus to prove $f$ is irrreducible we must show $f$ is not split mono and that if $f=f_1f_2$ then either $f_2$ is split mono or $f_1$ is split epi. By definition $f$ cannot be split mono so is not an isomorphism and as $L$ is indecomposable it cannot be split epi either. Now suppose $f=f_1f_2$,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$L$};
+\node [main node]		(2) at (3, 0)		{$M$};
+\node [main node]		(3) at (1.5,-1.5)	{$N$};
 
+\draw (1) [main path] edge node [auto, swap] {$f$} (2);
+\draw (1) [main path] edge node [auto] {$f_2$} (3);
+\draw (3) [main path] edge node [auto] {$f_1$} (2);
+\end{tikzpicture}
+\end{equation*}
+with $f_2$ not split mono. As $f$ is left almost-split there exists $u: M \to N$ such that $uf=f_2$ and then $f_1uf=f_1f_2=f$. At the same time $f$ is left minimal and so $f_1u: M \to M$ is an automorphism. Thus, $f_1$ is split epi.
+\end{proof}
+
+The following proposition if the final result neded to show that the definition given for source and sink maps in this report is equivalent to the one given in \cite{CB3}.
+\begin{prop} Let $L,N$ be indecomposable modules.
+\begin{description}
+\item [(i)] If the map $f: L \to M$ is irreducible then it is left minimal.
+\item [(ii)] If the map $g: M \to N$ is irreducible then it is right minimal.
+\end{description}
+\end{prop}
+\begin{proof}
+\begin{description}
+\item [(i)] If we have some map $h: M \to M$ such that $hf=f$,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$L$};
+\node [main node]		(2) at (3, 0)		{$M$};
+\node [main node]		(3) at (1.5,-1.5)	{$M$};
+
+\draw (1) [main path] edge node [auto, swap] {$f$} (2);
+\draw (1) [main path] edge node [auto] {$f$} (3);
+\draw (3) [main path] edge node [auto] {$h$} (2);
+\end{tikzpicture}
+\end{equation*}
+then as $f$ is irreducible then either $f$ is split mono or $h$ is split epi. However, $f$ cannot be split mono by definition, hence $h$ is split epi. Then there exists some $h': M \to M$ such that $hh'=id_M$ and so $h$ is an automorphism.
+\item [(ii)] This is the dual case.
+\end{description}
+\end{proof}
+
+\begin{lem} \label{sinksourcemapslem}
+\begin{description}
+\item [(i)] If $X$ is an indecomposable projective module then $X$ has a unique maximal proper submodule $M$ and $f:M \hookrightarrow X$ is a sink map for $X$.
+\item [(ii)] If $Y$ is an indecomposable injective then $Y$ has a unique simple submodule $S$ and $g:Y \twoheadrightarrow \sfrac{Y}{S}$ is a source map for $Y$.
+\end{description}
+\end{lem}
+\begin{proof}
+\begin{description}
+\item [(i)] Suppose to the contrary $X$ has two distinct maximal proper submodules $M, M'$ then $M \oplus M'=X$ so $M \oplus M' \twoheadrightarrow X$, and so $X$ is a summand of $M\oplus M'$, a contradiction by Krull-Schmidt as $X$ is indecomposable. If $f: M \to X$ factors as $f=hh'$ then $im(h)=M$ or $im(h)=X$ and so $h'$ is split mono or $h$ is split epi respectively. If $\phi: Z \to X$ is not split epi, then it is not epi, and so the image is contained in $M$, hence $\phi$ factors through $f$. Thus $f: M\hookrightarrow X$ is a sink map for $X$.
+\item [(ii)] Suppose to the contrary that $Y$ has two distinct simple submodules $S$ and $T$ then $\sfrac{Y}{S} \oplus \sfrac{Y}{T} = X$ so $\sfrac{X}{Y} \oplus \sfrac{Y}{T} \twoheadrightarrow Y$, and so $X$ is a summand of $\sfrac{Y}{S} \oplus \sfrac{Y}{T}$, once again a contraction by Krull-Schmidt as $Y$ is indecomposable.To show the map $g: Y \to \sfrac{Y}{S}$ is irreducible: Firstly as $g$ is not mono it can not be split mono and if $g=h'h$ then either $ker(h)=0$  or $ker(h)=S$ as $ker(h'h)=ker(f)=S$ and $ker(h)\subseteq ker(h'h)$. If $ker(h)=0$ then $h$ is injective and so, since $Y$ in injective, $h$ is split mono. On the other hand, if $ker(h)=S$, then we have,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$Y$};
+\node [main node]		(2) at (4,0)		{$\frac{Y}{S}$};
+\node [main node]		(3) at (1,-1)		{$\frac{Y}{S}$};
+\node [main node]		(4) at (2,-2)		{$W$};
+
+\draw (1) [->>, semithick] edge node [auto] {$g$} (2);
+\draw (1) [->>, semithick] edge node [auto] {$g$} (3);
+\draw (3) [main path] edge node [auto] {$\hat{h}$} (4);
+\draw (4) [main path] edge node [auto, swap] {$h'$} (2);
+\draw (1) [main path] edge [bend right=40] node [auto, swap] {$h$} (4);
+\end{tikzpicture}
+\end{equation*}
+and so $g=h\hat{h}g$ and so $(id_{\sfrac{Y}{S}}-h'\hat{h})g=0$ but $g$ is surjective so $id_{\sfrac{Y}{S}}=h'\hat{h}$ and so $h$ is split epi. Now if $\theta: Y \to Z$ is not split mono then the kernel is a nonzero subset of $S$, hence $\theta$ factors through $g$. Thus $Y \twoheadrightarrow \sfrac{Y}{S}$ is a source map for $Y$.
+\end{description}
+\end{proof}
+
+\begin{cor}
+\begin{description}
+\item [(i)] If $X$ is an indecomposable projective module then $X$ has a sink map $f: rad(X) \to X$.
+\item [(ii)] If $Y$ is an indecomposable injective module then $Y$ has a source map $g: Y \to \sfrac{Y}{soc(Y)}$.
+\end{description}
+\end{cor}
+\begin{proof}
+Recall that $rad(M)=\bigcap \{N: N\text{ is a maximal submodule of }M\}$ and $soc(M)=\sum \{S: S\text{ is a simple submodule of }M\}$. Then Lemma \ref{sinksourcemaplem} gives the result with $M$ substituted with $X$ and $Y$ respectively.
+\end{proof}
+
+In this report an Auslander-Reiten sequence will simply be another name for an almost-split sequence, as in the literature there seemed little basis to follow Vale and define them separately. Moreover, it was felt Vale's approach causes much unnecessary confusion.
+
+\begin{mydef}
+A short exact sequence,
+\begin{equation*}
+0 \xrightarrow{} L \xrightarrow{f} M \xrightarrow{g} N \xrightarrow{} 0,
+\end{equation*}
+is called an \emph{almost split sequence} or \emph{Auslander-Reiten sequence} if $f$ is a source map for $L$ and $g$ is a sink map for $N$.
+\end{mydef}
+
+The following discussion of almost-split sequences is made in \cite{Assem}.
+\begin{rem}
+It follows from Lemma \ref{indeclem} that if such a sequence exists then $L$ and $N$ are indecomposable. Also as almost-split sequences are never split, $L$ cannot be injective and $N$ cannot be projective as this would contradict Lemma \ref{injectiveprop} and Lemma \ref{projectiveprop} respectively.
+\end{rem}
+
+\section{Auslander-Reiten Translate}
+The topic of this section is the Auslander-Reiten translate. We first present some properties of the standard duality and Nakayama functor from \cite{CB2} without proof.
+
+\begin{mydef}
+A contravarient functor $D: \mathcal{C} \to \mathcal{D}$ that is an equivalence of categories is called a \emph{duality}. The standard duality is defined $D(-)=Hom_k(-,k): mod A \to mod A^{op}$, between the category $modA$ of finite dimensional right $A$-modules and the category $modA^{op}$ of finite dimensional  left $A$-modules.
+\end{mydef}
+
+\begin{rem}
+The following are properties of the standard duality from \cite{CB2}:
+\begin{description}
+\item [(i)] If $X$ is a left or right $A$-module, then $DX=Hom_k(X,k)$, $Hom(X,A)$ and $Ext^1(X,A)$ are all $A$-modules on the right or left side respectively.
+\item [(ii)] $D(-)$ is duality between left and right $A$-modules.
+\item [(iii)] $D(-)$ gives a duality between injective left modules and projective right modules.
+\item [(iv)] $Hom(-,A)$ gives duality between projective left modules and projective right modules.
+\end{description}
+\end{rem}
+
+\begin{mydef}
+The \emph{Nakayama functor} $\nu(-)=DHom(-,A)$ gives an equivalence from projective left $A$-modules to projective right $A$-modules. The inverse functor is $\nu^-(-)=Hom(D(-),A)\cong Hom(DA,-)$.
+\end{mydef}
+
+\begin{rem}
+For $X,P$ left $A$-modules, $P$ projective, $Hom(X,\nu P) \cong DHom(P,X)$.
+\end{rem}
+
+Now to start defining the Auslander-Reiten translate.
+
+\begin{mydef}
+If $M$ is a module then let $(P_0, \epsilon)$ be a projective cover of $M$ and $(P_1, \phi)$ a projective cover of $ker(\epsilon)$. Then the exact sequence, 
+\begin{equation*}
+P_1 \xrightarrow{} P_0 \xrightarrow{\epsilon} \xrightarrow{} 0,
+\end{equation*}
+is called a \emph{minimal presentation} of $M$. 
+\end{mydef}
+
+\begin{mydef}
+Given a left $A$-module $M$, take a minimal presentation $P_1 \to P_0 \to M \to 0$ and let $\beta: P_1 \to P_0$ be the map in this sequence. Apply $Hom_A(-,A)$ to obtain a map of right $A$-modules,
+\begin{equation*}
+\beta^{\ast}: Hom_A(P_0, A) \to Hom_A(P_1, A).
+\end{equation*}
+Then the \emph{transpose} of $M$ is defined to be $Tr(M):=cok(\beta^{\ast})$.
+\end{mydef}
+
+\begin{mydef}
+The \emph{Auslander-Reiten translates} of $M$ are defined to be $\tau M:=DTr(M)$ and $\tau^{-1}M :=TrD(M)$.
+\end{mydef}
+
+\begin{eg}
+If the algebra $A$ is hereditary then we have the case we see in \cite{CB2} and \cite{CB3}. Let $P_1 \xrightarrow{\beta} P_0 \to M \to 0$ be a minimal presentation of $M$. As $A$ is hereditary we have $\beta: P_1 \to P_0$ injective and so we in fact have the short exact sequence $0 \to P_1 \hookrightarrow P_0 \twoheadrightarrow M \to 0$. Then applying $Hom_A(-,A)$ and writing out the long exact sequence we obtain, 
+\begin{equation*}
+0 \xrightarrow{} Hom_A(M,A) \xrightarrow{} Hom_A(P_0, A) \xrightarrow{\beta^{\ast}} Hom_A(P_1, A) \xrightarrow{\delta} Ext^1(M, A) \xrightarrow{} 0
+\end{equation*}
+as $P_0$ is projective. Hence,
+\begin{equation*}
+coker(\beta^{\ast})=\frac{Hom(P_1,A)}{im(\beta^{\ast})}=\frac{Hom(P_1, A)}{ker(\delta)}\cong Ext^1(M,A),
+\end{equation*}
+as $\delta$ is surjective and so we can use the first isomorphism theorem. Thus, $Tr(M)=Ext^1(M,A)$ and so we have $\tau M -DExt^1(M,A)$.
+\end{eg}
+
+\begin{thm} \label{taubijectionthm}
+There are bijections,
+ \begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(2) at (0,0)		{$\left\{\mytab{\text{non-projective}\\ \text{indecomposables}}\right\}$};
+\node	[main node]		(3) at (4,0)		{$\left\{\mytab{\text{non-injective}\\ \text{indecomposables}}\right\}$};
+
+\draw (2.10) edge [main path] node [auto] {$\tau$} (3.170);
+\draw (3.190) edge [main path] node [auto] {$\tau^{-1}$} (2.350);
+\end{tikzpicture}
+\end{equation*}
+such that if $X$ is non-projective indecomposable there is an exact sequence,
+\begin{equation*}
+\mathbf{\xi}:  \quad 0 \xrightarrow{} X \xrightarrow{} E \xrightarrow{} \tau X \xrightarrow{} 0,
+\end{equation*}
+with $\mathbf{\xi}$ an almost split sequence. Also, if $Y$ is non-injective indecomposable there is an exact sequence, 
+\begin{equation*}
+\mathbf{\xi'}: \quad 0 \xrightarrow{} \tau^{-1}Y \xrightarrow{} F \xrightarrow{} Y \xrightarrow{} 0,
+\end{equation*}
+with $\mathbf{\xi'}$ an almost split sequence.
+\end{thm}
+
+We will only prove this theorem in the case that $A$ is hereditary as in \cite{CB3} using results from \cite{CB2}. Recall that when $A$ is hereditary $\tau =DExt^1(-,A)$.
+
+\begin{lem} \label{adjointlem}
+Let $A$ be hereditary. Then, $Hom(Y,\tau X) \cong DExt^1(X,Y) \cong Hom(\tau^{-1}Y,X)$.
+\end{lem}
+\begin{proof}
+Let $0 \to P_1 \to P_0 \to X \to 0$ be a projective resolution of $X$. Then since $A$ is hereditary, we have the long exact sequence, 
+\begin{equation*}
+0 \to Hom(X, A) \to Hom(P_0, A) \to Hom(P_1, A) \to Ext^1(X, A) \to Ext^1(P_0, A) \to \dots
+\end{equation*}
+Then the sequence,
+\begin{equation*}
+\tau P_0 \to \tau X \to \nu P_1 \to \nu P_0,
+\end{equation*}
+is exact and $\tau P_0= DExt^1(P_0, A)=0$ because $P_0$ is projective. So we have a commutative diagram with exact rows,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(2) at (1,0)		{$0$};
+\node	[main node]		(3) at (3,0)		{$Hom(Y,\tau X)$};
+\node [main node]		(4) at (6,0)		{$Hom(Y, \nu P_1)$};
+\node [main node]		(5) at (9,0)		{$Hom(Y, \nu P_0)$};
+
+\node	[main node]		(15) at (1,-2)		{$0$};
+\node	[main node]		(16) at (3,-2)		{$DExt^1(X,Y)$};
+\node [main node]		(17) at (6,-2)		{$DHom(P_1, Y)$};
+\node [main node]		(18) at (9,-2)		{$DHom(P_0, Y)$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$$} (4);
+\draw (4) edge [main path] node [auto] {$$} (5);
+
+\draw (15) edge [main path] node [auto] {$$} (16);
+\path (16) edge [main path] node [auto] {$$} (17);
+\draw (17) edge [main path] node [auto] {$$} (18);
+
+\draw (17) edge [-, double, semithick, double distance=1.5pt] (4);
+\draw (18) edge [-, double, semithick, double distance=1.5pt] (5);
+\end{tikzpicture}
+\end{equation*}
+Hence $Hom(Y, \tau X) \cong DExt^1(X,Y)$. The other result is dual.
+\end{proof}
+
+\begin{lem} \label{tauidlem}
+Let $X$ be indecomposable and $A$ hereditary.
+\begin{description}
+\item [(i)] If $X$ is non-projective then $Hom(X,P)=0$ for $P$ projective and $\tau^{-1}\tau X \cong X$.
+\item [(ii)] If $X$ is non-injective then $Hom(I,X)=0$ for $I$ injective and $\tau \tau^{-1}X\cong X$.
+\end{description}
+\end{lem}
+\begin{proof}
+As the proof of (i) is given in \cite{CB2} we will only prove (ii).\\
+If $\psi: I \to X$ is non-zero then $\sfrac{I}{ker(\psi)}$ is injective since $A$ is hereditary. Now $\sfrac{I}{ker(\psi)} \to X$ is mono, so $\sfrac{I}{ker(\psi)}$ is a direct summand of $X$ and as $X$ is indecomposable $X\cong \sfrac{I}{ker(\psi)}$. However, $X$ is non-injective so a contradiction.\\
+Let $0 \to X \to I^0 \to I^1 \to 0$ be an injective resolution of $X$。 Now， 
+\begin{equation*}
+0 \to \nu^{-1}X \to \nu^{-1}I^0 \to \nu^{-1}I^1 \to \tau^{-1}X \to 0,
+\end{equation*}
+is exact and $\nu^{-1}X=0$ since $Hom(A,X)=0$. Thus we have a commutative diagram, 
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(2) at (1,0)		{$\tau\nu^{-1}I^1$};
+\node	[main node]		(3) at (3,0)		{$\tau\tau^{-1}X$};
+\node [main node]		(4) at (6,0)		{$\nu\nu^{-1}I^0$};
+\node [main node]		(5) at (9,0)		{$\nu\nu^{-1}I^1$};
+
+\node	[main node]		(15) at (1,-2)		{$0$};
+\node	[main node]		(16) at (3,-2)		{$X$};
+\node [main node]		(17) at (6,-2)		{$I^0$};
+\node [main node]		(18) at (9,-2)		{$I^1$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$$} (4);
+\draw (4) edge [main path] node [auto] {$$} (5);
+
+\draw (15) edge [main path] node [auto] {$$} (16);
+\path (16) edge [main path] node [auto] {$$} (17);
+\draw (17) edge [main path] node [auto] {$$} (18);
+
+\draw (17) edge [-, double, semithick, double distance=1.5pt] (4);
+\draw (18) edge [-, double, semithick, double distance=1.5pt] (5);
+\end{tikzpicture}
+\end{equation*}
+with exact rows. Since $\nu^{-1}I^1$ is projective we have $\tau \nu^{-1} I^1=0$ and thus $\tau\tau^{-1}X\cong X$.
+\end{proof}
+
+\begin{lem} \label{taubijectionlem}
+Let $A$ be a hereditary algebra. The Auslander-Reiten translates $\tau$ and $\tau^{-1}$ give inverse bijections:
+ \begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(2) at (0,0)		{$\left\{\mytab{\text{non-projective}\\ \text{indecomposables}}\right\}$};
+\node	[main node]		(3) at (4,0)		{$\left\{\mytab{\text{non-injective}\\ \text{indecomposables}}\right\}$};
+
+\draw (2.10) edge [main path] node [auto] {$\tau$} (3.170);
+\draw (3.190) edge [main path] node [auto] {$\tau^{-1}$} (2.350);
+\end{tikzpicture}
+\end{equation*}
+\end{lem}
+\begin{proof}
+As the result is prove for $\tau$ in \cite{CB2} we only prove it for $\tau^{-1}$.\\
+Let $Y$ be a non-injective indecomposable and write $\tau^{-1}Y$ as a direct sum of indecomposables, say $\tau^{-1}Y = \oplus^r_{i=1}X_i$. Each $X_i$ is non-projective since otherwise $Hom(\tau^{-1}Y, X_i)\cong DExt^1(X_i,Y)=0$ by Lemma \ref{adjointlem}. By Lemma \ref{tauidlem} (i) it follows that for each $X_i$, $\tau(X_i)\neq 0$. By Lemma \ref{tauidlem} (ii) we have $Y\cong \tau \tau^{-1}Y \cong \oplus^r_{i=1}\tau X_i$ and since $Y$ is indecomposable we must have $r=1$. Thus $\tau^{-1}Y$ is a non-injective indecomposable.
+\end{proof}
+
+We now have all the results necessary to prove Theorem \ref{taubijectionthm}.
+\begin{proof} (of Theorem \ref{taubijectionthm}
+From Lemma \ref{taubijectionlem} we can see that the translation functors induce such bijections. Now we will show that such an exact sequence $\xi$ exits.\\
+Define a linear map $\phi: End(X) \to k$ via $\phi(rad(End(X))=0$, $\phi(1_X)=1$. Let $\xi\in Ext^1(X, \tau X)\cong DEnd(X)$ correspond to $\phi$. Since $\xi\neq 0$, it follows that $\xi$ is not split and so $g$ is not split epi and $f$ is not split mono.\\
+If $h: Z \to X$ is not split epi, the it factors through $g$, for $h$ gives a commutative square,
+ \begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node [main node]		(1) at (0,0)		{$Ext^1(X, \tau X)$};
+\node	[main node]		(2) at (3,0)		{$Ext^1(Z, \tau X)$};
+\node	[main node]		(3) at (0,-2)		{$DHom(X,X)$};
+\node [main node]		(4) at (3,-2)		{$DHom(X,Z)$};
+
+\draw (1) edge [main path] node [auto] {$$} (2);
+\draw (3) edge [main path]  (4);
+\draw (1) edge [-, double, semithick, double distance=1.5pt] node [auto] {\small{Lemma \ref{adjointlem}}} (3);
+\draw (2) edge [-, double, semithick, double distance=1.5pt] (4);
+\end{tikzpicture}
+\end{equation*}
+and the bottom map send $\phi: End(X) \to k$ to $0$ since if $\alpha \in Hom(X,Z)$ then $\phi(h\alpha)=0$. Thus the pullback of $\xi$ splits.
+Now g is irreducible: Suppose to the contrary that $g$ factors as $hs: E \to Z \to X$ with $s$ not split mono and $h$ not split epi.  Now $h=gt$ with $t: Z \to E$ and $g=(ts)$. We get a diagram, 
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(2) at (2,0)		{$0$};
+\node	[main node]		(3) at (4,0)		{$\tau X$};
+\node [main node]		(4) at (6,0)		{$E$};
+\node [main node]		(5) at (8,0)		{$X$};
+\node	[main node]		(11) at (10,0)	{$0$};
+
+\node	[main node]		(7) at (2,-2)		{$0$};
+\node	[main node]		(8) at (4,-2)		{$\tau X$};
+\node [main node]		(9) at (6,-2)		{$E$};
+\node [main node]		(10) at (8,-2)	{$X$};
+\node [main node]		(13) at (10,-2)	{$0$};
+
+\draw (2) edge [main path] node [auto] {$$} (3);
+\draw (3) edge [main path] node [auto] {$f$} (4);
+\draw (4) edge [main path] node [auto] {$g$} (5);
+\draw (5) edge [main path] (11);
+
+\draw (7) edge [main path] node [auto] {$$} (8);
+\draw (8) edge [main path] node [auto, swap] {$f$} (9);
+\draw (9) edge [main path] node [auto, swap] {$g$} (10);
+\draw (10) edge [main path] (13);
+
+\draw (3) edge [main path] node [auto] {$\phi$} (8);
+\draw (4) edge [main path] node [auto] {$ts$} (9);
+\draw (5) edge [-, semithick, double, double distance=1.5pt](10);
+\end{tikzpicture}
+\end{equation*}
+Since $s$ is not split mono the map $ts \neq id_Z$ so not an isomorphism and so $\phi$ cannot be an isomorphism. Thus $\phi^r=0$. Hence $(ts)^r$ factors through $g$, say $(ts)^r=ug$ for some $u: X \to E$. Now $gug=g$ and since $g$ is epi we have $gu=id_X$. A contradiction since $g$ is not split epi.\\
+Thus $g$ is a sink map. Similarly $f$ is a source map and so $\xi$ is an almost split sequence.\\
+The existence of $\xi'$ follows by putting $X=\tau^{-1}Y$ into $\xi$.
+\end{proof}
+
+\begin{cor}
+Any indecomposable $X$ has a source and sink map which are unique up to isomorphism.
+\end{cor}
+\begin{proof}
+Uniqueness: This was proven for source maps in \cite{CB3} and so we prove it here for sink maps. If $g: F \to X$ and $g': F' \to X$ are sink maps for $X$ then there is an isomorphism $F \to F'$ making a commutative triangle,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
+\node	[main node]		(1) at (0,0)		{$F$};
+\node	[main node]		(2) at (3,0)		{$F'$};
+\node	[main node]		(3) at (1.5,1.5)	{$X$};
+
+\draw (1) edge [main path] node [auto] {$$} (2);
+\draw (1) edge [main path] node [auto] {$g$} (3);
+\draw (2) edge [main path] node [auto, swap] {$g'$} (3);
+\end{tikzpicture}
+\end{equation*}
+and this follows from the definition as any map $Z \to X$ which is not split epi must factor through both $g$ and $g'$. \\
+Existence: For both sink and source maps  follows from Lemma \ref{sinksourcemapslem} and Theorem \ref{taubijectionthm}.
+\end{proof}
+
+\section{Auslander-Reiten Quiver}
+
+In this section we bring together the results of the Chapter to finally define an Auslander-Reiten Quiver. We follow \cite{CB3}.
+
+\begin{thm}
+Let $X,Y$ be indecomposable. The following numbers are equal.
+\begin{description}
+\item [(i)] \text{dim }irr(X,Y).
+\item [(ii)] The multiplicity of $X$ as a summand of $F$ with $f:F\to Y$ a sink map.
+\item [(iii)] The multiplicity of $Y$ as a summand of $E$ with $g:X \to E$ a source map.
+\end{description}
+\end{thm}
+\begin{proof}
+In \cite{CB3} it was shown that (i)=(ii) so we will show (i)=(iii).\\
+(i)=(iii): Let $\left(\begin{smallmatrix}g_0 \\ g_1 \\ \vdots \\ g_s \end{smallmatrix}\right): X \to Z\oplus Y^s$ be a source map, with $Z$ having no summand isomorphic to $Y$. Clearly, $g_i \in rad(X,Y)$ for $i\geq 1$. We show that $g_1, \dots, g_s$ give a basis of $irr(X,Y)$. \\
+Span: Say $\phi: X \to Y$ belongs to $rad(X,Y)$. Now $\phi$ factors through through source map, so we can write $\phi=\sum_i h_ig_i$. For $i\geq 1$ we have $h_i\in End(Y)$, so there are $\lambda_i \in k$ with $h_i-\lambda_i1_Y \in rad End(Y)$. Modulo $rad^2(X,Y)$ we have,
+\begin{equation*}
+\phi=\sum h_ig_i=\sum_{i\geq 1}h_ig_i=\sum_{i\geq 1}(h_i - \lambda_i1_Y)g_i + \lambda_ig_i=\sum_{i\geq 1}\lambda_ig_i.
+\end{equation*}
+Linearly independent: Say $\sum_{i\geq 1} \lambda_ig_i \in rad^2(X,Y)$ with not all $\lambda_i=0$. The map $Z \oplus Y^s \to Y$, $\lambda_iy \to y$ is split epi, so the composition with the source map is irreducible. Contradiction.
+\end{proof}
+
+\begin{cor}
+If $X$ is non-projectie, then $\text{dim }irr(\tau X, Y)=\text{dim }irr(Y,X)$.
+\end{cor}
+\begin{proof}
+Have source map $\tau X \to E$ and sink map $E \to X$.
+\end{proof}
+
+\begin{rem}
+ Crawley-Boevey notes in \cite{CB3} that if we know the sources and sinks we can compute all of $irr(X,Y)$. Conversely, if we know all of $irr(X,Y)$ we recover sources and sinks. Namely, $X$ has source and sink maps,
+\begin{equation*}
+X \to \oplus_{\scriptstyle{Z\text{ } indec}}Z^{\text{dim }irr(X,Z)} \quad \& \quad \oplus_{\scriptstyle{Z\text{ } indec}}Z^{\text{dim }irr(Z, X) }\to X.
+\end{equation*}
+\end{rem}
+
+\begin{mydef}
+The \emph{Aulander-Reiten quiver} $\Gamma$ of $A$ has;
+\begin{itemize}
+\item vertices $\Gamma_0$ the set of isoclasses [X] of indecomposable modules, a possibly infinite set, and;
+\item arrows $\Gamma_1$ with the number of arrows from [X] to [Y] being $\text{dim }irr(X,Y)$.
+\end{itemize}
+\end{mydef}
+
+\begin{mydef}
+A \emph{translation quiver} is a quiver $\Gamma$ with subsets $\Gamma_p, \Gamma_i \subseteq \Gamma_0$ and a bijection $\tau: \Gamma_0\ \Gamma_p \to \Gamma_0 \ \Gamma_i$ with the property that if $x,y \in \Gamma_0$ and $x \notin \Gamma_p$ then the number of arrows $\tau x \to y$ equal to the number of arrows $y \to x$.
+\end{mydef}
+
+\begin{eg}
+The Auslander-Reiten quiver becomes a translation quiver by defining:
+\begin{itemize}
+\item $\Gamma_p$= the set of vertices $[X]$ with $X$ projective.
+\item $\Gamma_i$= the set of vertices $[X]$ with $X$ injective.
+\item $\tau:  \Gamma_0\ \Gamma_p \to \Gamma_0 \ \Gamma_i$ given by $\tau[X]=[\tau X]$.
+\end{itemize}
+\end{eg}
+
+\section{Computing Auslander-Reiten Quivers}
 
 
 

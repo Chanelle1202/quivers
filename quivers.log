@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.18)  22 MAY 2015 03:32
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.18)  25 MAY 2015 05:03
 entering extended mode
 **quivers.tex
 (C:\Users\Chanelle\Documents\GitHub\quivers\quivers.tex
@@ -1078,24 +1078,24 @@ LaTeX Warning: Unused global option(s):
 LaTeX Warning: Label `longexactseqcochainrem' multiply defined.
 
 )
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for U/mathx/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 28.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for U/mathx/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 26.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 26.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    ... okay on input line 26.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1111,12 +1111,12 @@ LaTeX Font Info:    ... okay on input line 28.
 \makeMPintoPDFobject=\count164
 \everyMPtoPDFconversion=\toks40
 ) ABD: EveryShipout initializing macros
-LaTeX Font Info:    Try loading font information for U+msa on input line 32.
+LaTeX Font Info:    Try loading font information for U+msa on input line 30.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 32.
+LaTeX Font Info:    Try loading font information for U+msb on input line 30.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1136,60 +1136,61 @@ Chapter 2.
 [4
 
 ] [5] [6]
-Overfull \hbox (1.34724pt too wide) in paragraph at lines 263--264
-[]\OT1/cmr/bx/n/10 Example 2.1.16. []\OT1/cmr/m/n/10 All the chain com-plexes i
-n the pre-vi-ous ex-am-ples are bounded
- []
 
-[7] [8]
-Overfull \hbox (29.45302pt too wide) detected at line 436
-[]
- []
+LaTeX Warning: Reference `kchaineg' on page 7 undefined on input line 285.
 
-[9] [10]
-LaTeX Font Info:    Calculating math sizes for size <6.99826> on input line 545
+[7]
+LaTeX Font Info:    Calculating math sizes for size <6.99826> on input line 313
 .
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.49913> not available
-(Font)              size <5> substituted on input line 545.
+(Font)              size <5> substituted on input line 313.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.49913> not available
-(Font)              size <5> substituted on input line 545.
+(Font)              size <5> substituted on input line 313.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.49913> not available
-(Font)              size <5> substituted on input line 545.
+(Font)              size <5> substituted on input line 313.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <3.49913> not available
-(Font)              size <5> substituted on input line 545.
+(Font)              size <5> substituted on input line 313.
 
 
 LaTeX Font Warning: Font shape `U/matha/m/n' in size <3.49913> not available
-(Font)              size <5> substituted on input line 545.
+(Font)              size <5> substituted on input line 313.
 
 
 LaTeX Font Warning: Font shape `U/mathb/m/n' in size <3.49913> not available
-(Font)              size <5> substituted on input line 545.
+(Font)              size <5> substituted on input line 313.
 
 
 LaTeX Font Warning: Font shape `U/mathx/m/n' in size <3.49913> not available
-(Font)              size <5> substituted on input line 545.
+(Font)              size <5> substituted on input line 313.
 
-[11] [12] [13] [14] [15] [16] [17] [18]
-Underfull \hbox (badness 10000) in paragraph at lines 1208--1210
+[8] [9]
+Overfull \hbox (29.45302pt too wide) detected at line 461
+[]
+ []
+
+[10] [11] [12] [13] [14] [15] [16] [17] [18]
+Underfull \vbox (badness 4518) has occurred while \output is active []
+
+ [19]
+Underfull \hbox (badness 10000) in paragraph at lines 1233--1235
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1223--1225
+Underfull \hbox (badness 10000) in paragraph at lines 1248--1250
 
  []
 
-[19] [20]
-Overfull \hbox (0.98857pt too wide) detected at line 1339
+[20] [21]
+Overfull \hbox (0.98857pt too wide) detected at line 1364
 [] [] \OML/cmm/m/it/10 H[]\U/matha/m/n/10 p\OT1/cmr/bx/n/10 E\U/matha/m/n/10 q 
 [] \OML/cmm/m/it/10 H[]\U/matha/m/n/10 p\OT1/cmr/bx/n/10 C\U/matha/m/n/10 q [] 
 \OML/cmm/m/it/10 H[]\U/matha/m/n/10 p\OT1/cmr/bx/n/10 D\U/matha/m/n/10 q [] \OM
@@ -1198,8 +1199,8 @@ mm/m/it/10 H[]\U/matha/m/n/10 p\OT1/cmr/bx/n/10 C\U/matha/m/n/10 q [] \OML/cmm/
 m/it/10 H[]\U/matha/m/n/10 p\OT1/cmr/bx/n/10 D\U/matha/m/n/10 q [] []
  []
 
-[21] [22] [23] [24] [25]
-Overfull \hbox (7.78891pt too wide) detected at line 1670
+[22] [23] [24] [25] [26]
+Overfull \hbox (7.78891pt too wide) detected at line 1695
 [] [] \OML/cmm/m/it/10 H[]\U/matha/m/n/10 p\OT1/cmr/bx/n/10 P\OML/cmm/m/it/10 ;
  N\U/matha/m/n/10 q [] \OML/cmm/m/it/10 H[]\U/matha/m/n/10 p\OT1/cmr/bx/n/10 P\
 OML/cmm/m/it/10 ; L\U/matha/m/n/10 q [] \OML/cmm/m/it/10 H[]\U/matha/m/n/10 p\O
@@ -1209,13 +1210,13 @@ cmm/m/it/10 H[]\U/matha/m/n/10 p\OT1/cmr/bx/n/10 P\OML/cmm/m/it/10 ; L\U/matha/
 m/n/10 q [] []
  []
 
-[26] [27]
-Underfull \hbox (badness 10000) in paragraph at lines 1843--1845
+[27] [28]
+Underfull \hbox (badness 10000) in paragraph at lines 1868--1870
 
  []
 
-[28] [29] [30]
-Overfull \hbox (9.68408pt too wide) in paragraph at lines 2115--2116
+[29] [30] [31] [32]
+Overfull \hbox (9.68408pt too wide) in paragraph at lines 2165--2166
 []\OT1/cmr/m/it/10 If $\OML/cmm/m/it/10  \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 M[
 ] \U/matha/m/n/10 Ñ \OML/cmm/m/it/10 M$ \OT1/cmr/m/it/10 is a map there is a na
 t-u-ral map $\OML/cmm/m/it/10 Ext[]\U/matha/m/n/10 p\OML/cmm/m/it/10 M; N\U/mat
@@ -1223,8 +1224,8 @@ ha/m/n/10 q Ñ \OML/cmm/m/it/10 Ext[]\U/matha/m/n/10 p\OML/cmm/m/it/10 M[]; N\U/
 matha/m/n/10 q$\OT1/cmr/m/it/10 . 
  []
 
-[31]
-Overfull \hbox (18.59138pt too wide) in paragraph at lines 2133--2134
+
+Overfull \hbox (18.59138pt too wide) in paragraph at lines 2183--2184
 []\OT1/cmr/m/n/10 If $\OT1/cmr/bx/n/10 P$ \OT1/cmr/m/n/10 is a pro-jec-tive res
 -o-lu-tion of $\OML/cmm/m/it/10 M$ \OT1/cmr/m/n/10 then $\OML/cmm/m/it/10 Hom\U
 /matha/m/n/10 p\OT1/cmr/bx/n/10 P\OML/cmm/m/it/10 ; N \U/matha/m/n/10 ` \OML/cm
@@ -1232,28 +1233,27 @@ m/m/it/10 N[]\U/matha/m/n/10 q  \OML/cmm/m/it/10 Hom\U/matha/m/n/10 p\OT1/cmr/
 bx/n/10 P\OML/cmm/m/it/10 ; N\U/matha/m/n/10 q `$
  []
 
-
-Overfull \hbox (2.16666pt too wide) in paragraph at lines 2174--2174
+[33]
+Overfull \hbox (2.16666pt too wide) in paragraph at lines 2224--2224
 [] 
  []
 
-[32]
 
-LaTeX Warning: Reference `longexactseqcor' on page 33 undefined on input line 2
-187.
+LaTeX Warning: Reference `longexactseqcor' on page 34 undefined on input line 2
+237.
 
-
-Overfull \hbox (16.37149pt too wide) in paragraph at lines 2261--2261
+[34]
+Overfull \hbox (16.37149pt too wide) in paragraph at lines 2311--2311
 [] 
  []
 
-[33] [34] [35] [36]
-Overfull \hbox (12.15437pt too wide) detected at line 2626
+[35] [36] [37]
+Overfull \hbox (12.15437pt too wide) detected at line 2676
 []
  []
 
-[37]
-Overfull \hbox (28.45473pt too wide) detected at line 2743
+[38] [39]
+Overfull \hbox (28.45473pt too wide) detected at line 2793
 [] [] \OML/cmm/m/it/10 Ext[]\U/matha/m/n/10 p\OML/cmm/m/it/10 P[]; N\U/matha/m/
 n/10 q [] \OML/cmm/m/it/10 Ext[]\U/matha/m/n/10 p\OT1/cmr/m/n/10 
 []\OML/cmm/m/it/10 M; N\U/matha/m/n/10 q [] \OML/cmm/m/it/10 Ext[]\U/matha/m/n/
@@ -1263,14 +1263,14 @@ n/10 q [] \OML/cmm/m/it/10 Ext[]\U/matha/m/n/10 p\OT1/cmr/m/n/10
  []
 
 
-Overfull \hbox (15.62424pt too wide) in paragraph at lines 2752--2752
+Overfull \hbox (15.62424pt too wide) in paragraph at lines 2802--2802
 [] 
  []
 
-[38] [39]
+[40]
 Chapter 3.
 
-Overfull \hbox (9.21675pt too wide) detected at line 2823
+Overfull \hbox (9.21675pt too wide) detected at line 2886
 \OML/cmm/m/it/10 p[] \U/matha/m/n/10  \OML/cmm/m/it/10 e[];  p[] \U/matha/m/n/
 10  \OML/cmm/m/it/10 e[];  p[] \U/matha/m/n/10  \OML/cmm/m/it/10 e[];  p[] \U
 /matha/m/n/10  \OML/cmm/m/it/10 e[];  p[] \U/matha/m/n/10  \OML/cmm/m/it/10 
@@ -1278,184 +1278,182 @@ Overfull \hbox (9.21675pt too wide) detected at line 2823
 it/10 ;  p[] \U/matha/m/n/10  \OML/cmm/m/it/10 :
  []
 
-[40
+[41
 
-] [41] [42]
-Overfull \hbox (18.71918pt too wide) in paragraph at lines 3025--3028
-\OT1/cmr/m/n/10 Hence, $\OML/cmm/m/it/10 g \U/matha/m/n/10 P \OML/cmm/m/it/10 H
-om[]\U/matha/m/n/10 p\OML/cmm/m/it/10 Ae[]; X\U/matha/m/n/10 q$\OT1/cmr/m/n/10 
-. How-ever, we can also have that $\OML/cmm/m/it/10 g \OT1/cmr/m/n/10 : \OML/cm
-m/m/it/10 eX \U/matha/m/n/10 Ñ \OML/cmm/m/it/10 Hom[]\U/matha/m/n/10 p\OML/cmm/
-m/it/10 Ae[]; X\U/matha/m/n/10 q$
+] [42] [43]
+
+LaTeX Warning: Reference `identitylem' on page 44 undefined on input line 3069.
+
+
+[44] [45]
+
+LaTeX Warning: Reference `1' on page 46 undefined on input line 3171.
+
+[46]
+Overfull \hbox (42.75754pt too wide) in paragraph at lines 3193--3194
+[]\OT1/cmr/m/n/10 From Lemma 3.1.18[] we can see that $\OML/cmm/m/it/10 Hom\U/m
+atha/m/n/10 p\OML/cmm/m/it/10 Ae[]; Ae[]\U/matha/m/n/10 q  \OML/cmm/m/it/10 e[
+]Ae[]$ \OT1/cmr/m/n/10 and $\OML/cmm/m/it/10 Hom\U/matha/m/n/10 p\OML/cmm/m/it/
+10 Ae[]; Ae[]\U/matha/m/n/10 q $
  []
 
-[43]
 
-LaTeX Warning: Reference `idempotentspacelem' on page 44 undefined on input lin
-e 3053.
+LaTeX Warning: Reference `inequivalentlem' on page 47 undefined on input line 3
+200.
 
-[44]
-Overfull \hbox (223.31839pt too wide) in paragraph at lines 3117--3117
-[] 
- []
-
-[45]
-Overfull \hbox (5.07704pt too wide) in paragraph at lines 3162--3164
+[47] [48]
+Overfull \hbox (5.07704pt too wide) in paragraph at lines 3301--3303
 \OT1/cmr/m/n/10 it has paths $\OML/cmm/m/it/10 e[]; e[]; e[]; e[]; ; ; ; ; 
 ; ; ; ; ; ; ; [] $\OT1/cmr/m/n/10 , and
  []
 
-[46]
-Overfull \hbox (6.64423pt too wide) in paragraph at lines 3236--3237
-[]\OT1/cmr/bx/n/10 Lemma 3.1.29. []\OT1/cmr/m/it/10 The ba-sis of $\OML/cmm/m/i
-t/10 J\U/matha/m/n/10 p\OML/cmm/m/it/10 A\U/matha/m/n/10 q$ \OT1/cmr/m/it/10 is
- $\U/matha/m/n/10 t[]\OML/cmm/m/it/10 i[]j \OT1/cmr/m/n/10 : []\OML/cmm/m/it/10
- j[]i\U/matha/m/n/10 u$\OT1/cmr/m/it/10 . 
- []
 
-[47] [48]
-Overfull \hbox (8.85571pt too wide) detected at line 3396
+Overfull \hbox (8.85571pt too wide) detected at line 3381
 \OT1/cmr/bx/n/10 X \OT1/cmr/m/n/10 :  [] & \OT1/cmr/bx/n/10 Y \OT1/cmr/m/n/10 :
   []
  []
 
 [49] [50]
 Chapter 4.
-
-LaTeX Warning: Citation `CB3' on page 51 undefined on input line 3424.
-
-
-LaTeX Warning: Citation `Vale' on page 51 undefined on input line 3424.
-
-
-LaTeX Warning: Citation `Assem' on page 51 undefined on input line 3424.
-
-
-LaTeX Warning: Citation `CB3' on page 51 undefined on input line 3424.
-
-
-LaTeX Warning: Citation `AR' on page 51 undefined on input line 3425.
-
-
-LaTeX Warning: Citation `Vale' on page 51 undefined on input line 3428.
-
 [51
 
-]
+] [52] [53] [54]
 
-LaTeX Warning: Citation `CB3' on page 52 undefined on input line 3482.
+LaTeX Warning: Reference `rad2lem' on page 55 undefined on input line 3615.
 
-[52]
-Underfull \hbox (badness 10000) in paragraph at lines 3545--3548
 
+Overfull \hbox (0.49893pt too wide) in paragraph at lines 3620--3621
+[]\OT1/cmr/bx/n/10 Definition 4.1.14. []\OT1/cmr/m/n/10 If $\OML/cmm/m/it/10 X;
+ Y$ \OT1/cmr/m/n/10 in-de-com-pos-able mod-ules then we de-fine $\OML/cmm/m/it/
+10 irr\U/matha/m/n/10 p\OML/cmm/m/it/10 X; Y\U/matha/m/n/10 q $
  []
 
+[55] [56] [57]
 
-LaTeX Warning: Citation `CB3' on page 53 undefined on input line 3559.
-
-
-LaTeX Warning: Citation `Vale' on page 53 undefined on input line 3559.
-
-
-LaTeX Warning: Citation `CB3' on page 53 undefined on input line 3559.
-
-[53]
-
-LaTeX Warning: Citation `Vale' on page 54 undefined on input line 3563.
+LaTeX Warning: Reference `sinksourcemaplem' on page 58 undefined on input line 
+3793.
 
 
-LaTeX Warning: Citation `Vale' on page 54 undefined on input line 3581.
+LaTeX Warning: Reference `indeclem' on page 58 undefined on input line 3808.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3581--3582
+LaTeX Warning: Reference `injectiveprop' on page 58 undefined on input line 380
+8.
 
+[58]
+Overfull \hbox (27.03467pt too wide) in paragraph at lines 3833--3834
+[]\OT1/cmr/bx/n/10 Remark 4.3.4. []\OT1/cmr/m/n/10 For $\OML/cmm/m/it/10 X; P$ 
+\OT1/cmr/m/n/10 left $\OML/cmm/m/it/10 A$\OT1/cmr/m/n/10 -modules, $\OML/cmm/m/
+it/10 P$ \OT1/cmr/m/n/10 pro-jec-tive, $\OML/cmm/m/it/10 Hom\U/matha/m/n/10 p\O
+ML/cmm/m/it/10 X; P\U/matha/m/n/10 q  \OML/cmm/m/it/10 DHom\U/matha/m/n/10 p\
+OML/cmm/m/it/10 P; X\U/matha/m/n/10 q$\OT1/cmr/m/n/10 . 
  []
 
+[59]
+Overfull \hbox (25.13123pt too wide) detected at line 3901
+\OT1/cmr/m/n/10 0 \U/matha/m/n/10 Ñ \OML/cmm/m/it/10 Hom\U/matha/m/n/10 p\OML/c
+mm/m/it/10 X; A\U/matha/m/n/10 q Ñ \OML/cmm/m/it/10 Hom\U/matha/m/n/10 p\OML/cm
+m/m/it/10 P[]; A\U/matha/m/n/10 q Ñ \OML/cmm/m/it/10 Hom\U/matha/m/n/10 p\OML/c
+mm/m/it/10 P[]; A\U/matha/m/n/10 q Ñ \OML/cmm/m/it/10 Ext[]\U/matha/m/n/10 p\OM
+L/cmm/m/it/10 X; A\U/matha/m/n/10 q Ñ \OML/cmm/m/it/10 Ext[]\U/matha/m/n/10 p\O
+ML/cmm/m/it/10 P[]; A\U/matha/m/n/10 q Ñ []
+ []
 
-LaTeX Warning: Reference `isoradlem' on page 54 undefined on input line 3593.
-
-[54]
-
-LaTeX Warning: Reference `lalmostsplitdiag' on page 55 undefined on input line 
-3619.
-
-
-LaTeX Warning: Reference `ralmostsplitdiag' on page 55 undefined on input line 
-3635.
-
-
-LaTeX Warning: Citation `Assem' on page 55 undefined on input line 3645.
-
-
-LaTeX Warning: Citation `Assem' on page 55 undefined on input line 3645.
-
-
-LaTeX Warning: Citation `Assem' on page 55 undefined on input line 3654.
-
-[55]
-
-LaTeX Warning: Citation `Vale' on page 56 undefined on input line 3671.
+[60]
+Missing character: There is no ã in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no ï in font cmr10!
+Missing character: There is no ¼ in font cmr10!
+Missing character: There is no Œ in font cmr10!
 
 
-LaTeX Warning: Citation `Assem' on page 56 undefined on input line 3671.
+LaTeX Warning: Reference `adjointlem' on page 61 undefined on input line 3990.
 
 
-LaTeX Warning: Citation `Vale' on page 56 undefined on input line 3680.
+LaTeX Warning: Reference `tauidlem' on page 61 undefined on input line 3990.
 
-[56]
-Underfull \hbox (badness 10000) in paragraph at lines 3725--3728
+
+LaTeX Warning: Reference `tauidlem' on page 61 undefined on input line 3990.
+
+
+LaTeX Warning: Reference `taubijectionthm' on page 61 undefined on input line 3
+993.
+
+
+LaTeX Warning: Reference `taubijectionthm' on page 61 undefined on input line 3
+994.
+
+
+LaTeX Warning: Reference `taubijectionlem' on page 61 undefined on input line 3
+995.
+
+
+LaTeX Warning: Reference `adjointlem' on page 61 undefined on input line 4007.
+
+[61]
+
+LaTeX Warning: Reference `sinksourcemapslem' on page 62 undefined on input line
+ 4064.
+
+
+LaTeX Warning: Reference `taubijectionthm' on page 62 undefined on input line 4
+064.
+
+[62] [63]
+Underfull \hbox (badness 10000) in paragraph at lines 4165--4168
 []\OT1/cmr/m/n/10 Crawley-Boevey, W. \OT1/cmr/m/it/10 Co-ho-mol-ogy and Cen-tra
 l Sim-ple Al-ge-bras\OT1/cmr/m/n/10 .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3725--3728
+Underfull \hbox (badness 10000) in paragraph at lines 4165--4168
 \OT1/cmr/m/n/10 [Online-PDF file]. [Ac-cessed Oc-to-ber 2014]. Avail-able from:
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3730--3733
+Underfull \hbox (badness 10000) in paragraph at lines 4170--4173
 []\OT1/cmr/m/n/10 Crawley-Boevey, W. \OT1/cmr/m/it/10 Rep-re-sen-ta-tion of Qui
 v-ers\OT1/cmr/m/n/10 . [Online-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3730--3733
+Underfull \hbox (badness 10000) in paragraph at lines 4170--4173
 \OT1/cmr/m/n/10 PDF file]. [Ac-cessed Oc-to-ber 2014]. Avail-able from:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3764--3766
+Underfull \hbox (badness 10000) in paragraph at lines 4204--4206
 []\OT1/cmr/m/it/10 Ext func-tor - Wikipedia, the free en-cy-clo-pe-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3764--3766
+Underfull \hbox (badness 10000) in paragraph at lines 4204--4206
 \OT1/cmr/m/it/10 dia. \OT1/cmr/m/n/10 [ON-LINE] [Ac-cessed April 2015]. Avail-a
 ble at:
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 3773--3776
+Underfull \hbox (badness 5939) in paragraph at lines 4213--4216
 []\OT1/cmr/m/n/10 Crawley-Boevey, W. \OT1/cmr/m/it/10 More Lec-tures on Rep-re-
 sen-ta-tions of Quiv-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3773--3776
+Underfull \hbox (badness 10000) in paragraph at lines 4213--4216
 \OT1/cmr/m/it/10 ers. \OT1/cmr/m/n/10 [Online-PDF file]. [Ac-cessed March 2015]
 . Avail-able from:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3778--3781
+Underfull \hbox (badness 10000) in paragraph at lines 4218--4221
 []\OT1/cmr/m/n/10 Vale, Richard. \OT1/cmr/m/it/10 7350:Top-ics in Finite-Dimens
 ional Al-ge-bras.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3778--3781
+Underfull \hbox (badness 10000) in paragraph at lines 4218--4221
 \OT1/cmr/m/n/10 [Online-PDF file]. [Ac-cessed March 2015]. Avail-able from:
  []
 
@@ -1463,25 +1461,25 @@ Missing character: There is no â in font cmti10!
 Missing character: There is no € in font cmti10!
 Missing character: There is no “ in font cmti10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 3788--3790
+Underfull \hbox (badness 10000) in paragraph at lines 4228--4230
 []\OT1/cmr/m/it/10 AuslanderReiten the-ory - Wikipedia, the free en-cy-clo-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3788--3790
+Underfull \hbox (badness 10000) in paragraph at lines 4228--4230
 \OT1/cmr/m/it/10 pe-dia. \OT1/cmr/m/n/10 [ON-LINE] [Ac-cessed May 2015]. Avail-
 able at:
  []
 
 
-Overfull \hbox (92.15659pt too wide) in paragraph at lines 3788--3790
+Overfull \hbox (92.15659pt too wide) in paragraph at lines 4228--4230
 \OT1/cmr/m/n/10 http://en.wikipedia.org/wiki/Auslander%E2%80%93Reiten[]theory#C
 ITEREFAuslander1999a. 
  []
 
-[57
+[64
 
-] [58] (C:\Users\Chanelle\Documents\GitHub\quivers\quivers.aux)
+] [65] (C:\Users\Chanelle\Documents\GitHub\quivers\quivers.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 3.2655pt have occurred.
@@ -1494,10 +1492,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 21460 strings out of 493921
- 437343 string characters out of 3144867
- 474961 words of memory out of 3000000
- 24431 multiletter control sequences out of 15000+200000
+ 21487 strings out of 493921
+ 437801 string characters out of 3144867
+ 470493 words of memory out of 3000000
+ 24458 multiletter control sequences out of 15000+200000
  34231 words of font info for 126 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  55i,19n,66p,10435b,946s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1505,29 +1503,32 @@ Here is how much of TeX's memory you used:
 00\tcrm1000.pk><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/c
 m/cmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
 cmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
-bx7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi1
-0.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.p
-fb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb>
-<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:
-/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Pr
-ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Progr
-am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program 
-Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program File
-s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x
-86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86
-)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti7.pfb><C:/Program Files (x86)/M
-iKTeX 2.9/fonts/type1/public/amsfonts/euler/eurm10.pfb><C:/Program Files (x86)/
-MiKTeX 2.9/fonts/type1/public/mathabx-type1/matha10.pfb><C:/Program Files (x86)
-/MiKTeX 2.9/fonts/type1/public/mathabx-type1/matha5.pfb><C:/Program Files (x86)
-/MiKTeX 2.9/fonts/type1/public/mathabx-type1/matha7.pfb><C:/Program Files (x86)
-/MiKTeX 2.9/fonts/type1/public/mathabx-type1/mathb10.pfb><C:/Program Files (x86
-)/MiKTeX 2.9/fonts/type1/public/mathabx-type1/mathx10.pfb><C:/Program Files (x8
-6)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program Files 
-(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Fil
-es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on quivers.pdf (58 pages, 481329 bytes).
+bx7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9
+.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.p
+fb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb>
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:
+/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Pr
+ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Progr
+am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program 
+Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Fil
+es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (
+x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmti7.pfb><C:/Program Files (x86)/MiKTeX 2.9
+/fonts/type1/public/amsfonts/euler/eurm10.pfb><C:/Program Files (x86)/MiKTeX 2.
+9/fonts/type1/public/mathabx-type1/matha10.pfb><C:/Program Files (x86)/MiKTeX 2
+.9/fonts/type1/public/mathabx-type1/matha5.pfb><C:/Program Files (x86)/MiKTeX 2
+.9/fonts/type1/public/mathabx-type1/matha7.pfb><C:/Program Files (x86)/MiKTeX 2
+.9/fonts/type1/public/mathabx-type1/mathb10.pfb><C:/Program Files (x86)/MiKTeX 
+2.9/fonts/type1/public/mathabx-type1/mathx10.pfb><C:/Program Files (x86)/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program Files (x86)/MiK
+TeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files (x86)/
+MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on quivers.pdf (65 pages, 540595 bytes).
 PDF statistics:
- 289 PDF objects out of 1000 (max. 8388607)
+ 323 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

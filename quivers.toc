@@ -2,15 +2,18 @@
 \contentsline {chapter}{\numberline {2}Homological Algebra}{4}
 \contentsline {section}{\numberline {2.1}Chain Complexes}{4}
 \contentsline {section}{\numberline {2.2}Exact Sequences}{10}
-\contentsline {section}{\numberline {2.3}Homotopy and Quasi-Isomorphism}{22}
-\contentsline {section}{\numberline {2.4}Projective and Injective Resolutions}{24}
-\contentsline {section}{\numberline {2.5}Ext}{31}
-\contentsline {chapter}{\numberline {3}Representation of Quivers}{40}
-\contentsline {section}{\numberline {3.1}Quivers and Path Algebras}{40}
+\contentsline {section}{\numberline {2.3}Homotopy and Quasi-Isomorphism}{23}
+\contentsline {section}{\numberline {2.4}Projective and Injective Resolutions}{25}
+\contentsline {section}{\numberline {2.5}Ext}{32}
+\contentsline {chapter}{\numberline {3}Representation of Quivers}{41}
+\contentsline {section}{\numberline {3.1}Quivers and Path Algebras}{41}
 \contentsline {section}{\numberline {3.2}Representations of Quivers}{49}
 \contentsline {section}{\numberline {3.3}Standard Resolution}{50}
 \contentsline {section}{\numberline {3.4}Bricks}{50}
 \contentsline {section}{\numberline {3.5}Dynkin and Euclidean diagrams}{50}
 \contentsline {chapter}{\numberline {4}Auslander-Reiten Theory}{51}
 \contentsline {section}{\numberline {4.1}Irreducible Maps}{51}
-\contentsline {section}{\numberline {4.2}Almost Split Sequences}{54}
+\contentsline {section}{\numberline {4.2}Almost Split Sequences}{55}
+\contentsline {section}{\numberline {4.3}Auslander-Reiten Translate}{59}
+\contentsline {section}{\numberline {4.4}Auslander-Reiten Quiver}{62}
+\contentsline {section}{\numberline {4.5}Computing Auslander-Reiten Quivers}{63}
