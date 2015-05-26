@@ -8,12 +8,9 @@
 \contentsline {chapter}{\numberline {3}Representation of Quivers}{41}
 \contentsline {section}{\numberline {3.1}Quivers and Path Algebras}{41}
 \contentsline {section}{\numberline {3.2}Representations of Quivers}{49}
-\contentsline {section}{\numberline {3.3}Standard Resolution}{50}
-\contentsline {section}{\numberline {3.4}Bricks}{50}
-\contentsline {section}{\numberline {3.5}Dynkin and Euclidean diagrams}{50}
-\contentsline {chapter}{\numberline {4}Auslander-Reiten Theory}{51}
-\contentsline {section}{\numberline {4.1}Irreducible Maps}{51}
-\contentsline {section}{\numberline {4.2}Almost Split Sequences}{55}
-\contentsline {section}{\numberline {4.3}Auslander-Reiten Translate}{59}
-\contentsline {section}{\numberline {4.4}Auslander-Reiten Quiver}{62}
-\contentsline {section}{\numberline {4.5}Computing Auslander-Reiten Quivers}{63}
+\contentsline {chapter}{\numberline {4}Auslander-Reiten Theory}{53}
+\contentsline {section}{\numberline {4.1}Irreducible Maps}{53}
+\contentsline {section}{\numberline {4.2}Almost Split Sequences}{57}
+\contentsline {section}{\numberline {4.3}Auslander-Reiten Translate}{61}
+\contentsline {section}{\numberline {4.4}Auslander-Reiten Quiver}{64}
+\contentsline {section}{\numberline {4.5}Computing Auslander-Reiten Quivers}{66}

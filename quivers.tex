@@ -3344,7 +3344,7 @@ A \emph{representation} of a quiver $Q$ is $X=(\{X_i\}, \{X_{\rho}\})$ where,
 \end{itemize}
 \end{mydef}
 
-\begin{eg}
+\begin{eg} \label{repseg}
 Let $Q$ be the quiver, 
 \begin{equation*}
 \mathbf{Q}: \qquad
@@ -3365,8 +3365,8 @@ then we can have representations $X$ and $Y$,
 \node []		(2) at (2,0)		{$k$};
 \node []		(3) at (4,0)		{$k$};
 
-\draw (2) edge node [auto, swap] {$\alpha$} node [auto] {1} (1);
-\draw (2) edge node [auto] {$\beta$} node [auto, swap] {1} (3);
+\draw (2) edge node [auto, swap] {$$} node [auto] {1} (1);
+\draw (2) edge node [auto] {$$} node [auto, swap] {1} (3);
 \end{tikzpicture}
 \qquad \& \qquad
 \mathbf{Y}: \quad
@@ -3375,33 +3375,133 @@ then we can have representations $X$ and $Y$,
 \node []		(2) at (2,0)		{$k$};
 \node []		(3) at (4,0)		{$0$};
 
-\draw (2) edge node [auto, swap] {$\gamma$} node [auto] {1} (1);
-\draw (2) edge node [auto] {$\delta$} (3);
+\draw (2) edge node [auto, swap] {$$} node [auto] {1} (1);
+\draw (2) edge node [auto] {$$} (3);
 \end{tikzpicture}
 \end{equation*}
 \end{eg}
 
 \begin{mydef}
 Let $X=(\{X_i\}, \{X_{\rho}$ and $X'=(\{X'_i\}, \{X'_{\rho}$ be representations of $Q$. 
-\begin{description}
+\begin{itemize}
 \item A \emph{morphism} $\theta: X \to X'$ between representationsis given by linear maps $\theta_i:X_i \to X'_i$ for each $i\in Q_0$ satisfy $X'_{\rho}\theta _{s(\rho)} = \theta_{t(\rho)}X_{\rho}$ for each $\rho \in Q_1$. 
 \item The \emph{composition} of morphisms, $\theta: X \to X'$ with $\phi: X' \to X''$ is given by $(\phi \theta)_i=\phi_i \theta_i$.
-\end{description}
+\end{itemize}
 \end{mydef}
 
+The following example is given as an exercise in \cite{CB2}.
 \begin{eg}
+Let $Q$ be the quiver with representations $X$ and $Y$ as seen in Example \ref{repseg}. Then if there is a morphism $\theta: X \to Y$ its linear maps $\theta_i: X_i \to Y_i$ must be such that the following squares commute.
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node	[]		(1) at (0,0)		{$k$};
+\node []		(2) at (2,0)		{$k$};
+\node []		(3) at (4,0)		{$k$};
+\node [] 		(4) at (6,0)		{$k$};
+
+\node	[]		(11) at (0,-2)		{$k$};
+\node []		(21) at (2,-2)		{$k$};
+\node []		(31) at (4,-2)		{$k$};
+\node []		(41) at (6,-2)		{$0$};
+
+\draw (21) edge node [auto, swap] {$$} node [auto] {1} (11);
+\draw (31) edge node [auto] {$$} (41);
+\draw (2) edge node [auto, swap] {$$} node [auto] {1} (1);
+\draw (3) edge node [auto] {$$} node [auto, swap] {1} (4);
+
+\draw (1) edge node [auto] {$\theta_1$} (11);
+\draw (2) edge node [auto] {$\theta_2$} (21);
+\draw (3) edge node [auto]{$\theta_2$} (31);
+\draw (4) edge node [auto] {$\theta_3$} (41);
+\end{tikzpicture}
+\end{equation*}
+Hence we must have $\theta_2=\theta_1$ and $\theta_3=0$. Hence $Hom(X,Y)$ is one-dimensional. Similarly, there are commutative squares showing that if we have a morphism $\psi: Y \to X$ with linear maps $\psi_i: Y_i \to X_i$ we must have $\psi_1=\psi_2$ and $\psi_2=0$. Hence $Hom(Y,X)=0$.
 \end{eg}
 
+\begin{thm}
+Let $Q$ be a quiver and $k$ a field. Then the category of representations of $Q$ is equivalent to the left modules of $kQ$.
+\end{thm}
+\begin{proof}
+First we give the construction. \\
+If $\chi$ is a left $kQ$-module, we define a representation $X=(\{X_i\},\{X_{\rho}\})$ of $Q$ with $X_i=e_i\chi$ and $X_{\rho}: X_{s(\rho)} \to X_{t(\rho)}$, $ x \mapsto e_{t(\rho)}\rho(x)$.  If $X$ is a representation of $Q$ we define a left $kQ$-module $\chi$ via: Set $\chi=\oplus^n_{i=1}X_i$. Let $\epsilon_i: X_i \to \chi$ and $\pi_i: \chi \to X_i$ be the canonical maps. We then define the action of $\rho \in kQ$ on $\chi$ for $\rho \in Q_1$ to be as the linear map $X_{\rho}: X_{s(\rho)} \to X_{t(\rho)}$ on $X_{s(\rho)}$ and as zero on the all other $X_i$ and so have,
+\begin{equation*}
+\rho_1\dots\rho_mx= \epsilon_{t(\rho_i)}X_{\rho_1}  \dots X_{\rho_m}\pi_{s_{\rho_m}}(x).
+\end{equation*}
+We then define the action of $e_i \in kQ$ on $\chi$ as the projection of $\chi$ onto the summand $X_i$ and so have,
+\begin{equation*}
+e_ix=\epsilon_i\pi_i(x).
+\end{equation*}
+As Crawley-Boevey notes it is straightforward to check that these are inverses and the morphisms behave, so we will not prove it here.
+\end{proof}
 
+\begin{rem}
+We can now ignore the distinction between left modules and their corresponding representation.
+\end{rem}
 
+\begin{eg}
+Once again consider the quiver $Q$ and representation $Y$ from Example \ref{repseg}. The corresponding left module will be $\chi = k \oplus k \oplus 0$ with the action $e_1(x_1,x_2,0)=(x_1,0,0)$, $e_2(x_1,x_2,0)=(0,x_2,0)$ and $\alpha(x_1,x_2,0)=\epsilon_1Y_{\alpha}\pi_2(x_1,x_2,0)=(x_2,0,0)$.
+\end{eg}
 
+\begin{mydef}
+Let $A$ be an algebra. Then $A$ is said to be \emph{hereditary} if every submodule of a projective module is projective.
+\end{mydef}
 
-\section{Standard Resolution}
+The following theorem leads to some interesting result showing that path algebras are hereditary. It was taken almost word for word from \cite{CB2} and \cite{Vale}
 
-\section{Bricks}
+\begin{thm} \label{standardresthm} (Standard Resolution) \\
+Let $A=kQ$. If $X$ is a left $A$-module, there is an exact sequence,
+\begin{equation*}
+0 \xrightarrow{} \oplus_{\rho \in Q_1} Ae_{t(\rho)}\otimes_k e_{s(\rho)}X \xrightarrow{f} \oplus_{i\in Q_0} Ae_i \otimes_ke_iX \xrightarrow{g} X \xrightarrow{}0,
+\end{equation*}
+where $g(a\otimes x)=ax$ for $a\in Ae_i$, $x\in e_iX$ and $f(a\otimes x)=a\rho\otimes x -a\otimes \rho x$ for $a \in Ae_{t(\rho)}$ and $x\in e_{s(\rho)}X$. 
+\end{thm}
+\begin{proof}
+A direct calculation shows that $gf=0$ and so $im(f)\subseteq ker(g)$. Suppose that there is some element $x \in X$ such that $x\notin im(g)$, but $X$ is a left module of $A$ and so $x=ax'$ for some $x'\in X$ and $x'\in e_iX$ for some vertex $i$. Hence $x=ax'=g(a\otimes x')$, a contradiction. Thus $g$ is onto. Now all that needs to be show is that $f$ in injective and $ker(g)\subseteq ker(g)$.\\
+If $\xi \in \oplus_{i\in Q_0} Ae_i \otimes_k e_iX$ then it can be written uniquely as,
+\begin{equation*}
+\xi=  \sum_{i\in Q_0}\sum_{\mytab{\text{paths $a$ with }\\s(a)=i}} a \otimes x_a,
+\end{equation*}
+with $x_a\in e_{s(a)}X$ almost all zero. Define $degree(\xi)=\text{length of the longest path $a$ with $x_a\neq0$}$.\\
+If $a$ is a nontrivial path with $s(a)=i$, then we can express it as a product of $a=a'\rho$ with $\rho$ an arrow with $s(\rho)=i$, and $a'$ another path. Viewing $a'\otimes x_a$ as an element of $Ae_{t(\rho)}\otimes_k e_iX$, we have,
+\begin{equation*}
+f(a' \otimes x_a)=a\otimes x_a -a'\otimes \rho x_a.
+\end{equation*}
+We claim that $\xi + Im(f)$ always contains an element of degree zero. Namely if $\xi $ have degree $d>0$, then, 
+\begin{equation*}
+\xi - f( \sum_{i \in Q_0} \sum_{\mytab{\text{paths $a$ with}\\ \text{$s(a)=i$ and length $d$}}}a' \otimes x_a)
+\end{equation*}
+has degree less than $d$ and so the claim follows by induction.\\
+Now to show $im(f)=ker(g)$: If $\xi \in ker(g)$, let $\xi' \in \xi + im(f)$ have degree zero. Then as $gf=0$, 
+\begin{equation*}
+0=g(\xi)=g(\xi')=g(\sum_{i\in Q_0} e_i \otimes x'_{e_i})=\sum_{i \in Q_0} x'_{e_i}.
+\end{equation*}
+Now this belongs to $oplus_{i\in Q_0} X_i$, so each term in the final sum must be zero. Thus $\xi'=0$, and the assertion follows.\\
+To show that $ker(f)=0$, let $\zeta\in ker(f)$ and write,
+\begin{equation*}
+\zeta = \sum_{\rho\in Q_1} \sum_{\mytab{\text{paths $a$ with }\\ $s(a)=t(\rho)$}} a\otimes x_{\rho,a},
+\end{equation*}
+where $x_{p,a} \in e_{s(\rho)}X$ and are almost all zero. Suppose $\zeta \neq 0$. Let $a$ be a path of maximal length such that $x_{\rho,a} \neq 0$ for some path $\rho$. Then,
+\begin{equation*}
+f(\zeta)=\sum_{\rho}\sum_a a\rho \otimes x_{\rho,a} - \sum_{\rho}\sum_a a \otimes \rho x_{\rho,a},
+\end{equation*}
+and so as $a$ was chosen to be of maximal length such that $x_{\rho,a}$ is nonzero, the only term of $f(\zeta)$ in which it $a\rho$ appears in the first factor is $a\rho \otimes x_{\rho,a}$. Since $x_{\rho,a}$ is nonzero, we have $f(\zeta)\neq 0$. A contradiction and so $\zeta=0$. Thus $ker(f)=0$.\\
+\end{proof}
 
-\section{Dynkin and Euclidean diagrams}
+The following consequences of Theorem \ref{standardresthm} are from \cite{CB2} and \cite{Vale}.
 
+\begin{cor} \label{pd1cor}
+If $X$ is a left $A$-module, then $pd(X)\leq 1$.
+\end{cor}
+\begin{proof}
+If $f$ and $g$ are $A$-module maps and $Ae_i \otimes V$ is isomorphic to the direct sum of $dimV$ copies of $Ae_i$, so is a projective left $A$-module. Thus the standard resolution in Theorem \ref{standardresthm} is a projective resolution for $X$.
+\end{proof}
+
+\begin{cor}
+A path algebra $A=kQ$ is hereditary.
+\end{cor}
+\begin{proof}
+Let $X,P$ be left $A$-modules with $P$ projective and $X$ a submodule of $P$. First note that $Ext^1(X,Y) \cong Ext^2(\sfrac{P}{X},Y)$ for any $Y$. Then $\sfrac{P}{X}$ is a left $A$-modules and so by Corollary \ref{pd1cor}, $pd(\sfrac{P}{X})\leq 1$. So for any $Y$, $Ext^n(\sfrac{P}{X},Y)=0$ for $n\geq 2$, in particular, $Ext^2(\sfrac{P}{X},Y)=0$. Thus $Ext^1(X,Y)=0$ and $X$ is projective.
+\end{proof}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3783,7 +3883,7 @@ and so $g=h\hat{h}g$ and so $(id_{\sfrac{Y}{S}}-h'\hat{h})g=0$ but $g$ is surjec
 \end{description}
 \end{proof}
 
-\begin{cor}
+\begin{cor} \label{radsoccor}
 \begin{description}
 \item [(i)] If $X$ is an indecomposable projective module then $X$ has a sink map $f: rad(X) \to X$.
 \item [(ii)] If $Y$ is an indecomposable injective module then $Y$ has a source map $g: Y \to \sfrac{Y}{soc(Y)}$.
@@ -4044,7 +4144,7 @@ Thus $g$ is a sink map. Similarly $f$ is a source map and so $\xi$ is an almost 
 The existence of $\xi'$ follows by putting $X=\tau^{-1}Y$ into $\xi$.
 \end{proof}
 
-\begin{cor}
+\begin{cor} \label{uniquesourcesinkcor}
 Any indecomposable $X$ has a source and sink map which are unique up to isomorphism.
 \end{cor}
 \begin{proof}
@@ -4068,7 +4168,7 @@ Existence: For both sink and source maps  follows from Lemma \ref{sinksourcemaps
 
 In this section we bring together the results of the Chapter to finally define an Auslander-Reiten Quiver. We follow \cite{CB3}.
 
-\begin{thm}
+\begin{thm} \label{irrthm}
 Let $X,Y$ be indecomposable. The following numbers are equal.
 \begin{description}
 \item [(i)] \text{dim }irr(X,Y).
@@ -4083,7 +4183,7 @@ Span: Say $\phi: X \to Y$ belongs to $rad(X,Y)$. Now $\phi$ factors through thro
 \begin{equation*}
 \phi=\sum h_ig_i=\sum_{i\geq 1}h_ig_i=\sum_{i\geq 1}(h_i - \lambda_i1_Y)g_i + \lambda_ig_i=\sum_{i\geq 1}\lambda_ig_i.
 \end{equation*}
-Linearly independent: Say $\sum_{i\geq 1} \lambda_ig_i \in rad^2(X,Y)$ with not all $\lambda_i=0$. The map $Z \oplus Y^s \to Y$, $\lambda_iy \to y$ is split epi, so the composition with the source map is irreducible. Contradiction.
+Linearly independent: Say $\sum_{i\geq 1} \lambda_ig_i \in rad^2(X,Y)$ with not all $\lambda_i=0$. The map $Z \oplus Y^s \to Y$, $\lambda_iy \to y$ is split epi, so the composition with the source map is irreduciblye. Contradiction.
 \end{proof}
 
 \begin{cor}
@@ -4123,7 +4223,43 @@ The Auslander-Reiten quiver becomes a translation quiver by defining:
 
 \section{Computing Auslander-Reiten Quivers}
 
+In this section we aim to bring together the results of the Chapter to provide an informal method of computing the Auslander-Reiten quiver of a path alegebra.
 
+\begin{thm}
+Let $A=kQ$ and $X$ an indecomposable module of $A$, then:
+\begin{description}
+\item [(i)] $X$ has a unique source map $X \to E$ and a unique sink map $X\to F$.
+\item [(ii)] If $X$ is projective then its sink map is $rad(X) \to X$. Otherwise there is an almost-split sequence, 
+\begin{equation*}
+0 \to \tau X \to F \to X \to 0.
+\end{equation*}
+\item [(iii)] If $X$ is injective then its source map is $X \to \sfrac{X}{soc(X)}$. Otherwise there is an almost-split sequence, 
+\begin{equation*}
+0 \to X \to E \to \tau^{-1}X \to 0.
+\end{equation*}
+\item [(iv)] For any indecomposable module $U$, the number of irreducible maps $U \to X$ is the multiplicity of $U$ as a summand of $F$, where $F \to X$ is the sink map for $X$.
+\item [(v)] For any indecomposable module $V$, the number of irreducible maps $X \to V$ is the multiplicity of $V$ as a summand of $E$, where $X \to E$ is the source map for $X$.
+\end{description}
+\end{thm}
+\begin{proof}
+\begin{description}
+\item [(i)] Corollary \ref{uniquesourcesinkcor}.
+\item [(ii) \& (iii)] Corollary \ref{radsoccor} and Theorem {taubijectionthm}.
+\item [(iv) \& (v)] Theorem \ref{irrthm}.
+\end{description}
+\end{proof}
+
+These results give us the following informal method for computing the Auslander-Reiten quiver of a path algebra $kQ$: Let $X$ be an indecomposable module.
+\begin{enumerate}
+\item Find all the indecomposable projectives $P_i$ of $kQ$.
+\item Find $rad(P_i)$ for each of $P_i$.
+\item Then we can draw a vertex $P_i$ if we have already drawn the vertex $rad(P_i)$. Note that we start with the simple $P_i$.
+\item Now only draw a vertex $X$ if we have already drawn all vertices with an irreducible map to $X$.
+\item If we have drawn a modle $X$ and we have drawn all irreducible maps coming out of it, we can draw $\tau^{-1}X$.
+\item Keep going until we reach the indecomposable injective modules $I_i$ of $kQ$.
+\end{enumerate}
+
+We now end with some examples of Auslander-Reiten quivers:
 
 
 

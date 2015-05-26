@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.18)  25 MAY 2015 05:03
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.2.18)  26 MAY 2015 14:43
 entering extended mode
 **quivers.tex
 (C:\Users\Chanelle\Documents\GitHub\quivers\quivers.tex
@@ -1075,7 +1075,7 @@ LaTeX Warning: Unused global option(s):
 
 (C:\Users\Chanelle\Documents\GitHub\quivers\quivers.aux
 
-LaTeX Warning: Label `longexactseqcochainrem' multiply defined.
+LaTeX Warning: Label `indeclem' multiply defined.
 
 )
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
@@ -1135,11 +1135,7 @@ Chapter 1.
 Chapter 2.
 [4
 
-] [5] [6]
-
-LaTeX Warning: Reference `kchaineg' on page 7 undefined on input line 285.
-
-[7]
+] [5] [6] [7]
 LaTeX Font Info:    Calculating math sizes for size <6.99826> on input line 313
 .
 
@@ -1280,26 +1276,13 @@ it/10 ;  p[] \U/matha/m/n/10  \OML/cmm/m/it/10 :
 
 [41
 
-] [42] [43]
-
-LaTeX Warning: Reference `identitylem' on page 44 undefined on input line 3069.
-
-
-[44] [45]
-
-LaTeX Warning: Reference `1' on page 46 undefined on input line 3171.
-
-[46]
+] [42] [43] [44] [45] [46]
 Overfull \hbox (42.75754pt too wide) in paragraph at lines 3193--3194
-[]\OT1/cmr/m/n/10 From Lemma 3.1.18[] we can see that $\OML/cmm/m/it/10 Hom\U/m
+[]\OT1/cmr/m/n/10 From Lemma 3.1.20[] we can see that $\OML/cmm/m/it/10 Hom\U/m
 atha/m/n/10 p\OML/cmm/m/it/10 Ae[]; Ae[]\U/matha/m/n/10 q  \OML/cmm/m/it/10 e[
 ]Ae[]$ \OT1/cmr/m/n/10 and $\OML/cmm/m/it/10 Hom\U/matha/m/n/10 p\OML/cmm/m/it/
 10 Ae[]; Ae[]\U/matha/m/n/10 q $
  []
-
-
-LaTeX Warning: Reference `inequivalentlem' on page 47 undefined on input line 3
-200.
 
 [47] [48]
 Overfull \hbox (5.07704pt too wide) in paragraph at lines 3301--3303
@@ -1313,35 +1296,54 @@ Overfull \hbox (8.85571pt too wide) detected at line 3381
   []
  []
 
-[49] [50]
+[49]
+
+LaTeX Warning: Reference `repseg' on page 50 undefined on input line 3394.
+
+
+LaTeX Warning: Reference `repseg' on page 50 undefined on input line 3442.
+
+[50]
+Overfull \hbox (61.86047pt too wide) in paragraph at lines 3463--3466
+\OT1/cmr/m/n/10 with $\OML/cmm/m/it/10 x[] \U/matha/m/n/10 P \OML/cmm/m/it/10 e
+[]X$ \OT1/cmr/m/n/10 al-most all zero. De-fine $\OML/cmm/m/it/10 degree\U/matha
+/m/n/10 p\OML/cmm/m/it/10 \U/matha/m/n/10 q  []$\OT1/cmr/m/n/10 . 
+ []
+
+[51]
+
+LaTeX Warning: Reference `standardresthm' on page 52 undefined on input line 34
+90.
+
+
+LaTeX Warning: Reference `standardresthm' on page 52 undefined on input line 34
+96.
+
+
+LaTeX Warning: Reference `pd1cor' on page 52 undefined on input line 3503.
+
+[52]
 Chapter 4.
-[51
+[53
 
-] [52] [53] [54]
-
-LaTeX Warning: Reference `rad2lem' on page 55 undefined on input line 3615.
-
-
-Overfull \hbox (0.49893pt too wide) in paragraph at lines 3620--3621
+] [54] [55] [56]
+Overfull \hbox (0.49893pt too wide) in paragraph at lines 3720--3721
 []\OT1/cmr/bx/n/10 Definition 4.1.14. []\OT1/cmr/m/n/10 If $\OML/cmm/m/it/10 X;
  Y$ \OT1/cmr/m/n/10 in-de-com-pos-able mod-ules then we de-fine $\OML/cmm/m/it/
 10 irr\U/matha/m/n/10 p\OML/cmm/m/it/10 X; Y\U/matha/m/n/10 q $
  []
 
-[55] [56] [57]
+[57] [58] [59]
 
-LaTeX Warning: Reference `sinksourcemaplem' on page 58 undefined on input line 
-3793.
-
-
-LaTeX Warning: Reference `indeclem' on page 58 undefined on input line 3808.
+LaTeX Warning: Reference `sinksourcemaplem' on page 60 undefined on input line 
+3893.
 
 
-LaTeX Warning: Reference `injectiveprop' on page 58 undefined on input line 380
+LaTeX Warning: Reference `injectiveprop' on page 60 undefined on input line 390
 8.
 
-[58]
-Overfull \hbox (27.03467pt too wide) in paragraph at lines 3833--3834
+[60]
+Overfull \hbox (27.03467pt too wide) in paragraph at lines 3933--3934
 []\OT1/cmr/bx/n/10 Remark 4.3.4. []\OT1/cmr/m/n/10 For $\OML/cmm/m/it/10 X; P$ 
 \OT1/cmr/m/n/10 left $\OML/cmm/m/it/10 A$\OT1/cmr/m/n/10 -modules, $\OML/cmm/m/
 it/10 P$ \OT1/cmr/m/n/10 pro-jec-tive, $\OML/cmm/m/it/10 Hom\U/matha/m/n/10 p\O
@@ -1349,8 +1351,8 @@ ML/cmm/m/it/10 X; P\U/matha/m/n/10 q  \OML/cmm/m/it/10 DHom\U/matha/m/n/10 p\
 OML/cmm/m/it/10 P; X\U/matha/m/n/10 q$\OT1/cmr/m/n/10 . 
  []
 
-[59]
-Overfull \hbox (25.13123pt too wide) detected at line 3901
+[61]
+Overfull \hbox (25.13123pt too wide) detected at line 4001
 \OT1/cmr/m/n/10 0 \U/matha/m/n/10 Ñ \OML/cmm/m/it/10 Hom\U/matha/m/n/10 p\OML/c
 mm/m/it/10 X; A\U/matha/m/n/10 q Ñ \OML/cmm/m/it/10 Hom\U/matha/m/n/10 p\OML/cm
 m/m/it/10 P[]; A\U/matha/m/n/10 q Ñ \OML/cmm/m/it/10 Hom\U/matha/m/n/10 p\OML/c
@@ -1359,101 +1361,84 @@ L/cmm/m/it/10 X; A\U/matha/m/n/10 q Ñ \OML/cmm/m/it/10 Ext[]\U/matha/m/n/10 p\O
 ML/cmm/m/it/10 P[]; A\U/matha/m/n/10 q Ñ []
  []
 
-[60]
+[62]
 Missing character: There is no ã in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no ï in font cmr10!
 Missing character: There is no ¼ in font cmr10!
 Missing character: There is no Œ in font cmr10!
+ [63] [64] [65]
+
+LaTeX Warning: Reference `uniquesourcesinkcor' on page 66 undefined on input li
+ne 4246.
 
 
-LaTeX Warning: Reference `adjointlem' on page 61 undefined on input line 3990.
+LaTeX Warning: Reference `radsoccor' on page 66 undefined on input line 4247.
 
 
-LaTeX Warning: Reference `tauidlem' on page 61 undefined on input line 3990.
+LaTeX Warning: Reference `irrthm' on page 66 undefined on input line 4248.
 
 
-LaTeX Warning: Reference `tauidlem' on page 61 undefined on input line 3990.
+Overfull \hbox (17.05618pt too wide) in paragraph at lines 4252--4253
+[]\OT1/cmr/m/n/10 These re-sults give us the fol-low-ing in-for-mal method for 
+com-put-ing the Auslander-
+ []
 
-
-LaTeX Warning: Reference `taubijectionthm' on page 61 undefined on input line 3
-993.
-
-
-LaTeX Warning: Reference `taubijectionthm' on page 61 undefined on input line 3
-994.
-
-
-LaTeX Warning: Reference `taubijectionlem' on page 61 undefined on input line 3
-995.
-
-
-LaTeX Warning: Reference `adjointlem' on page 61 undefined on input line 4007.
-
-[61]
-
-LaTeX Warning: Reference `sinksourcemapslem' on page 62 undefined on input line
- 4064.
-
-
-LaTeX Warning: Reference `taubijectionthm' on page 62 undefined on input line 4
-064.
-
-[62] [63]
-Underfull \hbox (badness 10000) in paragraph at lines 4165--4168
+[66]
+Underfull \hbox (badness 10000) in paragraph at lines 4301--4304
 []\OT1/cmr/m/n/10 Crawley-Boevey, W. \OT1/cmr/m/it/10 Co-ho-mol-ogy and Cen-tra
 l Sim-ple Al-ge-bras\OT1/cmr/m/n/10 .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4165--4168
+Underfull \hbox (badness 10000) in paragraph at lines 4301--4304
 \OT1/cmr/m/n/10 [Online-PDF file]. [Ac-cessed Oc-to-ber 2014]. Avail-able from:
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4170--4173
+Underfull \hbox (badness 10000) in paragraph at lines 4306--4309
 []\OT1/cmr/m/n/10 Crawley-Boevey, W. \OT1/cmr/m/it/10 Rep-re-sen-ta-tion of Qui
 v-ers\OT1/cmr/m/n/10 . [Online-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4170--4173
+Underfull \hbox (badness 10000) in paragraph at lines 4306--4309
 \OT1/cmr/m/n/10 PDF file]. [Ac-cessed Oc-to-ber 2014]. Avail-able from:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4204--4206
+Underfull \hbox (badness 10000) in paragraph at lines 4340--4342
 []\OT1/cmr/m/it/10 Ext func-tor - Wikipedia, the free en-cy-clo-pe-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4204--4206
+Underfull \hbox (badness 10000) in paragraph at lines 4340--4342
 \OT1/cmr/m/it/10 dia. \OT1/cmr/m/n/10 [ON-LINE] [Ac-cessed April 2015]. Avail-a
 ble at:
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 4213--4216
+Underfull \hbox (badness 5939) in paragraph at lines 4349--4352
 []\OT1/cmr/m/n/10 Crawley-Boevey, W. \OT1/cmr/m/it/10 More Lec-tures on Rep-re-
 sen-ta-tions of Quiv-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4213--4216
+Underfull \hbox (badness 10000) in paragraph at lines 4349--4352
 \OT1/cmr/m/it/10 ers. \OT1/cmr/m/n/10 [Online-PDF file]. [Ac-cessed March 2015]
 . Avail-able from:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4218--4221
+Underfull \hbox (badness 10000) in paragraph at lines 4354--4357
 []\OT1/cmr/m/n/10 Vale, Richard. \OT1/cmr/m/it/10 7350:Top-ics in Finite-Dimens
 ional Al-ge-bras.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4218--4221
+Underfull \hbox (badness 10000) in paragraph at lines 4354--4357
 \OT1/cmr/m/n/10 [Online-PDF file]. [Ac-cessed March 2015]. Avail-able from:
  []
 
@@ -1461,25 +1446,25 @@ Missing character: There is no â in font cmti10!
 Missing character: There is no € in font cmti10!
 Missing character: There is no “ in font cmti10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 4228--4230
+Underfull \hbox (badness 10000) in paragraph at lines 4364--4366
 []\OT1/cmr/m/it/10 AuslanderReiten the-ory - Wikipedia, the free en-cy-clo-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4228--4230
+Underfull \hbox (badness 10000) in paragraph at lines 4364--4366
 \OT1/cmr/m/it/10 pe-dia. \OT1/cmr/m/n/10 [ON-LINE] [Ac-cessed May 2015]. Avail-
 able at:
  []
 
 
-Overfull \hbox (92.15659pt too wide) in paragraph at lines 4228--4230
+Overfull \hbox (92.15659pt too wide) in paragraph at lines 4364--4366
 \OT1/cmr/m/n/10 http://en.wikipedia.org/wiki/Auslander%E2%80%93Reiten[]theory#C
 ITEREFAuslander1999a. 
  []
 
-[64
+[67
 
-] [65] (C:\Users\Chanelle\Documents\GitHub\quivers\quivers.aux)
+] [68] (C:\Users\Chanelle\Documents\GitHub\quivers\quivers.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 3.2655pt have occurred.
@@ -1492,10 +1477,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 21487 strings out of 493921
- 437801 string characters out of 3144867
- 470493 words of memory out of 3000000
- 24458 multiletter control sequences out of 15000+200000
+ 21503 strings out of 493921
+ 437989 string characters out of 3144867
+ 470645 words of memory out of 3000000
+ 24474 multiletter control sequences out of 15000+200000
  34231 words of font info for 126 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  55i,19n,66p,10435b,946s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1503,32 +1488,31 @@ Here is how much of TeX's memory you used:
 00\tcrm1000.pk><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/c
 m/cmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
 cmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
-bx7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9
-.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.p
-fb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb>
-<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:
-/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Pr
-ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Progr
-am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program 
-Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Fil
-es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (
-x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmti7.pfb><C:/Program Files (x86)/MiKTeX 2.9
-/fonts/type1/public/amsfonts/euler/eurm10.pfb><C:/Program Files (x86)/MiKTeX 2.
-9/fonts/type1/public/mathabx-type1/matha10.pfb><C:/Program Files (x86)/MiKTeX 2
-.9/fonts/type1/public/mathabx-type1/matha5.pfb><C:/Program Files (x86)/MiKTeX 2
-.9/fonts/type1/public/mathabx-type1/matha7.pfb><C:/Program Files (x86)/MiKTeX 2
-.9/fonts/type1/public/mathabx-type1/mathb10.pfb><C:/Program Files (x86)/MiKTeX 
-2.9/fonts/type1/public/mathabx-type1/mathx10.pfb><C:/Program Files (x86)/MiKTeX
- 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program Files (x86)/MiK
-TeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files (x86)/
-MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on quivers.pdf (65 pages, 540595 bytes).
+bx7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi1
+0.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.p
+fb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb>
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:
+/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Pr
+ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Progr
+am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program 
+Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program File
+s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x
+86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmti7.pfb><C:/Program Files (x86)/MiKTeX 
+2.9/fonts/type1/public/amsfonts/euler/eurm10.pfb><C:/Program Files (x86)/MiKTeX
+ 2.9/fonts/type1/public/mathabx-type1/matha10.pfb><C:/Program Files (x86)/MiKTe
+X 2.9/fonts/type1/public/mathabx-type1/matha5.pfb><C:/Program Files (x86)/MiKTe
+X 2.9/fonts/type1/public/mathabx-type1/matha7.pfb><C:/Program Files (x86)/MiKTe
+X 2.9/fonts/type1/public/mathabx-type1/mathb10.pfb><C:/Program Files (x86)/MiKT
+eX 2.9/fonts/type1/public/mathabx-type1/mathx10.pfb><C:/Program Files (x86)/MiK
+TeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program Files (x86)/
+MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files (x8
+6)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on quivers.pdf (68 pages, 550085 bytes).
 PDF statistics:
- 323 PDF objects out of 1000 (max. 8388607)
+ 329 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
