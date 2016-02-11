@@ -1,5 +1,5 @@
 \documentclass[11.5pt, twoside, a4paper, titlepage]{report}
-\usepackage{graphicx, amssymb, amsmath, mathtools, amsthm, xfrac, mathabx, upgreek}
+\usepackage{graphicx, amssymb, amsmath, mathtools, amsthm, xfrac, mathabx, upgreek, fancyhdr}
 \usepackage{tikz}
 \usetikzlibrary{automata, arrows, matrix}
 \providecommand{\abs}[1]{\lvert#1\rvert}
@@ -23,8 +23,10 @@
 }
 
 
+\setlength\parindent{0pt}
+
 \begin{document}
-\title{Representation of Quivers}
+\title{MATH5004: Representation of Quivers}
 \author{Chanelle Lee \\Student ID: 200646370\\Supervisor: William Crawley-Boevey}
 \date{\today}
 \maketitle
@@ -34,7 +36,35 @@
 
 \chapter{Introduction}
 
-This project aims to cover interesting topics from the area of quiver representations. The first chapter will give a brief introduction to the topics in Homological Algebra needed for bulk of the report. It will cover chain complexes, exact sequences, short exact sequences, and extensions, most importantly $Ext^1$. The the second chapter will introduce quivers and look at some interesting results about path algebras before moving onto representations of quivers and their relationship with the modules of the corresponding path algebra. Next we will cover Dynkin and Euclidean diagrams before finishing with a proof of Gabriel's Theorem. The third chapter will cover Auslander-Reiten quivers.
+\section{Overview}
+This report is intended as an introduction to the study of quivers, their representations and Auslander-Reiten theory. Quivers are akin in a way to directed graphs, and in the representation theory of finite dimensional algebras they offer us a way to visualise the behaviour of the indecomposable modules of an algebra. Moreover, the main tool for describing representation theory of a finite-dimensional algebra is the Auslander-Reiten quiver. It presents explicitly the indecomposable modules of a finite-dimensional algebra and the morphisms between them.
+\vspace{0.5em}
+
+First we establish the preliminaries in Homological Algebra, beginning with chain complexes and long exact sequences, before giving some groundwork in projective and injective modules. While looking at extensions and the functor Ext at the end of the chapter, we find a correspondance between the class of equivalent entensions and the elements of $Ext^1$.
+\vspace{0.5em}
+
+Chapter 3 then presents quivers and path algebras whose elements are linear combinations of the paths in the underlying quiver, the multiplication of which is given as the concatenation of paths. We find the modules of the path algebra directly correspond to representations of the quiver. By looking at standard resolution of a path algebra we end the chapter by showing that path algebras are hereditary algebras.
+\vspace{0.5em}
+
+Finally, we turn in Chapter 4 to Auslander-Reiten theory and explore irreducible maps, almost split sequences and the Auslander-Reiten translates. These results then culminate in the construction of the Auslander-Reiten quiver, which we give an informal method for constructing. The report then concludes with a series of examples of Auslander-Reiten quivers.
+\vspace{0.5em}
+
+
+\section{Sources}
+
+It is assumed the reader of this report will have have a good understanding of rings, modules and algebras with some past experience of representations. As the study of Homological Algebra is new to the author all necessary theory is presented in Chapter 1. Also the reader should have some basic notion of categories and functors, this can be found in Appendix A of \emph{Elements of the Representation Theory of Assosciative Algebras}(\cite{Assem}) and Appendix A of \emph{An Introduction to Homological Algebra} (\cite{Weibel}).
+\vspace{0.5em}
+
+The backbone of this report consists of sections of the notes from three courses given by Crawley-Boevey; Sections 1\& 2 of \emph{Cohomology and Central Simple Algebras}(see \cite{CB1}), Section 1 of \emph{Lectures on Representations of Quivers}(see \cite{CB2}) and Section 1 of \emph{More Lectures on Representation of Quivers}(see \cite{CB3}). These notes provided the structure of each of the sections, and often dictated the material included in the report, however, they were supplemented with other sources as sometimes the proofs were a little to succint for the author.
+\vspace{0.5em}
+
+For the section on Homological Algebra, Rotman's \emph{An Introduction to Homological Algebra}(see \cite{Rotman}) proved valuable as many of the proofs were well discussed, whilst Weibel's \emph{An Introduction to Homological Algebra}(see \cite{Weibel}) was a little less accessible but had many interesting examples and exercises. The most useful supplementary source for the final two were Vale's lecture notes \emph{7350: Topics in finite-dimensional algebras}(see \cite{Vale}), as they were a useful interpretation of both \cite{CB2} and \emph{Elements of the Representation Theory of Assosciative Algebras, 1: Techniques of Representation Theory}(see \cite{Assem}). Although Auslander, Reiten and Smal\o's book \emph{Representation Theory of Artin Algebras} was interesting to read as it is the foundation of the theory of almost-split sequences, we found in some instances it was slightly outdated.
+\vspace{0.5em}
+
+Most of the results in this report are presented in greater detail than the proofs provided in the literature, and any that have been dramatically changes are accompanied by an explanation of the reasoning behind this. The majority of the examples are original work, with some being answers to exercies provided in the literature.
+
+
+
 
 \chapter{Homological Algebra}
 
@@ -48,17 +78,21 @@ In this chapter we will be introducing results from Homological Algebra and will
 \begin{mydef}
 A \emph{chain complex} $\mathbf{C}_{\bullet}$ consists of a sequence of $R$-modules $C_i$ ($i \in \mathbb{Z}$) and morphisms of the form,
 \begin{equation*}
-\mathbf{C}: \qquad \dots \xrightarrow{\delta_{3}} C_2 \xrightarrow{\delta_{2}} C_1 \xrightarrow{\delta_{1 }} C_0 \xrightarrow{\delta_0} C_{-1} \xrightarrow{\delta_{-1}} C_{-2} \xrightarrow{\delta_{-2}}\dots
+\mathbf{C_{\bullet}}: \qquad \dots \xrightarrow{\delta_{3}} C_2 \xrightarrow{\delta_{2}} C_1 \xrightarrow{\delta_{1 }} C_0 \xrightarrow{\delta_0} C_{-1} \xrightarrow{\delta_{-1}} C_{-2} \xrightarrow{\delta_{-2}}\dots
 \end{equation*}
-such that $\delta_{n-1}\delta_{n}=0$ for all $n$, i.e. the composition of any two consecutive maps is zero. The maps $\delta_n$ are called the \emph{differentials} of $C$.
-\end{mydef}
+such that $\delta_{n-1}\delta_{n}=0$ for all $n$, i.e. the composition of any two consecutive maps is zero. The maps $\delta_n$ are called the \emph{differentials} of $C_{\bullet}$.
+\end{mydef} 
 
 \begin{rem}
-It is convention that the map $\delta_n$ starts at $C_n$.
+The $\bullet$ is used to indicate a chain complex from a cochain complex, which we will define later. However, where it is clear which we are using the $\bullet$ is normally dropped.
+\end{rem}
+
+\begin{rem}
+It is convention that the map $\delta_n$ starts at $C_n$, as opposed to it ending at $C_n$.
 \end{rem}
 
 \begin{eg}
-If we have a field $k$ then we can create the following chain complex:
+If we have a field $k$, with $k^2=k\oplus k$ and $k^3=k\oplus k\oplus k$, then we can create the following chain complex:
 \begin{equation*}
 \mathbf{C}: \qquad \dots \xrightarrow{} 0 \xrightarrow{} k^2 \xrightarrow{\Bigl(\begin{smallmatrix}1&2\\ 3&0\\ 0&0 \end{smallmatrix}\Bigr)} k^3 \xrightarrow{(\begin{smallmatrix}0 & 0 &1\end{smallmatrix})} k \xrightarrow{} 0 \xrightarrow{}\dots
 \end{equation*}
@@ -121,7 +155,7 @@ Z_n(\mathbf{C})=ker(\delta_n) \quad \& \quad B_n(\mathbf{C})=im(\delta_{n+1}).
 \end{equation*}
 \end{mydef}
 
-To explore the relationship between $Z_n(\mathbf{C})$ and $B_n(\mathbf{C})$, the following is a solution to Exercise 2.14 in \cite{Rotman}.(Note the example will not be provided here as exactness has not yet been covered.)
+To explore the relationship between $Z_n(\mathbf{C})$ and $B_n(\mathbf{C})$, the following is a solution to Exercise 2.14 in \cite{Rotman}.Note the example will not be provided here as exactness has not yet been covered.
 
 \begin{lem}\label{iminkerlem}
 Let,
@@ -136,11 +170,10 @@ Conversely, suppose that $im(f) \subseteq ker(g)$. Every element $b\in im(f)$ is
 \end{proof}
 
 \begin{mydef} \label{homologydefn}
-If $\mathbf{C}$ is a chain complex then its \emph{homology} is defined to be,
+If $\mathbf{C}$ is a chain complex then its \emph{homology} is defined to be the $R$-module,
 \begin{equation*}
-H_n(\mathbf{C})=\frac{ker(\delta_n:C_n \rightarrow C_{n-1})}{im(\delta_{n+1}:C_{n+1} \rightarrow C_n)}=\frac{Z_n(\mathbf{C})}{B_n(\mathbf{C})},
+H_n(\mathbf{C})=\frac{ker(\delta_n:C_n \rightarrow C_{n-1})}{im(\delta_{n+1}:C_{n+1} \rightarrow C_n)}=\frac{Z_n(\mathbf{C})}{B_n(\mathbf{C})}.
 \end{equation*}
-which is an R-module.
 \end{mydef}
 
 
@@ -152,11 +185,11 @@ If $\mathbf{C}$ is a chain complex with $C_n=0$ for some $n$ then $H_n(\mathbf{C
 \begin{proof}
 Well suppose we have such a chain complex, 
 \begin{equation*}
-\mathbf{C}: \qquad \dots \xrightarrow{} C_{n+1} \xrightarrow{\delta_{n+1}} 0 \xrightarrow{\delta_n} C_{n-1} \xrightarrow{} \dots
+\mathbf{C}: \qquad \dots \xrightarrow{} C_{n+1} \xrightarrow{\delta_{n+1}} 0 \xrightarrow{\delta_n} C_{n-1} \xrightarrow{} \dots,
 \end{equation*}
 the the homology is,
 \begin{equation*}
-H_n(\mathbf{C})=\frac{ker(\delta_n: 0 \to C_{n-1}}{im(\delta_{n+1}: C_{n+1}\to 0)},
+H_n(\mathbf{C})=\frac{ker(\delta_n: 0 \to C_{n-1})}{im(\delta_{n+1}: C_{n+1}\to 0)},
 \end{equation*}
 as the only element in $C_n$ is the zero element, and so, $H_n(\mathbf{C})=0$, as required.\\
 \end{proof}
@@ -167,7 +200,7 @@ Examples \ref{chainMeg} and \ref{chainZeg} are taken from \cite{CB1} and are inc
  \label{chainMeg}
  If we take a module $M$ then we can make a chain complex;
 \begin{equation*}
-\mathbf{C}: \qquad \dots \xrightarrow{} 0 \xrightarrow{} M \xrightarrow{} 0 \xrightarrow{} \dots
+\mathbf{C}: \qquad \dots \xrightarrow{} 0 \xrightarrow{} M \xrightarrow{} 0 \xrightarrow{} \dots,
 \end{equation*}
 where $M$ is at degree $n$. Then the homology will be:
 \begin{equation*}
@@ -181,7 +214,7 @@ H_i(\mathbf{C})=\begin{cases}
 \begin{rem}
 Recall, 
 \begin{equation*}
-Coker(f)= \frac{\text{Codomain of }f}{\text{Image of }f},
+coker(f)= \frac{\text{Codomain of }f}{\text{Image of }f},
 \end{equation*}
 is the \emph{cokernel} of the map $f$.
 \end{rem}
@@ -195,8 +228,8 @@ and the homology becomes,
 \begin{equation*}
 H_i(\mathbf{C})=
 \begin{cases}
-\frac{N}{im(f)}=coker(f) & i=n\\
-ker(f) & i=n+1\\
+\frac{N}{im(f)}=coker(f) & i=n,\\
+ker(f) & i=n+1,\\
 0 & \text{otherwise}.
 \end{cases}
 \end{equation*}
@@ -213,18 +246,10 @@ H_{n+1}(\mathbf{C})=\frac{ker(M\xrightarrow{f}N)}{im(0\xrightarrow{}M)}=ker(f).
 Finally, it is clear that everywhere else there is no homology.
 \end{proof}
 
-\begin{rem}
-Recall, 
-\begin{equation*}
-Coker(f)= \frac{\text{Codomain of }f}{\text{Image of }f},
-\end{equation*}
-is the \emph{cokernel} of the map $f$.
-\end{rem}
-
 \begin{eg} \label{chainZeg}
 We can have a chain complex of $\mathbb{Z}$-modules,
 \begin{equation*}
-\mathbf{C}: \qquad \underset{\text{deg}}{\dots} \xrightarrow{}\underset{2}{0} \xrightarrow{} \underset{1}{\mathbb{Z}} \xrightarrow{a}\underset{0}{\mathbb{Z}} \xrightarrow{} \underset{-1}{0} \xrightarrow{}\dots 
+\mathbf{C}: \qquad \underset{\text{deg}}{\dots} \xrightarrow{}\underset{2}{0} \xrightarrow{} \underset{1}{\mathbb{Z}} \xrightarrow{a}\underset{0}{\mathbb{Z}} \xrightarrow{} \underset{-1}{0} \xrightarrow{}\dots,
 \end{equation*}
 where the map $a$ is right multiplication by some $a \in \mathbb{Z}$. Firstly, we deal with the case where $a$ is not the zero map. \\
 The homology is,
@@ -272,19 +297,19 @@ A chain complex $\mathbf{C}$ is said to be:
 \item \emph{acyclic} if $H_n(\mathbf{C})=0$ for all $n$.
 \item \emph{bounded above} if there exists some $n\in \mathbb{N}$, $C_k=0$ for all $k>n$.
 \item \emph{bounded below} if for some $n \in \mathbb{N}$, $C_k=0$ for all $k<n$.
-\item \emph{bounded} if it is bounded above and below.
+\item \emph{bounded} if it is bounded above and bounded below.
 \item \emph{non-negative}  if $C_n=0$ for $n<0$.
 \end{itemize}
 \end{mydef}
 
 \begin{eg}
-Both the chain complexes in the previous examples are bounded both above and below, however, neither is acyclic as they both have instances where the homology is non-zero. The chain complex in Example \ref{chainZeg} is non-negative because $C_n\neq 0$ only when $n=0,1$.
+Both the chain complexes in the previous examples are bounded both above and below, however, neither is acyclic as they both have instances where the homology is nonzero. The chain complex in Example \ref{chainZeg} is non-negative because $C_n\neq 0$ only when $n=0,1$.
 \end{eg}
 
 \begin{eg}
 If we take another look at the chain complex in Example \ref{kchaineg},
 \begin{equation*}
-\mathbf{C}: \qquad \underset{\text{deg}}{\dots} \xrightarrow{} 0 \xrightarrow{} \underset{1}{k} \xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)} \underset{0}{k^2} \xrightarrow{(\begin{smallmatrix}0 & 1 \end{smallmatrix})}\underset{-1}{k} \xrightarrow{} 0 \xrightarrow{} \dots
+\mathbf{C}: \qquad \underset{\text{deg}}{\dots} \xrightarrow{} 0 \xrightarrow{} \underset{1}{k} \xrightarrow{\big(\begin{smallmatrix} 1\\ 0 \end{smallmatrix}\big)} \underset{0}{k^2} \xrightarrow{(\begin{smallmatrix}0 & 1 \end{smallmatrix})}\underset{-1}{k} \xrightarrow{} 0 \xrightarrow{} \dots,
 \end{equation*}
 and we have, 
 \begin{align*}
@@ -304,13 +329,17 @@ Thus $H_n(\mathbf{C})=0$ for all $n$ and so $\mathbf{C}$ is an acyclic chain com
 \begin{eg}
 The chain complex,
 \begin{equation*}
-\mathbf{C}: \qquad \underset{\text{deg}}{\underset{}{\dots}} \xrightarrow{3}\underset{1}{\frac{\bb{Z}}{9\bb{Z}}} \xrightarrow{3}\underset{0}{\frac{\bb{Z}}{9\bb{Z}}} \xrightarrow{3}\underset{-1}{\frac{\bb{Z}}{9\bb{Z}}} \xrightarrow{} \dots
+\mathbf{C}: \qquad \underset{\text{deg}}{\underset{}{\dots}} \xrightarrow{3}\underset{1}{\frac{\bb{Z}}{9\bb{Z}}} \xrightarrow{3}\underset{0}{\frac{\bb{Z}}{9\bb{Z}}} \xrightarrow{3}\underset{-1}{\frac{\bb{Z}}{9\bb{Z}}} \xrightarrow{} \dots,
 \end{equation*}
 where the differentials are the maps,
 \begin{equation*}
 \delta_n:\frac{\bb{Z}}{9\bb{Z}}\xrightarrow{}\frac{\bb{Z}}{9\bb{Z}}\text{, } z+9\bb{Z}\mapsto 3z+9\bb{Z},
 \end{equation*}
-is unbounded. It is also acyclic, since $ker(\delta_n:\sfrac{\bb{Z}}{9\bb{Z}}\xrightarrow{}\sfrac{\bb{Z}}{9\bb{Z}})=im(\delta_n:\sfrac{\bb{Z}}{9\bb{Z}}\xrightarrow{}\sfrac{\bb{Z}}{9\bb{Z}})$  as they are both equal to the subset $\{0,3,6\}$ of $\sfrac{\bb{Z}}{9\bb{Z}}$.
+is unbounded. It is also acyclic, since,
+\begin{equation*}
+ker(\delta_n:\sfrac{\bb{Z}}{9\bb{Z}}\xrightarrow{}\sfrac{\bb{Z}}{9\bb{Z}})=im(\delta_n:\sfrac{\bb{Z}}{9\bb{Z}}\xrightarrow{}\sfrac{\bb{Z}}{9\bb{Z}}),
+\end{equation*}
+as they are both equal to the subset $\{0,3,6\}$ of $\sfrac{\bb{Z}}{9\bb{Z}}$.
 So the homology is,
 \begin{equation*}
 H_n(\mathbf{C})=\frac{ker(\delta_n:\frac{\bb{Z}}{9\bb{Z}}\xrightarrow{}\frac{\bb{Z}}{9\bb{Z}})}{im(\delta_n:\frac{\bb{Z}}{9\bb{Z}}\xrightarrow{}\frac{\bb{Z}}{9\bb{Z}})} \cong 0, 
@@ -321,13 +350,17 @@ for all $n$.
 \begin{mydef}
 A \emph{cochain complex} $\mathbf{C}^{\bullet}$ consists of a sequence of $R$-modules $C^i$ ($i \in \mathbb{Z}$) and morphisms of the form,
 \begin{equation*}
-\mathbf{C}: \qquad \dots \xrightarrow{\delta^{-3}} C^{-2} \xrightarrow{\delta^{-2}} C^{-1} \xrightarrow{\delta^{-1 }} C^0 \xrightarrow{\delta^0} C^{1} \xrightarrow{\delta^{1}} C^{2} \xrightarrow{\delta^{2}} \dots
+\mathbf{C^{\bullet}}: \qquad \dots \xrightarrow{\delta^{-3}} C^{-2} \xrightarrow{\delta^{-2}} C^{-1} \xrightarrow{\delta^{-1 }} C^0 \xrightarrow{\delta^0} C^{1} \xrightarrow{\delta^{1}} C^{2} \xrightarrow{\delta^{2}} \dots,
 \end{equation*}
 such that $\delta^{n-1}\delta^{n}=0$ for all $n$, i.e. the composition of any two consecutive maps is zero.
 \end{mydef}
 
 \begin{rem}
-Chain and cochain complexes can be thought of as almost identical constructs with the only difference being thenumbering of the chain. The degree of a chain complex \emph{decreases} from left to right, whereas, the degree of a cochain complex \emph{increses} from left to right. So, we can compute one from the other by setting $C^{-n}=C_n$, or equivalently $C^n=C_{-n}$; this is called \emph{renumbering}.
+Once again note that the $\bullet$ is normally dropped when it is clear whether the complex is a chain or cochain complex.
+\end{rem}
+
+\begin{rem}
+Chain and cochain complexes can be thought of as almost identical constructs with the only difference being the numbering of the chain. The degree of a chain complex \emph{decreases} from left to right, whereas, the degree of a cochain complex \emph{increases} from left to right. So, we can compute one from the other by setting $C^{-n}=C_n$, or equivalently $C^n=C_{-n}$; this is called \emph{renumbering}.
 \end{rem}
 
 \begin{mydef}
@@ -373,11 +406,11 @@ The following example is a generalised version of one found in \cite{CB1}.
 \begin{eg}
 Consider the acyclic chain complex, 
 \begin{equation*}
-\mathbf{C}: \qquad \underset{\text{deg}}{\underset{}{\dots}} \xrightarrow{}0 \xrightarrow{} \underset{1}{\underset{}{\bb{Z}}} \xrightarrow{n} \underset{0}{\underset{}{\bb{Z}}} \xrightarrow{nat} \underset{-1}{\frac{\bb{Z}}{n\bb{Z}}} \xrightarrow{}0 \xrightarrow{} \dots
+\mathbf{C}: \qquad \underset{\text{deg}}{\underset{}{\dots}} \xrightarrow{}0 \xrightarrow{} \underset{1}{\underset{}{\bb{Z}}} \xrightarrow{n} \underset{0}{\underset{}{\bb{Z}}} \xrightarrow{nat} \underset{-1}{\frac{\bb{Z}}{n\bb{Z}}} \xrightarrow{}0 \xrightarrow{} \dots,
 \end{equation*}
 So applying $Hom(-, \bb{Z})$ gives $Hom(\sfrac{\bb{Z}}{n\bb{Z}}, \bb{Z})=0$ and $Hom(\bb{Z}, \bb{Z})\cong\bb{Z}$ and so $Hom(\mathbf{C}, \bb{Z})$ is the cochain complex,
 \begin{equation*}
-\underset{\text{deg}}{\underset{}{\dots}} \xrightarrow{}0 \xrightarrow{} \underset{-1}{\underset{}{0}} \xrightarrow{} \underset{0}{\underset{}{\bb{Z}}} \xrightarrow{n} \underset{1}{\underset{}{\bb{Z}}} \xrightarrow{}0 \xrightarrow{} \dots
+\underset{\text{deg}}{\underset{}{\dots}} \xrightarrow{}0 \xrightarrow{} \underset{-1}{\underset{}{0}} \xrightarrow{} \underset{0}{\underset{}{\bb{Z}}} \xrightarrow{n} \underset{1}{\underset{}{\bb{Z}}} \xrightarrow{}0 \xrightarrow{} \dots,
 \end{equation*}
 which has cohomology,
 \begin{equation*}
@@ -391,7 +424,7 @@ Notice that despite the chain complex being acyclic, its cohomology induced by $
 \end{eg}
 
 \begin{mydef}
-A \emph{chain map}  $f: \mathbf{C} \to \mathbf{D}$, with $\mathbf{C}$ and $\mathbf{D}$ chain complexes, is given by a homomorphism $f_n: \mathbf{C}_n \to \mathbf{D}_n$ for each $n$, such that each square in the following diagram commutes, 
+A \emph{chain map}  $f: \mathbf{C} \to \mathbf{D}$, with $\mathbf{C}$ and $\mathbf{D}$ chain complexes, is given by a homomorphism $f_n: \mathbf{C}_n \to \mathbf{D}_n$ for each $n$, such that each square in the following diagram commutes:
 \begin{equation*}
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={}]
 \node	[main node]		(1) at (0,0)		{\dots};
@@ -426,19 +459,19 @@ If we have the following diagram,
 \begin{equation*}
 \begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
 \node	[main node]		(1) at (0,0)		{$\mathbf{C}$: \quad \dots};
-\node	[main node]		(2) at (2,0)		{$0$};
-\node	[main node]		(3) at (4,0)		{$\bb{Z}$};
-\node [main node]		(4) at (6,0)		{$\bb{Z}$};
-\node [main node]		(5) at (8,0)		{$\frac{\bb{Z}}{n\bb{Z}}$};
-\node	[main node]		(11) at (10,0)	{$0$};
-\node [main node] 		(12) at (12,0)	{\dots};
+\node	[main node]		(2) at (1.5,0)		{$0$};
+\node	[main node]		(3) at (3,0)		{$\bb{Z}$};
+\node [main node]		(4) at (4.5,0)		{$\bb{Z}$};
+\node [main node]		(5) at (6,0)		{$\frac{\bb{Z}}{n\bb{Z}}$};
+\node	[main node]		(11) at (7.5,0)	{$0$};
+\node [main node] 		(12) at (9,0)	{\dots};
 \node	[main node]		(6) at (0,-2)		{$\mathbf{D}$: \quad \dots};
-\node	[main node]		(7) at (2,-2)		{$0$};
-\node	[main node]		(8) at (4,-2)		{$\frac{\bb{Z}}{n\bb{Z}}$};
-\node [main node]		(9) at (6,-2)		{$\frac{\bb{Z}}{n^2\bb{Z}}$};
-\node [main node]		(10) at (8,-2)	{$\frac{\bb{Z}}{n\bb{Z}}$};
-\node [main node]		(13) at (10,-2)	{$0$};
-\node [main node]		(14) at (12,-2)	{\dots};
+\node	[main node]		(7) at (1.5,-2)		{$0$};
+\node	[main node]		(8) at (3,-2)		{$\frac{\bb{Z}}{n\bb{Z}}$};
+\node [main node]		(9) at (4.5,-2)		{$\frac{\bb{Z}}{n^2\bb{Z}}$};
+\node [main node]		(10) at (6,-2)	{$\frac{\bb{Z}}{n\bb{Z}}$};
+\node [main node]		(13) at (7.5,-2)	{$0$};
+\node [main node]		(14) at (9,-2)	{\dots};
 
 \draw (1) edge [main path] node [auto] {$$} (2);
 \draw (2) edge [main path] node [auto] {$$} (3);
@@ -501,11 +534,11 @@ Simmilarly, we can see that the other chain maps make the diagram commute.
 \begin{mydef}
 A finite or infinite sequence of $R$-morphisms and left $R$-modules,
 \begin{equation*}
-\dots \xrightarrow{} L \xrightarrow{f}M \xrightarrow{g} N \xrightarrow{} \dots
+\dots \xrightarrow{} L \xrightarrow{f}M \xrightarrow{g} N \xrightarrow{} \dots,
 \end{equation*}
 is said to be \emph{exact} at $M$ if $imf=kerg$. A finite or infinite sequence of $R$-morphisms and left $R$-modules,
 \begin{equation*}
-\dots \xrightarrow{f_{n+2}} M_{n+1} \xrightarrow{f_{n+1}} M_n \xrightarrow{f_n} M_{n-1} \xrightarrow{f_{n-1}} \dots
+\dots \xrightarrow{f_{n+2}} M_{n+1} \xrightarrow{f_{n+1}} M_n \xrightarrow{f_n} M_{n-1} \xrightarrow{f_{n-1}} \dots,
 \end{equation*}
 is said to be an \emph{exact sequence} if it is exact at every $M_i$, i.e. $imf_i=kerf_{i+1}$. 
 \end{mydef}
@@ -548,7 +581,7 @@ Notice that the sequence,
 has $ker(\eta)=\{z:z+s\bb{Z}=0\cong 3\bb{Z}$ and $im(f)=\{6z:z\in \bb{Z}\}\cong 6\bb{Z}$. Hence, as $6\bb{Z}\subsetneq 3\bb{Z}$, $im(f)\neq ker(\eta)$ and the sequence is not exact.
 \end{eg}
 
-Notice that you can obtain a chain complex from an exact sequence simply by deciding the degree of any term of the sequence. To consider the result when a chain complex is an exact sequence, the following is in response to Exercise 1.1.5 from \cite{Weibel}. (Note that the third condition has been omitted as we are not consider quasi-isomerism in this report.)
+Notice that you can obtain a chain complex from an exact sequence simply by deciding the degree of any term of the sequence. To consider the result when a chain complex is an exact sequence, the following is in response to Exercise 1.1.5 from \cite{Weibel}. Note that the third condition has been omitted as we have not yet defined quasi-isomorphisms in this report.
 
 \begin{thm}
 The following are equivalent for every chain complex $\mathbf{C}$:
@@ -748,7 +781,7 @@ where $f, f': x\mapsto 3x$, $g: x \mapsto x(\text{mod }3)$ and $g':x\mapsto 2x(\
 Assume $\mathbf{E}$ and $\mathbf{E'}$ are equivalent, so we there must exist some $\xi$ such that the diagram commutes. The second square in the diagram will commute if and only if $\xi=id_{\bb{Z}}$, since $f=f'$, however, this then means the third square will never commute, as $g\neq g'$. Thus no such $\xi$ exists and the two short exact sequences are not equivalent.
 \end{eg}
 
-For the discussion of split exact sequences, this report will first follow \cite{Schiff} in defining a section and refraction and then use Schiffler's Proposition 1.8 to prove that the conditions in Definition 1.23 in \cite{CB1} are equivalent. This will obtain us the Splitting Lemma. However, the proof of Proposition 1.8 will be ommitted as it is 
+For the discussion of split exact sequences, this report will first follow \cite{Schiff} in defining a section and refraction and then use Schiffler's Proposition 1.8 to prove that the conditions in Definition 1.23 in \cite{CB1} are equivalent. This will then obtain us the Splitting Lemma. However, the proof of Proposition 1.8 will be ommitted.
 
 \begin{mydef} \label{secretdef}
 \begin{itemize}
@@ -826,7 +859,7 @@ Let,
 \node	[main node]		(3) at (4,0)		{$L$};
 \node [main node]		(4) at (6,0)		{$M$};
 \node [main node]		(5) at (8,0)		{$N$};
-\node	[main node]		(11) at (10,0)	{$0$};
+\node	[main node]		(11) at (10,0)	{$0,$};
 
 \node [main node] 		(12) at (0,-0.5)	{\&};
 \node	[main node]		(6) at (1,-1)		{$\mathbf{E'}$: \quad};
@@ -834,7 +867,7 @@ Let,
 \node	[main node]		(8) at (4,-1)		{$L$};
 \node [main node]		(9) at (6,-1)		{$M'$};
 \node [main node]		(10) at (8,-1)	{$N$};
-\node [main node]		(13) at (10,-1)	{$0$};
+\node [main node]		(13) at (10,-1)	{$0,$};
 
 \draw (2) edge [main path] node [auto] {$$} (3);
 \draw (3) edge [main path] node [auto] {$f$} (4);
@@ -854,7 +887,7 @@ Let,
 Notice also that if $\mathbf{E}, \mathbf{E'}$ are equivalent extensions and one is split, then the other is also split.
 \end{rem}
 \begin{proof}
-As the extensions are equivalent we have the commutative diagram,
+As the extensions are equivalent we have the commutative diagram:
 \begin{equation*}
 \begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
 \node	[main node]		(1) at (0,0)		{$\mathbf{E}$:};
@@ -900,7 +933,7 @@ and a map $\theta : L \to L'$ then the short exact sequence,
 \begin{equation*}
 \mathbf{E'}: \qquad 0\xrightarrow{} L' \xrightarrow{f'} M' \xrightarrow{g'} N \xrightarrow{}0,
 \end{equation*}
-fitting into the commutative diagram
+fitting into the commutative diagram,
 \begin{equation*}
 \begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
 \node	[main node]		(1) at (0,0)		{$\mathbf{E}$: \quad };
@@ -1029,7 +1062,7 @@ and a map $\psi: N''\to N$ then the short exact sequence,
 \begin{equation*}
 \mathbf{E''}: \qquad 0\xrightarrow{} L \xrightarrow{f''} M'' \xrightarrow{g''} N'' \xrightarrow{}0,
 \end{equation*}
-fitting into the commutative diagram
+fitting into the commutative diagram,
 \begin{equation*}
 \begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
 \node	[main node]		(1) at (0,0)		{$\mathbf{E''}$: \quad };
@@ -1072,7 +1105,7 @@ Existence: Firstly, set
 \begin{equation*}
 M''=\{(m,n'')\in M\oplus N'': g(m)=\psi(n'')\},
 \end{equation*}
-and let the maps be $f'': L \to M''$, $l\mapsto (f(l),0)$ (if $g(f(l))=\psi(0)$, $0$ otherwise), $g'': M'' \to N''$, $(m, n'') \mapsto n''$, and $\phi': M'' \to M$, $(m, n'') \mapsto m$. The diagram is then commutative by diagram chasing and the pullback is exact as $im(f)=\{(f(l),0):l\in L\text{ and } g(f(l))=\psi(0)\}=\{(m, 0): m \in M\text{ and }g(m)=\psi(0)\}=ker(g'')$. 
+and let the maps be $f'': L \to M''$, $l\mapsto (f(l),0)$ (if $g(f(l))=\psi(0)$, $0$ otherwise), $g'': M'' \to N''$, $(m, n'') \mapsto n''$, and $\phi': M'' \to M$, $(m, n'') \mapsto m$. The diagram is then commutative by diagram chasing and the pullback is exact as $im(f)=\{(f(l),0):l\in L\text{ and } g(f(l))=\psi(0)\}=\{(m, 0): m \in M\text{ and }g(m)=\psi(0)\}=ker(g'')$. \\
 Uniqueness: Consider the commutative diagram of short exact sequences,
 \begin{equation*}
 \begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
@@ -1160,24 +1193,20 @@ and we can set $f'': \bb{Z} \to M''$, $x \mapsto \overline{(nx, 0)}$, $g'': M'' 
 with the maps $f'',g''$ defined as above.
 \end{eg}
 
-Now this report will start to consider the results possible by considering exact sequences of ....\\
-%FILL THIS IN 
-% Put in Weibel Exercise 1.3.1
-% Add fives lemma??
-The following theorem is from \cite{CB1} and the proof that the connecting map exists and is well defined taken from \cite{CB1} and the proof that the sequence induced by this map is exact from \cite{Weibel}. Both proofs were adapted to use the notation used in this report and some more explanation given when we felt it was necessary.
+Now this report will start to consider the results possible by considering exact sequences of chain and cochain complexes. The following theorem is from \cite{CB1} and the proof that the connecting map exists and is well defined taken from \cite{CB1} and the proof that the sequence induced by this map is exact from \cite{Weibel}. Both proofs were adapted to use the notation used in this report and some more explanation given when we felt it was necessary.
 
 \begin{thm} (Long Exact Sequence) \label{longexactseqthm} \\
-Let $0\xrightarrow{}\mathbf{C} \xrightarrow{f} \mathbf{D} \xrightarrow{g} \mathbf{E} \xrightarrow{}0$ be a short exact sequence of chain complexes, meaning that $f$ and $g$ are chain maps and for each $n$ the maps
+Let $0\xrightarrow{}\mathbf{C} \xrightarrow{f} \mathbf{D} \xrightarrow{g} \mathbf{E} \xrightarrow{}0$ be a short exact sequence of chain complexes, meaning that $f$ and $g$ are chain maps and for each $n$ the maps,
 \begin{equation*}
 0 \xrightarrow{} C_n \xrightarrow{f_n} D_n \xrightarrow{g_n} E_n \xrightarrow{} 0,
 \end{equation*}
 form a short exact sequence. Then there are connecting maps $c_n:H_n(\mathbf{E}) \to H_{n-1}(\mathbf{C})$ giving a long exact sequence, 
 \begin{equation*}
-\dots \xrightarrow{}H_{n+1}(\mathbf{E}) \xrightarrow{c_{n+1}} H_n(\mathbf{C}) \xrightarrow{f_{\ast}} H_n(\mathbf{D})\xrightarrow{g_{\ast}}H_n(\mathbf{E}) \xrightarrow{c_n} H_{n-1}(\mathbf{C}) \xrightarrow{} \dots
+\dots \xrightarrow{}H_{n+1}(\mathbf{E}) \xrightarrow{c_{n+1}} H_n(\mathbf{C}) \xrightarrow{f_{\ast}} H_n(\mathbf{D})\xrightarrow{g_{\ast}}H_n(\mathbf{E}) \xrightarrow{c_n} H_{n-1}(\mathbf{C}) \xrightarrow{} \dots,
 \end{equation*}
 \end{thm}
 \begin{proof}
-Have diagram,
+Have diagram:
 \begin{equation*}
 \begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
 
@@ -1225,15 +1254,12 @@ Have diagram,
 \draw (10) edge [main path] node [auto] {$\epsilon_{n}$} (17);
 \end{tikzpicture}
 \end{equation*}
-\begin{itemize}
-\item Define the connecting map $c_n:H_n(\mathbf{E})\to H_{n-1}(\mathbf{C})$ as follows:\\
-Let $\overline{x}$ be a typical element of $H_n(\mathbf{E})$, with $x \in ker(\epsilon_n)=Z_n(\mathbf{E})$. Then as $g_n$ is surjective we can lift $x\in E_n$ to some element $y \in D_n$ such that $g_n(y)=x$. From the commutativity of the diagram, 
+First we define the connecting map $c_n:H_n(\mathbf{E})\to H_{n-1}(\mathbf{C})$ as follows: Let $\overline{x}$ be a typical element of $H_n(\mathbf{E})$, with $x \in ker(\epsilon_n)=Z_n(\mathbf{E})$. Then as $g_n$ is surjective we can lift $x\in E_n$ to some element $y \in D_n$ such that $g_n(y)=x$. From the commutativity of the diagram, 
 \begin{equation*}
 g_{n-1}(\delta_n(y))=\epsilon_n(g_n(y))=\epsilon_n(x)=0,
 \end{equation*}
 since $x\in ker(\epsilon_n)$. Hence, $\delta_n(y)\in ker(g_{n-1})\cong im(f_{n-1})$. Then as $f_{n-1}$ is injective there exists some $z\in C_{n-1}$ such that $f_{n-1}(z)=\delta_n(y)$. Thus define $c_n(\overline{x})=\overline{z}$.(Note $z \in ker(\gamma_{n-1})$ as $\delta_{n-1}(\delta_n(y))=0$, then by commutivity $f_{n-2}(\gamma_{n-1}(z))=0$ and as $f_{n-2}$ is injective.)\\
-\item Not dependent on choice of $x$ or $y$:
-Say $y, y'\in D_n$ have images $g_n(y)=x$, $g_n(y')=x'$ where $x, x'\in ker(\epsilon_n)=Z_n(\mathbf{E})$ with $\overline{x}=\overline{x'}$. Thus $g_n(y)-g_n(y')\in im(\epsilon_{n+1})=B_n(\mathbf{E})$. Therefore, 
+Now we show the connecting map is not dependent on the choice of $x$ or $y$: Say $y, y'\in D_n$ have images $g_n(y)=x$, $g_n(y')=x'$ where $x, x'\in ker(\epsilon_n)=Z_n(\mathbf{E})$ with $\overline{x}=\overline{x'}$. Thus $g_n(y)-g_n(y')\in im(\epsilon_{n+1})=B_n(\mathbf{E})$. Therefore, 
 \begin{align*}
 g_n(y-y')&=\epsilon_{n+1}(g_{n+1}(u))\text{, for some }u\in D_{n+1},\\
 &=g_n(\delta_{n+1}(u)).
@@ -1247,6 +1273,8 @@ f_{n-1}(z-z')&=\delta_n(y-y'),\\
 &=f_{n-1}(\gamma_n(v)),
 \end{align*}
 implying $z-z'=\gamma_n(v)\in im(\gamma_n)=B_{n-1}(\mathbf{C})$. Hence, $\overline{z}=\overline{z'}$ in $H_{n-1}(\mathbf{C})$.\\
+Now we need to show that the long exact sequence is exact at every point. We do so by showing exactness at $H_n(\mathbf{C})$, $H_n(\mathbf{D})$ and $H_n(\mathbf{E})$, and noting that $n$ is arbitary so exactness holds for any $n$.
+\begin{itemize}
 \item Exactness at $H_n(\mathbf{C})$: $\quad H_{n+1}(\mathbf{E}) \xrightarrow{c_{n+1}} H_n(\mathbf{C})\xrightarrow{f_{\ast}}H_n(\mathbf{D})$\\
 $im(c_{n+1})\subseteq ker(f_{\ast})$: We have $f_{\ast}(c_{n+1}(\overline{x}))=\overline{f_n(z)}$ for some $z\in C_n$. But,
 \begin{equation*}
@@ -1308,13 +1336,11 @@ g_{\ast}(\overline{g_n^{-1}(x)-f_n(z)})&=\overline{g_n(g_n^{-1}(x)-gn(f_n(z)}, \
 \end{align*}
 \end{itemize}
 \end{proof}
-% Maybe include an example, going to take some time to work one out...
 
-Note that this report is following Crawley-Boevey's example in \cite{CB1} by proving the Long Exact Sequence theorem directly and taking the Snake Lemma as a corollary, unlike in other reading material, like \cite{Weibel} where the Long Exact Sequence is given as a corollary of the Snake Lemma. If the reader would like a direct proof of the Snake Lemma, we direct them, as Weibel does in \cite{Weibel}, to \emph{It's My Turn} (Rastar-Martin Elfand Studios, 1980), where a proof is given in the beginning of the movie.
-% This might need a rewrite
+Note that this report is following Crawley-Boevey's example in \cite{CB1} by proving the Long Exact Sequence theorem directly and taking the Snake Lemma as a corollary, unlike in other reading material, like \cite{Weibel} where the Long Exact Sequence is given as a corollary of the Snake Lemma. If the reader would like a direct proof of the Snake Lemma, we direct them, as Weibel does in \cite{Weibel}, to \emph{It's My Turn} (Rastar-Martin Elfand Studios, 1980), where a proof is given at the beginning of the movie because it is a proof by diagram chasing so far more suited to being seen than being read.
 
 \begin{cor} (Snake Lemma)\\
-If you have a commutative diagram with exact rows, 
+If we have a commutative diagram with exact rows, 
 \begin{equation*}
 \begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
 
@@ -1348,9 +1374,9 @@ If you have a commutative diagram with exact rows,
 
 \end{tikzpicture}
 \end{equation*}
-you get an exact sequence, 
+we get an exact sequence, 
 \begin{equation*}
-0\xrightarrow{}ker(\theta)\xrightarrow{}ker(\phi)\xrightarrow{}ker(\psi)\xrightarrow{}coker(\theta)\xrightarrow{}coker(\phi)\xrightarrow{}coker(\psi)\xrightarrow{}0
+0\xrightarrow{}ker(\theta)\xrightarrow{}ker(\phi)\xrightarrow{}ker(\psi)\xrightarrow{}coker(\theta)\xrightarrow{}coker(\phi)\xrightarrow{}coker(\psi)\xrightarrow{}0,
 \end{equation*}
 \end{cor}
 \begin{proof}
@@ -1371,7 +1397,7 @@ by renumbering in Theorem \ref{longexactseqthm}.
 
 \section{Homotopy and Quasi-Isomorphism}
 
-For this section the report relies heavily on \cite{CB1}, with some added details, such as the definition for null homotopic and the diagram, come from \cite{Weibel} and \cite{Rotman}. However, all examples are original work.
+For this section the report relies heavily on \cite{CB1}, with some added details, such as the definition for null homotopic and the diagram, come from \cite{Weibel} and \cite{Rotman}.
 
 \begin{mydef}
 If $f,g:\mathbf{C} \to \mathbf{D}$  are chain maps, then $f$ and $g$ are \emph{homotopic}, denoted $f\simeq g$, if for each $n$ there are maps $h_n: C_n \to D_{n+1}$ such that,
@@ -1424,7 +1450,6 @@ Consider the two chain complexes,
 such that $C_1,C_0=\bb{Z}$ and $D_n=\sfrac{\bb{Z}}{9\bb{Z}}$. Then the two chain maps $f, g:\mathbf{C} \to \mathbf{D}$, where $f_0, f_1: x \mapsto 4x+9\bb{Z}$ and $g_0, g_1: x \to x+9\bb{Z}$ are homotopic where $h_0: \bb{Z} \to \sfrac{\bb{Z}}{9\bb{Z}}, x \to x+9\bb{Z}$ and $h_1: \bb{Z} \to \sfrac{\bb{Z}}{9\bb{Z}}, x \mapsto 3x +9\bb{Z}$.
 \end{eg}
 
-%Reference
 \begin{prop} \label{homotopyhomologyprop}
 If $f,g:\mathbf{C}\to \mathbf{D}$ are homotopic then for each $n$ they induce exactly the same map $H_n(\mathbf{C})\to H_n(\mathbf{D})$.
 \end{prop}
@@ -1433,12 +1458,12 @@ Let $\overline{x} \in H_n(\mathbf{C})$ such that $x\in Z_n(\mathbf{C})$. Then,
 \begin{align*}
 H_n(f)(\overline{x})-H_n(g)(\overline{x})&= \overline{f_n(x)} - \overline{g_n(x)},\\
 &= \overline{h_{n-1}\gamma_n(x)-\delta_{n+1}h_n(x)},\\
-&=\overline{\delta_{n+1}h_n(x)}, \text{ as }x\in Z_n(\mathbf{C})=ker(\gamma_n),\\
-&=0, \text{ as } \delta_{n+1}h_n(x)\in B_n(\mathbf{D})=im(\delta_{n+1}).
+&=\overline{\delta_{n+1}h_n(x)}, \quad\text{ as }x\in Z_n(\mathbf{C})=ker(\gamma_n),\\
+&=0, \quad \text{ as } \delta_{n+1}h_n(x)\in B_n(\mathbf{D})=im(\delta_{n+1}).
 \end{align*}
 \end{proof}
 
-\begin{prop} %Not sure whether to keep this propn in. May get rid.
+\begin{prop} 
 If $f,g: \mathbf{C}\to \mathbf{D}$ are homotopic and $N$ is an $R$-module, then the induced cochain maps $Hom(\mathbf{D}, N) \to Hom(\mathbf{C},N)$ are homotopic.
 \end{prop}
 \begin{proof}
@@ -1450,22 +1475,19 @@ Let $h^n:Hom(\mathbf{D},N)^n \to Hom(\mathbf{C}, N)^{n-1}$ be $Hom(h_{n-1}, N)$,
 \end{proof}
 
 \begin{mydef}
-A chain map $f:\mathbf{C} \to \mathbf{D}$ is a \emph{homotopy equivalence} if there is a chain map $g:\mathbf{D} \to \mathbf{C}$ such that $gf$ and $fg$ are homotopic to the respective identity maps of $\mathbf{C}$ and $\mathbf{D}$.\\
+A chain map $f:\mathbf{C} \to \mathbf{D}$ is a \emph{homotopy equivalence} if there is a chain map $g:\mathbf{D} \to \mathbf{C}$ such that $gf$ and $fg$ are homotopic to the respective identity maps of $\mathbf{C}$ and $\mathbf{D}$.
 If there exists a homotopy equivalence, $f:\mathbf{C} \to \mathbf{D}$, $\mathbf{C}$ and $\mathbf{D}$ are said to be \emph{homotopy equivalent}.
 \end{mydef}
 
-% Would like an example here.
-
 \begin{rem}
-The reader is advised not to confuse these definitions: Note that the two chain maps $f,g:\mathbf{C} \to \mathbf{D}$ can be homotopic, whilst two chain complexes $\mathbf{C}, \mathbf{D}$ can be homotopy equivalent.
+The reader is advised not to confuse these definitions. Note that the two chain maps $f,g:\mathbf{C} \to \mathbf{D}$ can be homotopic, whilst two chain complexes $\mathbf{C}, \mathbf{D}$ can be homotopy equivalent.
 \end{rem}
 
 \begin{prop}
 A homotopy equivalence $f:\mathbf{C} \to \mathbf{D}$ of chain complexes induces a homotopy equivalence of cochain complexes $Hom(\mathbf{D},N) \to Hom(\mathbf{C},N)$. In particular, $H^n(\mathbf{D}, N) \cong H^n(\mathbf{C}, N)$.
 \end{prop}
 \begin{proof}
-Omitted.
-%Given as clear in \cite{CB1}, may prove later.
+Clear.
 \end{proof}
 
 \begin{mydef}
@@ -1537,20 +1559,20 @@ This is called a \emph{contracting homotopy}.
 \begin{thm}
 A chain complex $\mathbf{C}$ is contractible if and only if it is acyclic and all of the short exact sequences,
 \begin{equation*}
-0 \xrightarrow{} Z_(\mathbf{C} \xrightarrow{\iota_n} C_n \xrightarrow{\gamma_n} B_{n-1}(\mathbf{C})\xrightarrow{} 0,
+0 \xrightarrow{} Z_{n}(\mathbf{C}) \xrightarrow{\iota_n} C_n \xrightarrow{\gamma_n} B_{n-1}(\mathbf{C})\xrightarrow{} 0,
 \end{equation*}
 are split, where $\iota_n$ is the inclusion.
 \end{thm}
 \begin{proof}
 $\Rightarrow$: If $\mathbf{C}$ is contractible then it is quasi-isomorphic to the zero complex, so acyclic by Proposition \ref{homequivisomprop}. Let $h$ be the contracting homotopy. Let $s:B_{n-1}(\mathbf{C})\to C_n$ be the restriction of $h_{n-2}:C_{n-1} \to C_n$. If $x\in B_{n-1}(\mathbf{C})=im(\gamma_n)$,
 \begin{align*}
-B_{n-1}(\mathbf{C}\ni x&=id_{C_{n-1}}(x),\\
+B_{n-1}(\mathbf{C})\ni x&=id_{C_{n-1}}(x),\\
 &=(h_{n-1}\gamma_{n-1} + \gamma_nh_{n-1})(x),\\
 &=h_{n-2}(\gamma_{n-1}(x))+\gamma_n(h_{n-1}(x)),\\
 &=\gamma_n(h_{n-1}(x)),\\
 &=\gamma_n(s(x)).
 \end{align*}
-Thus $s$ makes $\gamma_n$ is a retraction in the short exact sequence.
+Thus $s$ makes $\gamma_n$ is a retraction in the short exact sequence.\\
 $\Leftarrow$: Now suppose that $\mathbf{C}$ is acyclic and all the exact sequences are split. Then for all $n$ there are sections,
 \begin{equation*}
 s_{n-1}: B_{n-1}(\mathbf{C}) \to C_n.
@@ -1565,6 +1587,7 @@ Then,
 &=s_{n-1}\gamma_nx +(x-s_{n-1}\gamma_nx), \text{ as } s_n \text{ is a section},\\
 &=x.
 \end{align*}
+Thus $h$ is a contracting homotopy.
 \end{proof}
 
 
@@ -1577,8 +1600,10 @@ Then,
 
 \section{Projective and Injective Resolutions}
 
-In this section we look at projective and injective modules and resolutions, for this the reader will need some prior knowledge of free modules, which will not be covered in this report. The reader is advised to look at \cite{Stamm}, \cite{Weibel} and \cite{Rotman} for more information regarding free modules.\\
-The following properties for projective modules come from \cite{CB1} with added details from either my own work or \cite{Rotman}. In order to have a clear definition of a projective modules, rather than as a culmination of properties, we have promoted the first property from \cite{CB1} to a definition and to aid this we give a separate defintion for a lifting as in \cite{Rotman}.
+In this section we look at projective and injective modules and resolutions, for this the reader will need some prior knowledge of free modules, which will not be covered in this report. The reader is advised to look at \cite{Stamm}, \cite{Weibel} and \cite{Rotman} for more information regarding free modules.
+\vspace{0.5em}
+
+The following properties for projective modules come from \cite{CB1} with added details from either my own work or \cite{Rotman}. In order to have a clear definition of a projective modules, rather than as a culmination of properties, we have promoted the first property from \cite{CB1} to a definition and to aid this we give a separate definition for a lifting as in \cite{Rotman}.
 
 \begin{mydef}
 Suppose we have a map $g:M \to N$ then a \emph{lifting} of a map $p:A \to N$ is a map $q:A\to M$ with $gq=p$, i.e. the following diagram commutes.
@@ -1596,7 +1621,7 @@ Suppose we have a map $g:M \to N$ then a \emph{lifting} of a map $p:A \to N$ is 
 \end{mydef}
 
 \begin{mydef}
-A module $P$ is \emph{projective} if, whenever $g:M\to N$ is surjective and $p:P\to N$ is any map, there exists a lifting $q:P \to M$ making the following diagram commutes:
+A module $P$ is \emph{projective} if, whenever $g:M\to N$ is surjective and $p:P\to N$ is any map, there exists a lifting $q:P \to M$ making the following diagram commute:
 \begin{equation*}
 \begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
 \node	[main node]		(1) at (0,0)		{$M$};
@@ -1639,7 +1664,7 @@ The following for a module $P$ are equivalent:
 \end{equation*}
 Hence, we have $q\in Hom(P,M)$ such that $gq=p\in Hom(P,N)$ which can also we written $p=gq=g_{\ast}(q)\in im(g_{\ast})$, defining a surjective map, $g_{\ast}: Hom(P,M) \to Hom(P,N)$. Thus,
 \begin{equation*}
-0\xrightarrow{}Hom(P,L) \xrightarrow{}Hom(P,M)\xrightarrow{g_{\ast}}Hom(P,N)\xrightarrow{}0
+0\xrightarrow{}Hom(P,L) \xrightarrow{}Hom(P,M)\xrightarrow{g_{\ast}}Hom(P,N)\xrightarrow{}0,
 \end{equation*}
 is exact by Proposition \ref{exactpropertiesprop}.\\
 (ii) $\Rightarrow$ (iii): By assumption, if we have the short exact sequence $0\xrightarrow{}L\xrightarrow{}M\xrightarrow{}P\xrightarrow{}0$ then we have an exact sequence,
@@ -1688,7 +1713,7 @@ Hence $P$ is projective.
 
 Now we have established some properties of projective modules we can prove a corollary of the Long Exact Sequence Theorem in \cite{CB1}.
 
-\begin{cor} (Corollary to Theorem \ref{longexactseqthm})\\
+\begin{cor} \label{longexactseqcor}(Corollary to Theorem \ref{longexactseqthm})\\
 If $\mathbf{P}$ is a chain complex of projective $R$-modules and $0\xrightarrow{}L\xrightarrow{}M\xrightarrow{}N\xrightarrow{}0$ is a short exact sequence of $R$-modules then you get a long exact sequence in cohomology.
 \begin{equation*}
 \dots \xrightarrow{} H^{n-1}(\mathbf{P}, N) \xrightarrow{} H^n(\mathbf{P}, L) \xrightarrow{} H^n(\mathbf{P}, M) \xrightarrow{} H^n(\mathbf{P}, N) \xrightarrow{} H^{n+1}(\mathbf{P}, L) \xrightarrow{} \dots
@@ -1719,7 +1744,7 @@ A module $I$ is \emph{injective} if, whenever $f: L \to M$ is an injection, ther
 \end{equation*}
 \end{mydef}
 
-\begin{prop}
+\begin{prop} \label{injectiveprop}
 The following properties of a module $I$ are equivalent:
 \begin{description}
 \item [(i)] $I$ is injective.
@@ -1729,7 +1754,7 @@ The following properties of a module $I$ are equivalent:
 \end{prop}
 \begin{proof}
 (i) $\Rightarrow$ (ii) $\Rightarrow$ (iii): Dual to Proposition \ref{projectiveprop}  for projectives.
-(iii) $\Rightarrow$ (i): Consider the $0\xrightarrow{}L\xrightarrow{}M\xrightarrow{}\sfrac{M}{L} \xrightarrow{} 0$ and construct it's pushout along $\theta: L \to I$:
+(iii) $\Rightarrow$ (i): Consider the $0\xrightarrow{}L\xrightarrow{}M\xrightarrow{}\sfrac{M}{L} \xrightarrow{} 0$ and construct its pushout along $\theta: L \to I$:
 \begin{equation*}
 \begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
 
@@ -1771,7 +1796,7 @@ so $r\phi : M \to I$ extends $\theta: L \to I$. Hence $I$ is injective.
 \begin{mydef}
 If $M$ is an $R$-module, then a \emph{projective resolution} of $M$ is an exact sequence, 
 \begin{equation*}
-\mathbf{P}: \quad \dots \xrightarrow{} P_2 \xrightarrow{d_2} P_1 \xrightarrow{d_1} P_0 \xrightarrow{\epsilon} M \xrightarrow{} 0
+\mathbf{P}: \quad \dots \xrightarrow{} P_2 \xrightarrow{d_2} P_1 \xrightarrow{d_1} P_0 \xrightarrow{\epsilon} M \xrightarrow{} 0,
 \end{equation*}
 where each $P_i$ is a projective module.
 \end{mydef}
@@ -1898,7 +1923,7 @@ Since the defintion for a cosyzygy is not given in \cite{CB1} we turn to \cite{R
 \begin{mydef}
 Given an injective resolution,
 \begin{equation*}
-\mathbf{I}: \quad  0 \xrightarrow{} M \xrightarrow{\eta} I^0 \xrightarrow{d^0} I^1 \xrightarrow{} \dots \xrightarrow{} I^n \xrightarrow{d^n} I^{n+1} \xrightarrow{} \dots
+\mathbf{I}: \quad  0 \xrightarrow{} M \xrightarrow{\eta} I^0 \xrightarrow{d^0} I^1 \xrightarrow{} \dots \xrightarrow{} I^n \xrightarrow{d^n} I^{n+1} \xrightarrow{} \dots,
 \end{equation*}
 the \emph{cosyzygies} of $M$ are the modules $\mho^n=coker(d^{n-1})$, for $n\geq 1$ and with $\mho^0M=coker(\eta)$.
 \end{mydef}
@@ -2135,9 +2160,17 @@ In \cite{Vale} we have the results that if $A$ is a finite dimensional $k$-algeb
 %%%%%%%%%%%%%%%%%%		EXT		%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Ext}
+\section{Extensions and Ext}
 
 The following section contains theory on the right-derived functor $Ext$, however, in an effort to steer clear of category theory, this report will define $Ext$ as Crawley-Boevey does in \cite{CB1}. If the reader is interested in exploring category theory and $Ext$ as a functor they are directed to start with Appendix A of \cite{Weibel} which introduces category theory language and then look at the derived functors sections in both \cite{Weibel} and \cite{Rotman}. This section will follow \cite{CB1} closely as it explores $Ext$ theory without the need of category theory, with some  additional results from \cite{Weibel}. As such, the reader is advised that, unless otherwise stated, the results of this section come from \cite{CB1}, with only minor details added where it is felt they aid the reader's understanding.
+
+\begin{rem}
+Recall that a short exact sequence, 
+\begin{equation*}
+0\to L\to M\to N\to 0,
+\end{equation*}
+is called an \emph{extension of $N$ by $L$}. Also that the equivalence classes of extensions of $N$ by $L$ is represented as $e(N,L)$.
+\end{rem}
 
 \begin{mydef}
 If $M$ and $N$ are $R$-modules then $Ext^n(M, N)$, or more precisely $Ext^n_R(M, N)$, is defined as follows:
@@ -2151,7 +2184,7 @@ Thus if,
 \end{equation*}
  is the projective resolution, then $Ext^n(M, N)$ is the cohomology in degree $n$ of the cochain complex,
 \begin{equation*}
-0\xrightarrow{} Hom(P_0, N) \xrightarrow{} Hom(P_1, N) \xrightarrow{} Hom(P_2, N)\xrightarrow{} \dots
+0\xrightarrow{} Hom(P_0, N) \xrightarrow{} Hom(P_1, N) \xrightarrow{} Hom(P_2, N)\xrightarrow{} \dots,
 \end{equation*}
 \end{mydef}
  
@@ -2263,9 +2296,9 @@ so $coker(\iota^{\ast}_n)=0$.
 \end{proof}
 
 \begin{prop}
-If $0\xrightarrow{}N \xrightarrow{} I^0 \xrightarrow{} I^1 \xrightarrow{} \dots $ is an injective resolution of $N$ then you can complute $Ext^n(M,N)$ as the cohomology of the cochain complex $Hom(M,\mathbf{I})$,
+If $0\xrightarrow{}N \xrightarrow{} I^0 \xrightarrow{} I^1 \xrightarrow{} \dots $ is an injective resolution of $N$ then you can compute $Ext^n(M,N)$ as the cohomology of the cochain complex $Hom(M,\mathbf{I})$,
 \begin{equation*}
-0 \xrightarrow{} Hom(M,I^0) \xrightarrow{} Hom(M, I^1) \xrightarrow{} Hom(M,I^2) \xrightarrow{} \dots
+0 \xrightarrow{} Hom(M,I^0) \xrightarrow{} Hom(M, I^1) \xrightarrow{} Hom(M,I^2) \xrightarrow{} \dots,
 \end{equation*}
 \end{prop}
 \begin{proof}
@@ -2394,7 +2427,7 @@ Existence of $\alpha, \beta$: Since $P_0$ is projective and $g: M\to N$ is surje
 Then $\alpha$ exists by diagram chasing.
 As we have a projective resolution of $N$, we can apply $Hom(N,-)$ to $\mathbf{E}$ to obtain (Propn. \ref{longexactHom(X,-)prop}),
 \begin{equation*}
-0\xrightarrow{} Hom(N,L) \xrightarrow{} Hom(N,M) \xrightarrow{} Hom(N,N) \xrightarrow{\delta} Ext^1(N,L) \xrightarrow{} \dots
+0\xrightarrow{} Hom(N,L) \xrightarrow{} Hom(N,M) \xrightarrow{} Hom(N,N) \xrightarrow{\delta} Ext^1(N,L) \xrightarrow{} \dots,
 \end{equation*}
 and so find the connecting map $\delta: Hom(N,N) \to Ext^1(N,L)$. Note that this is the connecting map in cohomology for the exact sequence of cochain complexes,
 \begin{equation*}
@@ -2713,11 +2746,9 @@ and so $im(\iota^{\ast})=ker(\delta)$ by exactness and so we can map $\alpha'-\a
 Hence by the uniqueness of pushouts, $\mathbf{E}$ and $\mathbf{E'}$ are equivalent.
 \end{proof}
 
-%Need Examples!!
-
-\begin{prop}
+\begin{thm}
 The split exact sequences of an equivalence class of extensions of $N$ by $L$ correspond to the zero element of $Ext^1(N,L)$.
-\end{prop}
+\end{thm}
 \begin{proof}
 Lemma \ref{splitequivlem} gives that any two split extensions of $N$ by $L$ are equivalent, and so in the same equivalence class. Note that if $\mathbf{E}: \quad0 \xrightarrow{} L \xrightarrow{}M \xrightarrow{}N \xrightarrow{} 0$ splits then as $M \cong L\oplus N$ (Cor. \ref{MLNcor}), $\mathbf{E}$ is equivalent to $0 \xrightarrow{}L \xrightarrow{} L \oplus N \xrightarrow{} N \xrightarrow{} 0$. Relabel this exact sequence $\mathbf{E}$. Let $\xrightarrow{} P_1 \xrightarrow{}P_0 \xrightarrow{} N \xrightarrow{}0$ be the projective resolution of $N$. Then, by Lemma \ref{alphabetalem} we have a commutative diagram,
 \begin{equation*}
@@ -2756,7 +2787,7 @@ and applying $Hom(-,L)$ to the top row gives the long exact sequence,
 with $\delta(\alpha)=\hat{E}$. However, $\alpha=0$ by diagram chasing, and so $\hat{E}=0$.
 \end{proof}
 
-This result is interesting as it means, as Rotman points out in \cite{Rotman}, the non-zero elements of $Ext^1(N,L)$ describe nonsplit extensions of $N$ by $L$.
+This result is interesting as it means, as Rotman points out in \cite{Rotman}, the nonzero elements of $Ext^1(N,L)$ describe nonsplit extensions of $N$ by $L$.
 
 \begin{mydef}
 The \emph{projective dimension} of a module $M$ is the smallest $n\in \bb{Z}$ such that there is a finite projective resolution of $M$,
@@ -2789,11 +2820,11 @@ and so it suffices to prove $\Omega^nM$ is projective as then this exact sequenc
 \end{equation*}
 gives a long exact sequence which includes,
 \begin{equation*}
-\dots \xrightarrow{} Ext^1(P_{n-1},N) \xrightarrow{} Ext^1(\Omega^nM,N) \xrightarrow{} Ext^2(\Omega^{n-1}M,N) \xrightarrow{} Ext^2(P_{n-1},N) \xrightarrow{} \dots
+\dots \xrightarrow{} Ext^1(P_{n-1},N) \xrightarrow{} Ext^1(\Omega^nM,N) \xrightarrow{} Ext^2(\Omega^{n-1}M,N) \xrightarrow{} Ext^2(P_{n-1},N) \xrightarrow{} \dots,
 \end{equation*}
 However, $P_{n-1}$ is projective so $Ext^i(P_{n-1},N)=0$ for all $i$ and so we have,
 \begin{equation*}
-\dots \xrightarrow{} 0 \xrightarrow{} Ext^1(\Omega^nM,N) \xrightarrow{} Ext^2(\Omega^{n-1}M,N) \xrightarrow{} 0 \xrightarrow{} \dots
+\dots \xrightarrow{} 0 \xrightarrow{} Ext^1(\Omega^nM,N) \xrightarrow{} Ext^2(\Omega^{n-1}M,N) \xrightarrow{} 0 \xrightarrow{} \dots,
 \end{equation*}
 Hence, $Ext^1(\Omega^nM, N) \cong Ext^2(\Omega^{n-1}M,N)$. Then by dimension shifting we get, 
 \begin{align*}
@@ -2840,8 +2871,8 @@ t:& Q_1 \to Q_0\text{,\quad} \alpha \mapsto 2\text{, } \beta \mapsto 3\text{, } 
 \end{align*}
 looks like,
 \begin{equation*}
-\mathbf{Q}: \qquad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node []			(0) at (-1,0)		{Q: };
 \node	[main node]		(1) at (0,0)		{1};
 \node	[main node]		(2) at (2,0)		{2};
 \node	[main node]		(3) at (4,0)		{3};
@@ -2909,8 +2940,8 @@ The product of $\beta$ and $\alpha$ is $\beta\alpha$, but the product of $\alpha
 \begin{eg}
 If $Q$ is the following quiver,
 \begin{equation*}
-\mathbf{Q}: \qquad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node []			(0) at (-2,0)		{Q:};
 \node	[main node]		(1) at (0,0)		{1};
 
 \draw (1) edge[loop left] node [auto] {$\alpha$} (1);
@@ -2927,8 +2958,8 @@ Recall that $UT_n(k)$ is the algebra of $n\times n$ upper triangular matrices ov
 \begin{eg} \label{UTpathalgebraeg}
 If we have the quiver,
 \begin{equation*}
-\mathbf{Q}: \qquad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node []			(0) at (-2,0)		{Q:};
 \node	[main node]		(1) at (0,0)		{1};
 \node [main node]		(2) at (2,0)		{2};
 \node [main node]		(3) at (4,0)		{3};
@@ -2953,8 +2984,8 @@ the the path algebra, $kQ \cong UT_4(k)$ by the isomorphism,
 \end{multline*}
 Generally, a quiver of the form,
 \begin{equation*}
-\mathbf{Q'}: \qquad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node []		(0) at (-2,0)		{Q':};
 \node	[main node]		(1) at (0,0)		{1};
 \node [main node]		(2) at (2,0)		{2};
 \node []			(3) at (4,0)		{$\dots$};
@@ -2987,12 +3018,12 @@ Once again, this extends to the general case that, $kQ' \cong LT_n(k)$.
 \begin{eg} \label{pathalgebramatrixeg}
 In a more general case, as long as there is only one path between any two vertices, we can identify $kQ$ with the following subalgebra of $M_n(k)$,
 \begin{equation*}
-\{M \in M_n(k): M_ij=0 \text{ if there is no path from } j \text{ to }i\}.
+\{M \in M_n(k): M_{ij}=0 \text{ if there is no path from } j \text{ to }i\}.
 \end{equation*}
 For instance, if we have the quiver,
 \begin{equation*}
-\mathbf{Q}: \qquad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node []			(0) at (-2,0)		{Q:};
 \node	[main node]		(1) at (0,0)		{1};
 \node [main node]		(2) at (2,0)		{2};
 \node [main node]		(3) at (4,0)		{3};
@@ -3007,7 +3038,7 @@ For instance, if we have the quiver,
 \draw (5) edge node [auto] {$\epsilon$} (6);
 \end{tikzpicture}
 \end{equation*}
-the we can see that the path algebra $kQ$ is isomorphic to the subalgebra with matrices of the form,
+then we can see that the path algebra $kQ$ is isomorphic to the subalgebra with matrices of the form,
 \begin{equation*}
 \begin{pmatrix*}
 1 & 0 & 0 & 0 & 0 & 0 \\
@@ -3016,7 +3047,7 @@ the we can see that the path algebra $kQ$ is isomorphic to the subalgebra with m
 1 & 1 & 1 & 1 & 1 & 0 \\
 0 & 0 & 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 0 & 1 & 1
-\end{pmatrix*}
+\end{pmatrix*}.
 \end{equation*}
 \end{eg}
 
@@ -3039,7 +3070,7 @@ Let $\Lambda$ be an algebra.
 The $e_i$ are orthogonal idempotents in $A$. Thus $\sum_{i=1}^{n}{e_i}=1_{A}$.
 \end{lem}
 \begin{proof}
-Obviously, $e_ie_j=0$ when$i\neq j$ because $t(e_j)\neq s(e_i)$ because they are the trivial paths at different vertices, $i$ and $j$. Similarly, if we have the product $e_ie_i$ then the composition makes sense here because $t(e_i)=s(e_i)$, but the composition is just $e_i$ becuase if we travel along the trivial path $e_i$ twice, then this is just the same as travelling the trivial path. \\
+Obviously, $e_ie_j=0$ when $i\neq j$ because $t(e_j)\neq s(e_i)$ as they are the trivial paths at different vertices, $i$ and $j$. Similarly, if we have the product $e_ie_i$ then the composition makes sense here because $t(e_i)=s(e_i)$, but the composition is just $e_i$ becuase if we travel along the trivial path $e_i$ twice, then this is just the same as travelling the trivial path. \\
 If we have some path $p$ of the quiver, then bear in mind that,
 \begin{equation*}
 e_ip=
@@ -3050,7 +3081,7 @@ e_ip=p & \text{if } i=t(p),\\
 \end{equation*}
 Hence, the sum of the trivial paths acting on our path $p$ becomes, 
 \begin{equation*}
-\big(\sum^{n}_{i=1}{e_i}\big)p=(e_1+e_2+\dots +e_n)p=e_ip=p=1_Ap,
+\left(\sum^{n}_{i=1}{e_i}\right)p=(e_1+e_2+\dots +e_n)p=e_ip=p=1_Ap,
 \end{equation*}
 because only one of the $e_i$ in the sum will satisfy $i=t(p)$ and all the rest will give zero. Similary, we can show that $p\big(\sum^{n}_{i=1}{e_i}\big)=p1_A$.
 \end{proof}
@@ -3080,16 +3111,17 @@ If $X$ is a left $A$-module, then $Hom_A(Ae_i,X)\cong e_iX$.
 \begin{proof}
 Want to show that there are some maps $f$ and $g$,
 \begin{equation*}
-f: Hom_A(Ae_i, X) \to e_iX \quad \& \quad g: e_iX\to Hom_A(Ae_i, X)
+f: Hom_A(Ae_i, X) \to e_iX \quad \& \quad g: e_iX\to Hom_A(Ae_i, X),
 \end{equation*}
 such that $gf=id_{Hom_A(Ae_i, X)}$ and $fg=id_{e_iX}$.
-We can define a map $f: Hom_A(Ae_i,X) \to e_iX$ as follows: Given a map $\theta \in Hom_A(Ae_i, X)$ set $f(\theta)=\theta(e_i)$.Then $\theta (e_i) \in Xe_i$ since $\theta(e_i)=\theta(e_i^2)=e_i\theta(e_i)\in e_iX$. Hence, $f$ maps a homomorphism from $Hom_A(Ae_i, X)$ to an element in $e_iX$.  We can can define a map $g:e_iX \to Hom(Ae_i, X)$ as follows: Consider the map $g(x): Ae_i \to X$, $a \mapsto ax$ for some $a\in A, x\in X$. This is an $A$-module homomorphism as, 
+We can define a map $f: Hom_A(Ae_i,X) \to e_iX$ as follows:\\
+ Given a map $\theta \in Hom_A(Ae_i, X)$ set $f(\theta)=\theta(e_i)$.Then $\theta (e_i) \in Xe_i$ since $\theta(e_i)=\theta(e_i^2)=e_i\theta(e_i)\in e_iX$. Hence, $f$ maps a homomorphism from $Hom_A(Ae_i, X)$ to an element in $e_iX$.  We can can define a map $g:e_iX \to Hom(Ae_i, X)$ as follows: Consider the map $g(x): Ae_i \to X$, $a \mapsto ax$ for some $a\in A, x\in X$. This is an $A$-module homomorphism as, 
 \begin{align*}
 g(x)(a+b) &=(a+b)x=ax+bx=g(x)(a)+g(x)(b)\text{ } & a, b\in Ae_i,\\
 g(x)(\lambda a) &=\lambda a x=\lambda g(x)(a) \text{ } & \lambda\in A, a \in Ae_i.
 \end{align*}
 Hence, $g(x) \in Hom_A(Ae_i, X)$. Now, set $g: eX \to Hom_A(Ae_i, X)$, $x \mapsto g(x)$. \\
-Now to show that $f$ and $g$ are inverse contructions of one another. Let $x\in e_iX$, then,
+Now to show that $f$ and $g$ are inverse constructions of one another. Let $x\in e_iX$, then,
 \begin{align*}
 fg(x)&=f(g(x)),\\
 &=g(x)(e_i),\\
@@ -3109,7 +3141,7 @@ but this is just the action of $\theta$. Hence, $gf=id_{Hom_A(Ae_i,X)}$. Thus $f
 If $a \in Ae_i, b\in e_iA$ and $a,b$ both nonzero then $ab\neq 0$.
 \end{lem}
 \begin{proof}
-If $a\in Ae_i$ it is a linear combination of paths in $Q$ which start at vertex $i$ and so we can write $a= \sum^r_{i=0}p_i$ where the $p_i$ are the linear combinations of all the terms in $a$ which have paths of length $i$ and $r$ is the maximal length of a path appearing in the linear combination of $a$. Similarly, we can write $b=\sum^s_{j=0}q_j$. Then,
+If $a\in Ae_i$ then it is a linear combination of paths in $Q$ starting at vertex $i$, So we can write $a= \sum^r_{i=0}p_i$, where the $p_i$ are the linear combinations of all the terms in $a$ which have paths of length $i$ and $r$ is the maximal length of a path appearing in the linear combination of $a$. Similarly, we can write $b=\sum^s_{j=0}q_j$. Then,
 \begin{align*}
 ab&=(p_0 +p_1+ \dots p_r)(q_0+q_1+\dots+q_s),\\
 &=p_0q_0+ \dots + p_rq_s.
@@ -3168,7 +3200,7 @@ However, $n_1=n_1e_i$ and $n_2=n_2e_i$ as $n_1,n_2\in Ae_i$ and so we also have,
 \begin{equation*}
 e_i=e_i^2=(n_1+n_2)e_i=e_in_1+e_in_2,
 \end{equation*}
-and so $e_in_1+e_in_2=n_1+n_2$ (*). Since $N_1, N_2$ are submodules we must have $e_in_1\in N_1$ and $e_in_2\in N_2$, and so (*) and  the fact $N_1\oplus N_2$ is a direct sum, we have $e_in_1=n_1$. This implies $n_2n_1+n_1^2=n_1$ while $n_1=n_1e_1$ implies $n_1=n_1^2+n_1n_2$. Thus $n_2n_1=n_1n_2 \in N_1 \bigcap N_2$ and so are both equal to zero. Therefore, \ref{1} now gives us $n_1+n_2=e_i=n_1^2+n_2^2$. Thus both $n_1$ and $n_2$ are orthogonal idempotents, contradicting that $e_i$ is primitive. 
+and so $e_in_1+e_in_2=n_1+n_2$ ($\dagger$). Since $N_1, N_2$ are submodules we must have $e_in_1\in N_1$ and $e_in_2\in N_2$, and so ($\dagger$) and  the fact $N_1\oplus N_2$ is a direct sum, we have $e_in_1=n_1$. This implies $n_2n_1+n_1^2=n_1$ while $n_1=n_1e_1$ implies $n_1=n_1^2+n_1n_2$. Thus $n_2n_1=n_1n_2 \in N_1 \bigcap N_2$ and so are both equal to zero. Therefore, \ref{1} now gives us $n_1+n_2=e_i=n_1^2+n_2^2$. Thus both $n_1$ and $n_2$ are orthogonal idempotents, contradicting that $e_i$ is primitive. 
 \end{proof}
 
 \begin{mydef}
@@ -3183,28 +3215,28 @@ It is clear that a basis of $Ae_jA$ is all the paths in $A$ which pass through t
 \end{proof}
 
 \begin{mydef}
-Two idempotent elements $e_i, e_j$ are said to be \emph{equivalent} if and only if there exists some $u\in e_iAe_j$ and $v \in e_jAe_i$ such that $uv=e_i$ and $vu=e_j$. 
+Two idempotent elements $e_i, e_j$ are said to be \emph{equivalent} if and only if there exists some $u\in e_iAe_j$ and $v \in e_jAe_i$ such that $uv=e_i$ and $vu=e_j$. If not equivalent, they are said to be \emph{inequivalent}.
 \end{mydef}
 
 \begin{lem}\label{inequivalentlem}
 The $e_i$ are inequivalent.
 \end{lem}
 \begin{proof}
-From Lemma \ref{idempotenthomlem} we can see that $Hom(Ae_i, Ae_j)\cong e_iAe_j$ and $Hom(Ae_j, Ae_i)\cong e_jAe_i$, and so there exist some inverse isomorphisms $f: Ae_i \to Ae_j$ and $g: Ae_j \to Ae_i$ corresponding to elements $u$ and $v$ repectively. Then we have $uv=e_i$ and $vu=e_j$. However, this means that the path $e_i$ must pass through the vertex $j$ at some point, a contradiction.
+From Lemma \ref{idempotenthomlem} we can see that $Hom(Ae_i, Ae_j)\cong e_iAe_j$ and \\$Hom(Ae_j, Ae_i) \cong e_jAe_i$, and so there exist some inverse isomorphisms $f: Ae_i \to Ae_j$ and $g: Ae_j \to Ae_i$ corresponding to elements $u$ and $v$ repectively. Then we have $uv=e_i$ and $vu=e_j$. However, this means that the path $e_i$ must pass through the vertex $j$ at some point, a contradiction.
 \end{proof}
 
 \begin{cor}
 $Ae_i \not\cong Ae_j$ for $i \neq j$.
 \end{cor}
 \begin{proof}
-This follows from \ref{inequivalentlem}, as it implies that the maps $f,g$ could not have been inverse isomorphisms.
+This follows from \ref{inequivalentlem}, as it implies that the maps $f,g$ could not have been inverse constructions.
 \end{proof}
 
 \begin{eg}
 Consider the quiver from Example \ref{pathalgebramatrixeg}, 
 \begin{equation*}
-\mathbf{Q}: \qquad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node [] 			(0) at (-2,0)		{Q:};
 \node	[main node]		(1) at (0,0)		{1};
 \node [main node]		(2) at (2,0)		{2};
 \node [main node]		(3) at (4,0)		{3};
@@ -3270,8 +3302,8 @@ $\Leftarrow:$ If $Q$ has no oriented cycles then it must have a finite number of
 \begin{eg}
 If we consider the quiver $Q$, 
 \begin{equation*}
-\mathbf{Q}: \qquad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node []			(0) at (-2,0)		{Q:};
 \node	[main node]		(1) at (0,0)		{1};
 \node [main node]		(2) at (2,0)		{2};
 \node [main node]		(3) at (4,1)		{3};
@@ -3286,8 +3318,8 @@ If we consider the quiver $Q$,
 and we can see that $Q$ has the paths $e_1, e_2, e_3, e_4, \alpha, \beta, \gamma, \delta, \beta\alpha, \gamma\alpha, \beta\delta, \delta\beta\alpha$, and so the basis of $A$ is $\{e_1, e_2, e_3, e_4, \alpha, \beta, \gamma, \delta, \beta\alpha, \gamma\alpha, \beta\delta, \delta\beta\alpha\}$, which is finite, and so $A$ is finite dimensional. \\
 However, if we have the quiver $Q'$, 
 \begin{equation*}
-\mathbf{Q'}: \qquad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node []			(0) at (-2,0)		{Q:};
 \node	[main node]		(1) at (0,0)		{1};
 \node [main node]		(2) at (2,0)		{2};
 \node [main node]		(3) at (4,1)		{3};
@@ -3347,8 +3379,8 @@ A \emph{representation} of a quiver $Q$ is $X=(\{X_i\}, \{X_{\rho}\})$ where,
 \begin{eg} \label{repseg}
 Let $Q$ be the quiver, 
 \begin{equation*}
-\mathbf{Q}: \qquad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node []			(0) at (-2,0)		{Q:};
 \node	[main node]		(1) at (0,0)		{1};
 \node [main node]		(2) at (2,0)		{2};
 \node [main node]		(3) at (4,0)		{3};
@@ -3359,8 +3391,8 @@ Let $Q$ be the quiver,
 \end{equation*}
 then we can have representations $X$ and $Y$, 
 \begin{equation*}
-\mathbf{X}: \quad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node []		(0) at (-2,0)		{X:};
 \node	[]		(1) at (0,0)		{$k$};
 \node []		(2) at (2,0)		{$k$};
 \node []		(3) at (4,0)		{$k$};
@@ -3369,8 +3401,8 @@ then we can have representations $X$ and $Y$,
 \draw (2) edge node [auto] {$$} node [auto, swap] {1} (3);
 \end{tikzpicture}
 \qquad \& \qquad
-\mathbf{Y}: \quad
 \begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={draw, circle}]
+\node []			(0) at (-2,0)		{Y:};
 \node	[]		(1) at (0,0)		{$k$};
 \node []		(2) at (2,0)		{$k$};
 \node []		(3) at (4,0)		{$0$};
@@ -3382,7 +3414,7 @@ then we can have representations $X$ and $Y$,
 \end{eg}
 
 \begin{mydef}
-Let $X=(\{X_i\}, \{X_{\rho}$ and $X'=(\{X'_i\}, \{X'_{\rho}$ be representations of $Q$. 
+Let $X=(\{X_i\}, \{X_{\rho}$ and $X'=(\{X'_i\}, \{X'_{\rho}\})$ be representations of $Q$. 
 \begin{itemize}
 \item A \emph{morphism} $\theta: X \to X'$ between representationsis given by linear maps $\theta_i:X_i \to X'_i$ for each $i\in Q_0$ satisfy $X'_{\rho}\theta _{s(\rho)} = \theta_{t(\rho)}X_{\rho}$ for each $\rho \in Q_1$. 
 \item The \emph{composition} of morphisms, $\theta: X \to X'$ with $\phi: X' \to X''$ is given by $(\phi \theta)_i=\phi_i \theta_i$.
@@ -3504,24 +3536,23 @@ Let $X,P$ be left $A$-modules with $P$ projective and $X$ a submodule of $P$. Fi
 \end{proof}
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%		Auslander-Reiten Theory 		%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \chapter{Auslander-Reiten Theory}
-This chapter will discuss some of the notions and results introduced by Maurice Auslander and Idun Reiten in 1975 and subsequent developments of their theories; including the Auslander-Reiten translate, almost split sequences and the Auslander-Reiten quiver. The main sources for this chapter will be \cite{CB3}, \cite{Vale} and \cite{Assem}, however, we will primarily be following \cite{CB3} as we prefer Crawley-Boevey's approach with source and sink maps. Throughout this chapter, $k$ is an algebraically closed field and $A$ is a finite dimensional $k$-algebra.\\
-For every finite-dimensional algebra there exists an Auslander-Reiten quiver, which can be viewed as an approximation to the module category of the algebra. Auslander-Reiten quivers are important as they can be easily computed and give a remarkable insight into the structure of the module category of an algebra. For example, the Auslander-Reiten quiver of an Artin algebra has a vertex for each indecomposable module and an arrow between vertices if there exists an irreducible morphism between the corresponding modules. \cite{AR}
+This chapter will discuss some of the notions and results introduced by Maurice Auslander and Idun Reiten in 1975 and subsequent developments of their theories; including the Auslander-Reiten translate, almost split sequences and the Auslander-Reiten quiver. The main sources for this chapter will be \cite{CB3}, \cite{Vale} and \cite{Assem}, however, we will primarily be following \cite{CB3} as we prefer Crawley-Boevey's approach with source and sink maps. Throughout this chapter, $k$ is an algebraically closed field and $A$ is a finite dimensional $k$-algebra.
+\vspace{0.5em}
+
+For every finite-dimensional algebra there exists an Auslander-Reiten quiver, which can be viewed as an approximation to the module category of the algebra. Auslander-Reiten quivers are important as they can be easily computed and give a remarkable insight into the structure of the module category of an algebra. For example, the Auslander-Reiten quiver of an Artin algebra has a vertex for each indecomposable module and an arrow between vertices if there exists an irreducible morphism between the corresponding modules (\cite{AR}).
 
 \section{Irreducible Maps}
 In order to obtain a picture of the module category, \cite{Vale} notes that it is best to remove those morphisms which are simply compositions of other morphisms, and so retain those morphisms which can not be decomposed any further. Thus we want to find a suitable definition for a map which can not be broken down as the composition of other maps. Vale acknowledges that a first guess at such a definition would be:
 
-\begin{wrong}
-A map $f: X \to Y$ is \emph{irreducible} if $f$ is not an isomorphism and if $f=gh$ then either $g$ or $h$ is an isomorphism.
-\end{wrong}
-
-\noindent
-However, every $f:X \to Y$ can be factorised as,
+\begin{rem}
+If a map $f: X \to Y$ qas said to be irreducible if $f$ is not an isomorphism and if $f=gh$ then either $g$ or $h$ is an isomorphism, then, every $f:X \to Y$ can be factorised as,
 \begin{equation*}
 \begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, main node/.style={}]
 \node	[main node]		(1) at (0,0)		{$X$};
@@ -3546,7 +3577,8 @@ where $Z$ is arbitrary. Also, every $f: X \to Y$ could be factorised,
 \end{tikzpicture}
 \end{equation*}
 where $Z$ is once again arbitrary.
-Thus, the set of morphisms described in Wrong Definition is empty and so we must find a definition which rules out the two above factorisations.
+Thus, the set of morphisms described is empty and so we must find a definition which rules out the two above factorisations.
+\end{rem}
 
 \begin{mydef}
 If $f: X \to Y$ then,
@@ -4040,7 +4072,7 @@ Let $X$ be indecomposable and $A$ hereditary.
 \end{lem}
 \begin{proof}
 As the proof of (i) is given in \cite{CB2} we will only prove (ii).\\
-If $\psi: I \to X$ is non-zero then $\sfrac{I}{ker(\psi)}$ is injective since $A$ is hereditary. Now $\sfrac{I}{ker(\psi)} \to X$ is mono, so $\sfrac{I}{ker(\psi)}$ is a direct summand of $X$ and as $X$ is indecomposable $X\cong \sfrac{I}{ker(\psi)}$. However, $X$ is non-injective so a contradiction.\\
+If $\psi: I \to X$ is nonzero then $\sfrac{I}{ker(\psi)}$ is injective since $A$ is hereditary. Now $\sfrac{I}{ker(\psi)} \to X$ is mono, so $\sfrac{I}{ker(\psi)}$ is a direct summand of $X$ and as $X$ is indecomposable $X\cong \sfrac{I}{ker(\psi)}$. However, $X$ is non-injective so a contradiction.\\
 Let $0 \to X \to I^0 \to I^1 \to 0$ be an injective resolution of $X$。 Now， 
 \begin{equation*}
 0 \to \nu^{-1}X \to \nu^{-1}I^0 \to \nu^{-1}I^1 \to \tau^{-1}X \to 0,
@@ -4244,7 +4276,7 @@ Let $A=kQ$ and $X$ an indecomposable module of $A$, then:
 \begin{proof}
 \begin{description}
 \item [(i)] Corollary \ref{uniquesourcesinkcor}.
-\item [(ii) \& (iii)] Corollary \ref{radsoccor} and Theorem {taubijectionthm}.
+\item [(ii) \& (iii)] Corollary \ref{radsoccor} and Theorem \ref{taubijectionthm}.
 \item [(iv) \& (v)] Theorem \ref{irrthm}.
 \end{description}
 \end{proof}
@@ -4259,16 +4291,473 @@ These results give us the following informal method for computing the Auslander-
 \item Keep going until we reach the indecomposable injective modules $I_i$ of $kQ$.
 \end{enumerate}
 
-We now end with some examples of Auslander-Reiten quivers:
+
+We now end with some examples of Auslander-Reiten quivers, however, first we define a quiver with relations:
+
+\begin{mydef}
+For a quiver $Q$, if we have a finite set of linear combinations of paths we can construct their two-sided ideal $R$ in the path algebra. Then we define the algebra $\sfrac{kQ}{R}$ to a \emph{quiver with representations}.
+\end{mydef}
+
+\begin{rem}
+Note for aesthetics purposes in the diagrams we change convention and use letters to represent the vertices rathern than numbers. 
+\end{rem}
+
+\begin{eg}
+Let $Q$ be the quiver, 
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, every path/.style={->, semithick}, main node/.style={}]
+\node 				(0) at (-2,0)		{Q:};
+\node				(1) at (0,0)		{a};
+\node 				(2) at (1,0)		{b};
+\node 				(3) at (2,0)		{c};
+
+\draw (2) edge (1);
+\draw (2) edge (3);
+\end{tikzpicture}
+\end{equation*}
+then the Auslander-Reiten quiver is:
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, t path/.style={->, dashed, semithick}, every node/.style={}]
+\node			(a) at (0,1)		{$\begin{smallmatrix}a\end{smallmatrix}$};
+\node 			(c) at (0,-1)		{$\begin{smallmatrix}c\end{smallmatrix}$};
+\node 			(abc) at (1,0)	{$\begin{smallmatrix}a & b & c \end{smallmatrix}$};
+\node			(bc) at (2,1)		{$\begin{smallmatrix}b & c\end{smallmatrix}$};
+\node 			(ab) at (2,-1)		{$\begin{smallmatrix}a & b\end{smallmatrix}$};
+\node 			(b) at (3,0)		{$\begin{smallmatrix}b\end{smallmatrix}$};
+
+\draw (a) [main path] edge (abc);
+\draw (c) [main path] edge (abc);
+\draw (abc) [main path] edge (bc);
+\draw (abc) [main path] edge (ab);
+\draw (bc) [main path] edge (b);
+\draw (ab) [main path] edge (b);
+
+\draw (bc) [t path] edge (a);
+\draw (ab) [t path] edge (c);
+\draw (b) [t path] edge (abc);
+\end{tikzpicture}
+\end{equation*}
+\end{eg}
+
+\begin{eg}
+Let $Q$ be the quiver, 
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, m path/.style={->, semithick}, every node/.style={}]
+\node 				(0) at (-2,0)		{Q:};
+\node				(1) at (0,0)		{a};
+\node 				(2) at (-1,1)		{b};
+\node 				(3) at (1,1)		{c};
+\node 				(4) at (0,2)		{d};
+
+\draw (2) [m path] edge (1);
+\draw (3) [m path] edge (1);
+\draw (4) [m path] edge (2);
+\draw (4) [m path] edge (3);
+\draw (4) [-, dashed] edge (1);
+\end{tikzpicture}
+\end{equation*}
+then the Auslander-Reiten quiver is:
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, t path/.style={->, dashed, semithick}, every node/.style={}]
+\node			(a) at (0,0)		{$\begin{smallmatrix}a\end{smallmatrix}$};
+\node 			(ba) at (1,1)		{$\begin{smallmatrix}b& \\ &a\end{smallmatrix}$};
+\node 			(ac) at (1,-1)		{$\begin{smallmatrix} & c \\ a&  \end{smallmatrix}$};
+\node			(bca) at (2,0)	{$\begin{smallmatrix}b & & c\\  & a&\end{smallmatrix}$};
+\node 			(c) at (3, 1)		{$\begin{smallmatrix}c\end{smallmatrix}$};
+\node 			(b) at (3,-1)		{$\begin{smallmatrix}b\end{smallmatrix}$};
+\node 			(dbca) at (3,-2)	{$\begin{smallmatrix}& d & \\ b& & c\\ & a &\end{smallmatrix}$};
+\node 			(dbc) at (4,0)	{$\begin{smallmatrix}& d & \\ b& & c\end{smallmatrix}$};
+\node 			(db) at (5,1)		{$\begin{smallmatrix} & d \\ b& \end{smallmatrix}$};
+\node 			(dc) at (5,-1)		{$\begin{smallmatrix}d & \\ & c\end{smallmatrix}$};
+\node 			(d) at (6,0)		{$\begin{smallmatrix}d\end{smallmatrix}$};
+
+\draw (a) [main path] edge (ba);
+\draw (a) [main path] edge (ac);
+\draw (ba) [main path] edge (bca);
+\draw (ac) [main path] edge (bca);
+\draw (bca) [main path] edge (c);
+\draw (bca) [main path] edge (b);
+\draw (bca) [main path] edge (dbca);
+\draw (dbca) [main path] edge (dbc);
+\draw (b) [main path] edge (dbc);
+\draw (c) [main path] edge (dbc);
+\draw (dbc) [main path] edge (db);
+\draw (dbc) [main path] edge (dc);
+\draw (dc) [main path] edge (d);
+\draw (db) [main path] edge (d);
+
+\draw (bca) [t path] edge (a);
+\draw (c) [t path] edge (ba);
+\draw (b) [t path] edge (ac);
+\draw (dbc) [t path] edge (bca);
+\draw (db) [t path] edge (c);
+\draw (dc) [t path] edge (b);
+\draw (d) [t path] edge (dbc);
+\end{tikzpicture}
+\end{equation*}
+\end{eg}
+
+\begin{eg}
+Let $Q$ be the quiver with relations, 
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, m path/.style={->, semithick}, every node/.style={}]
+\node				(1) at (0,0)		{a};
+\node 				(2) at (-1,1)		{b};
+\node 				(3) at (-3,1)		{c};
+\node 				(4) at (-2,2)		{d};
+\node 				(5) at (-2,3)		{e};
+\node				(6) at (-2.6,1.4)	{};
+\node				(7) at (-2, 2.7)	{};
+
+\draw (2) [m path] edge (1);
+\draw (4) [m path] edge (2);
+\draw (4) [m path] edge (3);
+\draw (5) [m path] edge (4);
+\draw (6) [-, dashed] edge [bend left=10] (7);
+\end{tikzpicture}
+\end{equation*}
+then the Auslander-Reiten quiver is:
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, t path/.style={->, dashed, semithick}, every node/.style={}]
+\node			(a) at (0,0)		{$\begin{smallmatrix}a\end{smallmatrix}$};
+\node 			(ba) at (1,-1)	{$\begin{smallmatrix}b& \\ &a\end{smallmatrix}$};
+\node 			(c) at (1,-3)		{$\begin{smallmatrix} c \end{smallmatrix}$};
+\node			(b) at (2,0)		{$\begin{smallmatrix}b\end{smallmatrix}$};
+\node 			(dcba) at (2, -2)	{$\begin{smallmatrix}d & & \\ c & b & \\ & & a\end{smallmatrix}$};
+\node 			(dcb) at (3,-1)	{$\begin{smallmatrix}&d \\ c & b\end{smallmatrix}$};
+\node 			(dba) at (3,-3)	{$\begin{smallmatrix}d& & \\ &b & \\ & & a \end{smallmatrix}$};
+\node 			(dc) at (4,0)		{$\begin{smallmatrix}&d \\ c& \end{smallmatrix}$};
+\node 			(db) at (4,-2)	{$\begin{smallmatrix} d& \\ & b\end{smallmatrix}$};
+\node 			(edba) at (4,-4)	{$\begin{smallmatrix}e & & \\ d& & \\ & b& \\ & & a\end{smallmatrix}$};
+\node 			(d) at (5,-1)		{$\begin{smallmatrix}d\end{smallmatrix}$};
+\node 			(edb) at (5,-3)	{$\begin{smallmatrix} e &  \\ d&  \\ & b\end{smallmatrix}$};
+\node 			(ed) at (6,-2)		{$\begin{smallmatrix}e\\d\end{smallmatrix}$};
+\node 			(e) at (7,-1)		{$\begin{smallmatrix}e \end{smallmatrix}$};
+
+
+\draw (a) [main path] edge (ba);
+\draw (ba) [main path] edge (dcba);
+\draw (c) [main path] edge (dcba);
+\draw (ba) [main path] edge (b);
+\draw (b) [main path] edge (dcb);
+\draw (dcba) [main path] edge (dcb);
+\draw (dcba) [main path] edge (dba);
+\draw (dcb) [main path] edge (dc);
+\draw (dcb) [main path] edge (db);
+\draw (dba) [main path] edge (db);
+\draw (dba) [main path] edge (edba);
+\draw (dc) [main path] edge (d);
+\draw (db) [main path] edge (d);
+\draw (db) [main path] edge (edb);
+\draw (edba) [main path] edge (edb);
+\draw (d) [main path] edge (ed);
+\draw (edb) [main path] edge (ed);
+\draw (ed) [main path] edge (e);
+
+\draw (b) [t path] edge (a);
+\draw (dcb) [t path] edge (ba);
+\draw (b) [t path] edge (dc);
+\draw (dcba) [t path] edge (db);
+\draw (dcb) [t path] edge (d);
+\draw (dba) [t path] edge (edb);
+\draw (db) [t path] edge (ed);
+\draw (d) [t path] edge (e);
+\end{tikzpicture}
+\end{equation*}
+\end{eg}
+
+\begin{eg}
+Let $Q$ be the quiver with relations, 
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, m path/.style={->, semithick}, every node/.style={}]
+\node				(b) at (0,0)		{b};
+\node 				(a) at (0,-1)		{a};
+\node 				(d) at (1,0)		{d};
+\node 				(c) at (1,-1)		{c};
+\node 				(e) at (2,0)		{e};
+\node 				(f) at (2,-2)		{f};
 
 
 
+\draw (b) [m path] edge (a);
+\draw (b) [m path] edge (d);
+\draw (d) [m path] edge (c);
+\draw (a) [m path] edge (c);
+\draw (e) [m path] edge (d);
+\draw (f) [m path] edge (c);
+\draw (e) [m path] edge (f);
+\end{tikzpicture}
+\end{equation*}
+then the Auslander-Reiten quiver is:
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, t path/.style={->, dashed, semithick}, every node/.style={}]
+\node			(c) at (0,0)		{$\begin{smallmatrix}c\end{smallmatrix}$};
+\node 			(ac) at (1,2)		{$\begin{smallmatrix}a&c\end{smallmatrix}$};
+\node 			(dc) at (1,1)		{$\begin{smallmatrix} d\\c \end{smallmatrix}$};
+\node			(cf) at (1,-1)		{$\begin{smallmatrix}c & f\end{smallmatrix}$};
+\node 			(dac2f) at (2,0)	{$\begin{smallmatrix}& d & \\ a & c^2 & f\end{smallmatrix}$};
+\node 			(dcf) at (3,2)		{$\begin{smallmatrix} d& \\ c&f\end{smallmatrix}$};
+\node			(acf) at (3,1)		{$\begin{smallmatrix}a & c & f\end{smallmatrix}$};
+\node 			(dac) at (3,-1)	{$\begin{smallmatrix} & d \\ a&c\end{smallmatrix}$};
+\node 			(decf) at (4,3)		{$\begin{smallmatrix}  d & e \\ c & f\end{smallmatrix}$};
+\node			(dacf) at (4,0)		{$\begin{smallmatrix}& d & \\ a& c&f\end{smallmatrix}$};
+\node 			(bdac) at (4,-2)	{$\begin{smallmatrix} b & d\\ a & c\end{smallmatrix}$};
+\node			(deacf) at (5,2)		{$\begin{smallmatrix}& d & e\\ a & c &f\end{smallmatrix}$};
+\node 			(d) at (5,1)			{$\begin{smallmatrix} d\end{smallmatrix}$};
+\node			(bdacf) at (5,-1)		{$\begin{smallmatrix}b & d & \\a& c &f\end{smallmatrix}$};
+\node 			(a) at (6,3)			{$\begin{smallmatrix}a \end{smallmatrix}$};
+\node			(bd2eacf) at (6,0)		{$\begin{smallmatrix}b&d^2&e\\ a&c &f \end{smallmatrix}$};
+\node 			(f) at (6,-2)			{$\begin{smallmatrix} f\end{smallmatrix}$};
+\node			(bda) at (7, 2)			{$\begin{smallmatrix} b & d \\ a&\end{smallmatrix}$};
+\node 			(bdeacf) at (7, 1)			{$\begin{smallmatrix} b&d&e\\a&c&f\end{smallmatrix}$};
+\node			(def) at (7, -1)			{$\begin{smallmatrix}d&e\\&f\end{smallmatrix}$};
+\node 			(bd) at (8,3)			{$\begin{smallmatrix} b&d \end{smallmatrix}$};
+\node			(bdeaf) at (8, 0)			{$\begin{smallmatrix}b & d&f\\ a & &f\end{smallmatrix}$};
+\node 			(de) at (8, -2)			{$\begin{smallmatrix} d&e\end{smallmatrix}$};
+\node			(bdef) at (9,2)			{$\begin{smallmatrix} b & d &e \\ & & f\end{smallmatrix}$};
+\node 			(bdea) at (9, -1)			{$\begin{smallmatrix} b & d & e\\ a & &\end{smallmatrix}$};
+\node			(ef) at (10,3)		{$\begin{smallmatrix}e\\f\end{smallmatrix}$};
+\node 			(bde) at (10,0)	{$\begin{smallmatrix} b & d & e\end{smallmatrix}$};
+\node			(ba) at (10,-2)		{$\begin{smallmatrix}b\\a\end{smallmatrix}$};
+\node 			(e) at (11,2)	{$\begin{smallmatrix} e\end{smallmatrix}$};
+\node			(b) at (11,-1)		{$\begin{smallmatrix}b\end{smallmatrix}$};
+
+
+\draw (c) [main path] edge (ac);
+\draw (c) [main path] edge (dc);
+\draw (c) [main path] edge (cf);
+\draw (ac) [main path] edge (dac2f);
+\draw (dc) [main path] edge (dac2f);
+\draw (cf) [main path] edge (dac2f);
+\draw (dac2f) [main path] edge (dcf);
+\draw (dac2f) [main path] edge (acf);
+\draw (dac2f) [main path] edge (dac);
+\draw (dcf) [main path] edge (decf);
+\draw (dcf) [main path] edge (dacf);
+\draw (acf) [main path] edge (dacf);
+\draw (dac) [main path] edge (dacf);
+\draw (dac) [main path] edge (bdac);
+\draw (decf) [main path] edge (deacf);
+\draw (dacf) [main path] edge (deacf);
+\draw (dacf) [main path] edge (d);
+\draw (dacf) [main path] edge (bdacf);
+\draw (bdac) [main path] edge (bdacf);
+\draw (deacf) [main path] edge (a);
+\draw (deacf) [main path] edge (bd2eacf);
+\draw (d) [main path] edge (bd2eacf);
+\draw (bdacf) [main path] edge (bd2eacf);
+\draw (bdacf) [main path] edge (f);
+\draw (a) [main path] edge (bda);
+\draw (bd2eacf) [main path] edge (bda);
+\draw (bd2eacf) [main path] edge (bdeacf);
+\draw (bd2eacf) [main path] edge (def);
+\draw (f) [main path] edge (def);
+\draw (bda) [main path] edge (bd);
+\draw (bda) [main path] edge (bdeaf);
+\draw (bdeacf) [main path] edge (bdeaf);
+\draw (def) [main path] edge (bdeaf);
+\draw (def) [main path] edge (de);
+\draw (bd) [main path] edge (bdef);
+\draw (bdeaf) [main path] edge (bdef);
+\draw (bdeaf) [main path] edge (bdea);
+\draw (de) [main path] edge (bdea);
+\draw (bdef) [main path] edge (ef);
+\draw (bdef) [main path] edge (bde);
+\draw (bdea) [main path] edge (bde);
+\draw (bdea) [main path] edge (ba);
+\draw (ef) [main path] edge (e);
+\draw (bde) [main path] edge (e);
+\draw (bde) [main path] edge (b);
+\draw (ba) [main path] edge (b);
+
+\draw (b) [t path] edge (bdea);
+\draw (e) [t path] edge (bdef);
+\draw (ef) [t path] edge (bd);
+\draw (bde) [t path] edge (bdeaf);
+\draw (ba) [t path] edge (de);
+\draw (bdef) [t path] edge (bda);
+\draw (bdea) [t path] edge (def);
+\draw (bd) [t path] edge (a);
+\draw (bdeaf) [t path] edge (bd2eacf);
+\draw (de) [t path] edge (f);
+\draw (bda) [t path] edge (deacf);
+\draw (bdeacf) [t path] edge (d);
+\draw (def) [t path] edge (bdacf);
+\draw (a) [t path] edge (decf);
+\draw (bd2eacf) [t path] edge (dacf);
+\draw (f) [t path] edge (bdac);
+\draw (deacf) [t path] edge (dcf);
+\draw (d) [t path] edge (acf);
+\draw (bdacf) [t path] edge (dac);
+\draw (dacf) [t path] edge (dac2f);
+\draw (dcf) [t path] edge (ac);
+\draw (acf) [t path] edge (dc);
+\draw (dac) [t path] edge (cf);
+\draw (dac2f) [t path] edge (c);
+\end{tikzpicture}
+\end{equation*}
+\end{eg}
+
+\begin{eg}
+Let $Q$ be the quiver with relations, 
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, m path/.style={->, semithick}, every node/.style={}]
+\node				(a) at (0,0)		{a};
+\node 				(b) at (-1,-1)		{b};
+\node 				(c) at (1,-1)		{c};
+\node 				(d) at (2,-1)		{d};
+\node 				(e) at (0,-2)		{e};
+\node 				(f) at (0,-3)		{f};
+\node 				(1) at (0.5,-0.5)	{};
+\node 				(2) at (1.6,-1.1)	{};
+
+
+\draw (a) [m path] edge (b);
+\draw (a) [m path] edge (c);
+\draw (b) [m path] edge (e);
+\draw (c) [m path] edge (e);
+\draw (c) [m path] edge (d);
+\draw (e) [m path] edge (f);
+\draw (1) [-, dashed] edge [bend left=20] (2);
+\end{tikzpicture}
+\end{equation*}
+then the Auslander-Reiten quiver is:
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, t path/.style={->, dashed, semithick}, every node/.style={}]
+\node			(f) at (0,0)		{$\begin{smallmatrix}f\end{smallmatrix}$};
+\node 			(d) at (1,3)	{$\begin{smallmatrix}d\end{smallmatrix}$};
+\node 			(ef) at (1,1)		{$\begin{smallmatrix}e\\f  \end{smallmatrix}$};
+\node			(cdef) at (2,2)		{$\begin{smallmatrix}c&d\\e&\\f&\end{smallmatrix}$};
+\node 			(e) at (2,0)	{$\begin{smallmatrix} e \end{smallmatrix}$};
+\node 			(bef) at (2,-1)	{$\begin{smallmatrix}b & \\ &e\\&f\end{smallmatrix}$};
+\node 			(cef) at (3,3)	{$\begin{smallmatrix}&c\\e&\\f &\end{smallmatrix}$};
+\node 			(bcde2f) at (3,1)	{$\begin{smallmatrix}b&&c&d\\&e^2&&\\&f&& \end{smallmatrix}$};
+\node 			(bce2f) at (4,2)	{$\begin{smallmatrix} b& &c\\ &e^2&\\&f&\end{smallmatrix}$};
+\node 			(bcdef) at (4,0)	{$\begin{smallmatrix}b&&c&d\\&e&&\\&f&& \end{smallmatrix}$};
+\node 			(cde) at (4,-1)	{$\begin{smallmatrix}&c&d\\e&& \end{smallmatrix}$};
+\node 			(be) at (5,3)	{$\begin{smallmatrix} b & \\ &e\end{smallmatrix}$};
+\node 			(bc2de2f) at (5,1)	{$\begin{smallmatrix} B&&c^2&d\\&e^2&&\\&f&& \end{smallmatrix}$};
+\node 			(bcde) at (6,2)	{$\begin{smallmatrix} b&&c&d\\&e&&\end{smallmatrix}$};
+\node 			(ce) at (6,0)	{$\begin{smallmatrix} &c\\e&\end{smallmatrix}$};
+\node 			(bcef) at (6,-1)	{$\begin{smallmatrix} b&&c\\&e&\\&f&\end{smallmatrix}$};
+\node 			(cd) at (7,3)	{$\begin{smallmatrix}c&d \end{smallmatrix}$};
+\node 			(bce) at (7,1)	{$\begin{smallmatrix} b&&c\\&e&\end{smallmatrix}$};
+\node 			(abcef) at (7,-2)	{$\begin{smallmatrix} &a&\\b&&c\\&e&\\&f&\end{smallmatrix}$};
+\node 			(c) at (8,2)	{$\begin{smallmatrix}c\end{smallmatrix}$};
+\node 			(b) at (8,0)	{$\begin{smallmatrix} b&c\end{smallmatrix}$};
+\node 			(abce) at (8,-1)	{$\begin{smallmatrix} &a&\\b&&c\\&e&\end{smallmatrix}$};
+\node 			(abc) at (9,1)	{$\begin{smallmatrix} &a&\\b&&c\end{smallmatrix}$};
+\node 			(ab) at (10,2)	{$\begin{smallmatrix} &a\\b&\end{smallmatrix}$};
+\node 			(ac) at (10,0)	{$\begin{smallmatrix}a&\\&c \end{smallmatrix}$};
+\node 			(a) at (11,1)	{$\begin{smallmatrix} a\end{smallmatrix}$};
+
+\draw (f) [main path] edge (ef);
+\draw (d) [main path] edge (cdef);
+\draw (ef) [main path] edge (cdef);
+\draw (ef) [main path] edge (e);
+\draw (ef) [main path] edge (bef);
+\draw (cdef) [main path] edge (cef);
+\draw (cdef) [main path] edge (bcde2f);
+\draw (e) [main path] edge (bcde2f);
+\draw (bef) [main path] edge (bcde2f);
+\draw (cef) [main path] edge (bce2f);
+\draw (bcde2f) [main path] edge (bce2f);
+\draw (bcde2f) [main path] edge (bcdef);
+\draw (bcde2f) [main path] edge (cde);
+\draw (bce2f) [main path] edge (be);
+\draw (bce2f) [main path] edge (bc2de2f);
+\draw (bcdef) [main path] edge (bc2de2f);
+\draw (cde) [main path] edge (bc2de2f);
+\draw (be) [main path] edge (bcde);
+\draw (bc2de2f) [main path] edge (bcde);
+\draw (bc2de2f) [main path] edge (ce);
+\draw (bc2de2f) [main path] edge (bcef);
+\draw (bcde) [main path] edge (cd);
+\draw (bcde) [main path] edge (bce);
+\draw (ce) [main path] edge (bce);
+\draw (bcef) [main path] edge (bce);
+\draw (bcef) [main path] edge (abcef);
+\draw (cd) [main path] edge (c);
+\draw (bce) [main path] edge (c);
+\draw (bce) [main path] edge (b);
+\draw (bce) [main path] edge (abce);
+\draw (abcef) [main path] edge (abce);
+\draw (c) [main path] edge (abc);
+\draw (b) [main path] edge (abc);
+\draw (abce) [main path] edge (abc);
+\draw (abc) [main path] edge (ab);
+\draw (abc) [main path] edge (ac);
+\draw (ab) [main path] edge (a);
+\draw (ac) [main path] edge (a);
+
+\draw (a) [t path] edge (abc);
+\draw (ab) [t path] edge (c);
+\draw (ac) [t path] edge (b);
+\draw (abc) [t path] edge (bce);
+\draw (c) [t path] edge (bcde);
+\draw (b) [t path] edge (bce);
+\draw (abce) [t path] edge (bcef);
+\draw (cd) [t path] edge (be);
+\draw (bce) [t path] edge (bc2de2f);
+\draw (bcde) [t path] edge (bce2f);
+\draw (ce) [t path] edge (bcdef);
+\draw (bcef) [t path] edge (cde);
+\draw (be) [t path] edge (cef);
+\draw (bc2de2f) [t path] edge (bcde2f);
+\draw (bce2f) [t path] edge (cdef);
+\draw (bcdef) [t path] edge (e);
+\draw (cde) [t path] edge (bef);
+\draw (cef) [t path] edge (d);
+\draw (bcde2f) [t path] edge (ef);
+\draw (e) [t path] edge (f);
+\end{tikzpicture}
+\end{equation*}
+\end{eg}
+
+\begin{rem}
+However, this method is not always successfull, many problems can arise meaning that you are unable to draw anything more before the diagram is complete. This is when we need to turn to other methods, some of which can be found in \cite{Schiff}.
+\end{rem}
+
+\begin{eg}
+Let $Q$ be the quiver with relations:
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, m path/.style={->, semithick}, every node/.style={}]
+\node				(1) at (0,0)		{a};
+\node 				(2) at (-1,-1)		{b};
+\node 				(3) at (1,-1)		{c};
+\node 				(4) at (0,-2)		{d};
+\node				(5) at (0.5,-0.5)	{};
+\node 				(6) at (0.5,-1.5)	{};
+
+\draw (1) [m path] edge (2);
+\draw (1) [m path] edge (3);
+\draw (2) [m path] edge (4);
+\draw (3) [m path] edge (4);
+\draw (5) [-, dashed] edge (6);
+\end{tikzpicture}
+\end{equation*}
+However, when we attempt to compute the Auslander-Reiten Quiver,
+\begin{equation*}
+\begin{tikzpicture}[->,-latex, auto, main path/.style={->, semithick}, t path/.style={->, dashed, semithick}, every node/.style={}]
+\node			(d) at (0,0)		{$\begin{smallmatrix}d\end{smallmatrix}$};
+\node 			(bd) at (1,1)	{$\begin{smallmatrix}b&\\&d\end{smallmatrix}$};
+\node 			(cd) at (1,-1)		{$\begin{smallmatrix}&c\\d&  \end{smallmatrix}$};
+\node			(bcd) at (2,0)		{$\begin{smallmatrix}b&&c\\&d&\end{smallmatrix}$};
+\node 			(b) at (3,-1)	{$\begin{smallmatrix}b\end{smallmatrix}$};
 
 
 
+\draw (d) [main path] edge (bd);
+\draw (d) [main path] edge (cd);
+\draw (bd) [main path] edge (bcd);
+\draw (bcd) [main path] edge (b);
+\draw (cd) [main path] edge (bcd);
 
-
-
+\draw (bcd) [t path] edge (d);
+\end{tikzpicture}
+\end{equation*}
+we become stuck as we cannot compute any further.
+\end{eg}
 
 
 
@@ -4355,13 +4844,8 @@ Vale, Richard.
 \emph{7350:Topics in Finite-Dimensional Algebras.} [Online-PDF file]. [Accessed March 2015].
 Available from: http://www.math.cornell.edu/~rvale/fdalgebras.pdf.
 
-\bibitem{Barot}
-Barot, Michael.
-\emph{Introduction to the Representation Theory of Algebras.} [Online-PDF file]. [Accessed May 2015].
-Available from: http://www.uni-graz.at/~baurk/lehre/representation\_theory.pdf
-
 \bibitem{AR}
-\emph{Auslander–Reiten theory - Wikipedia, the free encyclopedia.} [ONLINE] [Accessed May 2015].
+\emph{Auslander - Reiten theory - Wikipedia, the free encyclopedia.} [ONLINE] [Accessed May 2015].
 Available at: http://en.wikipedia.org/wiki/Auslander\%E2\%80\%93Reiten\_theory\#CITEREFAuslander1999a.
 
 \bibitem{Assem}
@@ -4369,7 +4853,29 @@ Assem, I. et al.
 2006. 
 \emph{Elements of the Representation Theory of Associative Algebras: Volume 1: Techniques of Representation Theory}.
 Cambridge University Press.
+
+
+\bibitem{Auslander}
+Auslander, M. et al.
+1995.
+\emph{Representation Theory of Artin Algebras}.
+Cambridge University Press.
+
+\bibitem{4}
+\emph{4. The path algebra of a quiver.}  [Online-PDF file].  [Accessed May 2015].
+Available at: https://www.math.uni-bielefeld.de/~sek/kau/leit4.pdf.
+
+\bibitem{2}
+\emph{2. Finite Dimensional Algebras}.[Online-PDF file]. [Accessed May 2015].
+Availble at: http://pages.uoregon.edu/brundan/math607winter03/ch2.pdf.
+
+\bibitem{reps}
+\emph{Representation of Quivers}. [Online-PDF file]. [Accessed May 2015].
+Available at: https://www-fourier.ujf-grenoble.fr/~mbrion/notes\_quivers\_rev.pdf.
+
+\bibitem{RH}
+\emph{Ringel-Hall Algebras}. [Online-PDF file]. [Accessed May 2015].
+Available at: http://www1.maths.leeds.ac.uk/~ahubery/RHAlgs.pdf
+
 \end{thebibliography}
-
-
 \end{document}
